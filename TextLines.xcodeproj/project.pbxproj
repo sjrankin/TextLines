@@ -109,10 +109,10 @@
 		176730572716423300D408BC /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672FEF2716423200D408BC /* Debug.swift */; };
 		176730582716423300D408BC /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672FF02716423200D408BC /* Utility.swift */; };
 		176730592716423300D408BC /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672FF12716423200D408BC /* Filters.swift */; };
-		1767305B2716426F00D408BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1767305A2716426F00D408BC /* Assets.xcassets */; };
 		176730662716439600D408BC /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176730652716439600D408BC /* Enums.swift */; };
 		17673068271643AA00D408BC /* Versioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17673067271643AA00D408BC /* Versioning.swift */; };
 		1767306B271648F700D408BC /* SegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767306A271648F700D408BC /* SegmentCell.swift */; };
+		17ED392327165F0E00A04EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17ED392227165F0E00A04EAD /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -224,10 +224,10 @@
 		17672FEF2716423200D408BC /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		17672FF02716423200D408BC /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		17672FF12716423200D408BC /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
-		1767305A2716426F00D408BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../TextLinesS/TextLines/TextLines/Assets.xcassets; sourceTree = "<group>"; };
 		176730652716439600D408BC /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		17673067271643AA00D408BC /* Versioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Versioning.swift; sourceTree = "<group>"; };
 		1767306A271648F700D408BC /* SegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentCell.swift; sourceTree = "<group>"; };
+		17ED392227165F0E00A04EAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,7 +272,7 @@
 				17672F5F271641F900D408BC /* SceneDelegate.swift */,
 				176730652716439600D408BC /* Enums.swift */,
 				17673067271643AA00D408BC /* Versioning.swift */,
-				1767305A2716426F00D408BC /* Assets.xcassets */,
+				17ED392227165F0E00A04EAD /* Assets.xcassets */,
 				17672F68271641FB00D408BC /* LaunchScreen.storyboard */,
 				17672F6B271641FB00D408BC /* Info.plist */,
 			);
@@ -614,8 +614,8 @@
 				1767300E2716423300D408BC /* voynich-1.23-webfont.ttf in Resources */,
 				17672F6A271641FB00D408BC /* LaunchScreen.storyboard in Resources */,
 				1767303D2716423300D408BC /* SettingsUI.storyboard in Resources */,
+				17ED392327165F0E00A04EAD /* Assets.xcassets in Resources */,
 				1767303B2716423300D408BC /* UserShapes.storyboard in Resources */,
-				1767305B2716426F00D408BC /* Assets.xcassets in Resources */,
 				176730022716423200D408BC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
