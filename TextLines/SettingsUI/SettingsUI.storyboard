@@ -14,7 +14,7 @@
         <!--Settings-->
         <scene sceneID="sSW-NI-wsS">
             <objects>
-                <tableViewController id="9rB-RE-i8f" customClass="SettingsUICode" customModule="TextLine" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="9rB-RE-i8f" customClass="SettingsUICode" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" id="fso-Q5-hH0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -299,8 +299,29 @@
                                             <segue destination="3uv-ta-CyA" kind="show" id="RmP-RL-Ffk"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="4vD-fD-wAv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="bUJ-e7-bRj">
                                         <rect key="frame" x="0.0" y="618" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bUJ-e7-bRj" id="EhM-pL-Cp6">
+                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User shapes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt8-fO-zgr">
+                                                    <rect key="frame" x="20" y="11" width="95" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xt8-fO-zgr" firstAttribute="leading" secondItem="EhM-pL-Cp6" secondAttribute="leadingMargin" id="63C-S0-2Tg"/>
+                                                <constraint firstItem="xt8-fO-zgr" firstAttribute="centerY" secondItem="EhM-pL-Cp6" secondAttribute="centerY" id="K81-Kc-HD1"/>
+                                                <constraint firstItem="xt8-fO-zgr" firstAttribute="top" secondItem="EhM-pL-Cp6" secondAttribute="topMargin" id="v5a-CD-9in"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="4vD-fD-wAv">
+                                        <rect key="frame" x="0.0" y="661.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4vD-fD-wAv" id="hRv-UU-rVK">
                                             <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
@@ -322,27 +343,6 @@
                                         <connections>
                                             <segue destination="9t2-EN-IF4" kind="show" id="bn7-ym-zYg"/>
                                         </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="bUJ-e7-bRj">
-                                        <rect key="frame" x="0.0" y="661.5" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bUJ-e7-bRj" id="EhM-pL-Cp6">
-                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User shapes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt8-fO-zgr">
-                                                    <rect key="frame" x="20" y="11" width="95" height="21.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="xt8-fO-zgr" firstAttribute="leading" secondItem="EhM-pL-Cp6" secondAttribute="leadingMargin" id="63C-S0-2Tg"/>
-                                                <constraint firstItem="xt8-fO-zgr" firstAttribute="centerY" secondItem="EhM-pL-Cp6" secondAttribute="centerY" id="K81-Kc-HD1"/>
-                                                <constraint firstItem="xt8-fO-zgr" firstAttribute="top" secondItem="EhM-pL-Cp6" secondAttribute="topMargin" id="v5a-CD-9in"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -376,7 +376,7 @@
         <!--Main SettingUI Controller-->
         <scene sceneID="YSC-2P-ThN">
             <objects>
-                <navigationController storyboardIdentifier="MainSettingUIController" id="0FH-4C-IMJ" customClass="MainSettingUIController" customModule="TextLine" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainSettingUIController" id="0FH-4C-IMJ" customClass="MainSettingUIController" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="muB-5e-dvn">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -392,7 +392,7 @@
         <!--Fonts-->
         <scene sceneID="07f-9S-UNM">
             <objects>
-                <tableViewController storyboardIdentifier="FontPickerViewer" id="dCL-cL-bZd" customClass="FontPickerController" customModule="TextLine" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FontPickerViewer" id="dCL-cL-bZd" customClass="FontPickerController" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="dpa-5y-DMW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -575,7 +575,7 @@
         <!--Animation-->
         <scene sceneID="g3Q-lp-ElW">
             <objects>
-                <tableViewController id="SFs-gS-EkB" customClass="AnimationUICode" customModule="TextLine" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="SFs-gS-EkB" customClass="AnimationUICode" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" id="KEI-QJ-p5g">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -667,7 +667,7 @@
         <!--Attributions-->
         <scene sceneID="JP8-N6-Zb3">
             <objects>
-                <viewController id="RFz-80-dEN" customClass="AttibutionsController" customModule="TextLine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="RFz-80-dEN" customClass="AttibutionsController" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pQi-4L-MZA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -735,7 +735,7 @@
         <!--Big Attributes-->
         <scene sceneID="hHl-XE-c0Z">
             <objects>
-                <viewController storyboardIdentifier="BigAttributes" id="Wwm-Sr-mbF" customClass="BigAttributes" customModule="TextLine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BigAttributes" id="Wwm-Sr-mbF" customClass="BigAttributes" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Izw-mf-Wxg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -796,7 +796,7 @@
         <!--More-->
         <scene sceneID="NUG-Od-WRm">
             <objects>
-                <tableViewController id="9t2-EN-IF4" customClass="MoreSettings" customModule="TextLine" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="9t2-EN-IF4" customClass="MoreSettings" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" id="Eci-zy-dc3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1008,7 +1008,7 @@
         <!--Background-->
         <scene sceneID="gYl-8V-DCp">
             <objects>
-                <tableViewController id="3uv-ta-CyA" customClass="BackgroundSetting" customModule="TextLine" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="3uv-ta-CyA" customClass="BackgroundSetting" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="lrZ-ZQ-GY4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1144,7 +1144,7 @@
         <!--Style-->
         <scene sceneID="KCO-he-Gmr">
             <objects>
-                <tableViewController id="dkM-TV-IQy" customClass="StyleSettings" customModule="TextLine" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="dkM-TV-IQy" customClass="StyleSettings" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="thc-yp-hUJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1283,7 +1283,7 @@
         <!--Individual Shapes-->
         <scene sceneID="WPI-em-3Es">
             <objects>
-                <viewController id="RQu-02-CCD" customClass="IndividualShapes" customModule="TextLine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="RQu-02-CCD" customClass="IndividualShapes" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qEs-qL-gqH">
                         <rect key="frame" x="0.0" y="0.0" width="404" height="190"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
