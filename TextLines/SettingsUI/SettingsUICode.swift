@@ -47,9 +47,10 @@ class SettingsUICode: UITableViewController, UITextFieldDelegate
     }
     
     /// Hack to simulate a table view cell tap.
+    /// - TODO: Change hardcoded value to something more appropriate.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        if indexPath.row == 5
+        if indexPath.row == 4
         {
             let Storyboard = UIStoryboard(name: "UserShapes", bundle: nil)
             let nextViewController = Storyboard.instantiateViewController(withIdentifier: "UserShapeController") as! UserShapeController
