@@ -53,6 +53,9 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
         SettingPanel.alpha = 0.0
         SettingPanel.layer.zPosition = -1000
         SettingPanel.resignFirstResponder()
+        SettingPanel.layer.maskedCorners = [CACornerMask.layerMaxXMaxYCorner,
+                                          CACornerMask.layerMinXMaxYCorner]
+        SettingPanel.layer.cornerRadius = 5.0
         SettingPanelCommandTable.layer.borderColor = UIColor.gray.cgColor
         SettingPanelCommandTable.layer.borderWidth = 0.5
         SettingPanelCommandTable.layer.cornerRadius = 5.0
@@ -61,12 +64,67 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
         SettingOptionTable.layer.borderWidth = 0.5
         SettingOptionTable.layer.cornerRadius = 5.0
         
+        let OptionDrag = UIPanGestureRecognizer(target: self,
+                                                action: #selector(HandleSettingDragging))
+        SettingsPanelDragBar.addGestureRecognizer(OptionDrag)
+        SettingsPanelDragBar.layer.cornerRadius = 4.0
+        let ResetDragBar = UITapGestureRecognizer(target: self,
+                                                  action: #selector(HandleResetSettingsPanel))
+        ResetDragBar.numberOfTapsRequired = 2
+        SettingsPanelDragBar.addGestureRecognizer(ResetDragBar)
+        
         InitializeKeyboard()
         StartText = "TextLine Version \(Versioning.VerySimpleVersionString()), Build \(Versioning.Build)"
         CurrentText = StartText
         UpdateOutput()
         TextInput.text = StartText
         UserShapeManager.LoadUserShapes()
+        
+        print("Screen.height=\(UIScreen.main.bounds.height)")
+    }
+    
+    @objc func HandleResetSettingsPanel(_ Recognizer: UITapGestureRecognizer)
+    {
+        self.SettingsHeightConstraint.constant = 240
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.0,
+                       options: [.curveEaseInOut])
+        {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    var StartingSettingsHeight: CGFloat? = nil
+    
+    @objc func HandleSettingDragging(_ Recognizer: UIPanGestureRecognizer)
+    {
+        let DraggedTo = Recognizer.translation(in: self.view)
+        switch Recognizer.state
+        {
+            case .began:
+                if StartingSettingsHeight == nil
+                {
+                    StartingSettingsHeight = SettingPanel.frame.size.height
+                }
+                
+            case .changed:
+                let Delta = StartingSettingsHeight! + DraggedTo.y
+                if Delta < 120
+                {
+                    return
+                }
+                if Delta > UIScreen.main.bounds.height - 30
+                {
+                    return
+                }
+                SettingsHeightConstraint.constant = Delta
+                
+            case .ended:
+                StartingSettingsHeight = nil
+                
+            default:
+                break
+        }
     }
     
     /// Initialize the keyboard with a `Done` button in a toolbar. This provides an alternative
@@ -369,6 +427,8 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
     @IBOutlet weak var SettingOptionTable: UITableView!
     @IBOutlet weak var SettingPanelGearButton: UIButton!
     @IBOutlet weak var SettingPanel: UIView!
+    @IBOutlet weak var SettingsPanelDragBar: UIView!
+    @IBOutlet weak var SettingsHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var GroupsLabel: UILabel!
     @IBOutlet weak var ShapesLabel: UILabel!
