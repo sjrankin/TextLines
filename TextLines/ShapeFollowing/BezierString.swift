@@ -202,8 +202,7 @@ extension Bezier
         if Settings.GetBool(.ShowGuidelines)
         {
             let MainPath = self.Original
-//            MainPath.lineWidth = Settings.GetCGFloat(.GuidelineWidth, 2.0)
-            MainPath.lineWidth = 16.0
+            MainPath.lineWidth = Settings.GetCGFloat(.GuidelineWidth, 2.0)
             Settings.GetColor(.GuidelineColor, UIColor.red).setStroke()
             MainPath.stroke()
         }
