@@ -13,7 +13,7 @@
         <!--User Shape Controller-->
         <scene sceneID="ZVN-m3-GQD">
             <objects>
-                <navigationController storyboardIdentifier="UserShapeController" id="dcS-su-U1l" customClass="UserShapeController" customModule="TextLine" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="UserShapeController" id="dcS-su-U1l" customClass="UserShapeController" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5jx-qP-ECh">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -29,7 +29,7 @@
         <!--User Shapes-->
         <scene sceneID="iey-Yl-QTE">
             <objects>
-                <viewController id="CAc-QO-bck" customClass="ShapeManager" customModule="TextLine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CAc-QO-bck" customClass="ShapeManager" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Lz-WC-ruV">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +114,7 @@
         <!--Shape Editor-->
         <scene sceneID="Ii4-IR-88m">
             <objects>
-                <viewController storyboardIdentifier="ShapeEditor" id="yld-B4-uts" customClass="ShapeEditor" customModule="TextLine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShapeEditor" id="yld-B4-uts" customClass="ShapeEditor" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BeF-F0-4FV">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -125,7 +125,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dql-ne-VH0" customClass="UserShape" customModule="TextLine" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dql-ne-VH0" customClass="UserShape" customModule="TextLines" customModuleProvider="target">
                                 <rect key="frame" x="10" y="185.66666666666669" width="408" height="696.33333333333326"/>
                                 <color key="backgroundColor" name="ShapeBackgroundColor"/>
                             </view>
@@ -142,7 +142,24 @@
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4en-BB-k8C">
                                         <rect key="frame" x="84" y="0.0" width="240" height="40"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5n-5e-dLe">
+                                                <rect key="frame" x="0.0" y="4" width="240" height="4"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="Q5n-5e-dLe" firstAttribute="leading" secondItem="4en-BB-k8C" secondAttribute="leading" id="ADy-yh-pLb"/>
+                                            <constraint firstItem="Q5n-5e-dLe" firstAttribute="centerX" secondItem="4en-BB-k8C" secondAttribute="centerX" id="IX6-Cz-jhy"/>
+                                            <constraint firstAttribute="bottom" secondItem="Q5n-5e-dLe" secondAttribute="bottom" constant="32" id="oda-VL-L3S"/>
+                                            <constraint firstItem="Q5n-5e-dLe" firstAttribute="top" secondItem="4en-BB-k8C" secondAttribute="top" constant="4" id="zsb-l9-ZO4"/>
+                                        </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3KT-Fu-0Sf">
                                         <rect key="frame" x="10" y="50" width="388" height="240"/>
