@@ -414,12 +414,12 @@
 		17672FAF2716423200D408BC /* SettingsUI */ = {
 			isa = PBXGroup;
 			children = (
-				17672FB12716423200D408BC /* TitledImages */,
-				17672FB52716423200D408BC /* Cells */,
-				17672FC32716423200D408BC /* UserShapes */,
 				17672FCE2716423200D408BC /* Attributions */,
+				17672FB52716423200D408BC /* Cells */,
 				17672FD32716423200D408BC /* Fonts */,
 				17672FD72716423200D408BC /* IndividualSettingsHandlers */,
+				17672FB12716423200D408BC /* TitledImages */,
+				17672FC32716423200D408BC /* UserShapes */,
 				17672FCD2716423200D408BC /* SettingsUI.storyboard */,
 				17672FB02716423200D408BC /* SettingsUICode.swift */,
 				17672FCC2716423200D408BC /* AnimationUICode.swift */,
@@ -464,13 +464,13 @@
 		17672FC32716423200D408BC /* UserShapes */ = {
 			isa = PBXGroup;
 			children = (
-				17672FC42716423200D408BC /* ShapeManagerDelegate.swift */,
-				17672FC52716423200D408BC /* UserShapeController.swift */,
-				17672FC72716423200D408BC /* ShapeEditor.swift */,
-				17672FC82716423200D408BC /* UserShapeCell.swift */,
-				17672FC92716423200D408BC /* ShapeManager.swift */,
-				17672FCA2716423200D408BC /* UserDefinedShape.swift */,
 				17672FCB2716423200D408BC /* UserShapes.storyboard */,
+				17672FC72716423200D408BC /* ShapeEditor.swift */,
+				17672FC92716423200D408BC /* ShapeManager.swift */,
+				17672FC42716423200D408BC /* ShapeManagerDelegate.swift */,
+				17672FCA2716423200D408BC /* UserDefinedShape.swift */,
+				17672FC82716423200D408BC /* UserShapeCell.swift */,
+				17672FC52716423200D408BC /* UserShapeController.swift */,
 			);
 			path = UserShapes;
 			sourceTree = "<group>";
