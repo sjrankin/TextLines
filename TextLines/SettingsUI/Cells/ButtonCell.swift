@@ -86,6 +86,25 @@ class ButtonCell: UITableViewCell
         PressAction = Action
     }
     
+    override func willTransition(to state: UITableViewCell.StateMask)
+    {
+        super.willTransition(to: state)
+        if ((state.rawValue & UITableViewCell.StateMask.showingEditControl.rawValue) != 0)
+        {
+            UIView.animate(withDuration: 0.1)
+            {
+                self.Button?.alpha = 0.0
+            }
+        }
+        else
+        {
+            UIView.animate(withDuration: 0.5)
+            {
+                self.Button?.alpha = 1.0
+            }
+        }
+    }
+    
     var PressAction: ButtonAction? = nil
     var HeaderLabel: UILabel!
     var Button: UIButton? = nil
