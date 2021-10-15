@@ -135,4 +135,6 @@ enum SettingKeys: String, CaseIterable
     case ShowViewport = "ShowViewport"
     /// Bool: Scale user drawing to available view.
     case ScaleToView = "ScaleToView"
+    /// String: Order of options for editing user shapes.
+    case UserShapeOptionsOrder = "UserShapeOptionsOrder"
 }
