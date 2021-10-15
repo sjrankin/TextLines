@@ -83,5 +83,6 @@ extension Settings
         .ShowViewport: true,
         .ScaleToView: true,
         .UserShapeOptionsOrder: "",
+        .PointsWhenSmooth: false,
     ]
 }
