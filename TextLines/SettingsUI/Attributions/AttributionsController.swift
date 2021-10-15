@@ -285,10 +285,14 @@ THE SOFTWARE.
         Attribution(Link: "https://stackoverflow.com/questions/29227858/how-to-draw-heart-shape-in-uiview-ios",
                     Text: "Drawing heart shapes in iOS",
                     Title: "Heart Shapes"),
-        Attribution(Link: "",
+        Attribution(Link: "https://fontlibrary.org/en/font/voynich",
                     Text: "Voynich Manuscript Font courtesy Glenn Claston, 2005, distributed in the public domain, corrected for UTF-8 by William Porquet",
-                    Title: "Voynich Font")
-        // Above to 12 October 2021
+                    Title: "Voynich Font",
+                    SeparateView: true),
+        Attribution(Link: "https://stackoverflow.com/questions/25649926/trying-to-animate-a-constraint-in-swift",
+                    Text: "Animating constraints at run-time",
+                    Title: "Animating Constraints")
+        // Above to 13 October 2021
     ]
     
     @IBOutlet weak var LinkText: UITextView!
