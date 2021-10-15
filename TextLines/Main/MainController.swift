@@ -83,6 +83,7 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
         print("Screen.height=\(UIScreen.main.bounds.height)")
     }
     
+    //https://stackoverflow.com/questions/25649926/trying-to-animate-a-constraint-in-swift
     @objc func HandleResetSettingsPanel(_ Recognizer: UITapGestureRecognizer)
     {
         self.SettingsHeightConstraint.constant = 240
