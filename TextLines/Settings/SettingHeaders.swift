@@ -83,5 +83,6 @@ public static let SettingKeyHeaders: [SettingKeys: String] =
     .ShowViewport: "Show viewport",
     .ScaleToView: "Scale drawing",
     .UserShapeOptionsOrder: "Option order",
+    .PointsWhenSmooth: "Point when smooth",
     ]
 }
