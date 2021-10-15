@@ -113,6 +113,7 @@
 		17673068271643AA00D408BC /* Versioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17673067271643AA00D408BC /* Versioning.swift */; };
 		1767306B271648F700D408BC /* SegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767306A271648F700D408BC /* SegmentCell.swift */; };
 		17ED392327165F0E00A04EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17ED392227165F0E00A04EAD /* Assets.xcassets */; };
+		17ED39252718C9D900A04EAD /* +ShapeEditorOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED39242718C9D900A04EAD /* +ShapeEditorOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -228,6 +229,7 @@
 		17673067271643AA00D408BC /* Versioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Versioning.swift; sourceTree = "<group>"; };
 		1767306A271648F700D408BC /* SegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentCell.swift; sourceTree = "<group>"; };
 		17ED392227165F0E00A04EAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		17ED39242718C9D900A04EAD /* +ShapeEditorOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ShapeEditorOptions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,13 +381,13 @@
 		17672F992716423100D408BC /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				17672F9D2716423100D408BC /* Settings.swift */,
+				17672F9E2716423100D408BC /* SettingChangedProtocol.swift */,
+				17672FA02716423100D408BC /* SettingKeys.swift */,
 				17672F9A2716423100D408BC /* SettingHeaders.swift */,
 				17672F9B2716423100D408BC /* SettingKeysMap.swift */,
 				17672F9C2716423100D408BC /* SettingsStructure.swift */,
-				17672F9D2716423100D408BC /* Settings.swift */,
-				17672F9E2716423100D408BC /* SettingChangedProtocol.swift */,
 				17672F9F2716423100D408BC /* SettingDefaults.swift */,
-				17672FA02716423100D408BC /* SettingKeys.swift */,
 				17672FA12716423100D408BC /* SettingTypes */,
 			);
 			path = Settings;
@@ -466,6 +468,7 @@
 			children = (
 				17672FCB2716423200D408BC /* UserShapes.storyboard */,
 				17672FC72716423200D408BC /* ShapeEditor.swift */,
+				17ED39242718C9D900A04EAD /* +ShapeEditorOptions.swift */,
 				17672FC92716423200D408BC /* ShapeManager.swift */,
 				17672FC42716423200D408BC /* ShapeManagerDelegate.swift */,
 				17672FCA2716423200D408BC /* UserDefinedShape.swift */,
@@ -715,6 +718,7 @@
 				1767304C2716423300D408BC /* FileIO.swift in Sources */,
 				176730452716423300D408BC /* +IndividualShapeSettings.swift in Sources */,
 				17672FF52716423200D408BC /* BezierString.swift in Sources */,
+				17ED39252718C9D900A04EAD /* +ShapeEditorOptions.swift in Sources */,
 				176730182716423300D408BC /* +Int.swift in Sources */,
 				176730482716423300D408BC /* SettingItem.swift in Sources */,
 				176730292716423300D408BC /* BooleanCell2.swift in Sources */,
