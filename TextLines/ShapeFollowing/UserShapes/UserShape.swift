@@ -705,6 +705,7 @@ class UserShape: UIView
 
             }
             ViewportPath = CreatePath(.Viewport, Viewport: FinalViewport)
+            ViewportPath.stroke()
             //Appending the returned ViewportPath to FinalPath results in a thin blue line
             //drawn on top of the ViewportPath line. Commenting out the following line
             //stops that.
@@ -713,12 +714,14 @@ class UserShape: UIView
         if ShowPoints
         {
             PointPath = CreatePath(.Points, Points: Points)
+            PointPath.stroke()
             FinalPath.append(PointPath)
         }
         if Points.count > 2
         {
             LinePath = CreatePath(.Lines, Points: Points, ClosePath: ClosePath,
                                    MainLineWidth: MainLineWidth, MainLineColor: MainLineColor)
+            LinePath.stroke()
             FinalPath.append(LinePath)
         }
         return FinalPath
@@ -754,7 +757,7 @@ class UserShape: UIView
                 }
                 PointsPath.lineWidth = 3.2
                 UIColor.black.setStroke()
-                PointsPath.stroke()
+                //PointsPath.stroke()
                 return PointsPath
                 
             case .Viewport:
@@ -767,7 +770,7 @@ class UserShape: UIView
                 VPBorder.addLine(to: CGPoint(x: 2, y: 2))
                 UIColor.red.setStroke()
                 VPBorder.lineWidth = 4.0
-                VPBorder.stroke()
+                //VPBorder.stroke()
                 return VPBorder
                 
             case .Lines:
@@ -791,7 +794,7 @@ class UserShape: UIView
                     MainLineColor.setStroke()
                     LinesPath.append(LinePath)
                 }
-                LinesPath.stroke()
+                //LinesPath.stroke()
                 return LinesPath
         }
     }
