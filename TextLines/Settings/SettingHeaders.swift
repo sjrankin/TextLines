@@ -81,6 +81,7 @@ public static let SettingKeyHeaders: [SettingKeys: String] =
     .UserShapes: "User shapes",
     .CurrentUserShape: "User shape",
     .ShowViewport: "Show viewport",
-    .ScaleToView: "Scale drawing"
+    .ScaleToView: "Scale drawing",
+    .UserShapeOptionsOrder: "Option order",
     ]
 }
