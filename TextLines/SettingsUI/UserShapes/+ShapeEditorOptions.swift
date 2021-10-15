@@ -26,7 +26,7 @@ extension ShapeEditor
                 case 0:
                     let SegCell = SegmentCell(style: .default, reuseIdentifier: "SegmentCell")
                     SegCell.LoadCell(Title: "Tap actions",
-                                     Names: ["Add", "Move", "Delete"],
+                                     Names: ["Add", "Move", "Insert", "Delete"],
                                      Width: Width,
                                      InitialIndex: ModeSegment)
                     {
@@ -36,7 +36,7 @@ extension ShapeEditor
                             return
                         }
                         self.ModeSegment = Index
-                        let Mode = [EditTypes.Add, EditTypes.Move, EditTypes.Delete][Index]
+                        let Mode = [EditTypes.Add, EditTypes.Move, EditTypes.Insert, EditTypes.Delete][Index]
                         self.EditSurface.SetEditMode(Mode)
                     }
                     SegCell.backgroundColor = CellBackground(For: Order)
@@ -152,25 +152,28 @@ extension ShapeEditor
                     Results.append((BooleanCell2.CellHeight, BoolCell))
                     
                 case 8:
-                    let OriginalWidth = ShapeToEdit.ViewportWidth
+                    let OriginalWidth = ShapeToEdit.ViewportSize
                     
                     switch OriginalWidth
                     {
                         case 500:
                             InitialIndex = 0
                             
-                        case 1000:
+                        case 750:
                             InitialIndex = 1
                             
-                        case 1500:
+                        case 1000:
                             InitialIndex = 2
+                            
+                        case 1500:
+                            InitialIndex = 3
                             
                         default:
                             InitialIndex = 1
                     }
                     let SegCell = SegmentCell(style: .default, reuseIdentifier: "SegmentCell")
-                    SegCell.LoadCell(Title: "Viewport width",
-                                     Names: ["500", "1000", "1500"],
+                    SegCell.LoadCell(Title: "Viewport size",
+                                     Names: ["500", "750", "1000", "1500"],
                                      Width: Width,
                                      InitialIndex: InitialIndex)
                     {
@@ -179,62 +182,35 @@ extension ShapeEditor
                         switch NewIndex
                         {
                             case 0:
-                                self.ShapeToEdit.ViewportWidth = 500
+                                self.ShapeToEdit.ViewportSize = 500
                                 
                             case 1:
-                                self.ShapeToEdit.ViewportWidth = 1000
+                                self.ShapeToEdit.ViewportSize = 750
                                 
                             case 2:
-                                self.ShapeToEdit.ViewportWidth = 1500
+                                self.ShapeToEdit.ViewportSize = 1000
+                                
+                            case 3:
+                                self.ShapeToEdit.ViewportSize = 1500
                                 
                             default:
-                                self.ShapeToEdit.ViewportWidth = 1000
+                                self.ShapeToEdit.ViewportSize = 1000
                         }
                     }
                     SegCell.backgroundColor = CellBackground(For: Order)
                     Results.append((SegmentCell.CellHeight, SegCell))
                     
                 case 9:
-                    let OriginalHeight = ShapeToEdit.ViewportHeight
-                    switch OriginalHeight
+                    let BoolCell = BooleanCell2(style: .default, reuseIdentifier: "BooleanCell2")
+                    BoolCell.LoadCell(InitialValue: Settings.GetBool(.PointsWhenSmooth),
+                                      Header: "Show points when smooth", Width: Width)
                     {
-                        case 500:
-                            InitialIndex = 0
-                            
-                        case 1000:
-                            InitialIndex = 1
-                            
-                        case 1500:
-                            InitialIndex = 2
-                            
-                        default:
-                            InitialIndex = 1
+                        PointsWhenSmooth in
+                        Settings.SetBool(.PointsWhenSmooth, PointsWhenSmooth)
+                        self.EditSurface.ShowPointsWhenSmoothed(PointsWhenSmooth)
                     }
-                    let SegCell = SegmentCell(style: .default, reuseIdentifier: "SegmentCell")
-                    SegCell.LoadCell(Title: "Viewport height",
-                                     Names: ["500", "1000", "1500"],
-                                     Width: Width,
-                                     InitialIndex: InitialIndex)
-                    {
-                        NewIndex in
-                        self.InitialIndex = NewIndex
-                        switch NewIndex
-                        {
-                            case 0:
-                                self.ShapeToEdit.ViewportHeight = 500
-                                
-                            case 1:
-                                self.ShapeToEdit.ViewportHeight = 1000
-                                
-                            case 2:
-                                self.ShapeToEdit.ViewportHeight = 1500
-                                
-                            default:
-                                self.ShapeToEdit.ViewportHeight = 1000
-                        }
-                    }
-                    SegCell.backgroundColor = CellBackground(For: Order)
-                    Results.append((SegmentCell.CellHeight, SegCell))
+                    BoolCell.backgroundColor = CellBackground(For: Order)
+                    Results.append((BooleanCell2.CellHeight, BoolCell))
                     
                 default:
                     Debug.FatalError("Unexpected index (\(CellIndex)) for creating option table view cells.")
