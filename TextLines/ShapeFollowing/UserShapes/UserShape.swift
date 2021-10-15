@@ -11,6 +11,7 @@ import UIKit
 /// Code to allow the user to create lines and closed-loops on the fly.
 class UserShape: UIView
 {
+    var ShowOriginalPointsWhenSmoothed: Bool = false
     var ScaleFactor: CGFloat = 1.0
     var DrawToScale: Bool = true
     var ClosePath: Bool = true
@@ -41,7 +42,7 @@ class UserShape: UIView
         Tap.numberOfTapsRequired = 1
         self.addGestureRecognizer(Tap)
         ScaleFactor = CalculateScale()
-        DrawTapView()
+        DrawUserShape()
     }
     
     /// Set the additive offset for each point.
@@ -125,7 +126,7 @@ class UserShape: UIView
         }
         SmoothedPoints.removeAll()
         OriginalPoints = CenteredPoints
-        DrawTapView()
+        DrawUserShape()
     }
     
     /// Returns the spatial center of the user shape. `OriginalPoints` is used to determine the center.
@@ -168,7 +169,7 @@ class UserShape: UIView
         MainLineColor = UIColor.black
         let OldShowPoints = ShowPoints
         
-        DrawTapView()
+        DrawUserShape()
         let renderer = UIGraphicsImageRenderer(size: RenderBounds.size)
         let image = renderer.image
         {
@@ -187,7 +188,7 @@ class UserShape: UIView
     /// Convenience function for callers to force a redraw.
     func Redraw()
     {
-        DrawTapView()
+        DrawUserShape()
     }
     
     /// Returns a string representing a `UIGestureRecognizer.State` value.
@@ -252,7 +253,7 @@ class UserShape: UIView
             default:
                 return
         }
-        DrawTapView()
+        DrawUserShape()
     }
     
     /// Handle individual taps. `EditMode` controls the action taken when the user
@@ -275,6 +276,36 @@ class UserShape: UIView
                     OriginalPoints.append(Location)
                 }
                 
+            case .Insert:
+                if OriginalPoints.count > 2
+                {
+                    let Final = GridGap > 0 ? MakeConstrainedPoint(Location) : Location
+                    guard let (Close1, Close2) = TwoClosestPoints(To: Final) else
+                    {
+                        OriginalPoints.append(Final)
+                        break
+                    }
+                    if Close1 == 0
+                    {
+                        OriginalPoints.insert(Final, at: 0)
+                    }
+                    else
+                    {
+                        OriginalPoints.insert(Final, at: Close2)
+                    }
+                }
+                else
+                {
+                    if GridGap > 0
+                    {
+                        AddConstrainedPoint(Location)
+                    }
+                    else
+                    {
+                        OriginalPoints.append(Location)
+                    }
+                }
+                
             case .Delete:
                 let Closest = ClosestPoint(To: Location)
                 if Closest.Distance <= 10
@@ -285,13 +316,14 @@ class UserShape: UIView
             default:
                 break
         }
-        DrawTapView()
+        DrawUserShape()
     }
     
-    /// Add the passed location to the set of original points after being constrained to the
-    /// nearest grid intersection.
-    /// - Parameter Location: The location to add.
-    func AddConstrainedPoint(_ Location: CGPoint)
+    /// Given an arbitrary point, return a constrained point based on current
+    /// grid settings.
+    /// - Parameter Location: The arbitrary point to convert to a constrained point.
+    /// - Returns: Constrained point.
+    func MakeConstrainedPoint(_ Location: CGPoint) -> CGPoint
     {
         let Gap = CGFloat(GridGap)
         let XBase = Int(Location.x / Gap) * GridGap
@@ -304,7 +336,15 @@ class UserShape: UIView
         let YAdjustment = YOver < 0.5 ? 0.0 : 1.0
         let FinalY = CGFloat(YBase) + YAdjustment
         
-        OriginalPoints.append(CGPoint(x: FinalX, y: FinalY))
+        return CGPoint(x: FinalX, y: FinalY)
+    }
+    
+    /// Add the passed location to the set of original points after being constrained to the
+    /// nearest grid intersection.
+    /// - Parameter Location: The location to add.
+    func AddConstrainedPoint(_ Location: CGPoint)
+    {
+        OriginalPoints.append(MakeConstrainedPoint(Location))
     }
     
     /// Returns the distance between two points in 2D space.
@@ -322,15 +362,24 @@ class UserShape: UIView
     
     /// Returns the point in `OriginalPoints` that is closest to the passed point.
     /// - Parameter To: The point used to determine the closest point returned.
+    /// - Parameter Ignoring: If present, this represents an index that will not be
+    ///                       returned even if it is the closest.
     /// - Returns: Tuple of the index of the closest point and the distance to the
     ///            closest point. If two points have the same closest distance, the
     ///            first point encountered will be returned.
-    func ClosestPoint(To: CGPoint) -> (Index: Int, Distance: CGFloat)
+    func ClosestPoint(To: CGPoint, Ignoring SomeIndex: Int? = nil) -> (Index: Int, Distance: CGFloat)
     {
         var ClosestIndex = -1
         var PointDistance: CGFloat = CGFloat.greatestFiniteMagnitude
         for Index in 0 ..< OriginalPoints.count
         {
+            if let IgnoreMe = SomeIndex
+            {
+                if Index == IgnoreMe
+                {
+                    continue
+                }
+            }
             let D = Distance(To, OriginalPoints[Index])
             if D < PointDistance
             {
@@ -341,13 +390,52 @@ class UserShape: UIView
         return (ClosestIndex, PointDistance)
     }
     
+    /// Return the indices of the two closest points to the passed point.
+    /// - Parameter To: The point whose closest two points will be returned.
+    /// - Returns: Tuple of the closest point's index and the second closest
+    ///            point's index. `Nil` return if insufficient number of points
+    ///            are in `OriginalPoints`.
+    func TwoClosestPoints(To Point: CGPoint) -> (Index1: Int, Index2: Int)?
+    {
+        if OriginalPoints.count < 2
+        {
+            return nil
+        }
+        let (Close1, _) = ClosestPoint(To: Point)
+        let (Close2, _) = ClosestPoint(To: Point, Ignoring: Close1)
+        let Final1 = Close1 < Close2 ? Close1 : Close2
+        let Final2 = Close1 < Close2 ? Close2 : Close1
+        return (Final1, Final2)
+    }
+    
+    /// Returns the angle between two points in degrees.
+    /// - Note: [Angle between two points](https://stackoverflow.com/questions/6064630/get-angle-from-2-positions)
+    /// - Important: 0° points due east.
+    /// - Parameter Origin: The point that acts as the origin.
+    /// - Parameter To: The point that is not the origin.
+    /// - Returns: The angle, in degrees, between the two passed points.
+    func AngleFrom(Origin: CGPoint, To Other: CGPoint) -> CGFloat
+    {
+        let OriginX = Other.x - Origin.x
+        let OriginY = Other.y - Origin.y
+        let BearingRadians = atan2f(Float(OriginY), Float(OriginX))
+        var BearingDegrees = CGFloat(BearingRadians).Degrees
+        
+        while BearingDegrees < 0
+        {
+            BearingDegrees += 360
+        }
+        
+        return BearingDegrees
+    }
+    
     /// Show or hide the viewport border.
     /// - Parameter Visible: If true, the border of the viewport is shown. Otherwise,
     ///                      it is not drawn.
     func SetViewportBorder(Visible: Bool)
     {
         ShowViewportBorder = Visible
-        DrawTapView()
+        DrawUserShape()
     }
     
     /// Sets the final frame size of the surface.
@@ -367,7 +455,7 @@ class UserShape: UIView
     {
         DrawToScale = DoScale
         ScaleFactor = CalculateScale()
-        DrawTapView()
+        DrawUserShape()
     }
     
     /// Calculate the scale factor for drawing (if `DrawToScale` is enabled).
@@ -390,12 +478,12 @@ class UserShape: UIView
     func SetViewport(_ NewViewport: CGRect)
     {
         CurrentViewport = NewViewport
-        DrawTapView()
+        DrawUserShape()
     }
     
     /// Draws the view by setting the needs display flag on the drawing surface. Sets
     /// parameters before drawing.
-    func DrawTapView()
+    func DrawUserShape()
     {
         if InSmoothMode && !SmoothedPoints.isEmpty
         {
@@ -425,7 +513,13 @@ class UserShape: UIView
             SmoothedPoints = Chaikin.SmoothPoints(Points: OriginalPoints, Iterations: 5, Closed: ClosePath)
         }
         ShowPoints = !On
-        DrawTapView()
+        DrawUserShape()
+    }
+    
+    func ShowPointsWhenSmoothed(_ DoShowPoints: Bool)
+    {
+        ShowOriginalPointsWhenSmoothed = DoShowPoints
+        DrawUserShape()
     }
     
     /// Clear all points in the view (both smoothed and original). Redraws the view.
@@ -433,7 +527,7 @@ class UserShape: UIView
     {
         OriginalPoints.removeAll()
         SmoothedPoints.removeAll()
-        DrawTapView()
+        DrawUserShape()
     }
     
     /// Sets the edit mode so users can delete points by tapping on them.
@@ -450,7 +544,7 @@ class UserShape: UIView
     func SetGridVisibility(_ Size: Int)
     {
         GridGap = Size
-        DrawTapView()
+        DrawUserShape()
     }
     
     /// Draws closed loops rather than open lines. Redraws the view when called.
@@ -463,7 +557,7 @@ class UserShape: UIView
         {
             SmoothedPoints = Chaikin.SmoothPoints(Points: WorkingPoints, Iterations: 5, Closed: ClosePath)
         }
-        DrawTapView()
+        DrawUserShape()
     }
     
     /// Get the extreme of the specified extent of the current path.
@@ -608,7 +702,7 @@ class UserShape: UIView
             Source.remove(at: MinIndex)
         }
         OriginalPoints = Closest
-        DrawTapView()
+        DrawUserShape()
     }
     
     /// Remove the last point in the working points array. If there are points in
@@ -624,7 +718,7 @@ class UserShape: UIView
         {
             SmoothedPoints = Chaikin.SmoothPoints(Points: WorkingPoints, Iterations: 5, Closed: ClosePath)
         }
-        DrawTapView()
+        DrawUserShape()
     }
     
     // MARK: - Rendering functions
@@ -665,7 +759,9 @@ class UserShape: UIView
                                                 MainLineColor: MainLineColor,
                                                 ShowViewportBorder: ShowViewportBorder,
                                                 Viewport: CurrentViewport,
-                                                Scale: ScaleToUse)
+                                                Scale: ScaleToUse,
+                                                ShowPointsWhenSmoothed: ShowOriginalPointsWhenSmoothed,
+                                                AlternativePoints: OriginalPoints)
         SomeShape.stroke()
     }
     
@@ -677,6 +773,10 @@ class UserShape: UIView
     /// - Parameter MainLineColor: The color of the line. Defaults to `.black`.
     /// - Parameter ShowViewportBorder: Determines if the viewport border is visible. Defaults to `false`.
     /// - Parameter Scale: The scale factor to use. If nil, no scaling factor is used.
+    /// - Parameter ShowPointsWhenSmoothed: If true, points from `AlternativePoints` are drawn even when
+    ///                                     smooth lines are drawn. Defaults to `false`.
+    /// - Parameter AlternativePoints: If present, should consist of the set of original points used to draw
+    ///                                the shape. Used when `ShowPointsWhenSmoothed` is `true`.
     /// - Returns: A `UIBezierPath` based on the passed parameters.
     public static func GenerateShape(_ Points: [CGPoint],
                                      ShowPoints: Bool,
@@ -687,7 +787,9 @@ class UserShape: UIView
                                      Viewport: CGRect = CGRect(origin: .zero,
                                                                size: CGSize(width: 1024,
                                                                             height: 1024)),
-                                     Scale: CGFloat?) -> UIBezierPath
+                                     Scale: CGFloat?,
+                                     ShowPointsWhenSmoothed: Bool = false,
+                                     AlternativePoints: [CGPoint]? = nil) -> UIBezierPath
     {
         let FinalPath = UIBezierPath()
         var PointPath = UIBezierPath()
@@ -704,34 +806,50 @@ class UserShape: UIView
                                        height: Viewport.size.height * Scale)
 
             }
-            ViewportPath = CreatePath(.Viewport, Viewport: FinalViewport)
+            ViewportPath = CreatePath(.Viewport, PathColor: UIColor.red,
+                                      Viewport: FinalViewport)
             ViewportPath.stroke()
             //Appending the returned ViewportPath to FinalPath results in a thin blue line
             //drawn on top of the ViewportPath line. Commenting out the following line
             //stops that.
             //FinalPath.append(ViewportPath)
         }
-        if ShowPoints
+        if ShowPointsWhenSmoothed && AlternativePoints != nil && !ShowPoints
         {
-            PointPath = CreatePath(.Points, Points: Points)
+            PointPath = CreatePath(.Points, Points: AlternativePoints!,
+                                   PathColor: UIColor.gray.withAlphaComponent(0.75))
+            //UIColor.gray.withAlphaComponent(0.75).setStroke()
+            PointPath.stroke()
+            FinalPath.append(PointPath)
+        }
+        else if ShowPoints
+        {
+            PointPath = CreatePath(.Points, Points: Points, PathColor: UIColor.red)
             PointPath.stroke()
             FinalPath.append(PointPath)
         }
         if Points.count > 2
         {
             LinePath = CreatePath(.Lines, Points: Points, ClosePath: ClosePath,
-                                   MainLineWidth: MainLineWidth, MainLineColor: MainLineColor)
+                                  LineWidth: MainLineWidth, PathColor: MainLineColor)
             LinePath.stroke()
             FinalPath.append(LinePath)
         }
         return FinalPath
     }
     
+    /// Create a path of the passed type and return it.
+    /// - Parameter PathType: The type of path to create.
+    /// - Parameter Points: The points to use to create the path.
+    /// - Parameter ClosePath: Determines if the path is closed or open.
+    /// - Parameter LineWidth: Width of lines.
+    /// - Parameter PathColor: Color of the objects drawn.
+    /// - Parameter Viewport: The viewport for the path.
     public static func CreatePath(_ PathType: PathTypes,
                                   Points: [CGPoint] = [CGPoint](),
                                   ClosePath: Bool = true,
-                                  MainLineWidth: CGFloat = 2.0,
-                                  MainLineColor: UIColor = .black,
+                                  LineWidth: CGFloat = 2.0,
+                                  PathColor: UIColor = .black,
                                   Viewport: CGRect = .zero) -> UIBezierPath
     {
         switch PathType
@@ -756,7 +874,8 @@ class UserShape: UIView
                     Index = Index + 1
                 }
                 PointsPath.lineWidth = 3.2
-                UIColor.black.setStroke()
+                PathColor.setStroke()
+                PathColor.setFill()
                 //PointsPath.stroke()
                 return PointsPath
                 
@@ -768,7 +887,7 @@ class UserShape: UIView
                                              y: Viewport.size.height - 2))
                 VPBorder.addLine(to: CGPoint(x: 2, y: Viewport.size.height - 2))
                 VPBorder.addLine(to: CGPoint(x: 2, y: 2))
-                UIColor.red.setStroke()
+                PathColor.setStroke()
                 VPBorder.lineWidth = 4.0
                 //VPBorder.stroke()
                 return VPBorder
@@ -790,8 +909,8 @@ class UserShape: UIView
                     {
                         LinePath.addLine(to: Points[Index + 1])
                     }
-                    LinesPath.lineWidth = MainLineWidth
-                    MainLineColor.setStroke()
+                    LinesPath.lineWidth = LineWidth
+                    PathColor.setStroke()
                     LinesPath.append(LinePath)
                 }
                 //LinesPath.stroke()
@@ -809,6 +928,8 @@ enum EditTypes: CaseIterable
     case Move
     /// Deleting points.
     case Delete
+    /// Insert points
+    case Insert
 }
 
 
