@@ -14,10 +14,23 @@ class ShapeEditor: UIViewController, UITableViewDelegate, UITableViewDataSource,
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        let RawOrder = Settings.GetString(.UserShapeOptionsOrder,
+                                          "0,1,2,3,4,5,6,7,8,9")
+        print("RawOrder=\(RawOrder)")
+        for Item in RawOrder.components(separatedBy: ",")
+        {
+            guard let RawValue = Int(Item) else
+            {
+                Debug.FatalError("Invalid item (\(Item)) found in .UserShapeOptionsOrder.")
+            }
+            OptionOrder.append(RawValue)
+        }
+        print("OptionOrder=\(OptionOrder)")
         
         OptionsWindowTable.layer.borderColor = UIColor.gray.cgColor
         OptionsWindowTable.layer.borderWidth = 0.5
         OptionsWindowTable.layer.cornerRadius = 5.0
+        OptionsHeight.constant = 50.0
         
         EditSurface.layer.borderColor = UIColor.gray.cgColor
         EditSurface.layer.borderWidth = 0.5
@@ -48,6 +61,13 @@ class ShapeEditor: UIViewController, UITableViewDelegate, UITableViewDataSource,
         
         PopulateFromShape(ShapeToEdit)
         InitializeFlyInSettings()
+        let TableWidth = OptionsWindowTable.frame.width
+        guard let InitialRowOptions = MakeOptionRows(Width: TableWidth) else
+        {
+            Debug.FatalError("No options returned from MakeOptionRows.")
+        }
+        RowOptions = InitialRowOptions
+            OptionsWindowTable.reloadData()
     }
     
     var OptionsInitialized = false
@@ -59,40 +79,86 @@ class ShapeEditor: UIViewController, UITableViewDelegate, UITableViewDataSource,
             return
         }
         OptionsInitialized = true
-        OptionsWindow?.alpha = 0.0
         OptionsWindow?.layer.zPosition = 1000
-        ShowingOptions = false
         OptionsWindow?.layer.borderWidth = 2.0
-        OptionsWindow?.layer.borderColor = UIColor.black.cgColor
+        OptionsWindow?.layer.borderColor = UIColor.gray.cgColor
         OptionsWindow?.layer.cornerRadius = 5.0
+        StartingY = OptionsWindow!.frame.origin.y
         
-        let GrabPan = UIPanGestureRecognizer(target: self, action: #selector(HandleGrapPan))
+        let GrabPan = UIPanGestureRecognizer(target: self, action: #selector(HandleGrabPan))
         GrabView.addGestureRecognizer(GrabPan)
+        let GrabTap = UITapGestureRecognizer(target: self, action: #selector(HandleGrabTap))
+        GrabTap.numberOfTapsRequired = 2
+        GrabView.addGestureRecognizer(GrabTap)
+    }
+    
+    var StartingY: CGFloat = 0.0
+    
+    @objc func HandleGrabTap(_ Recognizer: UITapGestureRecognizer)
+    {
+        if ReorderingOptions
+        {
+            return
+        }
+        if !IsShowing
+        {
+            return
+        }
+        IsShowing = false
+        SetStandardSettingsLocation(Show: false)
     }
     
     var PreviousPanPoint: CGPoint? = nil
-    @objc func HandleGrapPan(_ Recognizer: UIPanGestureRecognizer)
+    @objc func HandleGrabPan(_ Recognizer: UIPanGestureRecognizer)
     {
+        if ReorderingOptions
+        {
+            return
+        }
         let PanPoint = Recognizer.location(in: self.view)
-        print("PanPoint.y=\(PanPoint.y)")
         switch Recognizer.state
         {
             case .began:
                 PreviousPanPoint = PanPoint
+                let Velocity = Recognizer.velocity(in: self.view)
+                if Velocity.y > 350
+                {
+                    IsShowing = false
+                    SetStandardSettingsLocation(Show: false)
+                    //Hide down.
+                    //Cancels the current recognizer.
+                    Recognizer.isEnabled = false
+                    Recognizer.isEnabled = true
+                    PreviousPanPoint = nil
+                }
+                if Velocity.y < -350
+                {
+                    IsShowing = true
+                    SetStandardSettingsLocation(Show: true)
+                    //Show up.
+                    //Cancels the current recognizer.
+                    Recognizer.isEnabled = false
+                    Recognizer.isEnabled = true
+                    PreviousPanPoint = nil
+                }
                 
             case .changed:
                 if PanPoint.y <= EditSurface.frame.origin.y
                 {
+                    //Too high
                     break
                 }
-                if PanPoint.y >= ((EditSurface.frame.size.height + EditSurface.frame.origin.y) - 30)
+                let NewHeight = 50 + (StartingY - PanPoint.y)
+                if NewHeight <= 50
                 {
+                    //Too low
+                    IsShowing = false
+                    UpdateChevronButton(ToShow: false)
                     break
                 }
-                OptionsWindow.frame = CGRect(x: OptionsWindow.frame.origin.x,
-                                             y: PanPoint.y,
-                                             width: OptionsWindow.frame.size.width,
-                                             height: OptionsWindow.frame.size.height)
+                IsShowing = true
+                UpdateChevronButton(ToShow: true)
+                OptionsHeight.constant = NewHeight
                 
             case .ended:
                 PreviousPanPoint = nil
@@ -148,51 +214,18 @@ class ShapeEditor: UIViewController, UITableViewDelegate, UITableViewDataSource,
         EditSurface.Redraw()
     }
     
+    // MARK: - Table view functions.
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 10
+        return RowOptions.count
     }
     
     /// Returns the height of each cell. If running on a relatively small screen, the height
     /// is multiplied by `0.85` to reduce the size a bit to make more room for the drawing view.
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        var CellHeight: CGFloat = 0.0
-        switch indexPath.row
-        {
-            case 0:
-                CellHeight = SegmentCell.CellHeight
-                
-            case 1:
-                CellHeight =  BooleanCell2.CellHeight
-                
-            case 2:
-                CellHeight =  BooleanCell2.CellHeight
-                
-            case 3:
-                CellHeight =  SegmentCell.CellHeight
-                
-            case 4:
-                CellHeight =  ButtonCell.CellHeight
-                
-            case 5:
-                CellHeight =  ButtonCell.CellHeight
-                
-            case 6:
-                CellHeight =  BooleanCell2.CellHeight
-                
-            case 7:
-                CellHeight =  BooleanCell2.CellHeight
-                
-            case 8:
-                CellHeight =  SegmentCell.CellHeight
-                
-            case 9:
-                CellHeight =  SegmentCell.CellHeight
-                
-            default:
-                CellHeight = 0.0
-        }
+        var CellHeight = RowOptions[indexPath.row].CellHeight
         let CurrentHeight = UIScreen.main.bounds.height
         //The value 590 is slightly larger than than an iPhone 8 vertical screen size.
         if CurrentHeight < 590
@@ -202,235 +235,49 @@ class ShapeEditor: UIViewController, UITableViewDelegate, UITableViewDataSource,
         return CellHeight
     }
     
-    func CellBackground(For Multiple: Int) -> UIColor
-    {
-        return Multiple.isMultiple(of: 2) ? UIColor(named: "OptionsColor0")! : UIColor(named: "OptionsColor1")!
-    }
-    
     var ModeSegment = 0
     var GridSegment = 0
     var InitialIndex = 0
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        switch indexPath.row
+        return RowOptions[indexPath.row].Cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle
+    {
+        return UITableViewCell.EditingStyle.none
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
+    {
+        OptionOrder.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        var NewOrder = ""
+        for Index in OptionOrder
         {
-            case 0:
-                let SegCell = SegmentCell(style: .default, reuseIdentifier: "SegmentCell")
-                SegCell.LoadCell(Title: "Tap actions",
-                                 Names: ["Add", "Move", "Delete"],
-                                 Width: tableView.frame.width,
-                                 InitialIndex: ModeSegment)
-                {
-                    Index in
-                    guard Index >= 0 && Index < EditTypes.allCases.count else
-                    {
-                        return
-                    }
-                    self.ModeSegment = Index
-                    let Mode = [EditTypes.Add, EditTypes.Move, EditTypes.Delete][Index]
-                    self.EditSurface.SetEditMode(Mode)
-                }
-                SegCell.backgroundColor = CellBackground(For: indexPath.row)
-                return SegCell
-                
-            case 1:
-                let BoolCell = BooleanCell2(style: .default, reuseIdentifier: "BooleanCell2")
-                BoolCell.LoadCell(InitialValue: IsSmoothed, Header: "Smooth lines", Width: tableView.frame.width)
-                {
-                    DoSmooth in
-                    self.EditSurface.SetSmoothing(On: DoSmooth)
-                    self.ShapeToEdit.SmoothLines = DoSmooth
-                    self.IsSmoothed = DoSmooth
-                }
-                BoolCell.backgroundColor = CellBackground(For: indexPath.row)
-                return BoolCell
-                
-            case 2:
-                let BoolCell = BooleanCell2(style: .default, reuseIdentifier: "BooleanCell2")
-                BoolCell.LoadCell(InitialValue: IsClosed, Header: "Closed path", Width: tableView.frame.width)
-                {
-                    ClosedPath in
-                    self.EditSurface.CloseUserPath(ClosedPath)
-                    self.ShapeToEdit.ClosedLoop = ClosedPath
-                    self.IsClosed = ClosedPath
-                }
-                BoolCell.backgroundColor = CellBackground(For: indexPath.row)
-                return BoolCell
-                
-            case 3:
-                let SegNames = ["None", "8", "16", "32", "64"]
-                let SegCell = SegmentCell(style: .default, reuseIdentifier: "SegmentCell")
-                SegCell.LoadCell(Title: "Snap to grid",
-                                 Names: SegNames,
-                                 Width: tableView.frame.width,
-                                 InitialIndex: GridSegment)
-                {
-                    Index in
-                    guard Index >= 0 && Index < SegNames.count else
-                    {
-                        return
-                    }
-                    self.GridSegment = Index
-                    let Raw = SegNames[Index]
-                    var Final = 0
-                    switch Raw
-                    {
-                        case "None":
-                            Final = 0
-                            
-                        case "8":
-                            Final = 8
-                            
-                        case "16":
-                            Final = 16
-                            
-                        case "32":
-                            Final = 32
-                            
-                        case "64":
-                            Final = 64
-                            
-                        default:
-                            Final = 0
-                    }
-                    self.EditSurface.SetGridVisibility(Final)
-                }
-                SegCell.backgroundColor = CellBackground(For: indexPath.row)
-                return SegCell
-                
-            case 4:
-                let ButtonCell = ButtonCell(style: .default, reuseIdentifier: "ButtonCell")
-                ButtonCell.LoadCell(Header: "Clone as copy", Title: "Copy",
-                                    Width: tableView.frame.width)
-                {
-                    print("Current shape cloned")
-                }
-                ButtonCell.backgroundColor = CellBackground(For: indexPath.row)
-                return ButtonCell
-                
-            case 5:
-                let ButtonCell = ButtonCell(style: .default, reuseIdentifier: "ButtonCell")
-                ButtonCell.LoadCell(Header: "Center in viewport", Title: "Center",
-                                    Width: tableView.frame.width)
-                {
-                    self.EditSurface.CenterShapeInCanvas()
-                }
-                ButtonCell.backgroundColor = CellBackground(For: indexPath.row)
-                return ButtonCell
-                
-            case 6:
-                let BoolCell = BooleanCell2(style: .default, reuseIdentifier: "BooleanCell2")
-                BoolCell.LoadCell(InitialValue: Settings.GetBool(.ScaleToView),
-                                  Header: "Scale viewport", Width: tableView.frame.width)
-                {
-                    DoScale in
-                    Settings.SetBool(.ScaleToView, DoScale)
-                    self.EditSurface.ScaleUserShape(DoScale)
-                }
-                BoolCell.backgroundColor = CellBackground(For: indexPath.row)
-                return BoolCell
-                
-            case 7:
-                let BoolCell = BooleanCell2(style: .default, reuseIdentifier: "BooleanCell2")
-                BoolCell.LoadCell(InitialValue: Settings.GetBool(.ShowViewport),
-                                  Header: "Show viewport", Width: tableView.frame.width)
-                {
-                    ShowViewport in
-                    Settings.SetBool(.ShowViewport, ShowViewport)
-                    self.EditSurface.SetViewportBorder(Visible: ShowViewport)
-                }
-                BoolCell.backgroundColor = CellBackground(For: indexPath.row)
-                return BoolCell
-                
-            case 8:
-                let OriginalWidth = ShapeToEdit.ViewportWidth
-                
-                switch OriginalWidth
-                {
-                    case 500:
-                        InitialIndex = 0
-                        
-                    case 1000:
-                        InitialIndex = 1
-                        
-                    case 1500:
-                        InitialIndex = 2
-                        
-                    default:
-                        InitialIndex = 1
-                }
-                let SegCell = SegmentCell(style: .default, reuseIdentifier: "SegmentCell")
-                SegCell.LoadCell(Title: "Viewport width",
-                                 Names: ["500", "1000", "1500"],
-                                 Width: tableView.frame.width,
-                                 InitialIndex: InitialIndex)
-                {
-                    NewIndex in
-                    self.InitialIndex = NewIndex
-                    switch NewIndex
-                    {
-                        case 0:
-                            self.ShapeToEdit.ViewportWidth = 500
-                            
-                        case 1:
-                            self.ShapeToEdit.ViewportWidth = 1000
-                            
-                        case 2:
-                            self.ShapeToEdit.ViewportWidth = 1500
-                            
-                        default:
-                            self.ShapeToEdit.ViewportWidth = 1000
-                    }
-                }
-                SegCell.backgroundColor = CellBackground(For: indexPath.row)
-                return SegCell
-                
-            case 9:
-                let OriginalHeight = ShapeToEdit.ViewportHeight
-                switch OriginalHeight
-                {
-                    case 500:
-                        InitialIndex = 0
-                        
-                    case 1000:
-                        InitialIndex = 1
-                        
-                    case 1500:
-                        InitialIndex = 2
-                        
-                    default:
-                        InitialIndex = 1
-                }
-                let SegCell = SegmentCell(style: .default, reuseIdentifier: "SegmentCell")
-                SegCell.LoadCell(Title: "Viewport height",
-                                 Names: ["500", "1000", "1500"],
-                                 Width: tableView.frame.width,
-                                 InitialIndex: InitialIndex)
-                {
-                    NewIndex in
-                    self.InitialIndex = NewIndex
-                    switch NewIndex
-                    {
-                        case 0:
-                            self.ShapeToEdit.ViewportHeight = 500
-                            
-                        case 1:
-                            self.ShapeToEdit.ViewportHeight = 1000
-                            
-                        case 2:
-                            self.ShapeToEdit.ViewportHeight = 1500
-                            
-                        default:
-                            self.ShapeToEdit.ViewportHeight = 1000
-                    }
-                }
-                SegCell.backgroundColor = CellBackground(For: indexPath.row)
-                return SegCell
-                
-            default:
-                return UITableViewCell()
+            NewOrder = NewOrder + "\(Index)"
+            if Index != OptionOrder.last
+            {
+                NewOrder = NewOrder + ","
+            }
         }
+        Settings.SetString(.UserShapeOptionsOrder, NewOrder)
+        guard let NewRowOptions = MakeOptionRows(Width: OptionsWindowTable.frame.width) else
+        {
+            Debug.FatalError("No options returned from 'moveRowAt'.")
+        }
+        RowOptions = NewRowOptions
+        OptionsWindowTable.reloadData()
     }
     
     @IBAction func SaveButtonHandler(_ sender: Any)
@@ -456,74 +303,87 @@ class ShapeEditor: UIViewController, UITableViewDelegate, UITableViewDataSource,
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
                                         target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: "Dismiss", style: .done,
-                                         target: self, action: #selector(DoneButtonTapped))
+                                         target: self, action: #selector(KeyboardDoneButtonTapped))
         
         toolbar.setItems([flexSpace, doneButton], animated: true)
         toolbar.sizeToFit()
         NameBox.inputAccessoryView = toolbar
     }
     
-    @objc func DoneButtonTapped()
+    @objc func KeyboardDoneButtonTapped()
     {
         self.view.endEditing(true)
     }
     
-    var OriginalOptionWindowHeight: CGFloat? = nil
-    var OriginalOptionWindowY: CGFloat? = nil
+    var ReorderingOptions = false
     
-    @IBAction func EditorOptionsButtonHandler(_ sender: Any)
+    @IBAction func ReorderOptionsHandler(_ sender: Any)
     {
-        ShowingOptions = !ShowingOptions
-        if OriginalOptionWindowY == nil
+        ReorderingOptions = !ReorderingOptions
+        let NewButtonTitle = ReorderingOptions ? "Done" : "Reorder"
+        OptionsReorderButton.setTitle(NewButtonTitle, for: .normal)
+        HideShowButton.isEnabled = !ReorderingOptions
+        OptionsWindowTable.setEditing(ReorderingOptions, animated: true)
+    }
+    
+    var PreviousChevronState: Bool? = nil
+    
+    func UpdateChevronButton(ToShow: Bool)
+    {
+        if PreviousChevronState != nil
         {
-            OriginalOptionWindowY = OptionsWindow.frame.origin.y
-        }
-        if OriginalOptionWindowHeight == nil
-        {
-            OriginalOptionWindowHeight = OptionsWindow.frame.size.height
-            print(">>>> OriginalOptionWindowHeight=\(OriginalOptionWindowHeight!)")
-        }
-        let NewAlpha = ShowingOptions ? 1.0 : 0.0
-        let ChangeDuration = ShowingOptions ? 0.35 : 0.2
-        UIView.animate(withDuration: ChangeDuration,
-                       delay: 0.0,
-                       options: [.curveEaseIn],
-                       animations:
-                        {
-            self.OptionsWindow.alpha = NewAlpha
-        },
-                       completion: {
-            _ in
-            if !self.ShowingOptions
+            if ToShow == PreviousChevronState
             {
-                self.OptionsWindow.frame = CGRect(x: 0,
-                                                  y: 582,
-                                                  width: self.view.frame.size.width,
-                                                  height: 300)
+                return
             }
         }
-        )
+        PreviousChevronState = ToShow
+        OptionsReorderButton.isEnabled = ToShow
+        let RotationAngle = ToShow ? 180.0.Radians : 0.0.Radians
+        let BorderColor = ToShow ? UIColor.black.cgColor : UIColor.gray.cgColor
+        UIView.animate(withDuration: 0.35)
+        {
+            self.OptionsWindow.layer.borderColor = BorderColor
+            self.HideShowButton.transform = CGAffineTransform(rotationAngle: RotationAngle)
+        }
     }
     
-    var ShowingOptions = false
+    var IsShowing = false
     
-    var IsSemiTransparent = false
-    @IBAction func TransparencyButtonHandler(_ sender: Any)
+    /// Show the settings pane in a standard size depending on the value
+    /// of `Show`.
+    /// - Parameter Show: Determines if the settings pane is in a standard size
+    ///                   or mostlyl hidden.
+    func SetStandardSettingsLocation(Show: Bool)
     {
-        IsSemiTransparent = !IsSemiTransparent
-        OptionsWindow.alpha = IsSemiTransparent ? 0.6 : 1.0
+        UpdateChevronButton(ToShow: Show)
+        let NewHeight = Show ? 350.0 : 50.0
+        OptionsHeight.constant = NewHeight
+        UIView.animate(withDuration: 0.25,
+                       delay: 0.0,
+                       options: [.curveEaseIn])
+        {
+            self.view.layoutIfNeeded()
+        }
     }
     
-    @IBAction func OptionsDoneButtonHandler(_ sender: Any)
+    @IBAction func HideShowButtonHandler(_ sender: Any)
     {
-        EditorOptionsButtonHandler(sender)
+        IsShowing = !IsShowing
+        SetStandardSettingsLocation(Show: IsShowing)
     }
     
+    // MARK: - Extension variables.
+    var OptionOrder = [Int]()
+    var RowOptions = [(CellHeight: CGFloat, Cell: UITableViewCell)]()
+    
+    @IBOutlet weak var OptionsReorderButton: UIButton!
+    @IBOutlet weak var HideShowButton: UIButton!
+    @IBOutlet weak var EditSurfaceTop: NSLayoutConstraint!
+    @IBOutlet weak var OptionsHeight: NSLayoutConstraint!
     @IBOutlet weak var GrabView: UIView!
     @IBOutlet weak var OptionsWindowTable: UITableView!
-    @IBOutlet weak var OptionsDonebutton: UIButton!
     @IBOutlet weak var OptionsWindow: UIView!
-    @IBOutlet weak var EditorOptionsButton: UIButton!
     @IBOutlet weak var NameBox: UITextField!
     @IBOutlet weak var EditSurface: UserShape!
 }
