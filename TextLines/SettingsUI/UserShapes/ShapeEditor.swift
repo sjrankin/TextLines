@@ -14,9 +14,11 @@ class ShapeEditor: UIViewController, UITableViewDelegate, UITableViewDataSource,
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        let RawOrder = Settings.GetString(.UserShapeOptionsOrder,
-                                          "0,1,2,3,4,5,6,7,8,9")
-        print("RawOrder=\(RawOrder)")
+        var RawOrder = Settings.GetString(.UserShapeOptionsOrder, "")
+        if RawOrder.isEmpty
+        {
+            RawOrder = "0,1,2,3,4,5,6,7,8,9"
+        }
         for Item in RawOrder.components(separatedBy: ",")
         {
             guard let RawValue = Int(Item) else
@@ -25,7 +27,6 @@ class ShapeEditor: UIViewController, UITableViewDelegate, UITableViewDataSource,
             }
             OptionOrder.append(RawValue)
         }
-        print("OptionOrder=\(OptionOrder)")
         
         OptionsWindowTable.layer.borderColor = UIColor.gray.cgColor
         OptionsWindowTable.layer.borderWidth = 0.5
@@ -67,7 +68,7 @@ class ShapeEditor: UIViewController, UITableViewDelegate, UITableViewDataSource,
             Debug.FatalError("No options returned from MakeOptionRows.")
         }
         RowOptions = InitialRowOptions
-            OptionsWindowTable.reloadData()
+        OptionsWindowTable.reloadData()
     }
     
     var OptionsInitialized = false
