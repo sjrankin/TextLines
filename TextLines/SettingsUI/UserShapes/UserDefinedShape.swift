@@ -130,45 +130,25 @@ class UserDefinedShape
         }
     }
     
-    /// Holds the viewport width.
-    private var _ViewportWidth: Int = 1000
+    /// Holds the viewport size.
+    private var _ViewportSize: Int = 1000
     {
         didSet
         {
             _IsDirty = true
         }
     }
-    /// Get or set the viewport width.
-    public var ViewportWidth: Int
+    /// Get or set the viewport size. The viewport size defines a square use as a
+    /// viewport for drawing.
+    public var ViewportSize: Int
     {
-        get
+    get
         {
-            return _ViewportWidth
+            return _ViewportSize
         }
         set
         {
-            _ViewportWidth = newValue
-        }
-    }
-    
-    /// Holds the viewport height.
-    private var _ViewportHeight: Int = 1000
-    {
-        didSet
-        {
-            _IsDirty = true
-        }
-    }
-    /// Get or set the viewport height.
-    public var ViewportHeight: Int
-    {
-        get
-        {
-            return _ViewportHeight
-        }
-        set
-        {
-            _ViewportHeight = newValue
+            _ViewportSize = newValue
         }
     }
     
@@ -244,21 +224,11 @@ class UserDefinedShape
                     _Predefined = Bool(String(Records[1]))!
                     
                 case "Viewport":
-                    let VPSize = String(Records[1]).split(separator: "x", omittingEmptySubsequences: true)
-                    if VPSize.count != 2
-                    {
-                    break
-                    }
-                    guard let Width = Int(String(VPSize[0])) else
+                    guard let VPSize = Int(String(Records[1])) else
                     {
                         break
                     }
-                    guard let Height = Int(String(VPSize[1])) else
-                    {
-                        break
-                    }
-                    ViewportWidth = Width
-                    ViewportHeight = Height
+                    _ViewportSize = VPSize
                     
                 case "Points":
                     let PointParts = String(Records[1]).split(separator: ",", omittingEmptySubsequences: true)
@@ -306,7 +276,7 @@ class UserDefinedShape
         Saveable.append("Smooth=\(SmoothLines)ƒ")
         Saveable.append("Closed=\(ClosedLoop)ƒ")
         Saveable.append("Predefined=\(Predefined)ƒ")
-        Saveable.append("Viewport=\(ViewportWidth)x\(ViewportHeight)ƒ")
+        Saveable.append("Viewport=\(ViewportSize)ƒ")
         Saveable.append("Points=")
         for Point in Points
         {
