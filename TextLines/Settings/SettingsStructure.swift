@@ -31,7 +31,7 @@ class SettingsStructure
         StructureNode(Name: "Spiral Line Parameters", Keys: .SpiralStartRadius, .SpiralSpacePerLoop,
                       .SpiralStartTheta, .SpiralEndTheta, .SpiralThetaStep),
         StructureNode(Name: "User Shape Parameters", Keys: .UserShapes, .CurrentUserShape,
-                      .ShowViewport, .ScaleToView)
+                      .ShowViewport, .ScaleToView, .UserShapeOptionsOrder)
     ]
 }
 
