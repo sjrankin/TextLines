@@ -44,14 +44,14 @@ class CGFloatCell: UITableViewCell, UITextFieldDelegate
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
                                         target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: "Dismiss", style: .done,
-                                         target: self, action: #selector(DoneButtonTapped))
+                                         target: self, action: #selector(KeyboardDoneButtonTapped))
         
         toolbar.setItems([flexSpace, doneButton], animated: true)
         toolbar.sizeToFit()
         TextField.inputAccessoryView = toolbar
     }
     
-    @objc func DoneButtonTapped()
+    @objc func KeyboardDoneButtonTapped()
     {
         self.contentView.endEditing(true)
     }
