@@ -82,5 +82,6 @@ extension Settings
         .CurrentUserShape: UUID.Empty,
         .ShowViewport: true,
         .ScaleToView: true,
+        .UserShapeOptionsOrder: "",
     ]
 }
