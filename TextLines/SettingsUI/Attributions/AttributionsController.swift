@@ -291,8 +291,11 @@ THE SOFTWARE.
                     SeparateView: true),
         Attribution(Link: "https://stackoverflow.com/questions/25649926/trying-to-animate-a-constraint-in-swift",
                     Text: "Animating constraints at run-time",
-                    Title: "Animating Constraints")
-        // Above to 13 October 2021
+                    Title: "Animating Constraints"),
+        Attribution(Link: "https://stackoverflow.com/questions/6064630/get-angle-from-2-positions",
+                    Text: "Angle between two points",
+                    Title: "Calculating Angles"),
+        // Above to 15 October 2021
     ]
     
     @IBOutlet weak var LinkText: UITextView!
