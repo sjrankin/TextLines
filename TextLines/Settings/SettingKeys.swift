@@ -137,4 +137,6 @@ enum SettingKeys: String, CaseIterable
     case ScaleToView = "ScaleToView"
     /// String: Order of options for editing user shapes.
     case UserShapeOptionsOrder = "UserShapeOptionsOrder"
+    /// Bool: Show original points when in smooth mode.
+    case PointsWhenSmooth = "PointsWhenSmooth"
 }
