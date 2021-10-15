@@ -82,5 +82,6 @@ extension Settings
         .CurrentUserShape: UUID.self,
         .ShowViewport: Bool.self,
         .ScaleToView: Bool.self,
+        .UserShapeOptionsOrder: String.self,
     ]
 }
