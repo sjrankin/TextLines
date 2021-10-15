@@ -83,5 +83,6 @@ extension Settings
         .ShowViewport: Bool.self,
         .ScaleToView: Bool.self,
         .UserShapeOptionsOrder: String.self,
+        .PointsWhenSmooth: Bool.self,
     ]
 }
