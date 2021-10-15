@@ -68,4 +68,23 @@ class BooleanCell2: UITableViewCell
     var SettingSwitch: UISwitch!
     var CurrentWidth: CGFloat = 0.0
     var Header: String = ""
+    
+    override func willTransition(to state: UITableViewCell.StateMask)
+    {
+        super.willTransition(to: state)
+        if ((state.rawValue & UITableViewCell.StateMask.showingEditControl.rawValue) != 0)
+        {
+            UIView.animate(withDuration: 0.1)
+            {
+                self.SettingSwitch?.alpha = 0.0
+            }
+        }
+        else
+        {
+            UIView.animate(withDuration: 0.5)
+            {
+                self.SettingSwitch?.alpha = 1.0
+            }
+        }
+    }
 }
