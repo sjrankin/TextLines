@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		172B75A9271C9AA50038DB8F /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B75A8271C9AA50038DB8F /* CGPoint.swift */; };
 		17672F6A271641FB00D408BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17672F68271641FB00D408BC /* LaunchScreen.storyboard */; };
 		17672FF22716423200D408BC /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F722716423000D408BC /* Geometry.swift */; };
 		17672FF32716423200D408BC /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F732716423000D408BC /* Math.swift */; };
@@ -117,6 +118,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		172B75A8271C9AA50038DB8F /* CGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		17672F5A271641F900D408BC /* TextLines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextLines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17672F5D271641F900D408BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17672F5F271641F900D408BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -541,15 +543,16 @@
 		17672FE42716423200D408BC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				17672FE52716423200D408BC /* UIGestureRecognizer.swift */,
-				17672FE62716423200D408BC /* UIColor.swift */,
-				17672FE72716423200D408BC /* UUID.swift */,
-				17672FE82716423200D408BC /* Int.swift */,
-				17672FEE2716423200D408BC /* UIImage.swift */,
 				17672FEA2716423200D408BC /* CGFloat.swift */,
 				17672FEB2716423200D408BC /* Double.swift */,
-				17672FEC2716423200D408BC /* UIFont.swift */,
 				17672FED2716423200D408BC /* Float.swift */,
+				17672FE82716423200D408BC /* Int.swift */,
+				17672FE62716423200D408BC /* UIColor.swift */,
+				17672FEC2716423200D408BC /* UIFont.swift */,
+				17672FE52716423200D408BC /* UIGestureRecognizer.swift */,
+				17672FEE2716423200D408BC /* UIImage.swift */,
+				17672FE72716423200D408BC /* UUID.swift */,
+				172B75A8271C9AA50038DB8F /* CGPoint.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				1767304C2716423300D408BC /* FileIO.swift in Sources */,
 				176730452716423300D408BC /* +IndividualShapeSettings.swift in Sources */,
 				17672FF52716423200D408BC /* BezierString.swift in Sources */,
+				172B75A9271C9AA50038DB8F /* CGPoint.swift in Sources */,
 				17ED39252718C9D900A04EAD /* +ShapeEditorOptions.swift in Sources */,
 				176730182716423300D408BC /* +Int.swift in Sources */,
 				176730482716423300D408BC /* SettingItem.swift in Sources */,
