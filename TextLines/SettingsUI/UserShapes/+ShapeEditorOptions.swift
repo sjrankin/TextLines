@@ -26,7 +26,7 @@ extension ShapeEditor
                 case 0:
                     let SegCell = SegmentCell(style: .default, reuseIdentifier: "SegmentCell")
                     SegCell.LoadCell(Title: "Tap actions",
-                                     Names: ["Add", "Move", "Insert", "Delete"],
+                                     Names: ["Add", "Insert", "Delete"],
                                      Width: Width,
                                      InitialIndex: ModeSegment)
                     {
@@ -36,7 +36,7 @@ extension ShapeEditor
                             return
                         }
                         self.ModeSegment = Index
-                        let Mode = [EditTypes.Add, EditTypes.Move, EditTypes.Insert, EditTypes.Delete][Index]
+                        let Mode = [EditTypes.Add, EditTypes.Insert, EditTypes.Delete][Index]
                         self.EditSurface.SetEditMode(Mode)
                     }
                     SegCell.backgroundColor = CellBackground(For: Order)
