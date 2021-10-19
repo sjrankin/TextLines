@@ -222,12 +222,11 @@ class UserShape: UIView
     
     // MARK: - Gesture functions.
     
-    /// Handle pan gestures. Depending on the state of `LineType`, either existing points will
-    /// be moved or a free-form line will be drawn.
+    /// Handle pan gestures. Panning will move existing points.
     /// - Parameter Recognizer: The gesture recognizer.
     @objc func HandlePan(_ Recognizer: UIPanGestureRecognizer)
     {
-        if EditMode != .Move
+        if EditMode == .Delete
         {
             Recognizer.CancelRecognizer()
             return
@@ -280,14 +279,74 @@ class UserShape: UIView
                 if OriginalPoints.count > 2
                 {
                     let Final = GridGap > 0 ? MakeConstrainedPoint(Location) : Location
+                    let Closest = ClosestPoint(To: Final)
                     guard let (Close1, Close2) = TwoClosestPoints(To: Final) else
                     {
                         OriginalPoints.append(Final)
                         break
                     }
-                    if Close1 == 0
+
+                    let InsertionIndex = InBetween(Closest: Closest.Index,
+                                                    MinusOne: Close1,
+                                                    PlusOne: Close2,
+                                                    NewPoint: Final)
+                        print("*** Insert Closest=\(Closest.Index) InsertionIndex=\(InsertionIndex)")
+                    if InsertionIndex >= OriginalPoints.count - 1
                     {
-                        OriginalPoints.insert(Final, at: 0)
+                        OriginalPoints.append(Final)
+                    }
+                    else
+                    {
+                        OriginalPoints.insert(Final, at: InsertionIndex)
+                    }
+                    /*
+                    let InsertAfter = InsertionIndex == Close2
+                    if InsertAfter
+                    {
+                        if Closest.Index == OriginalPoints.count - 1
+                        {
+                            print(" Closest.Index = max")
+                            OriginalPoints.append(Final)
+                        }
+                        else
+                        {
+                            print(" Insert after")
+                            OriginalPoints.insert(Final, at: InsertionIndex)
+                        }
+                    }
+                    else
+                    {
+                        if Closest.Index == 0
+                        {
+                            print(" Closest.Index = 0")
+                            OriginalPoints.append(Final)
+                        }
+                        else
+                        {
+                            print(" Insert before")
+                            OriginalPoints.insert(Final, at: InsertionIndex)
+                        }
+                    }
+                 */
+                }
+                    /*
+                    guard let (Close1, Close2) = TwoClosestPoints(To: Final) else
+                    {
+                        OriginalPoints.append(Final)
+                        break
+                    }
+                    print("Original points=\(OriginalPoints)")
+                    print("Closest to \(Final): \(Close1),\(Close2)")
+                    for Index in 0 ..< OriginalPoints.count
+                    {
+                        let point = OriginalPoints[Index]
+                        let dist = Distance(point, Final)
+                        print("  Distance from [\(Index)] \(Final) to \(point) = \(dist)")
+                    }
+                    if Close1 == 0 && Close2 == OriginalPoints.count - 1
+                    {
+                        OriginalPoints.append(Final)
+//                        OriginalPoints.insert(Final, at: 0)
                     }
                     else
                     {
@@ -305,6 +364,7 @@ class UserShape: UIView
                         OriginalPoints.append(Location)
                     }
                 }
+                     */
                 
             case .Delete:
                 let Closest = ClosestPoint(To: Location)
@@ -312,11 +372,77 @@ class UserShape: UIView
                 {
                     OriginalPoints.remove(at: Closest.Index)
                 }
-                
-            default:
-                break
         }
         DrawUserShape()
+    }
+    
+    /// Determines the visual location of an aribtrary point in relation to the closest point
+    /// where the aribitrary point is, and the two existing points at either side of the closest
+    /// point in `OriginalPoints`.
+    /// - Notes:
+    ///    - Used to ensure points are inserted into `OriginalPoints` as per the user's
+    ///      visual expectations, not according to which points are closest.
+    ///    - It is the responsibility of the caller to perform the actual point insertion.
+    /// - Parameter Closest: The index of the point closest to the location where the user inserted a new
+    ///                      point (see `NewPoint`).
+    /// - Parameter MinusOne: The index of the point that is one less than `Center`.
+    /// - Parameter PlusOne: The index of the point that is one greater than `Center`.
+    /// - Parameter NewPoint: The point entered by the user.
+    /// - Returns: The closest index to use for insertion - if `NewPoint` is visually closer to
+    ///            `MinusOne`, that index is returned. Otherwise, the value in `PlusOne` is
+    ///            returned. If the value returned is `MinusOne`, the expectation is the new point
+    ///            will be inserted between `MinusOne` and `Center`. Otherwise the expection is
+    ///            the new point will be inserted between `Center` and `PlusOne`.
+    func InBetween(Closest: Int, MinusOne: Int, PlusOne: Int, NewPoint: CGPoint) -> Int
+    {
+        print("InBetween(Closest: \(Closest), MinusOne: \(MinusOne), PlusOne: \(PlusOne), NewPoint: \(NewPoint)")
+        let CenterPoint = OriginalPoints[Closest]
+        let MinusOnePoint = OriginalPoints[MinusOne]
+        let PlusOnePoint = OriginalPoints[PlusOne]
+        var WorkingAngle = AngleFrom(Origin: .zero,
+                                        To: CenterPoint)
+        WorkingAngle = 360.0 - WorkingAngle
+        WorkingAngle = WorkingAngle + 90.0
+        if WorkingAngle > 360.0
+        {
+            WorkingAngle = WorkingAngle - 360.0
+        }
+        let NormalizedAngle = 90.0 - WorkingAngle
+        
+        let RotatedCenter = CenterPoint.Rotate(By: NormalizedAngle)
+        let RotatedMinusOne = MinusOnePoint.Rotate(By: NormalizedAngle)
+        let RotatedPlusOne = PlusOnePoint.Rotate(By: NormalizedAngle)
+        let RotatedNewPoint = NewPoint.Rotate(By: NormalizedAngle)
+        let MinusIsHigh = RotatedMinusOne.y < RotatedPlusOne.y
+        print("MinusIsHigh=\(MinusIsHigh) NewPoint.y=\(RotatedNewPoint.y), Closest.y=\(RotatedCenter.y)")
+        if RotatedNewPoint.y < RotatedCenter.y
+        {
+            print(">>> New.y < Closest.y")
+            if MinusIsHigh
+            {
+             print(" >> MinusOne=\(MinusOne)")
+                return MinusOne
+            }
+            else
+            {
+                print(" >> PlusOne=\(PlusOne)")
+                return PlusOne
+            }
+        }
+        else
+        {
+            print(">>> New.y >= Closest.y")
+            if MinusIsHigh
+            {
+                print(" >> PlusOne=\(PlusOne)")
+                return PlusOne
+            }
+            else
+            {
+                print(" >> MinusOne=\(MinusOne)")
+                return MinusOne
+            }
+        }
     }
     
     /// Given an arbitrary point, return a constrained point based on current
@@ -922,13 +1048,13 @@ class UserShape: UIView
 /// Edit modes for user shapes.
 enum EditTypes: CaseIterable
 {
-    /// Adding points.
+    /// Adding or moving points.
     case Add
-    /// Moving points
-    case Move
-    /// Deleting points.
+    
+    /// Deleting points. No moving allowed when deleting.
     case Delete
-    /// Insert points
+    
+    /// Inserting or moving points
     case Insert
 }
 
