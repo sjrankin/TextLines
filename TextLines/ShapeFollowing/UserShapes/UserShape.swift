@@ -279,92 +279,44 @@ class UserShape: UIView
                 if OriginalPoints.count > 2
                 {
                     let Final = GridGap > 0 ? MakeConstrainedPoint(Location) : Location
-                    let Closest = ClosestPoint(To: Final)
-                    guard let (Close1, Close2) = TwoClosestPoints(To: Final) else
+                    let CloseIndex = ClosestTo2(Point: Final)
+                    if CloseIndex == -1
                     {
-                        OriginalPoints.append(Final)
                         break
                     }
-
-                    let InsertionIndex = InBetween(Closest: Closest.Index,
-                                                    MinusOne: Close1,
-                                                    PlusOne: Close2,
-                                                    NewPoint: Final)
-                        print("*** Insert Closest=\(Closest.Index) InsertionIndex=\(InsertionIndex)")
-                    if InsertionIndex >= OriginalPoints.count - 1
+                    let (Previous, Next) = GetAdjacentPoints(To: CloseIndex)
+                    let Rect1 = CGRect.MakeRect(Point1: OriginalPoints[CloseIndex],
+                                            Point2: OriginalPoints[Previous])
+                    let Rect2 = CGRect.MakeRect(Point1: OriginalPoints[CloseIndex],
+                                            Point2: OriginalPoints[Next])
+                    let NewPointRect = CGRect.MakeRect(Point1: OriginalPoints[CloseIndex],
+                                                   Point2: Location)
+                    let R1R3 = Rect1.intersection(NewPointRect)
+                    let R2R3 = Rect2.intersection(NewPointRect)
+                    var InsertionIndex = -1
+                    if R1R3.NonZeroSize()
                     {
-                        OriginalPoints.append(Final)
+                        InsertionIndex = Previous
                     }
-                    else
+                    if R2R3.NonZeroSize()
                     {
-                        OriginalPoints.insert(Final, at: InsertionIndex)
+                        InsertionIndex = CloseIndex
                     }
-                    /*
-                    let InsertAfter = InsertionIndex == Close2
-                    if InsertAfter
+                    if (R1R3.width == 0.0 || R1R3.height == 0.0) && (R2R3.width == 0.0 || R2R3.height == 0.0)
                     {
-                        if Closest.Index == OriginalPoints.count - 1
+                        let R1R3Max = max(R1R3.width, R1R3.height)
+                        let R2R3Max = max(R2R3.width, R2R3.height)
+                        if R1R3Max > R2R3Max
                         {
-                            print(" Closest.Index = max")
-                            OriginalPoints.append(Final)
+                            InsertionIndex = Previous
                         }
                         else
                         {
-                            print(" Insert after")
-                            OriginalPoints.insert(Final, at: InsertionIndex)
+                            InsertionIndex = CloseIndex
                         }
                     }
-                    else
-                    {
-                        if Closest.Index == 0
-                        {
-                            print(" Closest.Index = 0")
-                            OriginalPoints.append(Final)
-                        }
-                        else
-                        {
-                            print(" Insert before")
-                            OriginalPoints.insert(Final, at: InsertionIndex)
-                        }
-                    }
-                 */
+                    OriginalPoints.insert(Location, at: InsertionIndex + 1)
                 }
-                    /*
-                    guard let (Close1, Close2) = TwoClosestPoints(To: Final) else
-                    {
-                        OriginalPoints.append(Final)
-                        break
-                    }
-                    print("Original points=\(OriginalPoints)")
-                    print("Closest to \(Final): \(Close1),\(Close2)")
-                    for Index in 0 ..< OriginalPoints.count
-                    {
-                        let point = OriginalPoints[Index]
-                        let dist = Distance(point, Final)
-                        print("  Distance from [\(Index)] \(Final) to \(point) = \(dist)")
-                    }
-                    if Close1 == 0 && Close2 == OriginalPoints.count - 1
-                    {
-                        OriginalPoints.append(Final)
-//                        OriginalPoints.insert(Final, at: 0)
-                    }
-                    else
-                    {
-                        OriginalPoints.insert(Final, at: Close2)
-                    }
-                }
-                else
-                {
-                    if GridGap > 0
-                    {
-                        AddConstrainedPoint(Location)
-                    }
-                    else
-                    {
-                        OriginalPoints.append(Location)
-                    }
-                }
-                     */
                 
             case .Delete:
                 let Closest = ClosestPoint(To: Location)
@@ -376,75 +328,58 @@ class UserShape: UIView
         DrawUserShape()
     }
     
-    /// Determines the visual location of an aribtrary point in relation to the closest point
-    /// where the aribitrary point is, and the two existing points at either side of the closest
-    /// point in `OriginalPoints`.
+    /// Return logically adjacent points to a central point.
     /// - Notes:
-    ///    - Used to ensure points are inserted into `OriginalPoints` as per the user's
-    ///      visual expectations, not according to which points are closest.
-    ///    - It is the responsibility of the caller to perform the actual point insertion.
-    /// - Parameter Closest: The index of the point closest to the location where the user inserted a new
-    ///                      point (see `NewPoint`).
-    /// - Parameter MinusOne: The index of the point that is one less than `Center`.
-    /// - Parameter PlusOne: The index of the point that is one greater than `Center`.
-    /// - Parameter NewPoint: The point entered by the user.
-    /// - Returns: The closest index to use for insertion - if `NewPoint` is visually closer to
-    ///            `MinusOne`, that index is returned. Otherwise, the value in `PlusOne` is
-    ///            returned. If the value returned is `MinusOne`, the expectation is the new point
-    ///            will be inserted between `MinusOne` and `Center`. Otherwise the expection is
-    ///            the new point will be inserted between `Center` and `PlusOne`.
-    func InBetween(Closest: Int, MinusOne: Int, PlusOne: Int, NewPoint: CGPoint) -> Int
+    ///    - Points passed and returned are all indices into the `OriginalPoints`
+    ///      array.
+    ///    - Index wrapping (past either end of the array) occurs automatically.
+    /// - Parameter To: The index whose adjacent points will be returned.
+    /// - Returns: Tuple with the previous (eg, lower in index order) and next (eg,
+    ///            (eg, higher in index order) points.
+    func GetAdjacentPoints(To Center: Int) -> (Previous: Int, Next: Int)
     {
-        print("InBetween(Closest: \(Closest), MinusOne: \(MinusOne), PlusOne: \(PlusOne), NewPoint: \(NewPoint)")
-        let CenterPoint = OriginalPoints[Closest]
-        let MinusOnePoint = OriginalPoints[MinusOne]
-        let PlusOnePoint = OriginalPoints[PlusOne]
-        var WorkingAngle = AngleFrom(Origin: .zero,
-                                        To: CenterPoint)
-        WorkingAngle = 360.0 - WorkingAngle
-        WorkingAngle = WorkingAngle + 90.0
-        if WorkingAngle > 360.0
+        if OriginalPoints.count < 3
         {
-            WorkingAngle = WorkingAngle - 360.0
+            fatalError("Not enough points")
         }
-        let NormalizedAngle = 90.0 - WorkingAngle
-        
-        let RotatedCenter = CenterPoint.Rotate(By: NormalizedAngle)
-        let RotatedMinusOne = MinusOnePoint.Rotate(By: NormalizedAngle)
-        let RotatedPlusOne = PlusOnePoint.Rotate(By: NormalizedAngle)
-        let RotatedNewPoint = NewPoint.Rotate(By: NormalizedAngle)
-        let MinusIsHigh = RotatedMinusOne.y < RotatedPlusOne.y
-        print("MinusIsHigh=\(MinusIsHigh) NewPoint.y=\(RotatedNewPoint.y), Closest.y=\(RotatedCenter.y)")
-        if RotatedNewPoint.y < RotatedCenter.y
+        var Previous = Center - 1
+        var Next = Center + 1
+        if Center == 0
         {
-            print(">>> New.y < Closest.y")
-            if MinusIsHigh
-            {
-             print(" >> MinusOne=\(MinusOne)")
-                return MinusOne
-            }
-            else
-            {
-                print(" >> PlusOne=\(PlusOne)")
-                return PlusOne
-            }
+            Previous = OriginalPoints.count - 1
         }
-        else
+        if Next > OriginalPoints.count - 1
         {
-            print(">>> New.y >= Closest.y")
-            if MinusIsHigh
-            {
-                print(" >> PlusOne=\(PlusOne)")
-                return PlusOne
-            }
-            else
-            {
-                print(" >> MinusOne=\(MinusOne)")
-                return MinusOne
-            }
+            Next = 0
         }
+        return (Previous, Next)
     }
     
+    /// Returns the index into `OriginalPoints` of the point closest to `Point`.
+    /// - Point: The point whose closest point in `OriginalPoints` is returned.
+    /// - Returns: Index into `OriginalPoints` of the closest point to `Point`.
+    func ClosestTo2(Point: CGPoint) -> Int
+    {
+        if OriginalPoints.isEmpty
+        {
+            return -1
+        }
+        var Index = 0
+        var ClosestIndex: Int = -1
+        var PDistance: CGFloat = CGFloat.greatestFiniteMagnitude
+        for SomePoint in OriginalPoints
+        {
+            let SDistance = Distance(Point, SomePoint)
+            if SDistance < PDistance
+            {
+                PDistance = SDistance
+                ClosestIndex = Index
+            }
+            Index = Index + 1
+        }
+        return ClosestIndex
+    }
+
     /// Given an arbitrary point, return a constrained point based on current
     /// grid settings.
     /// - Parameter Location: The arbitrary point to convert to a constrained point.
