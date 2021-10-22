@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		170F07A727236089008F3A82 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170F07A627236089008F3A82 /* CGRect.swift */; };
 		172B75A9271C9AA50038DB8F /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B75A8271C9AA50038DB8F /* CGPoint.swift */; };
 		17672F6A271641FB00D408BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17672F68271641FB00D408BC /* LaunchScreen.storyboard */; };
 		17672FF22716423200D408BC /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F722716423000D408BC /* Geometry.swift */; };
@@ -118,6 +119,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		170F07A627236089008F3A82 /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		172B75A8271C9AA50038DB8F /* CGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		17672F5A271641F900D408BC /* TextLines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextLines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17672F5D271641F900D408BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -532,7 +534,6 @@
 			isa = PBXGroup;
 			children = (
 				17672FE42716423200D408BC /* Extensions */,
-				17672FE32716423200D408BC /* FileIO.swift */,
 				17672FEF2716423200D408BC /* Debug.swift */,
 				17672FF02716423200D408BC /* Utility.swift */,
 				17672FF12716423200D408BC /* Filters.swift */,
@@ -544,6 +545,8 @@
 			isa = PBXGroup;
 			children = (
 				17672FEA2716423200D408BC /* CGFloat.swift */,
+				17672FE32716423200D408BC /* FileIO.swift */,
+				170F07A627236089008F3A82 /* CGRect.swift */,
 				17672FEB2716423200D408BC /* Double.swift */,
 				17672FED2716423200D408BC /* Float.swift */,
 				17672FE82716423200D408BC /* Int.swift */,
@@ -703,6 +706,7 @@
 				1767302E2716423300D408BC /* BooleanCell.swift in Sources */,
 				1767301B2716423300D408BC /* +UUID.swift in Sources */,
 				176730422716423300D408BC /* FontPickerController.swift in Sources */,
+				170F07A727236089008F3A82 /* CGRect.swift in Sources */,
 				17672FFC2716423200D408BC /* ShapeServer.swift in Sources */,
 				176730582716423300D408BC /* Utility.swift in Sources */,
 				176730332716423300D408BC /* MoreSettings.swift in Sources */,
