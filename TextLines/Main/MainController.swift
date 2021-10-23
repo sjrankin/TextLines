@@ -86,8 +86,17 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
         print("Screen.height=\(UIScreen.main.bounds.height)")
     }
     
+    var UpdateTextOffset: Bool? = nil
+    var NewTextOffset: CGFloat = 0.0
+    
     @objc func PanGestureHandler(_ Recognizer: UIPanGestureRecognizer)
     {
+        if Settings.GetBool(.Animating)
+        {
+            Recognizer.isEnabled = false
+            Recognizer.isEnabled = true
+            return
+        }
         let Location = Recognizer.location(in: TextOutput)
         let SurfaceWidth = TextOutput.frame.width
         let SurfaceHeight = TextOutput.frame.height
@@ -97,16 +106,17 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
                 PreviousPanningX = Location.x
                 PreviousPanningY = Location.y
                 PanningOffset = 0.0
+                UpdateTextOffset = true
                 
             case .changed:
-                let HAcc = PreviousPanningX < Location.x ? -1.0 : 1.0
-                let VAcc = PreviousPanningY < Location.y ? -1.0 : 1.0
+                let HAcc = PreviousPanningX > Location.x ? -1.0 : 1.0
+                let VAcc = PreviousPanningY > Location.y ? -1.0 : 1.0
                 PreviousPanningX = Location.x
                 PreviousPanningY = Location.y
                 let PercentX = Location.x / SurfaceWidth
                 let PercentY = Location.y / SurfaceHeight
                 print("PercentXY=(\(PercentX),\(PercentY))")
-                PanningOffset! = PanningOffset! + HAcc
+                PanningOffset! = PanningOffset! + (HAcc * 1.0)
                 print("PanningOffset=\(PanningOffset!) [\(HAcc)]")
                 if PanningOffset! < 0
                 {
@@ -116,11 +126,14 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
                 {
                     PanningOffset! = 0
                 }
+                NewTextOffset = PanningOffset!
+                UpdateShape()
                 
             case .ended:
                 PanningOffset = nil
                 PreviousPanningX = 0
                 PreviousPanningY = 0
+                UpdateTextOffset = nil
                 
             default:
                 break
@@ -260,32 +273,19 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
          */
     }
     
-    /// Alternative animation toggling to `ToggleAnimation`.
+    /// Sets the current animation state.
     func SetAnimationState()
-    {
-        CurrentlyAnimating = Settings.GetBool(.Animating)
-        SetupAnimationButton(CurrentlyAnimating)
-        if CurrentlyAnimating
-        {
-            TextAnimationTimer = Timer.scheduledTimer(timeInterval: 0.005,
-                                                      target: self,
-                                                      selector: #selector(HandleAnimation),
-                                                      userInfo: nil,
-                                                      repeats: true)
-        }
-        else
-        {
-            TextAnimationTimer.invalidate()
-        }
-    }
-    
-    /// Toggle the running of animation of the text.
-    /// - Parameter Button: The button in the UI that shows the current animation status - updated to reflect
-    ///                     the user's action.
-    func ToggleAnimation(_ Button: UIButton)
     {
         CurrentlyAnimating = !CurrentlyAnimating
         Settings.SetBool(.Animating, CurrentlyAnimating)
+        if CurrentlyAnimating
+        {
+            UpdateTextOffset = true
+        }
+        else
+        {
+            UpdateTextOffset = nil
+        }
         SetupAnimationButton(CurrentlyAnimating)
         if CurrentlyAnimating
         {
@@ -298,16 +298,6 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
         else
         {
             TextAnimationTimer.invalidate()
-        }
-    }
-    
-    /// React to the UI animation button.
-    /// - Parameter sender: Not used.
-    @IBAction func AnimateButtonHandler(_ sender: Any)
-    {
-        if let Button = sender as? UIButton
-        {
-            ToggleAnimation(Button)
         }
     }
     
@@ -324,6 +314,14 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
 #endif
     }
     
+    func UpdateShape()
+    {
+        if let ShapeToUse = Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self)
+        {
+            SetShape(ShapeToUse)
+        }
+    }
+    
     /// Update the current Bezier shape to the passed value. Updates the output image.
     /// - Note: As an efficiency, the caller should check if the old shape is the same
     ///         as the new shape and *not* call this function if the shapes are the
@@ -334,21 +332,44 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
         if let Path = MakePath(For: NewShape)
         {
             var Offset = CGFloat(Settings.GetInt(.TextOffset))
+            #if false
+            if let _ = UpdateTextOffset
+            {
+                //If UpdateTextOffset is non-nil, it's always true.
+                Offset = NewTextOffset
+            }
+            #else
             if Settings.GetBool(.Animating)
             {
                 Offset = AnimationOffset
             }
-            if let Panning = PanningOffset
+            #endif
+            print("Offset=\(Offset)")
+/*
+            //Create the image on a background thread to keep the UI responsive.
+            DispatchQueue.global(qos: .userInitiated).async
             {
-                Offset = Panning
+                if let NewImage = self.PlotText(self.CurrentText, On: Path, With: CGFloat(Offset))
+                {
+                    DispatchQueue.main.async
+                    {
+                        self.TextOutput.image = NewImage
+                    }
+                }
+                else
+                {
+                    print("No image to display.")
+                }
             }
-            if let NewImage = PlotText(CurrentText, On: Path, With: CGFloat(Offset))
+ */
+            if let NewImage = PlotText(CurrentText, On: Path,
+                                       With: CGFloat(Offset))
             {
                 TextOutput.image = NewImage
             }
             else
             {
-                print("No image returned from PlotText.")
+                print("No image to display.")
             }
         }
     }
