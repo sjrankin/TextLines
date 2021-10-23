@@ -80,8 +80,56 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
         TextInput.text = StartText
         UserShapeManager.LoadUserShapes()
         
+        let SurfacePanGesture = UIPanGestureRecognizer(target: self, action: #selector(PanGestureHandler))
+        TextOutput.addGestureRecognizer(SurfacePanGesture)
+        
         print("Screen.height=\(UIScreen.main.bounds.height)")
     }
+    
+    @objc func PanGestureHandler(_ Recognizer: UIPanGestureRecognizer)
+    {
+        let Location = Recognizer.location(in: TextOutput)
+        let SurfaceWidth = TextOutput.frame.width
+        let SurfaceHeight = TextOutput.frame.height
+        switch Recognizer.state
+        {
+            case .began:
+                PreviousPanningX = Location.x
+                PreviousPanningY = Location.y
+                PanningOffset = 0.0
+                
+            case .changed:
+                let HAcc = PreviousPanningX < Location.x ? -1.0 : 1.0
+                let VAcc = PreviousPanningY < Location.y ? -1.0 : 1.0
+                PreviousPanningX = Location.x
+                PreviousPanningY = Location.y
+                let PercentX = Location.x / SurfaceWidth
+                let PercentY = Location.y / SurfaceHeight
+                print("PercentXY=(\(PercentX),\(PercentY))")
+                PanningOffset! = PanningOffset! + HAcc
+                print("PanningOffset=\(PanningOffset!) [\(HAcc)]")
+                if PanningOffset! < 0
+                {
+                    PanningOffset! = PathLength
+                }
+                if PanningOffset! > PathLength
+                {
+                    PanningOffset! = 0
+                }
+                
+            case .ended:
+                PanningOffset = nil
+                PreviousPanningX = 0
+                PreviousPanningY = 0
+                
+            default:
+                break
+        }
+    }
+    
+    var PreviousPanningX: CGFloat = 0
+    var PreviousPanningY: CGFloat = 0
+    var PanningOffset: CGFloat? = nil
     
     //https://stackoverflow.com/questions/25649926/trying-to-animate-a-constraint-in-swift
     @objc func HandleResetSettingsPanel(_ Recognizer: UITapGestureRecognizer)
@@ -290,6 +338,10 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
             {
                 Offset = AnimationOffset
             }
+            if let Panning = PanningOffset
+            {
+                Offset = Panning
+            }
             if let NewImage = PlotText(CurrentText, On: Path, With: CGFloat(Offset))
             {
                 TextOutput.image = NewImage
@@ -404,6 +456,7 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
     var PathLength: CGFloat = 0.0
     var HAdder: CGFloat = 0
     var VAdder: CGFloat = 0
+    var CharLocations = [CGPoint]()
     
     var PreviousShape: Shapes? = nil
     var CurrentText: String = ""
