@@ -331,6 +331,7 @@
 		17672F822716423100D408BC /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				17672F902716423100D408BC /* Debug */,
 				17672F882716423100D408BC /* Extensions */,
 				17672F862716423100D408BC /* Main.storyboard */,
 				17672F852716423100D408BC /* MainController.swift */,
@@ -339,7 +340,6 @@
 				17672F8E2716423100D408BC /* MainProtocol.swift */,
 				17672F8F2716423100D408BC /* SceneDelegate.swift */,
 				17672F842716423100D408BC /* ButtonBars.swift */,
-				17672F902716423100D408BC /* Debug */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -545,8 +545,9 @@
 			isa = PBXGroup;
 			children = (
 				17672FEA2716423200D408BC /* CGFloat.swift */,
-				17672FE32716423200D408BC /* FileIO.swift */,
+				172B75A8271C9AA50038DB8F /* CGPoint.swift */,
 				170F07A627236089008F3A82 /* CGRect.swift */,
+				17672FE32716423200D408BC /* FileIO.swift */,
 				17672FEB2716423200D408BC /* Double.swift */,
 				17672FED2716423200D408BC /* Float.swift */,
 				17672FE82716423200D408BC /* Int.swift */,
@@ -555,7 +556,6 @@
 				17672FE52716423200D408BC /* UIGestureRecognizer.swift */,
 				17672FEE2716423200D408BC /* UIImage.swift */,
 				17672FE72716423200D408BC /* UUID.swift */,
-				172B75A8271C9AA50038DB8F /* CGPoint.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
