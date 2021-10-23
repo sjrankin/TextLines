@@ -23,4 +23,14 @@ extension CGPoint
         let NewY = self.x * sin(Radians) + self.y * cos(Radians)
         return CGPoint(x: NewX, y: NewY)
     }
+    
+    func DistanceTo(Other Point: CGPoint) -> CGFloat
+    {
+        let DeltaX = self.x - Point.x
+        let DeltaY = self.y - Point.y
+        let DeltaX2 = DeltaX * DeltaX
+        let DeltaY2 = DeltaY * DeltaY
+        let Dist = sqrt(DeltaX2 + DeltaY2)
+        return Dist
+    }
 }
