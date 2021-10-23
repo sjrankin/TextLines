@@ -328,10 +328,10 @@ extension ViewController
                                       VerticalAdder: VAdder,
                                       HorizontalAdder: HAdder,
                                       GlobalCharPositions: &CharLocations)
-        for Index in 0 ..< CharLocations.count
-        {
-            print("Char[\(Index)]=\(CharLocations[Index])")
-        }
+        //for Index in 0 ..< CharLocations.count
+        //{
+        //    print("Char[\(Index)]=\(CharLocations[Index])")
+        //}
         return image
     }
 }
