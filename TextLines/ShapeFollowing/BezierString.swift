@@ -255,15 +255,23 @@ extension Bezier
             TextStart = pathLength + TextStart
         }
 
+        #if false
+        TextStart = StartOffset
+        print("StartOffset=\(StartOffset)")
+        #else
         if Settings.GetBool(.Animating)
         {
             TextStart = StartOffset
         }
+        #endif
         
         switch align
         {
             case .center:
                 linePos = spaceRemaining / 2
+                #if false
+                linePos += TextStart
+                #else
                 if Settings.GetBool(.Animating)
                 {
                     linePos += TextStart
@@ -272,6 +280,7 @@ extension Bezier
                 {
                     linePos = TextStart
                 }
+                #endif
                 charSpacing = 0
                 
             case .right:
@@ -406,6 +415,12 @@ extension Bezier
                                              attributes: Attributes)
         
         var FinalOffset = StartOffset
+        #if false
+        print("FinalOffset=\(FinalOffset)")
+        let FinalLength = FinalString.size().width
+        let FinalPathLength = self.PathLength
+        FinalOffset = FinalPathLength / 2 - FinalLength / 2
+        #else
         if !Settings.GetBool(.Animating)
         {
             let FinalLength = FinalString.size().width
@@ -413,13 +428,14 @@ extension Bezier
             //print("String length = \(Int(FinalLength)), Path length = \(Int(FinalPathLength))")
             FinalOffset = FinalPathLength / 2 - FinalLength / 2
         }
+        #endif
         
         self.DrawTextOnPath(attributed: FinalString,
                             to: ctx,
                             align: alignment,
                             y: offset,
                             fitWidth: fitWidth,
-                            StartOffset: FinalOffset,//StartOffset,
+                            StartOffset: FinalOffset,
                             RotateChars: RotateChars,
                             Size: imageSize,
                             PhraseAlignment: Settings.GetEnum(ForKey: .ShapeAlignment, EnumType: ShapeAlignments.self, Default: .None),
