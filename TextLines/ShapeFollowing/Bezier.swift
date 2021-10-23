@@ -62,6 +62,8 @@ class Box<T>
 
 struct Bezier
 {
+    var GlobalCharPositions = [CGPoint]()
+    
     /// Bezier Curve of the n-th order
     struct Curve
     {
@@ -352,10 +354,13 @@ extension Bezier
 
 
 // rob mayoff's CGPath.foreach
-extension CGPath {
-    func forEach2( body: @escaping @convention(block) (CGPathElement) -> Void) {
+extension CGPath
+{
+    func forEach2( body: @escaping @convention(block) (CGPathElement) -> Void)
+    {
         typealias Body = @convention(block) (CGPathElement) -> Void
-        func callback(info: UnsafeMutableRawPointer?, element: UnsafePointer<CGPathElement>) {
+        func callback(info: UnsafeMutableRawPointer?, element: UnsafePointer<CGPathElement>)
+        {
             let body = unsafeBitCast(info, to: Body.self)
             body(element.pointee)
         }
@@ -365,13 +370,21 @@ extension CGPath {
 }
 
 // Finds the first point in a path
-extension UIBezierPath {
-    func firstPoint() -> CGPoint? {
+extension UIBezierPath
+{
+    func firstPoint() -> CGPoint?
+    {
         var firstPoint: CGPoint? = nil
         
-        self.cgPath.forEach2 { element in
+        self.cgPath.forEach2
+        {
+            element in
             // Just want the first one, but we have to look at everything
-            guard firstPoint == nil else { return }
+            guard firstPoint == nil else
+            {
+                return
+                
+            }
             assert(element.type == .moveToPoint, "Expected the first point to be a move")
             firstPoint = element.points.pointee
         }
