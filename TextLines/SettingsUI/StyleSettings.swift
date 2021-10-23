@@ -9,10 +9,8 @@ import Foundation
 import UIKit
 
 class StyleSettings: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource,
-UICollectionViewDelegate, UICollectionViewDataSource
+                     UICollectionViewDelegate, UICollectionViewDataSource
 {
-
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -83,7 +81,7 @@ UICollectionViewDelegate, UICollectionViewDataSource
     
     /// Titled icons for the sample bar.
     func MakeSampleBarIcon(Index: Int, _ Name: String, Title: String, Type: ImageTypes = .Normal,
-                        ReadOnly: Bool = false) -> TitledImage
+                           ReadOnly: Bool = false) -> TitledImage
     {
         let Start = StartPosition + ((50.0 + StartPosition) * CGFloat(Index))
         let IconFrame = CGRect(origin: CGPoint(x: Start, y: 4),
@@ -112,7 +110,7 @@ UICollectionViewDelegate, UICollectionViewDataSource
     
     /// Titled icons for the collection view.
     func MakeIconPaletteIcon(_ Name: String, Title: String, Type: ImageTypes = .Normal,
-                        ReadOnly: Bool = false) -> TitledImageUI
+                             ReadOnly: Bool = false) -> TitledImageUI
     {
         let IconFrame = CGRect(origin: CGPoint(x: 0, y: 0),
                                size: CGSize(width: 80, height: 80))
@@ -139,7 +137,7 @@ UICollectionViewDelegate, UICollectionViewDataSource
     
     var SampleBlocks = [TitledImage]()
     
-
+    
     
     var CurrentCommandIcons: [TitledImage] = [TitledImage]()
     var CommandIcons: [TitledImageUI] = [TitledImageUI]()
@@ -148,10 +146,10 @@ UICollectionViewDelegate, UICollectionViewDataSource
     {
         // Command sample bar
         let NewIcon = MakeSampleBarIcon(Index: 0,
-                                     Settings.GetString(.ActionIconName, "CogIcon"),
-                                     Title: "Action",
-                                     Type: .SVG,
-                                     ReadOnly: true)
+                                        Settings.GetString(.ActionIconName, "CogIcon"),
+                                        Title: "Action",
+                                        Type: .SVG,
+                                        ReadOnly: true)
         if CurrentCommandIcons.count > 0
         {
             CurrentCommandIcons.remove(at: 0)
@@ -166,37 +164,37 @@ UICollectionViewDelegate, UICollectionViewDataSource
         // All commands palette
         
         let ActionIcon = MakeIconPaletteIcon(Settings.GetString(.ActionIconName, "CogIcon"),
-                                        Title: "Action",
-                                        Type: .SVG,
-                                        ReadOnly: true)
+                                             Title: "Action",
+                                             Type: .SVG,
+                                             ReadOnly: true)
         let ProjectIcon = MakeIconPaletteIcon("square.3.stack.3d",
-                                        Title: "Project",
-                                        Type: .System,
-                                        ReadOnly: false)
+                                              Title: "Project",
+                                              Type: .System,
+                                              ReadOnly: false)
         let CameraIcon = MakeIconPaletteIcon("camera",
-                                        Title: "Camera",
-                                        Type: .System,
-                                        ReadOnly: false)
+                                             Title: "Camera",
+                                             Type: .System,
+                                             ReadOnly: false)
         let VideoCameraIcon = MakeIconPaletteIcon("VideoCamera",
-                                        Title: "Movie",
-                                        Type: .SVG,
-                                        ReadOnly: false)
+                                                  Title: "Movie",
+                                                  Type: .SVG,
+                                                  ReadOnly: false)
         let SaveIcon = MakeIconPaletteIcon("square.and.arrow.down",
-                                      Title: "Save",
-                                      Type: .System,
-                                      ReadOnly: false)
-        let ShareIcon = MakeIconPaletteIcon("square.and.arrow.up",
-                                       Title: "Share",
-                                       Type: .System,
-                                       ReadOnly: false)
-        let FontIcon = MakeIconPaletteIcon("textformat.abc",
-                                      Title: "Font",
-                                      Type: .System,
-                                      ReadOnly: false)
-        let AnimationIcon = MakeIconPaletteIcon("play",
-                                           Title: "Animate",
+                                           Title: "Save",
                                            Type: .System,
                                            ReadOnly: false)
+        let ShareIcon = MakeIconPaletteIcon("square.and.arrow.up",
+                                            Title: "Share",
+                                            Type: .System,
+                                            ReadOnly: false)
+        let FontIcon = MakeIconPaletteIcon("textformat.abc",
+                                           Title: "Font",
+                                           Type: .System,
+                                           ReadOnly: false)
+        let AnimationIcon = MakeIconPaletteIcon("play",
+                                                Title: "Animate",
+                                                Type: .System,
+                                                ReadOnly: false)
         CommandIcons.append(ActionIcon) //MUST always be in position 0.
         CommandIcons.append(ProjectIcon)
         CommandIcons.append(CameraIcon)
@@ -247,9 +245,9 @@ UICollectionViewDelegate, UICollectionViewDataSource
             else
             {
                 let NewIcon = MakeSampleBarIcon(Index: 0, IconNames[row], Title: "Action",
-                                             Type: .SVG, ReadOnly: true)
+                                                Type: .SVG, ReadOnly: true)
                 CurrentCommandIcons[0] = NewIcon
-               LoadSampleCommandView()
+                LoadSampleCommandView()
             }
         }
     }
@@ -257,7 +255,7 @@ UICollectionViewDelegate, UICollectionViewDataSource
     let IconNames = ["CogIcon", "ThreeDotsInCircleIcon", "WrenchInCircleIcon",
                      "StarIcon", "SolidStarIcon", "StarInCircleIcon", "MoonIcon", "HotSpringsIcon",
                      "HeartIcon", "CatIcon", "DogIcon", "BirdIcon", "DragonIcon", "LightBulbIcon"]
-
+    
     @IBOutlet weak var SampleScroller: UIScrollView!
     @IBOutlet weak var SampleView: UIView!
     @IBOutlet weak var CommandPalette: UICollectionView!
