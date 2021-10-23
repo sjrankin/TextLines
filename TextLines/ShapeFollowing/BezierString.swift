@@ -130,6 +130,7 @@ extension Bezier
     ///   - Size: Size of the image.
     ///   - PhraseAlignment: Determines how to align the text on the shape. If this value is `.None`,
     ///                      `StartOffset` is used to determine where to place the text.
+    ///   - GlobalCharPositions: Locations of all of the characters plotted.
     func DrawTextOnPath(attributed string: NSAttributedString,
                         to context: CGContext,
                         align alignment: NSTextAlignment = .center,
@@ -138,7 +139,8 @@ extension Bezier
                         StartOffset: CGFloat = 0.0,
                         RotateChars: Bool,
                         Size: CGSize,
-                        PhraseAlignment: ShapeAlignments)
+                        PhraseAlignment: ShapeAlignments,
+                        GlobalCharPositions: inout [CGPoint])
     {
         let pathLength = PathLength
         print("PathLength=\(pathLength)")
@@ -324,6 +326,7 @@ extension Bezier
                 }
                 
                 let CharAngle = RotateChars ? p.normal - CGFloat.pi : p.normal
+                GlobalCharPositions.append(p.position)
                 
                 let textTransform = CGAffineTransform(scaleX: 1, y: -1)
                     .concatenating(CGAffineTransform(translationX: -glyphOffset - width / 2 / scale,
@@ -333,11 +336,8 @@ extension Bezier
                                                                     .concatenating(CGAffineTransform(translationX: p.position.x, y: p.position.y)))))
                 
                 context.textMatrix = textTransform
-                
                 CTRunDraw(run, context, CFRange(location: i, length: 1))
-                
                 glyphOffset += width + kern
-                
                 linePos += (charSpacing + width + kern) * scale
             }
         }
@@ -352,6 +352,8 @@ extension Bezier
         
         context.restoreGState()
     }
+    
+
     
     /// Generates an image containing the passed string following the path in the instance
     /// bezier path.
@@ -377,7 +379,8 @@ extension Bezier
                     StartOffset: CGFloat,
                     RotateChars: Bool,
                     VerticalAdder: CGFloat = 0,
-                    HorizontalAdder: CGFloat = 0) -> UIImage?
+                    HorizontalAdder: CGFloat = 0,
+                    GlobalCharPositions: inout [CGPoint]) -> UIImage?
     {
         let imageSize = imageSize ?? self.sizeThatFits()
         
@@ -419,7 +422,8 @@ extension Bezier
                             StartOffset: FinalOffset,//StartOffset,
                             RotateChars: RotateChars,
                             Size: imageSize,
-                            PhraseAlignment: Settings.GetEnum(ForKey: .ShapeAlignment, EnumType: ShapeAlignments.self, Default: .None))
+                            PhraseAlignment: Settings.GetEnum(ForKey: .ShapeAlignment, EnumType: ShapeAlignments.self, Default: .None),
+                            GlobalCharPositions: &GlobalCharPositions)
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -499,6 +503,7 @@ class UIBezierLabel: UILabel
     {
         if let bezier = bezier, let string = self.attributedText, let ctx = UIGraphicsGetCurrentContext()
         {
+            var GlobalCharPositions = [CGPoint]()
             bezier.DrawTextOnPath(attributed: string,
                                   to: ctx,
                                   align: _textAlignment,
@@ -506,7 +511,8 @@ class UIBezierLabel: UILabel
                                   fitWidth: adjustsFontSizeToFitWidth,
                                   RotateChars: false,
                                   Size: CGSize(width: 400, height: 400),
-                                  PhraseAlignment: Settings.GetEnum(ForKey: .ShapeAlignment, EnumType: ShapeAlignments.self, Default: .None))
+                                  PhraseAlignment: Settings.GetEnum(ForKey: .ShapeAlignment, EnumType: ShapeAlignments.self, Default: .None),
+                                  GlobalCharPositions: &GlobalCharPositions)
         }
         else
         {
