@@ -203,6 +203,7 @@ extension ViewController
                     return
             }
             self.AnimationOffset = Final
+            //self.NewTextOffset = Final
             self.UpdateOutput()
         }
     }
