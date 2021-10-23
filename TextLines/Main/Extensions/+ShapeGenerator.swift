@@ -326,8 +326,12 @@ extension ViewController
                                       StartOffset: Offset,
                                       RotateChars: RotateChars,
                                       VerticalAdder: VAdder,
-                                      HorizontalAdder: HAdder)
-        
+                                      HorizontalAdder: HAdder,
+                                      GlobalCharPositions: &CharLocations)
+        for Index in 0 ..< CharLocations.count
+        {
+            print("Char[\(Index)]=\(CharLocations[Index])")
+        }
         return image
     }
 }
