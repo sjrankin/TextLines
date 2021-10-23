@@ -258,14 +258,19 @@ class Debug
     {
         /// Module name.
         let ModuleName: String
+        
         /// Class name.
         let ClassName: String
+        
         /// Function name.
         let FunctionName: String
+        
         /// Address.
         let Address: String
+        
         /// Offset.
         let Offset: Int
+        
         /// Original source line.
         let Source: String
     }
@@ -290,7 +295,7 @@ class Debug
             Results.append(From[Index].FunctionName)
             if Index < From.count - 1
             {
-                Results.append(" <- ")
+                Results.append(" ← ")
             }
         }
         return Results
@@ -302,10 +307,13 @@ enum MangledEntities: String, CaseIterable
 {
     /// Stable mangling.
     case StableMangling = "$s"
+    
     /// Module.
     case Module = "Module"
+    
     /// Class.
     case Class = "C"
+    
     /// Function.
     case Function = "Function"
 }
