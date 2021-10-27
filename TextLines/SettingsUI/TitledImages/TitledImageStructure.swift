@@ -93,6 +93,14 @@ class TitledImageStructure: UIView
         Label?.text = NewTitle
     }
     
+    var Title: String?
+    {
+        get
+        {
+            return Label?.text
+        }
+    }
+    
     func SetTitleColor(_ NewColor: UIColor)
     {
         guard let _ = Label else
