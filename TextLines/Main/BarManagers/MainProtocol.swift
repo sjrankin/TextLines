@@ -12,8 +12,6 @@ protocol MainProtocol: AnyObject
 {
     func SetShape(_ NewShape: Shapes)
     func GetMainImages() -> [ShapeCategories: UIImageView]
-    func GetCommandImages() -> [CommandButtons: UIImageView]
     func UpdateOutput()
-    func ExecuteCommand(_ Command: CommandButtons)
     func GetShapeScroller() -> UIScrollView
 }

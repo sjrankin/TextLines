@@ -21,13 +21,12 @@ class ButtonBars: NSObject, UIScrollViewDelegate
     }
     
     /// Initializer.
-    /// - Parameter CommandBar: The `UIScrollView` used for the command buttons.
+    /// - Parameter MainView: Shape category bar.
     /// - Parameter ShapeContainerView: The `UIView` used for shape categories.
-    init(CommandBar: UIScrollView, MainView: UIScrollView,
+    init(MainView: UIScrollView,
          ShapeContainerView: UIView)
     {
         super.init()
-        self.CommandBar = CommandBar
         MainBar = MainView
         ShapeContainer = ShapeContainerView
     }
@@ -39,7 +38,7 @@ class ButtonBars: NSObject, UIScrollViewDelegate
     ///              a fatal error will result.
     func LateInitialization()
     {
-        InitializeButtons()
+        InitializeShapeRelatedButtons()
         CurrentMainShape = Settings.GetEnum(ForKey: .MainShape, EnumType: ShapeCategories.self, Default: .Shapes)
         CurrentSubShape = Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self, Default: .Circle)
         SelectMainShape(CurrentMainShape)
@@ -49,7 +48,7 @@ class ButtonBars: NSObject, UIScrollViewDelegate
     /// Initialize the shape and category buttons.
     ///   - Sets up a tap gesture recognizer for each button.
     ///   - Initializes the category buttons.
-    func InitializeButtons()
+    func InitializeShapeRelatedButtons()
     {
         guard let MainButtons = delegate?.GetMainImages() else
         {
@@ -65,28 +64,11 @@ class ButtonBars: NSObject, UIScrollViewDelegate
         MainButtons[.Shapes]?.addGestureRecognizer(MainShapeTap)
         MainButtons[.Lines]?.addGestureRecognizer(MainLineTap)
         MainButtons[.Freeform]?.addGestureRecognizer(MainFreeTap)
-        
-        // Initialize the command bar.
-        guard let Commands = delegate?.GetCommandImages() else
-        {
-            Debug.FatalError("Error retrieving command buttons")
-        }
-        let ActionTap = UITapGestureRecognizer2(target: self, action: #selector(ActionButtonTapped))
-        ActionTap.ForCommand = .ActionButton
-        Commands[.ActionButton]?.addGestureRecognizer(ActionTap)
-        let ShapeTap = UITapGestureRecognizer2(target: self, action: #selector(ActionButtonTapped))
-        ShapeTap.ForCommand = .ProjectButton
-        Commands[.ProjectButton]?.addGestureRecognizer(ShapeTap)
     }
     
     var MainShapeButton: UIImageView = UIImageView()
     var MainLineButton: UIImageView = UIImageView()
     var MainFreeButton: UIImageView = UIImageView()
-    
-    @objc func ActionButtonTapped(_ recognizer: UITapGestureRecognizer2)
-    {
-        delegate?.ExecuteCommand(recognizer.ForCommand)
-    }
     
     /// Handle taps on category buttons.
     /// - Parameter recognizer: The gesture recognizer.
@@ -214,9 +196,8 @@ class ButtonBars: NSObject, UIScrollViewDelegate
         Settings.SetEnum(Recognizer.ForShape, EnumType: Shapes.self, ForKey: .CurrentShape)
     }
     
-    var CommandBar: UIScrollView? = nil
-    var MainBar: UIScrollView? = nil
     
+    var MainBar: UIScrollView? = nil
     var CurrentMainShape: ShapeCategories = .Shapes
     var CurrentSubShape: Shapes = .Circle
     
@@ -250,11 +231,4 @@ class ButtonBars: NSObject, UIScrollViewDelegate
     
     /// SVG Shapes that are implemented as .SVG images.
     let SVGShapes: [Shapes] = [.Spiral]
-}
-
-/// UIImageView with a .Net-like tag.
-class UIImageView2: UIImageView
-{
-    /// Get or set a tag value of any type. Defaults to `nil`.
-    var Tag: Any? = nil
 }
