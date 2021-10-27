@@ -64,8 +64,30 @@ enum CommandButtons: String, CaseIterable
 {
     /// The action button.
     case ActionButton = "ActionButton"
+    
     /// The projects button.
     case ProjectButton = "ProjectButton"
+    
+    /// The camera button.
+    case CameraButton = "CameraButton"
+    
+    /// The video button.
+    case VideoButton = "VideoButton"
+    
+    // The save button.
+    case SaveButton = "SaveButton"
+    
+    //The share button.
+    case ShareButton = "ShareButton"
+    
+    //The font button.
+    case FontButton = "FontButton"
+    
+    //The play animation button.
+    case PlayButton = "PlayButton"
+    
+    //The user shape button.
+    case UserButton = "UserButton"
 }
 
 /// Automatic text on shape alignments.
