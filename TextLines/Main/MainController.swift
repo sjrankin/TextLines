@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-class ViewController: UIViewController, UITextViewDelegate, MainProtocol
+class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
+                      CommandBarProtocol
 {
     /// Initialize the user interface and program.
     override func viewDidLoad()
@@ -16,45 +17,47 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
         super.viewDidLoad()
         
         /*
-        for family: String in UIFont.familyNames
-        {
-            print(family)
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
-            }
-        }
+         for family: String in UIFont.familyNames
+         {
+         print(family)
+         for names: String in UIFont.fontNames(forFamilyName: family)
+         {
+         print("== \(names)")
+         }
+         }
          */
-        /*
-        if let Voynich = UIFont(name: "Voynich-123", size: 56)
-        {
-            print("Voynich font created OK")
-        }
-        else
-        {
-            print("!!!!! Error creating Voynich font")
-        }
-        */
         Settings.Initialize()
         Settings.AddSubscriber(self)
         Settings.SetBool(.Animating, false)
-        BarController = ButtonBars(CommandBar: CommandScroller,
-                                   MainView: ShapeCategoryScroller,
+        CommandButtonList = Settings.GetStrings(.CommandButtonList,
+                                                Delimiter: ",",
+                                                Default: [CommandButtons.ActionButton.rawValue])
+        print("CommandButtonList=\(CommandButtonList)")
+        CommandButtonList = [CommandButtons.ActionButton.rawValue,
+                             CommandButtons.UserButton.rawValue,
+                             CommandButtons.CameraButton.rawValue,
+                             CommandButtons.FontButton.rawValue,
+                             CommandButtons.PlayButton.rawValue,
+                             CommandButtons.SaveButton.rawValue]
+        CmdController = CommandBarManager(CommandBar: CommandScroller,
+                                          Buttons: CommandButtonList)
+        CmdController?.delegate = self
+        BarController = ButtonBars(MainView: ShapeCategoryScroller,
                                    ShapeContainerView: ShapeView)
         BarController?.delegate = self
         InitializeSVGImages()
         InitializeToolBar()
         DeviceType = UIDevice.current.userInterfaceIdiom
         
-        #if !DEBUG
+#if !DEBUG
         SettingCommands = SettingCommands.dropLast()
-        #endif
+#endif
         SettingPanelGearButton.setTitle("", for: .normal)
         SettingPanel.alpha = 0.0
         SettingPanel.layer.zPosition = -1000
         SettingPanel.resignFirstResponder()
         SettingPanel.layer.maskedCorners = [CACornerMask.layerMaxXMaxYCorner,
-                                          CACornerMask.layerMinXMaxYCorner]
+                                            CACornerMask.layerMinXMaxYCorner]
         SettingPanel.layer.cornerRadius = 5.0
         SettingPanelCommandTable.layer.borderColor = UIColor.gray.cgColor
         SettingPanelCommandTable.layer.borderWidth = 0.5
@@ -86,6 +89,7 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
         print("Screen.height=\(UIScreen.main.bounds.height)")
     }
     
+    var CommandButtonList = [String]()
     var UpdateTextOffset: Bool? = nil
     var NewTextOffset: CGFloat = 0.0
     
@@ -218,16 +222,20 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
     ///    - [Change color of SVG images](https://stackoverflow.com/questions/38395003/how-to-change-color-of-svg-images-in-ios)
     func InitializeSVGImages()
     {
-        let NewName = Settings.GetString(.ActionIconName, "CogIcon")
-        ActionImage.image = UIImage(named: NewName)
-        ActionImage.image = ActionImage.image?.withRenderingMode(.alwaysTemplate)
-        ActionImage.tintColor = UIColor.systemBlue
-        ShapesImage.image = ShapesImage.image?.withRenderingMode(.alwaysTemplate)
-        ShapesImage.tintColor = UIColor.systemBlue
+        /*
+         let NewName = Settings.GetString(.ActionIconName, "CogIcon")
+         ActionImage = UIImageView()
+         ActionImage.image = UIImage(named: NewName)
+         ActionImage.image = ActionImage.image?.withRenderingMode(.alwaysTemplate)
+         ActionImage.tintColor = UIColor.systemBlue
+         //ShapesImage.image = ShapesImage.image?.withRenderingMode(.alwaysTemplate)
+         //ShapesImage.tintColor = UIColor.systemBlue
+         */
     }
     
     var StartText = ""
     var BarController: ButtonBars? = nil
+    var CmdController: CommandBarManager? = nil
     var OriginalOptionsHeight: CGFloat = 0.0
     var CurrentShape: Shapes? = nil
     var DeviceType: UIUserInterfaceIdiom = .mac
@@ -260,16 +268,16 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
     func SetupAnimationButton(_ IsAnimating: Bool)
     {
         /*
-        if IsAnimating
-        {
-        AnimateButton2.setImage(UIImage(systemName: "stop.circle"), for: .normal)
-            PlayText.text = "Stop"
-        }
-        else
-        {
-            AnimateButton2.setImage(UIImage(systemName: "play"), for: .normal)
-            PlayText.text = "Play"
-        }
+         if IsAnimating
+         {
+         AnimateButton2.setImage(UIImage(systemName: "stop.circle"), for: .normal)
+         PlayText.text = "Stop"
+         }
+         else
+         {
+         AnimateButton2.setImage(UIImage(systemName: "play"), for: .normal)
+         PlayText.text = "Play"
+         }
          */
     }
     
@@ -332,36 +340,36 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
         if let Path = MakePath(For: NewShape)
         {
             var Offset = CGFloat(Settings.GetInt(.TextOffset))
-            #if false
+#if false
             if let _ = UpdateTextOffset
             {
                 //If UpdateTextOffset is non-nil, it's always true.
                 Offset = NewTextOffset
             }
-            #else
+#else
             if Settings.GetBool(.Animating)
             {
                 Offset = AnimationOffset
             }
-            #endif
+#endif
             print("Offset=\(Offset)")
-/*
-            //Create the image on a background thread to keep the UI responsive.
-            DispatchQueue.global(qos: .userInitiated).async
-            {
-                if let NewImage = self.PlotText(self.CurrentText, On: Path, With: CGFloat(Offset))
-                {
-                    DispatchQueue.main.async
-                    {
-                        self.TextOutput.image = NewImage
-                    }
-                }
-                else
-                {
-                    print("No image to display.")
-                }
-            }
- */
+            /*
+             //Create the image on a background thread to keep the UI responsive.
+             DispatchQueue.global(qos: .userInitiated).async
+             {
+             if let NewImage = self.PlotText(self.CurrentText, On: Path, With: CGFloat(Offset))
+             {
+             DispatchQueue.main.async
+             {
+             self.TextOutput.image = NewImage
+             }
+             }
+             else
+             {
+             print("No image to display.")
+             }
+             }
+             */
             if let NewImage = PlotText(CurrentText, On: Path,
                                        With: CGFloat(Offset))
             {
@@ -390,29 +398,53 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
         CurrentText = textView.text
         UpdateOutput()
     }
-    
-    /// Returns a dictionary of images for command buttons.
-    /// - Returns: Dictionary of command button images keyed by `CommandButtons`.
-    func GetCommandImages() -> [CommandButtons: UIImageView]
-    {
-        let Buttons =
-        [
-            CommandButtons.ActionButton: ActionImage!,
-            CommandButtons.ProjectButton: ShapesImage!
-        ]
-        return Buttons
-    }
-    
+
     /// Return a reference to the scroll view in which the shapes container lives.
     func GetShapeScroller() -> UIScrollView
     {
         return ShapeScrollView
     }
     
+    func TitleColor(_ sender: CommandBarManager, Command: CommandButtons) -> UIColor?
+    {
+        return nil
+    }
+    
+    func ButtonHorizontalGap(_ sender: CommandBarManager) -> CGFloat
+    {
+        return 10.0
+    }
+    
+    func DoubleTap(_ sender: CommandBarManager, Command: CommandButtons)
+    {
+        //Not used here.
+    }
+    
+    /// Handle long taps on command buttons. Nothing done here.
+    func LongTapOn(_ Command: CommandButtons)
+    {
+        //Not used here.
+    }
+    
+    func LongTapOn(_ sender: CommandBarManager, Command: CommandButtons)
+    {
+        
+    }
+    
+    func ButtonColor(_ sender: CommandBarManager, Command: CommandButtons) -> UIColor?
+    {
+        return UIColor.systemBlue
+    }
+    
+    func CommandButtonSize(_ sender: CommandBarManager, Command: CommandButtons) -> CGSize?
+    {
+        return CGSize(width: 64, height: 64)
+    }
+    
     /// Execute the passed command. Commands are passed from the main command panel.
     /// - Note: Unknown/unimplemented commands are ignored.
     /// - Parameter Command: The command to execute.
-    func ExecuteCommand(_ Command: CommandButtons)
+    func ExecuteCommand(_ sender: CommandBarManager, Command: CommandButtons)
     {
         switch Command
         {
@@ -433,6 +465,20 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
                 })
                 
             case .ProjectButton:
+                break
+            case .CameraButton:
+                break
+            case .VideoButton:
+                break
+            case .SaveButton:
+                break
+            case .ShareButton:
+                break
+            case .FontButton:
+                break
+            case .PlayButton:
+                break
+            case .UserButton:
                 break
         }
     }
@@ -488,7 +534,7 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
     
     @IBOutlet weak var TextOutput: UIImageView!
     @IBOutlet weak var TextInput: UITextView!
-    @IBOutlet weak var ShapeScroller: UIScrollView!
+    @IBOutlet weak var CommandBarUI: UIView!
     @IBOutlet weak var ShapeCategoryScroller: UIScrollView!
     @IBOutlet weak var CommandScroller: UIScrollView!
     
@@ -508,9 +554,6 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol
     @IBOutlet weak var GroupsLabel: UILabel!
     @IBOutlet weak var ShapesLabel: UILabel!
     
-    @IBOutlet weak var ActionImage: UIImageView!
-    @IBOutlet weak var ShapesImage: UIImageView!
-
     @IBOutlet weak var ShapeView: UIView!
     @IBOutlet weak var ShapeScrollView: UIScrollView!
 }
