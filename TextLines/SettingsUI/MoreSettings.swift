@@ -39,6 +39,17 @@ class MoreSettings: UITableViewController
         return 1
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        if indexPath.row == 3
+        {
+            let Storyboard = UIStoryboard(name: "SettingsUI", bundle: nil)
+            let nextViewController = Storyboard.instantiateViewController(withIdentifier: "StyleSettings") as! StyleSettings
+            nextViewController.modalPresentationStyle = .fullScreen
+            self.present(nextViewController, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func ShowShapeChangedHandler(_ sender: Any)
     {
         if let Switch = sender as? UISwitch
@@ -47,6 +58,7 @@ class MoreSettings: UITableViewController
         }
     }
     
+    @IBOutlet weak var CommandBarCell: UIView!
     @IBOutlet weak var ShapeColorWell: UIColorWell!
     @IBOutlet weak var CopyrightString: UILabel!
     @IBOutlet weak var ShowShapeSwitch: UISwitch!
