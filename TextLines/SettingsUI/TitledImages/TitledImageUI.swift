@@ -13,7 +13,6 @@ class TitledImageUI: UICollectionViewCell
     override init(frame: CGRect)
     {
         super.init(frame: frame)
-        print("TIU Frame=\(frame)")
         self.isUserInteractionEnabled = true
         let SampleImage = UIImage(systemName: "sun.and.horizon")
         self.Structure = TitledImageStructure(frame: frame)
@@ -39,6 +38,8 @@ class TitledImageUI: UICollectionViewCell
          ID: Any? = nil, Action: TitledBlockAction? = nil)
     {
         super.init(frame: frame)
+        self._ImageName = Image
+        self.ImageType = ImageType
         self.isUserInteractionEnabled = true
         guard let TImage = LoadImage(Name: Image, Type: ImageType) else
         {
@@ -52,6 +53,37 @@ class TitledImageUI: UICollectionViewCell
         self.Structure?.SetTitleColor(.black)
         self.addSubview(Structure!)
     }
+    
+    var Title: String?
+    {
+        get
+        {
+            return self.Structure?.Title
+        }
+    }
+    
+    var _ImageName: String? = nil
+    var ImageName: String?
+    {
+        get
+        {
+            return _ImageName
+        }
+    }
+    
+    func GetIconImageView() -> UIImageView?
+    {
+        let ActualImage = self.Structure?.Image
+        return ActualImage
+    }
+    
+    func GetIconImage() -> UIImage?
+    {
+        let ActualImage = self.Structure?.Image?.image
+        return ActualImage
+    }
+
+    public var ImageType: ImageTypes? = nil
 
     private func LoadImage(Name: String, Type: ImageTypes) -> UIImage?
     {
@@ -68,6 +100,7 @@ class TitledImageUI: UICollectionViewCell
         }
     }
     
+    public var IsUsed: Bool = false
     public var IsReadOnly: Bool = false
     private var Structure: TitledImageStructure? = nil
     public var ID: Any? = nil
