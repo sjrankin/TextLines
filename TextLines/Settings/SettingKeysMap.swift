@@ -36,6 +36,7 @@ extension Settings
         .TextOffset: Int.self,
         .ShapeAlignment: ShapeAlignments.self,
         .ActionIconName: String.self,
+        .CommandButtonList: [String].self,
         
         // MARK: - Debug attributes.
         .ShowGuideMarks: Bool.self,
