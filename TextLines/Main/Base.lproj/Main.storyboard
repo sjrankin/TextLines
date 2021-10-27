@@ -37,62 +37,24 @@
                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="9eb-TE-BEv"/>
                                                 </connections>
                                             </textView>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuS-SF-y64">
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuS-SF-y64">
                                                 <rect key="frame" x="0.0" y="85" width="416" height="77.5"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fZn-QL-WAh">
-                                                        <rect key="frame" x="5" y="0.0" width="120" height="73"/>
-                                                        <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="baD-ck-DAv">
-                                                                <rect key="frame" x="0.0" y="0.0" width="55" height="73"/>
-                                                                <subviews>
-                                                                    <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CatIcon" translatesAutoresizingMaskIntoConstraints="NO" id="6Vn-2S-r92">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="55" id="dcY-Vv-b6w"/>
-                                                                            <constraint firstAttribute="height" constant="55" id="k6T-fe-TWe"/>
-                                                                        </constraints>
-                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
-                                                                    </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKC-Mn-BFP">
-                                                                        <rect key="frame" x="0.0" y="55" width="55" height="18"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                                        <color key="textColor" name="GeneralTextColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                            </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nBS-rJ-eb8">
-                                                                <rect key="frame" x="65" y="0.0" width="55" height="73"/>
-                                                                <subviews>
-                                                                    <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.3.stack.3d" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Hhx-5m-TLz">
-                                                                        <rect key="frame" x="0.0" y="-0.5" width="55" height="56"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="55" id="aWQ-iY-QFW"/>
-                                                                            <constraint firstAttribute="height" constant="55" id="f21-IF-QBI"/>
-                                                                        </constraints>
-                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="regular"/>
-                                                                    </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfs-Z8-BEG">
-                                                                        <rect key="frame" x="0.0" y="55" width="55" height="18"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                                        <color key="textColor" name="GeneralTextColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                            </stackView>
-                                                        </subviews>
-                                                    </stackView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gnr-Gr-tmD">
+                                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="85"/>
+                                                        <color key="backgroundColor" name="SubShapeBar"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="1024" id="baQ-Rv-fcW"/>
+                                                            <constraint firstAttribute="height" constant="85" id="oE4-Y6-wGp"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" name="SubShapeBar"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="fZn-QL-WAh" secondAttribute="trailing" constant="5" id="VKQ-YW-Knl"/>
-                                                    <constraint firstItem="fZn-QL-WAh" firstAttribute="leading" secondItem="0NU-I5-rhf" secondAttribute="leading" id="XxN-7q-RvV"/>
-                                                    <constraint firstItem="fZn-QL-WAh" firstAttribute="top" secondItem="wuS-SF-y64" secondAttribute="top" id="ZyS-ic-V0n"/>
-                                                    <constraint firstAttribute="bottom" secondItem="fZn-QL-WAh" secondAttribute="bottom" constant="4.5" id="eSk-Gd-TDg"/>
-                                                    <constraint firstItem="fZn-QL-WAh" firstAttribute="leading" secondItem="wuS-SF-y64" secondAttribute="leading" constant="5" id="kP7-Kx-ILT"/>
-                                                    <constraint firstItem="0NU-I5-rhf" firstAttribute="bottom" secondItem="fZn-QL-WAh" secondAttribute="bottom" constant="4.5" id="qGq-Kv-Wll"/>
-                                                    <constraint firstItem="fZn-QL-WAh" firstAttribute="top" secondItem="eEv-iP-Dap" secondAttribute="top" id="s8l-J5-wlo"/>
+                                                    <constraint firstItem="gnr-Gr-tmD" firstAttribute="top" secondItem="wuS-SF-y64" secondAttribute="top" id="KkW-gH-dk7"/>
+                                                    <constraint firstAttribute="trailing" secondItem="gnr-Gr-tmD" secondAttribute="trailing" id="Nfu-xD-lFx"/>
+                                                    <constraint firstAttribute="bottom" secondItem="gnr-Gr-tmD" secondAttribute="bottom" id="PWs-4o-qnd"/>
+                                                    <constraint firstItem="gnr-Gr-tmD" firstAttribute="leading" secondItem="wuS-SF-y64" secondAttribute="leading" id="tbD-c0-B5O"/>
                                                 </constraints>
                                                 <inset key="scrollIndicatorInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="eEv-iP-Dap"/>
@@ -202,6 +164,7 @@
                                             <constraint firstItem="FAG-0n-9uY" firstAttribute="leading" secondItem="2T3-8j-NqF" secondAttribute="leading" id="KpC-i0-n4S"/>
                                             <constraint firstItem="BOT-6y-Cxp" firstAttribute="leading" secondItem="2T3-8j-NqF" secondAttribute="leading" id="L4p-TG-PCN"/>
                                             <constraint firstAttribute="bottom" secondItem="BOT-6y-Cxp" secondAttribute="bottom" id="cUs-HX-UnD"/>
+                                            <constraint firstAttribute="bottom" secondItem="wuS-SF-y64" secondAttribute="bottom" constant="655.5" id="g8u-b6-7yG"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -306,7 +269,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ActionImage" destination="6Vn-2S-r92" id="gJV-9h-4E9"/>
+                        <outlet property="CommandBarUI" destination="gnr-Gr-tmD" id="A0H-pc-90z"/>
                         <outlet property="CommandScroller" destination="wuS-SF-y64" id="ncE-LX-GhR"/>
                         <outlet property="ControlStack" destination="2T3-8j-NqF" id="N5U-do-rcC"/>
                         <outlet property="GroupsLabel" destination="KPe-LM-udo" id="zAb-aT-Oy8"/>
@@ -322,7 +285,6 @@
                         <outlet property="ShapeCategoryScroller" destination="FbJ-mc-4M1" id="qsM-Rj-zL3"/>
                         <outlet property="ShapeScrollView" destination="BOT-6y-Cxp" id="oiy-c9-T5d"/>
                         <outlet property="ShapeView" destination="die-hQ-3Tz" id="Kaj-7S-sFq"/>
-                        <outlet property="ShapesImage" destination="Hhx-5m-TLz" id="Ge7-sU-1b0"/>
                         <outlet property="TextInput" destination="FAG-0n-9uY" id="12H-Kc-ElF"/>
                         <outlet property="TextOutput" destination="Laq-CI-FFf" id="2Hw-QG-Ddx"/>
                     </connections>
@@ -333,13 +295,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CatIcon" width="512" height="512"/>
         <image name="Test Image" width="2048" height="3072"/>
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="line.diagonal" catalog="system" width="128" height="113"/>
         <image name="scribble" catalog="system" width="128" height="118"/>
-        <image name="square.3.stack.3d" catalog="system" width="128" height="124"/>
         <namedColor name="GeneralTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
