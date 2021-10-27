@@ -37,14 +37,14 @@ extension ViewController: SettingChangedProtocol
                     }
                 }
                 PreviousShape = Current
-                
+               /*
             case .ActionIconName:
                 let NewName = Settings.GetString(.ActionIconName, "CogIcon")
                 ActionImage.image = UIImage(named: NewName)
                 ActionImage.image = ActionImage.image?.withRenderingMode(.alwaysTemplate)
                 ActionImage.tintColor = UIColor.systemBlue
                 return
-                
+                */
             default:
                 break
         }
