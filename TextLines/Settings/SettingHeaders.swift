@@ -29,13 +29,14 @@ public static let SettingKeyHeaders: [SettingKeys: String] =
     .ShowGuidelines: "Show guidelines",
     .ImageWidth: "Image width",
     .ImageHeight: "Image height",
-    .ClockwiseText: "Clockwise Text",
+    .ClockwiseText: "Clockwise text",
     .ShowCheckerboard: "Show checkerboard",
     .BackgroundType: "Background type",
     .RotateCharacters: "Text orientation",
     .TextOffset: "Text offset",
     .ShapeAlignment: "Text alignment",
     .ActionIconName: "Action icon",
+    .CommandButtonList: "Command buttons",
     
     // MARK: - Debug attributes.
     .ShowGuideMarks: "Show guidemarks",
