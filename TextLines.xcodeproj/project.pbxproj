@@ -8,7 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		170F07A727236089008F3A82 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170F07A627236089008F3A82 /* CGRect.swift */; };
+		1724DAA72724EDD1000E6067 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 1724DAA62724EDD1000E6067 /* Collections */; };
+		1724DAA92724EDD1000E6067 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 1724DAA82724EDD1000E6067 /* DequeModule */; };
+		1724DAAB2724EDD1000E6067 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 1724DAAA2724EDD1000E6067 /* OrderedCollections */; };
+		1724DAAD2724F0FC000E6067 /* +StringArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1724DAAC2724F0FC000E6067 /* +StringArray.swift */; };
+		1724DAAF2725F0D8000E6067 /* CommandBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1724DAAE2725F0D8000E6067 /* CommandBarManager.swift */; };
+		1724DAB12725F203000E6067 /* UIImageView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1724DAB02725F203000E6067 /* UIImageView2.swift */; };
+		1724DAB327274C1A000E6067 /* UIView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1724DAB227274C1A000E6067 /* UIView2.swift */; };
 		172B75A9271C9AA50038DB8F /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B75A8271C9AA50038DB8F /* CGPoint.swift */; };
+		172DD6BA272890EC001DD12C /* UILongPressGestureRecognizer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172DD6B9272890EC001DD12C /* UILongPressGestureRecognizer2.swift */; };
+		172DD6BD2728B739001DD12C /* CommandBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172DD6BC2728B739001DD12C /* CommandBarProtocol.swift */; };
 		17672F6A271641FB00D408BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17672F68271641FB00D408BC /* LaunchScreen.storyboard */; };
 		17672FF22716423200D408BC /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F722716423000D408BC /* Geometry.swift */; };
 		17672FF32716423200D408BC /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F732716423000D408BC /* Math.swift */; };
@@ -120,7 +129,13 @@
 
 /* Begin PBXFileReference section */
 		170F07A627236089008F3A82 /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
+		1724DAAC2724F0FC000E6067 /* +StringArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+StringArray.swift"; sourceTree = "<group>"; };
+		1724DAAE2725F0D8000E6067 /* CommandBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarManager.swift; sourceTree = "<group>"; };
+		1724DAB02725F203000E6067 /* UIImageView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView2.swift; sourceTree = "<group>"; };
+		1724DAB227274C1A000E6067 /* UIView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView2.swift; sourceTree = "<group>"; };
 		172B75A8271C9AA50038DB8F /* CGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
+		172DD6B9272890EC001DD12C /* UILongPressGestureRecognizer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILongPressGestureRecognizer2.swift; sourceTree = "<group>"; };
+		172DD6BC2728B739001DD12C /* CommandBarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarProtocol.swift; sourceTree = "<group>"; };
 		17672F5A271641F900D408BC /* TextLines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextLines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17672F5D271641F900D408BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17672F5F271641F900D408BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -241,12 +256,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1724DAA72724EDD1000E6067 /* Collections in Frameworks */,
+				1724DAA92724EDD1000E6067 /* DequeModule in Frameworks */,
+				1724DAAB2724EDD1000E6067 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		172DD6BB27289181001DD12C /* BarManagers */ = {
+			isa = PBXGroup;
+			children = (
+				17672F842716423100D408BC /* ButtonBars.swift */,
+				1724DAAE2725F0D8000E6067 /* CommandBarManager.swift */,
+				172DD6BC2728B739001DD12C /* CommandBarProtocol.swift */,
+				17672F8E2716423100D408BC /* MainProtocol.swift */,
+			);
+			path = BarManagers;
+			sourceTree = "<group>";
+		};
 		17672F51271641F900D408BC = {
 			isa = PBXGroup;
 			children = (
@@ -333,13 +362,13 @@
 			children = (
 				17672F902716423100D408BC /* Debug */,
 				17672F882716423100D408BC /* Extensions */,
+				172DD6BB27289181001DD12C /* BarManagers */,
 				17672F862716423100D408BC /* Main.storyboard */,
-				17672F852716423100D408BC /* MainController.swift */,
-				17672F832716423100D408BC /* UITapGestureRecognizer2.swift */,
 				17672F8D2716423100D408BC /* AppDelegate.swift */,
-				17672F8E2716423100D408BC /* MainProtocol.swift */,
+				17672F852716423100D408BC /* MainController.swift */,
 				17672F8F2716423100D408BC /* SceneDelegate.swift */,
-				17672F842716423100D408BC /* ButtonBars.swift */,
+				17672F832716423100D408BC /* UITapGestureRecognizer2.swift */,
+				172DD6B9272890EC001DD12C /* UILongPressGestureRecognizer2.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -400,19 +429,20 @@
 		17672FA12716423100D408BC /* SettingTypes */ = {
 			isa = PBXGroup;
 			children = (
-				17672FA22716423100D408BC /* +CGRect.swift */,
-				17672FA32716423100D408BC /* +Double.swift */,
-				17672FA42716423100D408BC /* +Int.swift */,
-				17672FA52716423100D408BC /* +Date.swift */,
-				17672FA62716423100D408BC /* +UIColor.swift */,
-				17672FA72716423100D408BC /* +UUID.swift */,
-				17672FA82716423100D408BC /* +String.swift */,
-				17672FA92716423100D408BC /* UserShapeManager.swift */,
 				17672FAA2716423100D408BC /* +Boolean.swift */,
-				17672FAB2716423100D408BC /* +CGSize.swift */,
 				17672FAC2716423100D408BC /* +CGFloat.swift */,
 				17672FAD2716423100D408BC /* +CGPoint.swift */,
+				17672FA22716423100D408BC /* +CGRect.swift */,
+				17672FAB2716423100D408BC /* +CGSize.swift */,
+				17672FA52716423100D408BC /* +Date.swift */,
+				17672FA32716423100D408BC /* +Double.swift */,
 				17672FAE2716423100D408BC /* +Enum.swift */,
+				17672FA42716423100D408BC /* +Int.swift */,
+				17672FA82716423100D408BC /* +String.swift */,
+				1724DAAC2724F0FC000E6067 /* +StringArray.swift */,
+				17672FA62716423100D408BC /* +UIColor.swift */,
+				17672FA92716423100D408BC /* UserShapeManager.swift */,
+				17672FA72716423100D408BC /* +UUID.swift */,
 			);
 			path = SettingTypes;
 			sourceTree = "<group>";
@@ -555,7 +585,9 @@
 				17672FEC2716423200D408BC /* UIFont.swift */,
 				17672FE52716423200D408BC /* UIGestureRecognizer.swift */,
 				17672FEE2716423200D408BC /* UIImage.swift */,
+				1724DAB02725F203000E6067 /* UIImageView2.swift */,
 				17672FE72716423200D408BC /* UUID.swift */,
+				1724DAB227274C1A000E6067 /* UIView2.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -577,6 +609,11 @@
 			dependencies = (
 			);
 			name = TextLines;
+			packageProductDependencies = (
+				1724DAA62724EDD1000E6067 /* Collections */,
+				1724DAA82724EDD1000E6067 /* DequeModule */,
+				1724DAAA2724EDD1000E6067 /* OrderedCollections */,
+			);
 			productName = TextLines;
 			productReference = 17672F5A271641F900D408BC /* TextLines.app */;
 			productType = "com.apple.product-type.application";
@@ -605,6 +642,9 @@
 				Base,
 			);
 			mainGroup = 17672F51271641F900D408BC;
+			packageReferences = (
+				1724DAA52724EDD1000E6067 /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = 17672F5B271641F900D408BC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -673,6 +713,7 @@
 				176730402716423300D408BC /* AttributesProtocol.swift in Sources */,
 				1767306B271648F700D408BC /* SegmentCell.swift in Sources */,
 				176730192716423300D408BC /* +Date.swift in Sources */,
+				1724DAB12725F203000E6067 /* UIImageView2.swift in Sources */,
 				1767303C2716423300D408BC /* AnimationUICode.swift in Sources */,
 				17672FFA2716423200D408BC /* ShapeServerProtocol.swift in Sources */,
 				17672FF62716423200D408BC /* UserShape.swift in Sources */,
@@ -681,6 +722,7 @@
 				176730542716423300D408BC /* UIFont.swift in Sources */,
 				1767304E2716423300D408BC /* UIColor.swift in Sources */,
 				176730302716423300D408BC /* NavigationCell.swift in Sources */,
+				172DD6BD2728B739001DD12C /* CommandBarProtocol.swift in Sources */,
 				176730122716423300D408BC /* Settings.swift in Sources */,
 				176730592716423300D408BC /* Filters.swift in Sources */,
 				176730442716423300D408BC /* MainSettingUIController.swift in Sources */,
@@ -725,12 +767,14 @@
 				1767304C2716423300D408BC /* FileIO.swift in Sources */,
 				176730452716423300D408BC /* +IndividualShapeSettings.swift in Sources */,
 				17672FF52716423200D408BC /* BezierString.swift in Sources */,
+				172DD6BA272890EC001DD12C /* UILongPressGestureRecognizer2.swift in Sources */,
 				172B75A9271C9AA50038DB8F /* CGPoint.swift in Sources */,
 				17ED39252718C9D900A04EAD /* +ShapeEditorOptions.swift in Sources */,
 				176730182716423300D408BC /* +Int.swift in Sources */,
 				176730482716423300D408BC /* SettingItem.swift in Sources */,
 				176730292716423300D408BC /* BooleanCell2.swift in Sources */,
 				176730252716423300D408BC /* TitledImageUI.swift in Sources */,
+				1724DAAD2724F0FC000E6067 /* +StringArray.swift in Sources */,
 				1767303E2716423300D408BC /* AttributionCell.swift in Sources */,
 				176730092716423300D408BC /* SceneDelegate.swift in Sources */,
 				176730462716423300D408BC /* IndividualShapes.swift in Sources */,
@@ -745,6 +789,7 @@
 				176730152716423300D408BC /* SettingKeys.swift in Sources */,
 				176730212716423300D408BC /* +CGPoint.swift in Sources */,
 				176730322716423300D408BC /* ButtonCell.swift in Sources */,
+				1724DAAF2725F0D8000E6067 /* CommandBarManager.swift in Sources */,
 				176730142716423300D408BC /* SettingDefaults.swift in Sources */,
 				176730002716423200D408BC /* ButtonBars.swift in Sources */,
 				1767302A2716423300D408BC /* UUIDCell.swift in Sources */,
@@ -757,6 +802,7 @@
 				17672FF92716423200D408BC /* +Spiral.swift in Sources */,
 				176730552716423300D408BC /* Float.swift in Sources */,
 				176730162716423300D408BC /* +CGRect.swift in Sources */,
+				1724DAB327274C1A000E6067 /* UIView2.swift in Sources */,
 				176730312716423300D408BC /* EnumCell.swift in Sources */,
 				176730222716423300D408BC /* +Enum.swift in Sources */,
 			);
@@ -982,6 +1028,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1724DAA52724EDD1000E6067 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1724DAA62724EDD1000E6067 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1724DAA52724EDD1000E6067 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		1724DAA82724EDD1000E6067 /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1724DAA52724EDD1000E6067 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
+		};
+		1724DAAA2724EDD1000E6067 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1724DAA52724EDD1000E6067 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 17672F52271641F900D408BC /* Project object */;
 }
