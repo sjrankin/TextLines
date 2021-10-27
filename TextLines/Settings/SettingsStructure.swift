@@ -18,7 +18,7 @@ class SettingsStructure
                       .TextColor, .BackgroundColor, .GuidelineColor, .ShowGuidelines,
                       .ImageWidth, .ImageHeight, .ClockwiseText, .ShowCheckerboard,
                       .BackgroundType, .RotateCharacters, .TextOffset, .ShapeAlignment,
-                      .ActionIconName),
+                      .ActionIconName, .CommandButtonList),
         StructureNode(Name: "Debug", Keys: .ShowGuideMarks, .GuidelineWidth),
         StructureNode(Name: "Animation", Keys: .AnimationSpeed, .AnimateClockwise,
                       .Animating),
