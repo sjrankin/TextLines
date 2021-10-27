@@ -52,6 +52,8 @@ enum SettingKeys: String, CaseIterable
     case ShapeAlignment = "ShapeAlignment"
     /// String: Name of the icon to use for the action button.
     case ActionIconName = "ActionIconName"
+    /// [String]: List of command buttons being displayed.
+    case CommandButtonList = "CommandButtonList"
     
     // MARK: - Debug attributes.
     /// Bool: Show debug guidemarks.
