@@ -83,8 +83,8 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
         TextInput.text = StartText
         UserShapeManager.LoadUserShapes()
         
-        let SurfacePanGesture = UIPanGestureRecognizer(target: self, action: #selector(PanGestureHandler))
-        TextOutput.addGestureRecognizer(SurfacePanGesture)
+        //let SurfacePanGesture = UIPanGestureRecognizer(target: self, action: #selector(PanGestureHandler))
+        //TextOutput.addGestureRecognizer(SurfacePanGesture)
         
         print("Screen.height=\(UIScreen.main.bounds.height)")
     }
@@ -405,6 +405,8 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
         return ShapeScrollView
     }
     
+    // MARK: - Command bar delegate functions.
+    
     func TitleColor(_ sender: CommandBarManager, Command: CommandButtons) -> UIColor?
     {
         return nil
@@ -438,7 +440,7 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
     
     func CommandButtonSize(_ sender: CommandBarManager, Command: CommandButtons) -> CGSize?
     {
-        return CGSize(width: 64, height: 64)
+        return CGSize(width: 56, height: 56)
     }
     
     /// Execute the passed command. Commands are passed from the main command panel.
@@ -538,8 +540,6 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
     @IBOutlet weak var ShapeCategoryScroller: UIScrollView!
     @IBOutlet weak var CommandScroller: UIScrollView!
     
-    @IBOutlet weak var ControlStack: UIStackView!
-    
     @IBOutlet weak var MainLineImage: UIImageView!
     @IBOutlet weak var MainFreeImage: UIImageView!
     @IBOutlet weak var MainShapeImage: UIImageView!
@@ -550,9 +550,6 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
     @IBOutlet weak var SettingPanel: UIView!
     @IBOutlet weak var SettingsPanelDragBar: UIView!
     @IBOutlet weak var SettingsHeightConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var GroupsLabel: UILabel!
-    @IBOutlet weak var ShapesLabel: UILabel!
     
     @IBOutlet weak var ShapeView: UIView!
     @IBOutlet weak var ShapeScrollView: UIScrollView!
