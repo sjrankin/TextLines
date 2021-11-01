@@ -18,6 +18,7 @@
 		172B75A9271C9AA50038DB8F /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B75A8271C9AA50038DB8F /* CGPoint.swift */; };
 		172DD6BA272890EC001DD12C /* UILongPressGestureRecognizer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172DD6B9272890EC001DD12C /* UILongPressGestureRecognizer2.swift */; };
 		172DD6BD2728B739001DD12C /* CommandBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172DD6BC2728B739001DD12C /* CommandBarProtocol.swift */; };
+		175A620C272F22D600C4337C /* Main90°.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 175A620B272F22D600C4337C /* Main90°.storyboard */; };
 		17672F6A271641FB00D408BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17672F68271641FB00D408BC /* LaunchScreen.storyboard */; };
 		17672FF22716423200D408BC /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F722716423000D408BC /* Geometry.swift */; };
 		17672FF32716423200D408BC /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F732716423000D408BC /* Math.swift */; };
@@ -136,6 +137,7 @@
 		172B75A8271C9AA50038DB8F /* CGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		172DD6B9272890EC001DD12C /* UILongPressGestureRecognizer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILongPressGestureRecognizer2.swift; sourceTree = "<group>"; };
 		172DD6BC2728B739001DD12C /* CommandBarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarProtocol.swift; sourceTree = "<group>"; };
+		175A620B272F22D600C4337C /* Main90°.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main90°.storyboard"; sourceTree = "<group>"; };
 		17672F5A271641F900D408BC /* TextLines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextLines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17672F5D271641F900D408BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17672F5F271641F900D408BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				17672F882716423100D408BC /* Extensions */,
 				172DD6BB27289181001DD12C /* BarManagers */,
 				17672F862716423100D408BC /* Main.storyboard */,
+				175A620B272F22D600C4337C /* Main90°.storyboard */,
 				17672F8D2716423100D408BC /* AppDelegate.swift */,
 				17672F852716423100D408BC /* MainController.swift */,
 				17672F8F2716423100D408BC /* SceneDelegate.swift */,
@@ -666,6 +669,7 @@
 				17ED392327165F0E00A04EAD /* Assets.xcassets in Resources */,
 				1767303B2716423300D408BC /* UserShapes.storyboard in Resources */,
 				176730022716423200D408BC /* Main.storyboard in Resources */,
+				175A620C272F22D600C4337C /* Main90°.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
