@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" text="TextLine Version 1" translatesAutoresizingMaskIntoConstraints="NO" id="FAG-0n-9uY">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="85"/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="0.80148396270954059" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="85" id="b8S-Mc-FZp"/>
@@ -32,24 +32,24 @@
                                 </connections>
                             </textView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Test Image" translatesAutoresizingMaskIntoConstraints="NO" id="Laq-CI-FFf">
-                                <rect key="frame" x="0.0" y="175" width="320" height="293"/>
+                                <rect key="frame" x="0.0" y="219" width="375" height="459"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuS-SF-y64">
-                                <rect key="frame" x="0.0" y="85" width="320" height="90"/>
+                                <rect key="frame" x="0.0" y="129" width="375" height="90"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gnr-Gr-tmD">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="85"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1600" height="85"/>
                                         <color key="backgroundColor" name="SubShapeBar"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="1024" id="baQ-Rv-fcW"/>
+                                            <constraint firstAttribute="width" constant="1600" id="baQ-Rv-fcW"/>
                                             <constraint firstAttribute="height" constant="85" id="oE4-Y6-wGp"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" name="SubShapeBar"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="gnr-Gr-tmD" secondAttribute="trailing" constant="-649" id="1ng-xZ-iQO"/>
+                                    <constraint firstAttribute="trailing" secondItem="gnr-Gr-tmD" secondAttribute="trailing" constant="-1225" id="1ng-xZ-iQO"/>
                                     <constraint firstAttribute="bottom" secondItem="gnr-Gr-tmD" secondAttribute="bottom" constant="5" id="65e-hT-fiH"/>
                                     <constraint firstItem="gnr-Gr-tmD" firstAttribute="leading" secondItem="wuS-SF-y64" secondAttribute="leading" id="EO4-3B-mlU"/>
                                     <constraint firstAttribute="height" constant="90" id="FFt-bT-4Tp"/>
@@ -60,10 +60,10 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="0NU-I5-rhf"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0N-Et-mTd">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="240"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ef-7x-JzR">
-                                        <rect key="frame" x="256" y="5" width="62" height="43"/>
+                                        <rect key="frame" x="311" y="5" width="62" height="42.666666666666664"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <imageReference key="image" image="gear" catalog="system" symbolScale="large"/>
@@ -74,7 +74,7 @@
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="znC-qh-tlq">
-                                        <rect key="frame" x="156" y="50" width="161" height="157"/>
+                                        <rect key="frame" x="156" y="50" width="216" height="157"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <connections>
                                             <outlet property="dataSource" destination="BYZ-38-t0r" id="3xP-wq-BQB"/>
@@ -82,10 +82,10 @@
                                         </connections>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BU4-8n-gRx">
-                                        <rect key="frame" x="10" y="210" width="306" height="25"/>
+                                        <rect key="frame" x="10" y="210" width="361" height="25"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T5W-G1-ZQW">
-                                                <rect key="frame" x="33" y="11" width="240" height="3"/>
+                                                <rect key="frame" x="33" y="11" width="295" height="3"/>
                                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -115,7 +115,7 @@
                                         </connections>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZR0-Mk-X4X">
-                                        <rect key="frame" x="5" y="5" width="77.5" height="46.5"/>
+                                        <rect key="frame" x="5" y="5" width="77.333333333333329" height="46.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Close">
                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
@@ -146,13 +146,13 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbJ-mc-4M1">
-                                <rect key="frame" x="0.0" y="468" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="678" width="375" height="50"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="left" translatesAutoresizingMaskIntoConstraints="NO" id="gqD-99-W01">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3yr-1j-G5o">
-                                                <rect key="frame" x="0.0" y="-5.5" width="50" height="61"/>
+                                                <rect key="frame" x="0.0" y="-5.3333333333333321" width="50" height="61"/>
                                                 <color key="tintColor" systemColor="systemGreenColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="RQU-eH-b7C"/>
@@ -161,7 +161,7 @@
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28" scale="large" weight="black"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZhV-ch-LJP">
-                                                <rect key="frame" x="50" y="-1.5" width="50" height="53"/>
+                                                <rect key="frame" x="50" y="-1.3333333333333321" width="50" height="53"/>
                                                 <color key="tintColor" systemColor="systemGreenColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="2f7-4H-384"/>
@@ -171,7 +171,7 @@
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28" scale="large" weight="black"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Yq-zv-q86">
-                                                <rect key="frame" x="100" y="-7" width="50" height="61"/>
+                                                <rect key="frame" x="100" y="-6.9999999999999964" width="50" height="61.333333333333329"/>
                                                 <color key="tintColor" systemColor="systemGreenColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="hwm-R6-obm"/>
@@ -197,7 +197,7 @@
                                 </connections>
                             </scrollView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ly-R4-QpG">
-                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="728" width="375" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Op0-A0-u4E">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
