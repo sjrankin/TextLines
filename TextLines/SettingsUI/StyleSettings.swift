@@ -14,13 +14,6 @@ class StyleSettings: UIViewController, CommandBarProtocol
     {
         super.viewDidLoad()
         RawSource = Settings.GetStrings(.CommandButtonList, Delimiter: ",", Default: ["ActionButton"])
-        RawSource = [CommandButtons.ActionButton.rawValue,
-                     CommandButtons.UserButton.rawValue,
-                     CommandButtons.CameraButton.rawValue,
-                     CommandButtons.FontButton.rawValue,
-                     CommandButtons.PlayButton.rawValue,
-                     CommandButtons.SaveButton.rawValue,
-                     CommandButtons.ShareButton.rawValue]
         for Other in CommandButtons.allCases
         {
             let SomeCommand = Other.rawValue
@@ -70,6 +63,7 @@ class StyleSettings: UIViewController, CommandBarProtocol
                     RawSource.append(Command.rawValue)
                     NotUsedBar.UpdateButtons(NewButtons: UnusedSource)
                     CurrentBar.UpdateButtons(NewButtons: RawSource)
+                    IsDirty = true
                 }
                 
             case CurrentBar:
@@ -84,6 +78,7 @@ class StyleSettings: UIViewController, CommandBarProtocol
                     UnusedSource.append(Command.rawValue)
                     NotUsedBar.UpdateButtons(NewButtons: UnusedSource)
                     CurrentBar.UpdateButtons(NewButtons: RawSource)
+                    IsDirty = true
                 }
                 
             default:
@@ -101,7 +96,7 @@ class StyleSettings: UIViewController, CommandBarProtocol
     
     func ButtonHorizontalGap(_ sender: CommandBarManager) -> CGFloat
     {
-        return 12.0
+        return 16.0
     }
     
     func TitleColor(_ sender: CommandBarManager, Command: CommandButtons) -> UIColor?
@@ -128,7 +123,7 @@ class StyleSettings: UIViewController, CommandBarProtocol
         switch sender
         {
             case NotUsedBar:
-                return UIColor.black
+                return UIColor.Gray(Percent: 0.8)
                 
             case CurrentBar:
                 if Command == .ActionButton
@@ -147,14 +142,19 @@ class StyleSettings: UIViewController, CommandBarProtocol
         return CGSize(width: 60, height: 60)
     }
     
-    @IBAction func DoneButtonHandler(_ sender: Any)
+    var IsDirty = false
+    
+    @IBAction func CloseWindow(_ sender: Any)
     {
-        self.dismiss(animated: true)
+        if IsDirty
+        {
+            Settings.SetStrings(.CommandButtonList, RawSource)
+        }
+        print("CloseWindow called")
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBOutlet weak var ActualScroller: UIScrollView!
     @IBOutlet weak var AvailableScroller: UIScrollView!
-    //@IBOutlet weak var CommandSampleBar: UIView!
-    //@IBOutlet weak var CommandSourceBar: UIView!
 }
 
