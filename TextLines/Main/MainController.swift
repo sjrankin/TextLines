@@ -33,12 +33,6 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
                                                 Delimiter: ",",
                                                 Default: [CommandButtons.ActionButton.rawValue])
         print("CommandButtonList=\(CommandButtonList)")
-        CommandButtonList = [CommandButtons.ActionButton.rawValue,
-                             CommandButtons.UserButton.rawValue,
-                             CommandButtons.CameraButton.rawValue,
-                             CommandButtons.FontButton.rawValue,
-                             CommandButtons.PlayButton.rawValue,
-                             CommandButtons.SaveButton.rawValue]
         CmdController = CommandBarManager(CommandBar: CommandScroller,
                                           Buttons: CommandButtonList)
         CmdController?.delegate = self
@@ -86,7 +80,7 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
         //let SurfacePanGesture = UIPanGestureRecognizer(target: self, action: #selector(PanGestureHandler))
         //TextOutput.addGestureRecognizer(SurfacePanGesture)
         
-        print("Screen.height=\(UIScreen.main.bounds.height)")
+        print("Screen.size=(\(UIScreen.main.bounds.width),\(UIScreen.main.bounds.height))")
     }
     
     var CommandButtonList = [String]()
@@ -190,6 +184,43 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
                 
             default:
                 break
+        }
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator)
+    {
+        super.willTransition(to: newCollection, with: coordinator)
+        coordinator.animate(alongsideTransition:
+                                {
+            (context) in
+            guard let WindowInterfaceOrientation = self.WindowInterfaceOrientation else
+            {
+                return
+            }
+            if WindowInterfaceOrientation.isLandscape
+            {
+                print("In landscape orientation")
+            }
+            else
+            {
+                print("In portrait orientation")
+            }
+        }
+        )
+    }
+    
+    private var WindowInterfaceOrientation: UIInterfaceOrientation?
+    {
+        if #available(iOS 15, *)
+        {
+            let Scenes = UIApplication.shared.connectedScenes
+            let WindowScene = Scenes.first as? UIWindowScene
+            let Orientation = WindowScene?.interfaceOrientation
+            return Orientation
+        }
+        else
+        {
+            return UIApplication.shared.windows.first?.windowScene?.interfaceOrientation
         }
     }
     
@@ -414,7 +445,7 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
     
     func ButtonHorizontalGap(_ sender: CommandBarManager) -> CGFloat
     {
-        return 10.0
+        return 16.0
     }
     
     func DoubleTap(_ sender: CommandBarManager, Command: CommandButtons)
@@ -481,6 +512,8 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
             case .PlayButton:
                 break
             case .UserButton:
+                break
+            case .BackgroundButton:
                 break
         }
     }
