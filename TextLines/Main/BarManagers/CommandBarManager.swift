@@ -50,7 +50,10 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
     func LateInitialization()
     {
         PopulateCommandBar()
+        
     }
+    
+    var SmallDevice = false
     
     func UpdateButtons(NewButtons: [String])
     {
@@ -171,6 +174,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
             case .VideoButton:
                 Image = LoadImage(Name: "VideoCamera", Type: .SVG)
                 SVGImage = true
+                
+            case .BackgroundButton:
+                Image = LoadImage(Name: "photo.fill.on.rectangle.fill", Type: .System)
         }
         guard let FinalImage = Image else
         {
@@ -188,23 +194,24 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
         {
             IView.tintColor = ButtonColor
         }
+        IView.contentMode = .scaleAspectFit
         IView.isUserInteractionEnabled = true
-        let Name = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: 60, height: 40)))
+        let Name = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: 70, height: 40)))
         Name.text = NameForCommand(For)
         Name.textAlignment = .center
         let TextColor = delegate?.TitleColor(self, Command: For) ?? UIColor(named: "GeneralTextColor")
         Name.textColor = TextColor 
-        Name.font = UIFont.boldSystemFont(ofSize: 16.0)
+        Name.font = UIFont.boldSystemFont(ofSize: 14.0)
         let VStack = UIStackView(arrangedSubviews: [IView, Name])
         VStack.frame = CGRect(x: 0,
                               y: 0,
-                              width: ImageSize.width,
+                              width: max(ImageSize.width, 70),
                               height: ImageSize.height + 20)
         VStack.axis = .vertical
         let HGap = delegate?.ButtonHorizontalGap(self) ?? 10.0
         let FinalView = UIView2(frame: CGRect(x: HGap + (CGFloat(Index) * (ImageSize.width + HGap)),
                                               y: 5,
-                                              width: ImageSize.width,
+                                              width: max(ImageSize.width, 70),
                                               height: 90))
         FinalView.addSubview(VStack)
         FinalView.isUserInteractionEnabled = true
@@ -246,6 +253,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
                 
             case .VideoButton:
                 return "Video"
+                
+            case .BackgroundButton:
+                return "Backdrop"
         }
     }
     
