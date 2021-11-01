@@ -1262,6 +1262,29 @@ extension UIColor
         let Final = UIColor(hue: NewHue, saturation: NewSat, brightness: B, alpha: 1.0)
         return Final
     }
+    
+    /// Returns a gray color based on the value of `Level`.
+    /// - Parameter Level: Value in the range 0 ... 255. Repeated for each color channel.
+    ///                    Value is clamped to 0 ... 255.
+    /// - Returns: Color with all channels set to the same value, based on `Level`.
+    public static func Gray(Level: Int) -> UIColor
+    {
+        var FinalValue = Level < 0 ? 0 : Level
+        FinalValue = FinalValue > 255 ? 255 : FinalValue
+        let Percent = CGFloat(FinalValue) / 255.0
+        return UIColor(red: Percent, green: Percent, blue: Percent, alpha: Percent)
+    }
+    
+    /// Returns a gray color based on a normalized percent.
+    /// - Parameter Percent: Value assumed to be in the range 0.0 ... 1.0 Values outside
+    ///                      this range clamped to a normal range.
+    /// - Returns: Color with all channels set to the same value specified in `Percent`.
+    public static func Gray(Percent: CGFloat) -> UIColor
+    {
+        var FinalPercent = Percent < 0.0 ? 0.0: Percent
+        FinalPercent = FinalPercent > 1.0 ? 1.0 : FinalPercent
+        return UIColor(red: Percent, green: Percent, blue: Percent, alpha: Percent)
+    }
 }
 
 enum ColorTimePeriods
