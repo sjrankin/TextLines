@@ -448,6 +448,11 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         }
     }
     
+    func TitleFontSize(_ sender: CommandBarManager, Command: CommandButtons) -> CGFloat
+    {
+        return 14.0
+    }
+    
     func TitleColor(_ sender: CommandBarManager, Command: CommandButtons) -> UIColor?
     {
         return nil
