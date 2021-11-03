@@ -13,7 +13,7 @@ class StyleSettings: UIViewController, CommandBarProtocol
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        RawSource = Settings.GetStrings(.CommandButtonList, Delimiter: ",", Default: ["ActionButton"])
+        RawSource = Settings.GetStrings(.CommandButtonList, Delimiter: ",", Default: ["ActionButton", "ShapeOptionsButton"])
         for Other in CommandButtons.allCases
         {
             let SomeCommand = Other.rawValue
@@ -43,7 +43,7 @@ class StyleSettings: UIViewController, CommandBarProtocol
     
     func PopulateUnusedButtonBar()
     {
-        NotUsedBar = CommandBarManager(CommandBar: AvailableScroller,
+        NotUsedBar = CommandBarManager(CommandBar: NotUsedScroller,
                                        Buttons: UnusedSource,
                                        EnableLongPress: true,
                                        EnableDoubleTap: true)
@@ -67,9 +67,10 @@ class StyleSettings: UIViewController, CommandBarProtocol
                 }
                 
             case CurrentBar:
-                if Command == .ActionButton
+                if [CommandButtons.ActionButton,
+                    CommandButtons.ShapeOptionsButton].contains(Command)
                 {
-                    print("Tapped on permanent action button.")
+                    print("Tapped on permanent button.")
                     return
                 }
                 if let Index = RawSource.firstIndex(of: Command.rawValue)
@@ -99,6 +100,21 @@ class StyleSettings: UIViewController, CommandBarProtocol
         return 16.0
     }
     
+    func InitialGap(_ sender: CommandBarManager) -> CGFloat
+    {
+        switch sender
+        {
+            case NotUsedBar:
+                return 16.0
+                
+            case CurrentBar:
+                return -8.0
+                
+            default:
+                return 16.0
+        }
+    }
+    
     func HasTitles(_ sender: CommandBarManager) -> Bool
     {
         return true
@@ -109,13 +125,13 @@ class StyleSettings: UIViewController, CommandBarProtocol
         switch sender
         {
             case CurrentBar:
-                if Command == .ActionButton
+                switch Command
                 {
-                    return UIColor.gray
-                }
-                else
-                {
-                    return nil
+                    case .ActionButton, .ShapeOptionsButton:
+                        return UIColor.gray
+                        
+                    default:
+                        return nil
                 }
                 
             default:
@@ -136,11 +152,14 @@ class StyleSettings: UIViewController, CommandBarProtocol
                 return UIColor.Gray(Percent: 0.8)
                 
             case CurrentBar:
-                if Command == .ActionButton
+                switch Command
                 {
-                    return UIColor.gray
+                    case .ActionButton, .ShapeOptionsButton:
+                        return UIColor.gray
+                        
+                    default:
+                        return nil
                 }
-                return nil
                 
             default:
                 return nil
@@ -197,7 +216,7 @@ class StyleSettings: UIViewController, CommandBarProtocol
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBOutlet weak var NotUsedScroller: UIScrollView!
     @IBOutlet weak var ActualScroller: UIScrollView!
-    @IBOutlet weak var AvailableScroller: UIScrollView!
 }
 
