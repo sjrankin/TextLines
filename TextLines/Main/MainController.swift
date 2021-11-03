@@ -33,7 +33,8 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         Settings.SetBool(.Animating, false)
         CommandButtonList = Settings.GetStrings(.CommandButtonList,
                                                 Delimiter: ",",
-                                                Default: [CommandButtons.ActionButton.rawValue])
+                                                Default: [CommandButtons.ActionButton.rawValue,
+                                                          CommandButtons.ShapeOptionsButton.rawValue])
         print("CommandButtonList=\(CommandButtonList)")
         CmdController = CommandBarManager(CommandBar: CommandScroller,
                                           Buttons: CommandButtonList)
@@ -463,6 +464,11 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         return 16.0
     }
     
+    func InitialGap(_ sender: CommandBarManager) -> CGFloat
+    {
+        return 0.0
+    }
+    
     func DoubleTap(_ sender: CommandBarManager, Command: CommandButtons)
     {
         //Not used here.
@@ -541,6 +547,8 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
             case .UserButton:
                 break
             case .BackgroundButton:
+                break
+            case .ShapeOptionsButton:
                 break
         }
     }
