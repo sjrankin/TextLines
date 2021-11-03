@@ -41,7 +41,7 @@
 		176730052716423300D408BC /* +SettingsChangedHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F8B2716423100D408BC /* +SettingsChangedHandler.swift */; };
 		176730062716423300D408BC /* +SettingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F8C2716423100D408BC /* +SettingPanel.swift */; };
 		176730072716423300D408BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F8D2716423100D408BC /* AppDelegate.swift */; };
-		176730082716423300D408BC /* MainProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F8E2716423100D408BC /* MainProtocol.swift */; };
+		176730082716423300D408BC /* ShapeBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F8E2716423100D408BC /* ShapeBarProtocol.swift */; };
 		176730092716423300D408BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F8F2716423100D408BC /* SceneDelegate.swift */; };
 		1767300A2716423300D408BC /* SettingsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F912716423100D408BC /* SettingsEditor.swift */; };
 		1767300B2716423300D408BC /* DebugUI2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17672F922716423100D408BC /* DebugUI2.storyboard */; };
@@ -164,7 +164,7 @@
 		17672F8B2716423100D408BC /* +SettingsChangedHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+SettingsChangedHandler.swift"; sourceTree = "<group>"; };
 		17672F8C2716423100D408BC /* +SettingPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+SettingPanel.swift"; sourceTree = "<group>"; };
 		17672F8D2716423100D408BC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		17672F8E2716423100D408BC /* MainProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainProtocol.swift; sourceTree = "<group>"; };
+		17672F8E2716423100D408BC /* ShapeBarProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeBarProtocol.swift; sourceTree = "<group>"; };
 		17672F8F2716423100D408BC /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		17672F912716423100D408BC /* SettingsEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsEditor.swift; sourceTree = "<group>"; };
 		17672F922716423100D408BC /* DebugUI2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DebugUI2.storyboard; sourceTree = "<group>"; };
@@ -273,7 +273,7 @@
 				17672F842716423100D408BC /* ButtonBars.swift */,
 				1724DAAE2725F0D8000E6067 /* CommandBarManager.swift */,
 				172DD6BC2728B739001DD12C /* CommandBarProtocol.swift */,
-				17672F8E2716423100D408BC /* MainProtocol.swift */,
+				17672F8E2716423100D408BC /* ShapeBarProtocol.swift */,
 			);
 			path = BarManagers;
 			sourceTree = "<group>";
@@ -741,7 +741,7 @@
 				176730532716423300D408BC /* Double.swift in Sources */,
 				176730052716423300D408BC /* +SettingsChangedHandler.swift in Sources */,
 				176730502716423300D408BC /* Int.swift in Sources */,
-				176730082716423300D408BC /* MainProtocol.swift in Sources */,
+				176730082716423300D408BC /* ShapeBarProtocol.swift in Sources */,
 				176730202716423300D408BC /* +CGFloat.swift in Sources */,
 				176730172716423300D408BC /* +Double.swift in Sources */,
 				176730262716423300D408BC /* TitledImageStructure.swift in Sources */,
