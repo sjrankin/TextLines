@@ -28,7 +28,7 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
     ///                              returned to the delegate. Default is `false`.
     /// - Parameter EnableDoubleTap: If true, double tap gestures are enabled and
     ///                              returned to the delegate. Default is `false`.
-    init(CommandBar: UIView,
+    init(CommandBar: UIScrollView,
          Buttons: [String],
          EnableLongPress: Bool = false,
          EnableDoubleTap: Bool = false)
@@ -50,7 +50,6 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
     func LateInitialization()
     {
         PopulateCommandBar()
-        
     }
     
     var SmallDevice = false
@@ -78,7 +77,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
     func MakeCommandButtons(With Raw: [String])
     {
         CurrentCommandButtons.removeAll()
+        let HGap = delegate?.ButtonHorizontalGap(self) ?? 10.0
         var Index = 0
+        var CumulativeWidth: CGFloat = 0.0
         for SomeCommand in Raw
         {
             if let ActualCommand = CommandButtons(rawValue: SomeCommand)
@@ -108,10 +109,14 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
                     }
                     CurrentCommandButtons.append((ActualCommand, CommandImage))
                     CommandBar?.addSubview(CommandImage)
+                    CumulativeWidth = CumulativeWidth + CommandImage.frame.width + HGap
                     Index = Index + 1
                 }
             }
         }
+        CommandBar?.contentSize = CGSize(width: CumulativeWidth,
+                                         height: CommandBar!.contentSize.height)
+        CommandBar!.layoutIfNeeded()
     }
     
     /// Long press handler. Sends message to delegate.
@@ -256,6 +261,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
                 
             case .BackgroundButton:
                 return "Backdrop"
+                
+            default:
+                return ""
         }
     }
     
@@ -330,5 +338,6 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
         }
     }
     
-    var CommandBar: UIView? = nil
+    var CommandBar: UIScrollView? = nil
+    var CommandView: UIView? = nil
 }
