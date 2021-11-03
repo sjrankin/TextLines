@@ -921,6 +921,14 @@ extension UIColor
         }
     }
     
+    static var NavyBlue: UIColor
+    {
+        get
+        {
+            return UIColor(HexString: "#000080")!
+        }
+    }
+    
     static var Sapphire: UIColor
     {
         get
