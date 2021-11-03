@@ -10,8 +10,6 @@ import UIKit
 
 class StyleSettings: UIViewController, CommandBarProtocol
 {
-
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -36,7 +34,7 @@ class StyleSettings: UIViewController, CommandBarProtocol
     
     func PopulateCurrentButtonBar()
     {
-        CurrentBar = CommandBarManager(CommandBar: ActualScroller,//CommandSampleBar,
+        CurrentBar = CommandBarManager(CommandBar: ActualScroller,
                                        Buttons: RawSource,
                                        EnableLongPress: true,
                                        EnableDoubleTap: true)
@@ -45,7 +43,7 @@ class StyleSettings: UIViewController, CommandBarProtocol
     
     func PopulateUnusedButtonBar()
     {
-        NotUsedBar = CommandBarManager(CommandBar: AvailableScroller,//CommandSourceBar,
+        NotUsedBar = CommandBarManager(CommandBar: AvailableScroller,
                                        Buttons: UnusedSource,
                                        EnableLongPress: true,
                                        EnableDoubleTap: true)
@@ -149,9 +147,34 @@ class StyleSettings: UIViewController, CommandBarProtocol
         }
     }
     
+    func TitleFontSize(_ sender: CommandBarManager, Command: CommandButtons) -> CGFloat
+    {
+        switch sender
+        {
+            case NotUsedBar:
+                return 14.0
+                
+            case CurrentBar:
+                return 10.0
+                
+            default:
+                return 14.0
+        }
+    }
+    
     func CommandButtonSize(_ sender: CommandBarManager, Command: CommandButtons) -> CGSize?
     {
-        return CGSize(width: 60, height: 60)
+        switch sender
+        {
+            case NotUsedBar:
+                return CGSize(width: 60, height: 60)
+                
+            case CurrentBar:
+                return CGSize(width: 34, height: 34)
+                
+            default:
+                return CGSize(width: 60, height: 60)
+        }
     }
     
     func ShapeGroupSelected(_ sender: CommandBarManager, NewCategory: ShapeCategories)
@@ -171,7 +194,6 @@ class StyleSettings: UIViewController, CommandBarProtocol
         {
             Settings.SetStrings(.CommandButtonList, RawSource)
         }
-        print("CloseWindow called")
         self.dismiss(animated: true, completion: nil)
     }
     
