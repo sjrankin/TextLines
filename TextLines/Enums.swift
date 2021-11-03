@@ -62,8 +62,6 @@ enum ShapeCategories: String, CaseIterable
 /// Command buttons.
 enum CommandButtons: String, CaseIterable
 {
-    // Program commands
-    
     /// The action button.
     case ActionButton = "ActionButton"
     
@@ -93,6 +91,9 @@ enum CommandButtons: String, CaseIterable
     
     /// Background button.
     case BackgroundButton = "BackgroundButton"
+    
+    /// Shape options button.
+    case ShapeOptionsButton = "ShapeOptionsButton"
 }
 
 /// Automatic text on shape alignments.
