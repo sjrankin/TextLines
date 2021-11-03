@@ -182,6 +182,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
                 
             case .BackgroundButton:
                 Image = LoadImage(Name: "photo.fill.on.rectangle.fill", Type: .System)
+        
+            case .ShapeOptionsButton:
+                Image = LoadImage(Name: "gearshape.2", Type: .System)
         }
         guard let FinalImage = Image else
         {
@@ -215,7 +218,8 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
                               height: ImageSize.height + 20)
         VStack.axis = .vertical
         let HGap = delegate?.ButtonHorizontalGap(self) ?? 10.0
-        let FinalView = UIView2(frame: CGRect(x: HGap + (CGFloat(Index) * (ImageSize.width + HGap)),
+        let InitialGap = delegate?.InitialGap(self) ?? 16.0
+        let FinalView = UIView2(frame: CGRect(x: InitialGap + (CGFloat(Index) * (ImageSize.width + HGap)),
                                               y: 5,
                                               width: max(ImageSize.width, 70),
                                               height: 90))
@@ -263,8 +267,8 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
             case .BackgroundButton:
                 return "Backdrop"
                 
-            default:
-                return ""
+            case .ShapeOptionsButton:
+                return "Shape"
         }
     }
     
