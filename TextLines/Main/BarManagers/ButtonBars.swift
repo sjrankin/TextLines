@@ -12,7 +12,7 @@ import UIKit
 class ButtonBars: NSObject, UIScrollViewDelegate
 {
     /// Delegate to the main view. When set, late initialization is executed.
-    public weak var delegate: MainProtocol? = nil
+    public weak var delegate: ShapeBarProtocol? = nil
     {
         didSet
         {
@@ -21,54 +21,61 @@ class ButtonBars: NSObject, UIScrollViewDelegate
     }
     
     /// Initializer.
-    /// - Parameter MainView: Shape category bar.
-    /// - Parameter ShapeContainerView: The `UIView` used for shape categories.
-    init(MainView: UIScrollView,
-         ShapeContainerView: UIView)
+    /// - Parameter ShapeCategoryScroller: Shape category bar.
+    /// - Parameter ShapeScroller: The shape bar (contents will change depending on
+    ///                            the selected category).
+    init(ShapeCategoryScroller: UIScrollView,
+         ShapeScroller: UIScrollView)
     {
         super.init()
-        MainBar = MainView
-        ShapeContainer = ShapeContainerView
+        self.ShapeScroller = ShapeScroller
+        self.ShapeCategoryScroller = ShapeCategoryScroller
     }
     
-    var ShapeContainer: UIView = UIView()
+    var ShapeCategoryScroller: UIScrollView = UIScrollView()
     
     /// Called when the main view delegate is set.
     /// - Important: Requires the delegate to the main view to be valid. If not, at the very least,
     ///              a fatal error will result.
     func LateInitialization()
     {
-        InitializeShapeRelatedButtons()
-        CurrentMainShape = Settings.GetEnum(ForKey: .MainShape, EnumType: ShapeCategories.self, Default: .Shapes)
-        CurrentSubShape = Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self, Default: .Circle)
-        SelectMainShape(CurrentMainShape)
-        PopulateShapeContainer(CurrentSubShape)
+        InitializeCategoryButtons()
+        CurrentCategory = Settings.GetEnum(ForKey: .MainShape, EnumType: ShapeCategories.self, Default: .Shapes)
+        CurrentShape = Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self, Default: .Circle)
+        SelectShapeCategory(CurrentCategory)
+        PopulateShapeScroller(CurrentShape)
     }
     
-    /// Initialize the shape and category buttons.
-    ///   - Sets up a tap gesture recognizer for each button.
-    ///   - Initializes the category buttons.
-    func InitializeShapeRelatedButtons()
+    /// Initialize the category buttons.
+    /// - Note: Creates, sets up and installs all category buttons.
+    func InitializeCategoryButtons()
     {
-        guard let MainButtons = delegate?.GetMainImages() else
+        let ClosedShapes = MakeCategoryButton(For: .Shapes)
+        let OpenedShapes = MakeCategoryButton(For: .Lines)
+        let UserShapes = MakeCategoryButton(For: .Freeform)
+        CategoryButtons.removeAll()
+        CategoryButtons.append(ClosedShapes)
+        CategoryButtons.append(OpenedShapes)
+        CategoryButtons.append(UserShapes)
+        
+        var CumulativeWidth: CGFloat = 10.0
+        for Index in 0 ..< CategoryButtons.count
         {
-            Debug.FatalError("Error retrieving main buttons")
+            let X = 10.0 + (CategoryButtons[Index].frame.width + 10.0) * CGFloat(Index)
+            let Y = 2.0
+            let Width = CategoryButtons[Index].frame.width
+            let Height = CategoryButtons[Index].frame.height
+            CategoryButtons[Index].frame = CGRect(x: X, y: Y, width: Width, height: Height)
+            ShapeCategoryScroller.addSubview(CategoryButtons[Index])
+            CumulativeWidth = CumulativeWidth + Width + 10.0
         }
         
-        let MainShapeTap = UITapGestureRecognizer2(target: self, action: #selector(CategoryButtonTapped))
-        MainShapeTap.ForCategory = .Shapes
-        let MainLineTap = UITapGestureRecognizer2(target: self, action: #selector(CategoryButtonTapped))
-        MainLineTap.ForCategory = .Lines
-        let MainFreeTap = UITapGestureRecognizer2(target: self, action: #selector(CategoryButtonTapped))
-        MainFreeTap.ForCategory = .Freeform
-        MainButtons[.Shapes]?.addGestureRecognizer(MainShapeTap)
-        MainButtons[.Lines]?.addGestureRecognizer(MainLineTap)
-        MainButtons[.Freeform]?.addGestureRecognizer(MainFreeTap)
+        ShapeCategoryScroller.contentSize = CGSize(width: CumulativeWidth,
+                                                   height: ShapeCategoryScroller.contentSize.height)
+        ShapeCategoryScroller.layoutIfNeeded()
     }
     
-    var MainShapeButton: UIImageView = UIImageView()
-    var MainLineButton: UIImageView = UIImageView()
-    var MainFreeButton: UIImageView = UIImageView()
+    var CategoryButtons: [UIImageView2] = [UIImageView2]()
     
     /// Handle taps on category buttons.
     /// - Parameter recognizer: The gesture recognizer.
@@ -78,23 +85,30 @@ class ButtonBars: NSObject, UIScrollViewDelegate
         {
             fatalError("CategoryButtonTapped: Error converting tap gesture recognizer.")
         }
-        CurrentMainShape = Recognizer.ForCategory
-        SelectMainShape(CurrentMainShape)
-        PopulateShapeContainer(CurrentSubShape)
+        CurrentCategory = Recognizer.ForCategory
+        SelectShapeCategory(CurrentCategory)
+        PopulateShapeScroller(CurrentShape)
     }
     
     /// Sets the visual state of category buttons. All buttons are set to normal tint except
     /// for the passed button type.
     /// - Note: This function will also highlight the appropriate shape button if it is in
     ///         the passed category.
-    /// - Parameter NewShape: The button to highlight.
-    func SelectMainShape(_ NewShape: ShapeCategories)
+    /// - Parameter NewCategory: The button to highlight.
+    func SelectShapeCategory(_ NewCategory: ShapeCategories)
     {
-        if let MainImages = delegate?.GetMainImages()
+        for Button in CategoryButtons
         {
-            for (SomeType, SomeImage) in MainImages
+            if let TagValue = Button.Tag as? ShapeCategories
             {
-                SomeImage.tintColor = SomeType == CurrentMainShape ? .systemYellow : .systemBlue
+                if NewCategory == TagValue
+                {
+                    Button.tintColor = .systemYellow
+                }
+                else
+                {
+                    Button.tintColor = .NavyBlue
+                }
             }
         }
     }
@@ -102,19 +116,24 @@ class ButtonBars: NSObject, UIScrollViewDelegate
     /// Populate the shape container with shapes for the shape category in `CurrentMainShape`.
     /// - Parameter Shapes: The currently selected shape. If this shape is in the set of shapes defined
     ///                    by `CurrentMainShape`, it will be highlighted.
-    func PopulateShapeContainer(_ Selected: Shapes)
+    func PopulateShapeScroller(_ Selected: Shapes)
     {
-        for SomeShape in ShapeContainer.subviews
+        guard let ShapeScroller = ShapeScroller else
+        {
+            Debug.FatalError("ShapeScroller is nil")
+        }
+        for SomeShape in ShapeScroller.subviews
         {
             SomeShape.removeFromSuperview()
         }
-        guard let NewButtons = ShapeStructure[CurrentMainShape] else
+        guard let NewButtons = ShapeStructure[CurrentCategory] else
         {
-            Debug.FatalError("No shape buttons for \(CurrentMainShape)")
+            Debug.FatalError("No shape buttons for \(CurrentCategory)")
         }
         CurrentShapeButtons.removeAll()
         var Index = 0
         let Offset: CGFloat = 10.0
+        var CumulativeWidth: CGFloat = 0.0
         for NewButton in NewButtons
         {
             let ButtonView = MakeShapeButton(For: NewButton)
@@ -126,14 +145,27 @@ class ButtonBars: NSObject, UIScrollViewDelegate
                                       y: 2,
                                       width: 45.0,
                                       height: 45.0)
-            ShapeContainer.addSubview(ButtonView)
+            ShapeScroller.addSubview(ButtonView)
             Index = Index + 1
             CurrentShapeButtons.append(ButtonView)
+            CumulativeWidth = CumulativeWidth + ButtonView.frame.width + 10.0
         }
+        
+        ShapeScroller.contentSize = CGSize(width: CumulativeWidth,
+                                           height: ShapeScroller.contentSize.height)
+        ShapeScroller.layoutIfNeeded()
     }
     
     var CurrentShapeButtons = [UIImageView2]()
     
+    /// Creates a button for the passed shape. The button (which is really a derivative of
+    /// `UIImageView2`) will be placed (presumably) by the caller into a control that allows
+    /// the user to select it.
+    /// - Warning: Throws fatal errors **1**) when the button image name is not found, and
+    ///            **2**) when the image cannot be created.
+    /// - Parameter For: The shape whose representative button will be returned.
+    /// - Returns: `UIImageView2` control that acts as a button. The image will be representative
+    ///            of the shape.
     func MakeShapeButton(For Shape: Shapes) -> UIImageView2
     {
         let IView = UIImageView2(frame: CGRect(origin: .zero, size: CGSize(width: 42, height: 42)))
@@ -173,6 +205,38 @@ class ButtonBars: NSObject, UIScrollViewDelegate
         return IView
     }
     
+    /// Creates buttons for the user to select shape categories.
+    /// - Warning: Throws fatal errors when **1**) the image name cannot be determined, and
+    ///            **2**) when the image cannot be created.
+    /// - Parameter For: The category whose button will be created.
+    /// - Returns: `UIImageView2` that represents (and acts like) a button for the user
+    ///            to tap to select a new shape.
+    func MakeCategoryButton(For Category: ShapeCategories) -> UIImageView2
+    {
+        let IView = UIImageView2(frame: CGRect(origin: .zero, size: CGSize(width: 42, height: 42)))
+        IView.isUserInteractionEnabled = true
+        IView.contentMode = .scaleAspectFit
+        var Image: UIImage? = nil
+        guard let ImageName = CategoryImages[Category] else
+        {
+            Debug.FatalError("Error getting image name for \(Category)")
+        }
+        Image = UIImage(systemName: ImageName)
+        
+        guard let FinalImage = Image else
+        {
+            Debug.FatalError("Error creating button image")
+        }
+        IView.image = FinalImage
+        let Recognizer = UITapGestureRecognizer2(target: self,
+                                                 action: #selector(CategoryButtonTapped))
+        Recognizer.ForCategory = Category
+        IView.addGestureRecognizer(Recognizer)
+        IView.Tag = Category
+        
+        return IView
+    }
+    
     /// Sets the visual state of shape buttons. All buttons are set to normal tint execpt for
     /// the passed button type.
     /// - Parameter Highlight: The button to show as highlighted.
@@ -189,17 +253,19 @@ class ButtonBars: NSObject, UIScrollViewDelegate
         Settings.SetEnum(Highlight, EnumType: Shapes.self, ForKey: .CurrentShape)
     }
     
+    /// Called when the user taps a shape button. Highlights the tapped button and
+    /// saves the new shape in user settings.
+    /// - Parameter Recognizer: `UITapGestureRecognizer2` class.
     @objc func ShapeButtonTapped2(_ Recognizer: UITapGestureRecognizer2)
     {
-        print("Shape \(Recognizer.ForShape) tapped")
         SetShapeButtons2(Recognizer.ForShape)
         Settings.SetEnum(Recognizer.ForShape, EnumType: Shapes.self, ForKey: .CurrentShape)
     }
     
     
-    var MainBar: UIScrollView? = nil
-    var CurrentMainShape: ShapeCategories = .Shapes
-    var CurrentSubShape: Shapes = .Circle
+    var ShapeScroller: UIScrollView? = nil
+    var CurrentCategory: ShapeCategories = .Shapes
+    var CurrentShape: Shapes = .Circle
     
     var Buttons: [Shapes: UIButton]? = nil
     
@@ -227,6 +293,14 @@ class ButtonBars: NSObject, UIScrollViewDelegate
         .Scribble: "scribble",
         .Heart: "heart",
         .User: "person.crop.circle"
+    ]
+    
+    /// Dictionary of shape categories to shape category image names.
+    let CategoryImages: [ShapeCategories: String] =
+    [
+        ShapeCategories.Shapes: "circle",
+        ShapeCategories.Lines: "line.diagonal",
+        ShapeCategories.Freeform: "person.crop.circle"
     ]
     
     /// SVG Shapes that are implemented as .SVG images.
