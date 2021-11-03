@@ -205,8 +205,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
         Name.text = NameForCommand(For)
         Name.textAlignment = .center
         let TextColor = delegate?.TitleColor(self, Command: For) ?? UIColor(named: "GeneralTextColor")
-        Name.textColor = TextColor 
-        Name.font = UIFont.boldSystemFont(ofSize: 14.0)
+        Name.textColor = TextColor
+        let FontSize = delegate?.TitleFontSize(self, Command: For) ?? 14.0
+        Name.font = UIFont.boldSystemFont(ofSize: FontSize)
         let VStack = UIStackView(arrangedSubviews: [IView, Name])
         VStack.frame = CGRect(x: 0,
                               y: 0,
