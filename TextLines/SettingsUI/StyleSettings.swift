@@ -10,6 +10,8 @@ import UIKit
 
 class StyleSettings: UIViewController, CommandBarProtocol
 {
+
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -99,6 +101,11 @@ class StyleSettings: UIViewController, CommandBarProtocol
         return 16.0
     }
     
+    func HasTitles(_ sender: CommandBarManager) -> Bool
+    {
+        return true
+    }
+    
     func TitleColor(_ sender: CommandBarManager, Command: CommandButtons) -> UIColor?
     {
         switch sender
@@ -116,6 +123,11 @@ class StyleSettings: UIViewController, CommandBarProtocol
             default:
                 return nil
         }
+    }
+    
+    func HighlightTappedButtons(_ sender: CommandBarManager) -> Bool
+    {
+        return false
     }
     
     func ButtonColor(_ sender: CommandBarManager, Command: CommandButtons) -> UIColor?
@@ -140,6 +152,15 @@ class StyleSettings: UIViewController, CommandBarProtocol
     func CommandButtonSize(_ sender: CommandBarManager, Command: CommandButtons) -> CGSize?
     {
         return CGSize(width: 60, height: 60)
+    }
+    
+    func ShapeGroupSelected(_ sender: CommandBarManager, NewCategory: ShapeCategories)
+    {
+    }
+    
+    func ShapeSelected(_ sender: CommandBarManager, NewShape: Shapes)
+    {
+        
     }
     
     var IsDirty = false
