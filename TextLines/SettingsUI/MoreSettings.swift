@@ -39,9 +39,10 @@ class MoreSettings: UITableViewController
         return 1
     }
     
+    /// - TODO: Remove hard-coded table address.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        if indexPath.row == 3
+        if indexPath.row == 3 && indexPath.section == 0
         {
             let Storyboard = UIStoryboard(name: "SettingsUI", bundle: nil)
             let nextViewController = Storyboard.instantiateViewController(withIdentifier: "StyleSettings") as! StyleSettings
