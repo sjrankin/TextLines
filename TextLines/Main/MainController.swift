@@ -8,9 +8,11 @@
 import Foundation
 import UIKit
 
-class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
+class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                       CommandBarProtocol
 {
+
+    
     /// Initialize the user interface and program.
     override func viewDidLoad()
     {
@@ -36,8 +38,8 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
         CmdController = CommandBarManager(CommandBar: CommandScroller,
                                           Buttons: CommandButtonList)
         CmdController?.delegate = self
-        BarController = ButtonBars(MainView: ShapeCategoryScroller,
-                                   ShapeContainerView: ShapeView)
+        BarController = ButtonBars(ShapeCategoryScroller: ShapeCategoryScroller,
+                                   ShapeScroller: ShapeScroller)
         BarController?.delegate = self
         InitializeSVGImages()
         InitializeToolBar()
@@ -271,15 +273,11 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
     var CurrentShape: Shapes? = nil
     var DeviceType: UIUserInterfaceIdiom = .mac
     
-    /// Return a dictionary of main shape category `UIImageView`s. Called by `ShapeBars`.
-    /// - Returns: Dictionary of `UIImageView`s.
-    func GetMainImages() -> [ShapeCategories: UIImageView]
+    /// Return an array of shape categories to display.
+    /// - Returns: Array of `ShapeCategories` to display in the shape category control.
+    func GetCategories() -> [ShapeCategories]
     {
-        var Images = [ShapeCategories: UIImageView]()
-        Images[.Shapes] = MainShapeImage
-        Images[.Lines] = MainLineImage
-        Images[.Freeform] = MainFreeImage
-        return Images
+        return [ShapeCategories.Shapes, ShapeCategories.Lines, ShapeCategories.Freeform]
     }
     
     /// Initialize the tool bar. Debug components removed if `#!DEBUG`.
@@ -433,10 +431,22 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
     /// Return a reference to the scroll view in which the shapes container lives.
     func GetShapeScroller() -> UIScrollView
     {
-        return ShapeScrollView
+        return ShapeScroller
     }
     
     // MARK: - Command bar delegate functions.
+    
+    func HasTitles(_ sender: CommandBarManager) -> Bool
+    {
+        switch sender
+        {                
+            case CommandScroller:
+                return true
+                
+            default:
+                return false
+        }
+    }
     
     func TitleColor(_ sender: CommandBarManager, Command: CommandButtons) -> UIColor?
     {
@@ -469,9 +479,21 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
         return UIColor.systemBlue
     }
     
+    func HighlightTappedButtons(_ sender: CommandBarManager) -> Bool
+    {
+        return false
+    }
+    
     func CommandButtonSize(_ sender: CommandBarManager, Command: CommandButtons) -> CGSize?
     {
-        return CGSize(width: 56, height: 56)
+        switch sender
+        {                
+            case CommandScroller:
+                return CGSize(width: 60, height: 60)
+                
+            default:
+                return CGSize(width: 50, height: 50)
+        }
     }
     
     /// Execute the passed command. Commands are passed from the main command panel.
@@ -516,6 +538,16 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
             case .BackgroundButton:
                 break
         }
+    }
+    
+    func ShapeGroupSelected(_ sender: CommandBarManager, NewCategory: ShapeCategories)
+    {
+        
+    }
+    
+    func ShapeSelected(_ sender: CommandBarManager, NewShape: Shapes)
+    {
+        
     }
     
     /// Update the output - something changed somewhere that requires the output
@@ -569,13 +601,9 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
     
     @IBOutlet weak var TextOutput: UIImageView!
     @IBOutlet weak var TextInput: UITextView!
-    @IBOutlet weak var CommandBarUI: UIView!
     @IBOutlet weak var ShapeCategoryScroller: UIScrollView!
+    @IBOutlet weak var ShapeScroller: UIScrollView!
     @IBOutlet weak var CommandScroller: UIScrollView!
-    
-    @IBOutlet weak var MainLineImage: UIImageView!
-    @IBOutlet weak var MainFreeImage: UIImageView!
-    @IBOutlet weak var MainShapeImage: UIImageView!
     
     @IBOutlet weak var SettingPanelCommandTable: UITableView!
     @IBOutlet weak var SettingOptionTable: UITableView!
@@ -583,7 +611,4 @@ class ViewController: UIViewController, UITextViewDelegate, MainProtocol,
     @IBOutlet weak var SettingPanel: UIView!
     @IBOutlet weak var SettingsPanelDragBar: UIView!
     @IBOutlet weak var SettingsHeightConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var ShapeView: UIView!
-    @IBOutlet weak var ShapeScrollView: UIScrollView!
 }
