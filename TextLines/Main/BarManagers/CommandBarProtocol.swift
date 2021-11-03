@@ -59,6 +59,12 @@ protocol CommandBarProtocol: AnyObject
     func ButtonHorizontalGap(_ sender: CommandBarManager) -> CGFloat
 
     /// Called by the command bar when commands are being added to the host `UIScrollView`.
+    /// Provides the intial horizontal gap between the left-most side and the initial button.
+    /// - Parameter sender: The command bar control that wants the initial gap.
+    /// - Returns: Initial gap between left side of `UIScrollView` and the first button.
+    func InitialGap(_ sender: CommandBarManager) -> CGFloat
+    
+    /// Called by the command bar when commands are being added to the host `UIScrollView`.
     /// Determines whether or not to display titles. Affects all buttons in the command bar.
     /// - Parameter sender: The command bar control that wants the title visiblity flag.
     /// - Returns: True if titles should be displayed, false if not.
