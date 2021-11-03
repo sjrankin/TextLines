@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -31,29 +31,15 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="9eb-TE-BEv"/>
                                 </connections>
                             </textView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Test Image" translatesAutoresizingMaskIntoConstraints="NO" id="Laq-CI-FFf">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Test Image" translatesAutoresizingMaskIntoConstraints="NO" id="Laq-CI-FFf">
                                 <rect key="frame" x="0.0" y="219" width="375" height="459"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuS-SF-y64">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="90" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuS-SF-y64">
                                 <rect key="frame" x="0.0" y="129" width="375" height="90"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gnr-Gr-tmD">
-                                        <rect key="frame" x="0.0" y="0.0" width="1600" height="85"/>
-                                        <color key="backgroundColor" name="SubShapeBar"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="1600" id="baQ-Rv-fcW"/>
-                                            <constraint firstAttribute="height" constant="85" id="oE4-Y6-wGp"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
                                 <color key="backgroundColor" name="SubShapeBar"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="gnr-Gr-tmD" secondAttribute="trailing" constant="-1225" id="1ng-xZ-iQO"/>
-                                    <constraint firstAttribute="bottom" secondItem="gnr-Gr-tmD" secondAttribute="bottom" constant="5" id="65e-hT-fiH"/>
-                                    <constraint firstItem="gnr-Gr-tmD" firstAttribute="leading" secondItem="wuS-SF-y64" secondAttribute="leading" id="EO4-3B-mlU"/>
                                     <constraint firstAttribute="height" constant="90" id="FFt-bT-4Tp"/>
-                                    <constraint firstItem="gnr-Gr-tmD" firstAttribute="top" secondItem="0NU-I5-rhf" secondAttribute="top" id="sY0-sl-rtl"/>
                                 </constraints>
                                 <inset key="scrollIndicatorInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="eEv-iP-Dap"/>
@@ -63,7 +49,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="240"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ef-7x-JzR">
-                                        <rect key="frame" x="311" y="5" width="62" height="42.666666666666664"/>
+                                        <rect key="frame" x="309.66666666666669" y="5" width="63.333333333333314" height="42.666666666666664"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <imageReference key="image" image="gear" catalog="system" symbolScale="large"/>
@@ -128,6 +114,7 @@
                                 <color key="backgroundColor" name="OptionsColor1"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="znC-qh-tlq" secondAttribute="trailing" constant="3" id="7Wq-2c-sp8"/>
+                                    <constraint firstItem="1Ef-7x-JzR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZR0-Mk-X4X" secondAttribute="trailing" constant="8" symbolic="YES" id="9DM-D7-haJ"/>
                                     <constraint firstItem="yOK-aW-un6" firstAttribute="bottom" secondItem="znC-qh-tlq" secondAttribute="bottom" id="DSC-rL-ABp"/>
                                     <constraint firstAttribute="bottom" secondItem="BU4-8n-gRx" secondAttribute="bottom" constant="5" id="Dae-QS-hsY"/>
                                     <constraint firstItem="BU4-8n-gRx" firstAttribute="leading" secondItem="D0N-Et-mTd" secondAttribute="leading" constant="10" id="J3x-Ng-SvK"/>
@@ -145,50 +132,11 @@
                                     <constraint firstAttribute="trailing" secondItem="BU4-8n-gRx" secondAttribute="trailing" constant="4" id="vyh-hc-TR3"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbJ-mc-4M1">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="50" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbJ-mc-4M1">
                                 <rect key="frame" x="0.0" y="678" width="375" height="50"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="left" translatesAutoresizingMaskIntoConstraints="NO" id="gqD-99-W01">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3yr-1j-G5o">
-                                                <rect key="frame" x="0.0" y="-5.3333333333333321" width="50" height="61"/>
-                                                <color key="tintColor" systemColor="systemGreenColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="RQU-eH-b7C"/>
-                                                </constraints>
-                                                <imageReference key="image" image="circle" catalog="system" symbolScale="large"/>
-                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28" scale="large" weight="black"/>
-                                            </imageView>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZhV-ch-LJP">
-                                                <rect key="frame" x="50" y="-1.3333333333333321" width="50" height="53"/>
-                                                <color key="tintColor" systemColor="systemGreenColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="2f7-4H-384"/>
-                                                    <constraint firstAttribute="width" constant="50" id="fb9-Fs-ocB"/>
-                                                </constraints>
-                                                <imageReference key="image" image="line.diagonal" catalog="system"/>
-                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28" scale="large" weight="black"/>
-                                            </imageView>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Yq-zv-q86">
-                                                <rect key="frame" x="100" y="-6.9999999999999964" width="50" height="61.333333333333329"/>
-                                                <color key="tintColor" systemColor="systemGreenColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="hwm-R6-obm"/>
-                                                </constraints>
-                                                <imageReference key="image" image="scribble" catalog="system"/>
-                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28" scale="large" weight="black"/>
-                                            </imageView>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
                                 <color key="backgroundColor" name="ShapeBar"/>
                                 <constraints>
-                                    <constraint firstItem="gqD-99-W01" firstAttribute="top" secondItem="v6M-gR-z1J" secondAttribute="top" id="1fR-Pp-eWp"/>
-                                    <constraint firstItem="gqD-99-W01" firstAttribute="bottom" secondItem="ei1-Yb-iTn" secondAttribute="bottom" id="6Ge-N8-DZ7"/>
-                                    <constraint firstAttribute="trailing" secondItem="gqD-99-W01" secondAttribute="trailing" constant="278" id="Obg-9l-TnP"/>
-                                    <constraint firstAttribute="bottom" secondItem="gqD-99-W01" secondAttribute="bottom" id="bzo-Ie-V3T"/>
-                                    <constraint firstItem="gqD-99-W01" firstAttribute="leading" secondItem="ei1-Yb-iTn" secondAttribute="leading" id="yvL-DN-NcR"/>
+                                    <constraint firstAttribute="height" constant="50" id="daC-Xe-T0K"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="v6M-gR-z1J"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="ei1-Yb-iTn"/>
@@ -196,24 +144,10 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="OfZ-00-GMN"/>
                                 </connections>
                             </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ly-R4-QpG">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="50" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ly-R4-QpG">
                                 <rect key="frame" x="0.0" y="728" width="375" height="50"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Op0-A0-u4E">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
-                                        <color key="backgroundColor" name="SubShapeBar"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="RzL-pz-3AQ"/>
-                                            <constraint firstAttribute="width" constant="1024" id="icP-ta-966"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
                                 <color key="backgroundColor" name="SubShapeBar"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Op0-A0-u4E" secondAttribute="trailing" constant="-649" id="0cP-tJ-diE"/>
-                                    <constraint firstAttribute="bottom" secondItem="Op0-A0-u4E" secondAttribute="bottom" id="4pM-vv-sCU"/>
-                                    <constraint firstItem="Op0-A0-u4E" firstAttribute="top" secondItem="WeO-Kc-eMz" secondAttribute="top" id="AQi-UE-qTd"/>
-                                    <constraint firstItem="Op0-A0-u4E" firstAttribute="leading" secondItem="3ly-R4-QpG" secondAttribute="leading" id="kZ8-M0-3Pw"/>
                                     <constraint firstAttribute="height" constant="50" id="oUH-xW-exr"/>
                                 </constraints>
                                 <inset key="scrollIndicatorInsets" minX="5" minY="5" maxX="5" maxY="5"/>
@@ -226,6 +160,7 @@
                         <constraints>
                             <constraint firstItem="wuS-SF-y64" firstAttribute="top" secondItem="FAG-0n-9uY" secondAttribute="bottom" id="4WJ-h1-jbS"/>
                             <constraint firstItem="FbJ-mc-4M1" firstAttribute="trailing" secondItem="3ly-R4-QpG" secondAttribute="trailing" id="5VJ-Zb-jvV"/>
+                            <constraint firstItem="FbJ-mc-4M1" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5hH-a0-DSj"/>
                             <constraint firstItem="FbJ-mc-4M1" firstAttribute="leading" secondItem="3ly-R4-QpG" secondAttribute="leading" id="6e9-Am-oN9"/>
                             <constraint firstItem="wuS-SF-y64" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="7Cr-6F-4BS"/>
                             <constraint firstItem="FAG-0n-9uY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="9Pb-tW-qwg"/>
@@ -240,17 +175,14 @@
                             <constraint firstItem="3ly-R4-QpG" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="fkP-pT-bQs"/>
                             <constraint firstItem="Laq-CI-FFf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="jSK-gG-b2S"/>
                             <constraint firstItem="3ly-R4-QpG" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="lWD-zJ-FDU"/>
+                            <constraint firstItem="FbJ-mc-4M1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="lZI-XJ-XVo"/>
                             <constraint firstItem="3ly-R4-QpG" firstAttribute="top" secondItem="FbJ-mc-4M1" secondAttribute="bottom" id="n9d-Ap-PjI"/>
                             <constraint firstItem="D0N-Et-mTd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nu5-SA-vdl"/>
                             <constraint firstItem="D0N-Et-mTd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xcW-Eo-Ot8"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="CommandBarUI" destination="gnr-Gr-tmD" id="A0H-pc-90z"/>
                         <outlet property="CommandScroller" destination="wuS-SF-y64" id="ncE-LX-GhR"/>
-                        <outlet property="MainFreeImage" destination="5Yq-zv-q86" id="irH-yK-qe4"/>
-                        <outlet property="MainLineImage" destination="ZhV-ch-LJP" id="MbT-hY-J9M"/>
-                        <outlet property="MainShapeImage" destination="3yr-1j-G5o" id="z0Z-dd-Ysc"/>
                         <outlet property="SettingOptionTable" destination="znC-qh-tlq" id="sdR-HE-zS8"/>
                         <outlet property="SettingPanel" destination="D0N-Et-mTd" id="N0l-cG-vRX"/>
                         <outlet property="SettingPanelCommandTable" destination="yOK-aW-un6" id="jli-K2-w9w"/>
@@ -258,8 +190,7 @@
                         <outlet property="SettingsHeightConstraint" destination="iKK-50-lLi" id="Bhg-qY-ipC"/>
                         <outlet property="SettingsPanelDragBar" destination="BU4-8n-gRx" id="FcK-vS-U94"/>
                         <outlet property="ShapeCategoryScroller" destination="FbJ-mc-4M1" id="qsM-Rj-zL3"/>
-                        <outlet property="ShapeScrollView" destination="3ly-R4-QpG" id="Kcm-OL-gSJ"/>
-                        <outlet property="ShapeView" destination="Op0-A0-u4E" id="48u-Rl-aLp"/>
+                        <outlet property="ShapeScroller" destination="3ly-R4-QpG" id="Kcm-OL-gSJ"/>
                         <outlet property="TextInput" destination="FAG-0n-9uY" id="12H-Kc-ElF"/>
                         <outlet property="TextOutput" destination="Laq-CI-FFf" id="2Hw-QG-Ddx"/>
                     </connections>
@@ -271,10 +202,7 @@
     </scenes>
     <resources>
         <image name="Test Image" width="2048" height="3072"/>
-        <image name="circle" catalog="system" width="128" height="121"/>
         <image name="gear" catalog="system" width="128" height="119"/>
-        <image name="line.diagonal" catalog="system" width="128" height="113"/>
-        <image name="scribble" catalog="system" width="128" height="118"/>
         <namedColor name="OptionsColor1">
             <color white="0.92799997329711914" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
@@ -292,9 +220,6 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
