@@ -17,4 +17,8 @@ protocol CommandBarProtocol: AnyObject
     func ButtonColor(_ sender: CommandBarManager, Command: CommandButtons) -> UIColor?
     func TitleColor(_ sender: CommandBarManager, Command: CommandButtons) -> UIColor?
     func ButtonHorizontalGap(_ sender: CommandBarManager) -> CGFloat
+    func HasTitles(_ sender: CommandBarManager) -> Bool
+    func ShapeGroupSelected(_ sender: CommandBarManager, NewCategory: ShapeCategories)
+    func ShapeSelected(_ sender: CommandBarManager, NewShape: Shapes)
+    func HighlightTappedButtons(_ sender: CommandBarManager) -> Bool
 }
