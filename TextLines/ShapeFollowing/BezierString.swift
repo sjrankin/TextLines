@@ -219,7 +219,6 @@ extension Bezier
             .Octagon: 6,
             .Line: 3,
             .Spiral: 7,
-            .Bezier: 1,
             .Scribble: 0,
             .Heart: 1,
             .Infinity: 1,
