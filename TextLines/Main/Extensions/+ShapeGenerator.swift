@@ -115,19 +115,7 @@ extension ViewController
                         let Y = Double(Length) * sin(Theta)
                         BezierPath?.move(to: CGPoint(x: X, y: Y))
                 }
-                
-            case .Bezier:
-                BezierPath = UIBezierPath()
-                BezierPath?.move(to: CGPoint(x: 20, y: 20))
-                BezierPath?.addQuadCurve(to: CGPoint(x: 780, y: 20),
-                                         controlPoint: CGPoint(x: 400, y: 150))
-                BezierPath?.addQuadCurve(to: CGPoint(x: 780, y: 780),
-                                         controlPoint: CGPoint(x: 650, y: 500))
-                BezierPath?.addQuadCurve(to: CGPoint(x: 20, y: 780),
-                                         controlPoint: CGPoint(x: 400, y: 650))
-                BezierPath?.addQuadCurve(to: CGPoint(x: 20, y: 20),
-                                         controlPoint: CGPoint(x: 150, y: 500))
-                
+
             case .Scribble:
                 return nil
                 
