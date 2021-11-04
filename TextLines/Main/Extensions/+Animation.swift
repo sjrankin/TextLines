@@ -23,18 +23,6 @@ extension ViewController
             var perm: Double = 0.0
             switch Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self, Default: .Circle)
             {
-                case .Bezier:
-                    perm = self.PathLength
-                    Final = CGFloat(self.AnimationOffset) + CGFloat(Velocity * Direction)
-                    if Final < 0.0
-                    {
-                        Final = perm - Final
-                    }
-                    if Final > perm
-                    {
-                        Final = 0
-                    }
-                    
                 case .Ellipse:
                     let OvalWidth = Double(Settings.GetInt(.EllipseLength))
                     let OvalHeight = Double(Settings.GetInt(.EllipseHeight))
