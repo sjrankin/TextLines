@@ -9,10 +9,8 @@ import Foundation
 import UIKit
 
 class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
-                      CommandBarProtocol
+                      CommandBarProtocol, SettingsWrapperDelegate
 {
-
-    
     /// Initialize the user interface and program.
     override func viewDidLoad()
     {
@@ -540,16 +538,77 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                 break
             case .ShareButton:
                 break
+                
             case .FontButton:
+                RunSlicedSettings(StoryboardName: "SettingsUI",
+                                  ControllerName: "FontPickerController")
+                
+            case .DimensionsButton:
                 break
+                
             case .PlayButton:
                 break
+                
             case .UserButton:
-                break
+                let Storyboard = UIStoryboard(name: "UserShapes", bundle: nil)
+                let VC = Storyboard.instantiateViewController(withIdentifier: "UserShapeController") as! UserShapeController
+                self.present(VC, animated: true)
+                
             case .BackgroundButton:
-                break
+                RunSlicedSettings(StoryboardName: "SettingsUI",
+                                  ControllerName: "BackgroundSetting")
+                
             case .ShapeOptionsButton:
                 break
+                
+            case .AnimationButton:
+                RunSlicedSettings(StoryboardName: "SettingsUI",
+                                  ControllerName: "AnimationUICode")
+        }
+    }
+    
+    /// Name of the storyboard where the sliced setting exists.
+    var WrappedStoryboard: String? = nil
+    /// Name of the controller for the sliced setting.
+    var WrappedController: String? = nil
+    
+    /// Called by the sliced settings navigation controller to know where to find
+    /// the controller to display.
+    /// - Return: Tuple with the storyboard name and controller name. Nil if values
+    ///           are not available.
+    func GetTarget() -> (StoryboardName: String, ControllerName: String)?
+    {
+        guard let StoryboardName = WrappedStoryboard else
+        {
+            return nil
+        }
+        guard let ControllerName = WrappedController else
+        {
+            return nil
+        }
+        
+       return (StoryboardName, ControllerName)
+    }
+    
+    /// Run a sliced settings controller.
+    /// - Note: Sliced settings are usually (but not always) a controller off of the
+    ///         main settings view controller. It is "sliced" and shown in isolation
+    ///         when called from here.
+    /// - Note: Controllers run when sliced do not have their parent controllers so if
+    ///         data from a parent controller is needed, it cannot be provided.
+    /// - Parameter StoryboardName: The name of the storyboard file.
+    /// - Parameter ControllerName: The name of the controller for the storyboard.
+    func RunSlicedSettings(StoryboardName: String, ControllerName: String)
+    {
+        WrappedStoryboard = StoryboardName
+        WrappedController = ControllerName
+        let Storyboard = UIStoryboard(name: "SettingsUI", bundle: nil)
+        let VC = Storyboard.instantiateViewController(withIdentifier: "SettingsWrapper") as! SettingsWrapperController
+        VC.WrapperDelegate = self
+        self.present(VC, animated: true)
+        {
+            self.WrappedController = nil
+            self.WrappedStoryboard = nil
         }
     }
     
