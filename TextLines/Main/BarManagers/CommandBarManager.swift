@@ -185,6 +185,12 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
         
             case .ShapeOptionsButton:
                 Image = LoadImage(Name: "gearshape.2", Type: .System)
+                
+            case .AnimationButton:
+                Image = LoadImage(Name: "film.circle", Type: .System)
+                
+            case .DimensionsButton:
+                Image = LoadImage(Name: "square.dashed.inset.filled", Type: .System)
         }
         guard let FinalImage = Image else
         {
@@ -269,6 +275,12 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
                 
             case .ShapeOptionsButton:
                 return "Shape"
+                
+            case .AnimationButton:
+                return "Animation"
+                
+            case .DimensionsButton:
+                return "Size"
         }
     }
     
