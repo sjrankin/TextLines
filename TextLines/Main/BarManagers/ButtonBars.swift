@@ -131,6 +131,11 @@ class ButtonBars: NSObject, UIScrollViewDelegate
             Debug.FatalError("No shape buttons for \(CurrentCategory)")
         }
         CurrentShapeButtons.removeAll()
+        if CurrentCategory == .Freeform
+        {
+            PopulateFreeformShapes()
+            return
+        }
         var Index = 0
         let Offset: CGFloat = 10.0
         var CumulativeWidth: CGFloat = 0.0
@@ -141,7 +146,7 @@ class ButtonBars: NSObject, UIScrollViewDelegate
             {
                 ButtonView.tintColor = UIColor.systemYellow
             }
-            ButtonView.frame = CGRect(x: Offset + CGFloat((Index * 45)),
+            ButtonView.frame = CGRect(x: Offset + CGFloat(Index * 45),
                                       y: 2,
                                       width: 45.0,
                                       height: 45.0)
@@ -155,6 +160,152 @@ class ButtonBars: NSObject, UIScrollViewDelegate
                                            height: ShapeScroller.contentSize.height)
         ShapeScroller.layoutIfNeeded()
     }
+    
+    func PopulateFreeformShapes()
+    {
+        guard let ShapeScroller = ShapeScroller else
+        {
+            Debug.FatalError("ShapeScroller is nil")
+        }
+        UserShapeManager.LoadUserShapes()
+        UserShapeList = UserShapeManager.UserShapeList
+        var Index = 0
+        let Offset: CGFloat = 5.0
+        var CumulativeWidth: CGFloat = 0.0
+        let SelectedID = Settings.GetUUID(.CurrentUserShape)
+        for SomeShape in UserShapeList
+        {
+            let ShapeID = SomeShape.ID
+            if let ActualShape = GetUserShape(From: ShapeID)
+            {
+                var BGColor = UIColor.systemTeal
+                if ShapeID == SelectedID
+                {
+                    BGColor = UIColor.systemYellow
+                }
+                let UserCreatedImage = GenerateThumbnail(From: ActualShape,
+                                                         Background: BGColor)
+                
+                let ButtonSize = CGSize(width: 45.0, height: 45.0)
+                let ButtonOrigin = CGPoint(x: 5.0 + (CGFloat(Index) * (45.0 + Offset)),
+                                           y: 2)
+                let UserButton = UIView(frame: CGRect(origin: ButtonOrigin, size: ButtonSize))
+                let UserButtonImage = UIImageView2(frame: CGRect(origin: .zero, size: ButtonSize))
+                UserButtonImage.Tag = ShapeID
+                UserButtonImage.image = UserCreatedImage
+                UserButton.addSubview(UserButtonImage)
+                UserButton.layer.cornerRadius = 4.0
+                UserButton.layer.borderColor = UIColor.black.cgColor
+                UserButton.layer.borderWidth = 0.4
+                UserButton.clipsToBounds = true
+                                        
+                ShapeScroller.addSubview(UserButton)
+                
+                let Recognizer = UITapGestureRecognizer2(target: self,
+                                                         action: #selector(UserShapeButtonTapped))
+                Recognizer.ForUserShape = ShapeID
+                UserButton.addGestureRecognizer(Recognizer)
+                
+                CumulativeWidth = CumulativeWidth + UserButton.frame.width + 10.0
+                Index = Index + 1
+            }
+        }
+    }
+    
+    @objc func UserShapeButtonTapped(_ Recognizer: UITapGestureRecognizer2)
+    {
+        let NewID = Recognizer.ForUserShape
+        Settings.SetUUID(.CurrentUserShape, NewID)
+        ThumbnailCache.removeAll()
+        PopulateFreeformShapes()
+    }
+    
+    func GetUserShape(From ID: UUID) -> UserDefinedShape?
+    {
+        for SomeShape in UserShapeList
+        {
+            if SomeShape.ID == ID
+            {
+                return SomeShape
+            }
+        }
+        return nil
+    }
+    
+    /// Return a thumbnail of the shape with the specified shape.
+    /// - Parameter From: The shape to use to generate a thumbnail.
+    /// - Parameter Background: The background color.
+    /// - Returns: Thumbnail image of the shape.
+    @discardableResult func GenerateThumbnail(From Shape: UserDefinedShape,
+                                              Background Color: UIColor) -> UIImage
+    {
+        var Thumbnail: UIImage = UIImage()
+        if let Cached = GetCachedImage(ID: Shape.ID)
+        {
+            Thumbnail = Cached
+        }
+        else
+        {
+            let (UL, LR) = Utility.GetExtent(Points: Shape.Points)!
+            let ShapeWidth = (LR.x - UL.x) + 40
+            let ShapeHeight = (LR.y - UL.y) + 40
+            let XOffset: CGFloat = 20
+            let YOffset: CGFloat = 20
+            var OffsetPoints = [CGPoint]()
+            for Point in Shape.Points
+            {
+                let NewPoint = CGPoint(x: Point.x - UL.x + XOffset,
+                                       y: Point.y - UL.y + YOffset)
+                OffsetPoints.append(NewPoint)
+            }
+            let ImageView = UserShape(frame: CGRect(origin: .zero,
+                                                    size: CGSize(width: ShapeWidth, height: ShapeHeight)))
+            ImageView.Initialize(ReadOnly: true)
+            ImageView.OriginalPoints = OffsetPoints
+            ImageView.SetSmoothing(On: Shape.SmoothLines)
+            ImageView.ClosePath = Shape.ClosedLoop
+            ImageView.backgroundColor = Color
+            ImageView.Redraw()
+            Thumbnail = ImageView.RenderToImage()
+            AddToImageCache(ID: Shape.ID, Image: Thumbnail)
+        }
+        return Thumbnail
+    }
+    
+    func GetCachedImage(ID: UUID) -> UIImage?
+    {
+        return ThumbnailCache[ID]
+    }
+    
+    func AddToImageCache(ID: UUID, Image: UIImage)
+    {
+        if ThumbnailCache.keys.contains(ID)
+        {
+            return
+        }
+        ThumbnailCache[ID] = Image
+    }
+    
+    func UpdateImageCache(ID: UUID, Image: UIImage)
+    {
+        if ThumbnailCache.keys.contains(ID)
+        {
+            ThumbnailCache[ID] = Image
+            return
+        }
+        Debug.Print("Should not get here - trying to add thumbnail to non-existant cached ID.")
+    }
+    
+    func RemoveImageFromCache(ID: UUID)
+    {
+        if ThumbnailCache.keys.contains(ID)
+        {
+            ThumbnailCache.removeValue(forKey: ID)
+        }
+    }
+    
+    var ThumbnailCache = [UUID: UIImage]()
+    var UserShapeList = [UserDefinedShape]()
     
     var CurrentShapeButtons = [UIImageView2]()
     
@@ -272,7 +423,7 @@ class ButtonBars: NSObject, UIScrollViewDelegate
     /// Dictionary of shape categories and associated shapes in each.
     let ShapeStructure: [ShapeCategories: [Shapes]] =
     [
-        .Shapes: [.Circle, .Ellipse, .Triangle, .Rectangle, .Hexagon, .Octagon, .Infinity, .Heart, .Bezier],
+        .Shapes: [.Circle, .Ellipse, .Triangle, .Rectangle, .Hexagon, .Octagon, .Infinity, .Heart],
         .Lines: [.Line, .Spiral, .Scribble],
         .Freeform: [.User]
     ]
@@ -289,7 +440,6 @@ class ButtonBars: NSObject, UIScrollViewDelegate
         .Infinity: "infinity",
         .Line: "line.diagonal",
         .Spiral: "SpiralIcon",
-        .Bezier: "point.topleft.down.curvedto.point.bottomright.up",
         .Scribble: "scribble",
         .Heart: "heart",
         .User: "person.crop.circle"
