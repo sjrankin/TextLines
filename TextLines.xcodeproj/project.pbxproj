@@ -19,6 +19,8 @@
 		172DD6BA272890EC001DD12C /* UILongPressGestureRecognizer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172DD6B9272890EC001DD12C /* UILongPressGestureRecognizer2.swift */; };
 		172DD6BD2728B739001DD12C /* CommandBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172DD6BC2728B739001DD12C /* CommandBarProtocol.swift */; };
 		175A620C272F22D600C4337C /* Main90°.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 175A620B272F22D600C4337C /* Main90°.storyboard */; };
+		1763FB7B273354EA00C20060 /* SettingsWrapperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763FB7A273354EA00C20060 /* SettingsWrapperController.swift */; };
+		1763FB7D2733552100C20060 /* SettingsWrapperDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763FB7C2733552100C20060 /* SettingsWrapperDelegate.swift */; };
 		17672F6A271641FB00D408BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17672F68271641FB00D408BC /* LaunchScreen.storyboard */; };
 		17672FF22716423200D408BC /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F722716423000D408BC /* Geometry.swift */; };
 		17672FF32716423200D408BC /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F732716423000D408BC /* Math.swift */; };
@@ -138,6 +140,8 @@
 		172DD6B9272890EC001DD12C /* UILongPressGestureRecognizer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILongPressGestureRecognizer2.swift; sourceTree = "<group>"; };
 		172DD6BC2728B739001DD12C /* CommandBarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarProtocol.swift; sourceTree = "<group>"; };
 		175A620B272F22D600C4337C /* Main90°.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main90°.storyboard"; sourceTree = "<group>"; };
+		1763FB7A273354EA00C20060 /* SettingsWrapperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWrapperController.swift; sourceTree = "<group>"; };
+		1763FB7C2733552100C20060 /* SettingsWrapperDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWrapperDelegate.swift; sourceTree = "<group>"; };
 		17672F5A271641F900D408BC /* TextLines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextLines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17672F5D271641F900D408BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17672F5F271641F900D408BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -465,6 +469,8 @@
 				17672FDF2716423200D408BC /* BackgroundSettings.swift */,
 				17672FD62716423200D408BC /* MainSettingUIController.swift */,
 				17672FC22716423200D408BC /* MoreSettings.swift */,
+				1763FB7A273354EA00C20060 /* SettingsWrapperController.swift */,
+				1763FB7C2733552100C20060 /* SettingsWrapperDelegate.swift */,
 				17672FDE2716423200D408BC /* StyleSettings.swift */,
 			);
 			path = SettingsUI;
@@ -709,8 +715,10 @@
 				176730042716423300D408BC /* +ShapeGenerator.swift in Sources */,
 				17672FFF2716423200D408BC /* UITapGestureRecognizer2.swift in Sources */,
 				176730382716423300D408BC /* UserShapeCell.swift in Sources */,
+				1763FB7B273354EA00C20060 /* SettingsWrapperController.swift in Sources */,
 				176730372716423300D408BC /* ShapeEditor.swift in Sources */,
 				1767301F2716423300D408BC /* +CGSize.swift in Sources */,
+				1763FB7D2733552100C20060 /* SettingsWrapperDelegate.swift in Sources */,
 				176730242716423300D408BC /* TitledImage.swift in Sources */,
 				1767304B2716423300D408BC /* BackgroundSettings.swift in Sources */,
 				1767302F2716423300D408BC /* DoubleCell.swift in Sources */,
