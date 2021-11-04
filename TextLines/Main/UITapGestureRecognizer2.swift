@@ -56,4 +56,19 @@ class UITapGestureRecognizer2: UITapGestureRecognizer
             _ForCommand = newValue
         }
     }
+    
+    /// Holds the current user shape ID. Defaults to `UUID.Emtpy`.
+    private var _ForUserShape = UUID.Empty
+    /// Bet or set the user shape ID.
+    var ForUserShape: UUID
+    {
+        get
+        {
+            return _ForUserShape
+        }
+        set
+        {
+            _ForUserShape = newValue
+        }
+    }
 }
