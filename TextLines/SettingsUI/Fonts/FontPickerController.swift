@@ -56,11 +56,6 @@ class FontPickerController: UITableViewController, UITextFieldDelegate,
     var FontName: String = ""
     var SelectedFont = 0
     
-    @IBAction func CloseButtonHandler(_ sender: Any)
-    {
-        self.navigationController?.popToRootViewController(animated: true)
-    }
-    
     @IBAction func TextFieldEditingEnded2(_ sender: Any)
     {
         if let Field = sender as? UITextField
