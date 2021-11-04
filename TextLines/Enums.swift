@@ -19,8 +19,6 @@ enum Shapes: String, CaseIterable
     case Rectangle = "Square"
     /// Triangle.
     case Triangle = "Triangle"
-    /// Bezier path.
-    case Bezier = "Bezier"
     /// Scribbled path.
     case Scribble = "Scribble"
     /// Spiral path.
@@ -94,6 +92,12 @@ enum CommandButtons: String, CaseIterable
     
     /// Shape options button.
     case ShapeOptionsButton = "ShapeOptionsButton"
+    
+    /// Animation options button.
+    case AnimationButton = "AnimationButton"
+    
+    /// Image/text dimensions button.
+    case DimensionsButton = "DimensionsButton"
 }
 
 /// Automatic text on shape alignments.
