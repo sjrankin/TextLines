@@ -170,8 +170,8 @@ class UserShape: UIView
         let OldShowPoints = ShowPoints
         
         DrawUserShape()
-        let renderer = UIGraphicsImageRenderer(size: RenderBounds.size)
-        let image = renderer.image
+        let Renderer = UIGraphicsImageRenderer(size: RenderBounds.size)
+        let image = Renderer.image
         {
             ctx in
             self.drawHierarchy(in: RenderBounds, afterScreenUpdates: true)
