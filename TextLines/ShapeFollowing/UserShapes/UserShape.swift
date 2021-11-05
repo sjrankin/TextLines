@@ -156,9 +156,10 @@ class UserShape: UIView
     }
     
     /// Render the current user shape to an image.
+    /// - Parameter LineColor: Alternate line color. If not specified, `.black` is used.
     /// - Returns: UIImage of the current user shape, rendered with all current
     ///            settings in force.
-    func RenderToImage() -> UIImage
+    func RenderToImage(_ LineColor: UIColor? = nil) -> UIImage
     {
         let RenderBounds = CGRect(origin: .zero, size: CGSize(width: 1024, height: 1024))//Size)
         let OldGridGap = GridGap
@@ -166,7 +167,7 @@ class UserShape: UIView
         let OldLineWidth = MainLineWidth
         MainLineWidth = 10.0
         let OldLineColor = MainLineColor
-        MainLineColor = UIColor.black
+        MainLineColor = LineColor ?? UIColor.black
         let OldShowPoints = ShowPoints
         
         DrawUserShape()
