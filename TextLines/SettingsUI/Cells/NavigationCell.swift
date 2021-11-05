@@ -11,8 +11,16 @@ import UIKit
 typealias NavigationClosure = (Any?) -> ()
 
 //https://kaushalelsewhere.medium.com/how-to-dismiss-keyboard-in-a-view-controller-of-ios-3b1bfe973ad1
-class NavigationCell: UITableViewCell, UITextFieldDelegate
+class NavigationCell: UITableViewCell, UITextFieldDelegate, CellProtocol
 {
+    func SetWidth(_ Width: CGFloat)
+    {
+        CurrentWidth = Width > 1000.0 ? 1000.0 : Width
+        AdjustedWidth = Width
+    }
+    
+    var AdjustedWidth: CGFloat = 0.0
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

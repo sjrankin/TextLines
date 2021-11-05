@@ -10,8 +10,26 @@ import UIKit
 
 typealias ButtonAction = () -> ()
 
-class ButtonCell: UITableViewCell
+class ButtonCell: UITableViewCell, CellProtocol
 {
+    func SetWidth(_ Width: CGFloat)
+    {
+        CurrentWidth = Width > 1000.0 ? 1000.0 : Width
+        Button?.removeFromSuperview()
+        Button = UIButton()
+        SetButtonTitle(PassedButtonTitle)
+        Button?.addTarget(self, action: #selector(RunButtonAction), for: .touchUpInside)
+        Button?.setTitleColor(UIColor.link, for: .normal)
+        let BFrame = CGRect(x: CurrentWidth - (70 + 10),
+                            y: (ButtonCell.CellHeight / 2) - (23 / 2),
+                            width: 70, height: 25)
+        Button?.frame = BFrame
+        contentView.addSubview(Button!)
+        AdjustedWidth = Width
+    }
+    
+    var AdjustedWidth: CGFloat = 0.0
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -68,13 +86,16 @@ class ButtonCell: UITableViewCell
         {
             Debug.FatalError("Title assigned to button before button created.")
         }
+        PassedButtonTitle = NewTitle
         Button?.setTitleColor(UIColor.link, for: .normal)
         Button?.setTitle(NewTitle, for: .normal)
         let BFrame = CGRect(x: CurrentWidth - (70 + 10),
-                               y: (ButtonCell.CellHeight / 2) - (25 / 2),
+                               y: (ButtonCell.CellHeight / 2) - (23 / 2),
                                width: 70, height: 25)
         Button?.frame = BFrame
     }
+    
+    var PassedButtonTitle: String = ""
 
     @objc func RunButtonAction()
     {

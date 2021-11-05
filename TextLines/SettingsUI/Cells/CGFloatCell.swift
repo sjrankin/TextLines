@@ -8,8 +8,25 @@
 import Foundation
 import UIKit
 
-class CGFloatCell: UITableViewCell, UITextFieldDelegate
+class CGFloatCell: UITableViewCell, UITextFieldDelegate, CellProtocol
 {
+    func SetWidth(_ Width: CGFloat)
+    {
+        CurrentWidth = Width > 1000.0 ? 1000.0 : Width
+        TextField.removeFromSuperview()
+        TextField = UITextField(frame: CGRect(x: CurrentWidth - (100 + 10), y: CGFloatCell.CellHeight / 2 - 30 / 2,
+                                              width: 100, height: 30))
+        TextField.delegate = self
+        TextField.borderStyle = .roundedRect
+        TextField.keyboardType = .default
+        TextField.returnKeyType = .done
+        TextField.textAlignment = .right
+        contentView.addSubview(TextField)
+        AdjustedWidth = Width
+    }
+    
+    var AdjustedWidth: CGFloat = 0.0
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -9,8 +9,26 @@ import Foundation
 import UIKit
 
 //https://kaushalelsewhere.medium.com/how-to-dismiss-keyboard-in-a-view-controller-of-ios-3b1bfe973ad1
-class StringCell: UITableViewCell, UITextFieldDelegate
+class StringCell: UITableViewCell, UITextFieldDelegate, CellProtocol
 {
+    func SetWidth(_ Width: CGFloat)
+    {
+        CurrentWidth = Width > 1000.0 ? 1000.0 : Width
+        TextField.removeFromSuperview()
+        TextField = UITextField(frame: CGRect(x: CurrentWidth - (180 + 10),
+                                              y: StringCell.CellHeight / 2 - 30 / 2,
+                                              width: 180, height: 30))
+        TextField.delegate = self
+        TextField.borderStyle = .roundedRect
+        TextField.keyboardType = .default
+        TextField.returnKeyType = .done
+        TextField.textAlignment = .right
+        contentView.addSubview(TextField)
+        AdjustedWidth = Width
+    }
+    
+    var AdjustedWidth: CGFloat = 0.0
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -8,8 +8,25 @@
 import Foundation
 import UIKit
 
-class ColorCell: UITableViewCell
+class ColorCell: UITableViewCell, CellProtocol
 {
+    func SetWidth(_ Width: CGFloat)
+    {
+        CurrentWidth = Width > 1000.0 ? 1000.0 : Width
+        ColorPicker.removeFromSuperview()
+        ColorPicker = UIColorWell(frame: CGRect(x: CurrentWidth - (WellHeight + 10),
+                                                y: ColorCell.CellHeight / 2 - WellHeight / 2,
+                                                width: WellHeight, height: WellHeight))
+        ColorPicker.supportsAlpha = true
+        ColorPicker.addTarget(self, action: #selector(ColorChanged(_:)), for: .valueChanged)
+        let InitialValue = Settings.GetColor(Setting!, UIColor.white)
+        ColorPicker.selectedColor = InitialValue
+        contentView.addSubview(ColorPicker)
+        AdjustedWidth = Width
+    }
+    
+    var AdjustedWidth: CGFloat = 0.0
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -8,8 +8,24 @@
 import Foundation
 import UIKit
 
-class BooleanCell2: UITableViewCell
+class BooleanCell2: UITableViewCell,
+                    CellProtocol
 {
+    func SetWidth(_ Width: CGFloat)
+    {
+        CurrentWidth = Width > 1000.0 ? 1000.0 : Width
+        SettingSwitch.removeFromSuperview()
+        SettingSwitch.frame = CGRect(x: CurrentWidth - (51 + 10),
+                                     y: GetSwitchYPosition(),
+                                     width: 51, height: 34)
+        SettingSwitch.addTarget(self, action: #selector(self.SwitchChanged(_:)),
+                                for: .valueChanged)
+        contentView.addSubview(SettingSwitch)
+        AdjustedWidth = Width
+    }
+    
+    var AdjustedWidth: CGFloat = 0.0
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,7 +43,8 @@ class BooleanCell2: UITableViewCell
         HeaderLabel = UILabel(frame: CGRect(x: 15, y: 5, width: 300, height: 30))
         HeaderLabel.font = UIFont.boldSystemFont(ofSize: 18.0)
         HeaderLabel.textColor = UIColor.black
-        SettingSwitch = UISwitch(frame: CGRect(x: CurrentWidth - (51 + 10), y: BooleanCell.CellHeight / 2 - 34 / 2,
+        SettingSwitch = UISwitch(frame: CGRect(x: CurrentWidth - (51 + 10),
+                                               y: GetSwitchYPosition(),
                                                width: 51, height: 34))
         SettingSwitch.addTarget(self, action: #selector(self.SwitchChanged(_:)),
                                 for: .valueChanged)
@@ -58,9 +75,20 @@ class BooleanCell2: UITableViewCell
         HeaderLabel.text = Header
         CurrentWidth = Width > 1000.0 ? 1000.0 : Width
         SettingSwitch.frame = CGRect(x: CurrentWidth - (51 + 10),
-                                     y: BooleanCell2.CellHeight / 2 - 34 / 2,
+                                     y: GetSwitchYPosition(),
                                      width: 51, height: 34)
         SettingSwitch.isOn = InitialValue
+    }
+    
+    /// Get a vertically centered Y position for the `UISwitch`.
+    /// - Returns: Value to use as the Y position for the `UISwitch`.
+    func GetSwitchYPosition() -> CGFloat
+    {
+        var Y = BooleanCell2.CellHeight / 2.0
+        let Scratch = UISwitch()
+        Y = Y - Scratch.frame.height / 2
+        Y = Y / 2
+        return Y
     }
     
     var Closure: BooleanCellClosure? = nil

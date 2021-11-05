@@ -8,8 +8,26 @@
 import Foundation
 import UIKit
 
-class EnumCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource
+class EnumCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource, CellProtocol
 {
+    func SetWidth(_ Width: CGFloat)
+    {
+        CurrentWidth = Width > 1000.0 ? 1000.0 : Width
+        EnumPicker.removeFromSuperview()
+        EnumPicker = UIPickerView(frame: CGRect(x: CurrentWidth - (PickerWidth + 10),
+                                                y: EnumCell.CellHeight / 2 - 85 / 2,
+                                                width: PickerWidth, height: 85))
+        EnumPicker.delegate = self
+        EnumPicker.dataSource = self
+        EnumPicker.layer.borderWidth = 0.5
+        EnumPicker.layer.borderColor = UIColor.gray.cgColor
+        EnumPicker.layer.cornerRadius = 5.0
+        contentView.addSubview(EnumPicker)
+        AdjustedWidth = Width
+    }
+    
+    var AdjustedWidth: CGFloat = 0.0
+    
     func GetEnumData(For Setting: SettingKeys)
     {
         switch Setting
@@ -179,8 +197,8 @@ class EnumCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource
         EnumPicker.layer.borderWidth = 0.5
         EnumPicker.layer.borderColor = UIColor.gray.cgColor
         EnumPicker.layer.cornerRadius = 5.0
-        contentView.addSubview(HeaderLabel)
         contentView.addSubview(EnumPicker)
+        contentView.addSubview(HeaderLabel)
     }
     
     public static var CellHeight: CGFloat

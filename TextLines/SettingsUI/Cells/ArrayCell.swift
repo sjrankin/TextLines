@@ -10,8 +10,20 @@ import UIKit
 
 typealias ArraySelector = (Int) -> ()
 
-class ArrayCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource
+class ArrayCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
+                 CellProtocol
 {
+    func SetWidth(_ Width: CGFloat)
+    {
+        CurrentWidth = Width > 1000.0 ? 1000.0 : Width
+        ArrayPicker.frame = CGRect(x: CurrentWidth - (PickerWidth + 10),
+                                   y: EnumCell.CellHeight / 2 - 85 / 2,
+                                   width: PickerWidth, height: 85)
+        AdjustedWidth = Width
+    }
+    
+    var AdjustedWidth: CGFloat = 0.0
+    
     func SelectCurrentValue(_ Value: String)
     {
         if let Index = RawArrayData.firstIndex(of: Value)
@@ -39,7 +51,7 @@ class ArrayCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-       ArraySelectorClosure?(row)
+        ArraySelectorClosure?(row)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
@@ -60,8 +72,8 @@ class ArrayCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource
         HeaderLabel.font = UIFont.boldSystemFont(ofSize: 18.0)
         HeaderLabel.textColor = UIColor.black
         ArrayPicker = UIPickerView(frame: CGRect(x: CurrentWidth - (PickerWidth + 10),
-                                                y: EnumCell.CellHeight / 2 - 95 / 2,
-                                                width: PickerWidth, height: 95))
+                                                 y: EnumCell.CellHeight / 2 - 95 / 2,
+                                                 width: PickerWidth, height: 95))
         ArrayPicker.delegate = self
         ArrayPicker.dataSource = self
         ArrayPicker.layer.borderWidth = 0.5

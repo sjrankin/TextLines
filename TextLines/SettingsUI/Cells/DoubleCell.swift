@@ -8,8 +8,26 @@
 import Foundation
 import UIKit
 
-class DoubleCell: UITableViewCell, UITextFieldDelegate
+class DoubleCell: UITableViewCell, UITextFieldDelegate, CellProtocol
 {
+    func SetWidth(_ Width: CGFloat)
+    {
+        CurrentWidth = Width > 1000.0 ? 1000.0 : Width
+        TextField.removeFromSuperview()
+        TextField.frame = CGRect(x: CurrentWidth - (TextFieldWidth + 10),
+                                 y: DoubleCell.CellHeight / 2 - 30 / 2,
+                                 width: TextFieldWidth, height: 30)
+        var InitialValue = Settings.GetDouble(Setting!, 0.0)
+        InitialValue = ForInput?(InitialValue) ?? InitialValue
+        TextField.text = "\(Int(InitialValue))"
+        TextField.layer.borderColor = UIColor.gray.cgColor
+        TextField.layer.borderWidth = 0.5
+        TextField.layer.cornerRadius = 5.0
+        AdjustedWidth = Width
+    }
+    
+    var AdjustedWidth: CGFloat = 0.0
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
