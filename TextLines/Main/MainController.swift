@@ -78,6 +78,8 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         TextInput.text = StartText
         UserShapeManager.LoadUserShapes()
         
+        GenerateUserThumbnails()
+        
         //let SurfacePanGesture = UIPanGestureRecognizer(target: self, action: #selector(PanGestureHandler))
         //TextOutput.addGestureRecognizer(SurfacePanGesture)
         
@@ -208,6 +210,50 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
             }
         }
         )
+    }
+    
+    /// Generate and cache user shape thumbnails.
+    func GenerateUserThumbnails()
+    {
+        UserShapeManager.LoadUserShapes()
+        let UserShapeList = UserShapeManager.UserShapeList
+        for Shape in UserShapeList
+        {
+            print("Shape.Name=\(Shape.Name)")
+            let ShapeID = Shape.ID
+            let NormalColor = CreateShapeThumbnail(Shape: Shape, Color: .Gray(Percent: 0.85))
+            let Highlighted = CreateShapeThumbnail(Shape: Shape, Color: .systemYellow)
+            UserShapeImageCache.SaveInCache(ID: ShapeID, Normal: NormalColor, Highlighted: Highlighted)
+        }
+        print("UserShapeImageCache.count=\(UserShapeImageCache.LocalCache.count)")
+    }
+    
+    func CreateShapeThumbnail(Shape: UserDefinedShape, Color: UIColor) -> UIImage
+    {
+        var Thumbnail: UIImage = UIImage()
+        let (UL, LR) = Utility.GetExtent(Points: Shape.Points)!
+        let ShapeWidth = (LR.x - UL.x) + 40
+        let ShapeHeight = (LR.y - UL.y) + 40
+        let XOffset: CGFloat = 20
+        let YOffset: CGFloat = 20
+        var OffsetPoints = [CGPoint]()
+        for Point in Shape.Points
+        {
+            let NewPoint = CGPoint(x: Point.x - UL.x + XOffset,
+                                   y: Point.y - UL.y + YOffset)
+            OffsetPoints.append(NewPoint)
+        }
+        let ImageView = UserShape(frame: CGRect(origin: .zero,
+                                                size: CGSize(width: ShapeWidth, height: ShapeHeight)))
+        ImageView.Initialize(ReadOnly: true)
+        ImageView.ShowPoints = false
+        ImageView.OriginalPoints = OffsetPoints
+        ImageView.SetSmoothing(On: Shape.SmoothLines)
+        ImageView.ClosePath = Shape.ClosedLoop
+        ImageView.backgroundColor = Color
+        ImageView.Redraw()
+        Thumbnail = ImageView.RenderToImage()
+        return Thumbnail
     }
     
     private var WindowInterfaceOrientation: UIInterfaceOrientation?
