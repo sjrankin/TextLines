@@ -242,6 +242,8 @@ class ShapeEditor: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        let FinalWidth = tableView.frame.width
+        (RowOptions[indexPath.row].Cell as! CellProtocol).SetWidth(FinalWidth)
         return RowOptions[indexPath.row].Cell
     }
     
