@@ -179,13 +179,10 @@ class ButtonBars: NSObject, UIScrollViewDelegate
             if let ActualShape = GetUserShape(From: ShapeID)
             {
                 #if true
-                var BGColor = UIColor.systemTeal
-                if ShapeID == SelectedID
-                {
-                    BGColor = UIColor.systemYellow
-                }
+                let BGColor = UIColor(HexString: "#2d2d2d")!
                 let UserCreatedImage = GenerateThumbnail(From: ActualShape,
-                                                         Background: BGColor)
+                                                         Background: BGColor,
+                                                         IsSelected: ShapeID == SelectedID)
                 #else
                 let (Normal, Highlight) = UserShapeImageCache.GetCachedImageSet(ID: ShapeID)!
                 #endif
@@ -202,7 +199,8 @@ class ButtonBars: NSObject, UIScrollViewDelegate
                 #endif
                 UserButton.addSubview(UserButtonImage)
                 UserButton.layer.cornerRadius = 4.0
-                UserButton.layer.borderColor = UIColor.black.cgColor
+                let BorderColor = ShapeID == SelectedID ? UIColor.systemOrange.cgColor : UIColor.black.cgColor
+                UserButton.layer.borderColor = BorderColor
                 UserButton.layer.borderWidth = 0.4
                 UserButton.clipsToBounds = true
                                         
@@ -242,9 +240,12 @@ class ButtonBars: NSObject, UIScrollViewDelegate
     /// Return a thumbnail of the shape with the specified shape.
     /// - Parameter From: The shape to use to generate a thumbnail.
     /// - Parameter Background: The background color.
+    /// - Parameter IsSelected: If true, the image is for a selected shape. If false, for a
+    ///                         non-selected shape.
     /// - Returns: Thumbnail image of the shape.
     @discardableResult func GenerateThumbnail(From Shape: UserDefinedShape,
-                                              Background Color: UIColor) -> UIImage
+                                              Background Color: UIColor,
+                                              IsSelected: Bool) -> UIImage
     {
         var Thumbnail: UIImage = UIImage()
         if let Cached = GetCachedImage(ID: Shape.ID)
@@ -274,7 +275,8 @@ class ButtonBars: NSObject, UIScrollViewDelegate
             ImageView.ClosePath = Shape.ClosedLoop
             ImageView.backgroundColor = Color
             ImageView.Redraw()
-            Thumbnail = ImageView.RenderToImage()
+            let Highlight = IsSelected ? UIColor.systemYellow : UIColor.systemBlue
+            Thumbnail = ImageView.RenderToImage(Highlight)
             AddToImageCache(ID: Shape.ID, Image: Thumbnail)
         }
         return Thumbnail
