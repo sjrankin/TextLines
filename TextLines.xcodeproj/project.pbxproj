@@ -126,6 +126,8 @@
 		176730662716439600D408BC /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176730652716439600D408BC /* Enums.swift */; };
 		17673068271643AA00D408BC /* Versioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17673067271643AA00D408BC /* Versioning.swift */; };
 		1767306B271648F700D408BC /* SegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767306A271648F700D408BC /* SegmentCell.swift */; };
+		17C76CC6273490540078971D /* UserShapeImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C76CC5273490540078971D /* UserShapeImageCache.swift */; };
+		17C76CC82734C4860078971D /* CellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C76CC72734C4860078971D /* CellProtocol.swift */; };
 		17ED392327165F0E00A04EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17ED392227165F0E00A04EAD /* Assets.xcassets */; };
 		17ED39252718C9D900A04EAD /* +ShapeEditorOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED39242718C9D900A04EAD /* +ShapeEditorOptions.swift */; };
 /* End PBXBuildFile section */
@@ -253,6 +255,8 @@
 		176730652716439600D408BC /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		17673067271643AA00D408BC /* Versioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Versioning.swift; sourceTree = "<group>"; };
 		1767306A271648F700D408BC /* SegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentCell.swift; sourceTree = "<group>"; };
+		17C76CC5273490540078971D /* UserShapeImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShapeImageCache.swift; sourceTree = "<group>"; };
+		17C76CC72734C4860078971D /* CellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProtocol.swift; sourceTree = "<group>"; };
 		17ED392227165F0E00A04EAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17ED39242718C9D900A04EAD /* +ShapeEditorOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ShapeEditorOptions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -489,6 +493,7 @@
 		17672FB52716423200D408BC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				17C76CC72734C4860078971D /* CellProtocol.swift */,
 				17672FB62716423200D408BC /* ArrayCell.swift */,
 				17672FBD2716423200D408BC /* BooleanCell.swift */,
 				17672FB82716423200D408BC /* BooleanCell2.swift */,
@@ -517,6 +522,7 @@
 				17672FCA2716423200D408BC /* UserDefinedShape.swift */,
 				17672FC82716423200D408BC /* UserShapeCell.swift */,
 				17672FC52716423200D408BC /* UserShapeController.swift */,
+				17C76CC5273490540078971D /* UserShapeImageCache.swift */,
 			);
 			path = UserShapes;
 			sourceTree = "<group>";
@@ -738,6 +744,7 @@
 				176730122716423300D408BC /* Settings.swift in Sources */,
 				176730592716423300D408BC /* Filters.swift in Sources */,
 				176730442716423300D408BC /* MainSettingUIController.swift in Sources */,
+				17C76CC82734C4860078971D /* CellProtocol.swift in Sources */,
 				17672FF22716423200D408BC /* Geometry.swift in Sources */,
 				176730272716423300D408BC /* ArrayCell.swift in Sources */,
 				1767304F2716423300D408BC /* UUID.swift in Sources */,
@@ -816,6 +823,7 @@
 				176730162716423300D408BC /* +CGRect.swift in Sources */,
 				1724DAB327274C1A000E6067 /* UIView2.swift in Sources */,
 				176730312716423300D408BC /* EnumCell.swift in Sources */,
+				17C76CC6273490540078971D /* UserShapeImageCache.swift in Sources */,
 				176730222716423300D408BC /* +Enum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
