@@ -16,7 +16,7 @@ class SegmentCell: UITableViewCell, CellProtocol
     {
         CurrentWidth = Width > 1000.0 ? 1000.0 : Width
         let SFrame = CGRect(x: 15,
-                            y: 40,
+                            y: 38,
                             width: CurrentWidth - 30,
                             height: 25)
         Segment.frame = SFrame
@@ -99,7 +99,7 @@ class SegmentCell: UITableViewCell, CellProtocol
     
     func InitializeControl()
     {
-        let SFrame = CGRect(x: 15, y: 40,
+        let SFrame = CGRect(x: 15, y: 38,
                             width: CurrentWidth - 30,
                             height: 25)
         Segment?.frame = SFrame
