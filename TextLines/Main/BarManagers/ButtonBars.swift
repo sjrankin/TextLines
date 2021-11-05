@@ -178,6 +178,7 @@ class ButtonBars: NSObject, UIScrollViewDelegate
             let ShapeID = SomeShape.ID
             if let ActualShape = GetUserShape(From: ShapeID)
             {
+                #if true
                 var BGColor = UIColor.systemTeal
                 if ShapeID == SelectedID
                 {
@@ -185,14 +186,20 @@ class ButtonBars: NSObject, UIScrollViewDelegate
                 }
                 let UserCreatedImage = GenerateThumbnail(From: ActualShape,
                                                          Background: BGColor)
-                
+                #else
+                let (Normal, Highlight) = UserShapeImageCache.GetCachedImageSet(ID: ShapeID)!
+                #endif
                 let ButtonSize = CGSize(width: 45.0, height: 45.0)
                 let ButtonOrigin = CGPoint(x: 5.0 + (CGFloat(Index) * (45.0 + Offset)),
                                            y: 2)
                 let UserButton = UIView(frame: CGRect(origin: ButtonOrigin, size: ButtonSize))
                 let UserButtonImage = UIImageView2(frame: CGRect(origin: .zero, size: ButtonSize))
                 UserButtonImage.Tag = ShapeID
+                #if true
                 UserButtonImage.image = UserCreatedImage
+                #else
+                UserButtonImage.image = Normal
+                #endif
                 UserButton.addSubview(UserButtonImage)
                 UserButton.layer.cornerRadius = 4.0
                 UserButton.layer.borderColor = UIColor.black.cgColor
@@ -261,6 +268,7 @@ class ButtonBars: NSObject, UIScrollViewDelegate
             let ImageView = UserShape(frame: CGRect(origin: .zero,
                                                     size: CGSize(width: ShapeWidth, height: ShapeHeight)))
             ImageView.Initialize(ReadOnly: true)
+            ImageView.ShowPoints = false
             ImageView.OriginalPoints = OffsetPoints
             ImageView.SetSmoothing(On: Shape.SmoothLines)
             ImageView.ClosePath = Shape.ClosedLoop
