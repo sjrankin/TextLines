@@ -879,7 +879,6 @@ class UserShape: UIView
         {
             PointPath = CreatePath(.Points, Points: AlternativePoints!,
                                    PathColor: UIColor.gray.withAlphaComponent(0.75))
-            //UIColor.gray.withAlphaComponent(0.75).setStroke()
             PointPath.stroke()
             FinalPath.append(PointPath)
         }
@@ -925,7 +924,7 @@ class UserShape: UIView
                                         width: 16.0,
                                         height: 16.0)
                     let PointPath = UIBezierPath(ovalIn: Circle)
-                    let DrawText = "\(Index)" as NSString
+                    let DrawText = "\(Index + 1)" as NSString
                     let TextRect = CGRect(x: Point.x + 12,
                                           y: Point.y - 5,
                                           width: 30,
