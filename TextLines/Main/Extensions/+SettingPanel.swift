@@ -149,8 +149,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
                             Cell.LoadCell(Setting: .Animating, Header: "Animate text", Width: tableView.frame.width)
                             {
                                 IsOn in
-                                self.SetupAnimationButton(IsOn)
                                 self.SetAnimationState()
+                                self.SetAnimationState2()
                             }
                             return Cell
                             
