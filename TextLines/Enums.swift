@@ -81,6 +81,9 @@ enum CommandButtons: String, CaseIterable
     /// The font button.
     case FontButton = "FontButton"
     
+    /// Text formatting button.
+    case TextFormatButton = "TextFormatButton"
+    
     /// The play animation button.
     case PlayButton = "PlayButton"
     
@@ -98,6 +101,9 @@ enum CommandButtons: String, CaseIterable
     
     /// Image/text dimensions button.
     case DimensionsButton = "DimensionsButton"
+    
+    /// Visual guidelines button.
+    case GuidelinesButton = "GuidelinesButton"
 }
 
 /// Automatic text on shape alignments.
@@ -166,4 +172,21 @@ enum ViewportSizes: String, CaseIterable
     case Medium = "1000"
     /// Large sized - 1500 pixels.
     case Large = "1500"
+}
+
+/// This enum enumerates all possible quick setting slices from the main view.
+enum SliceTypes: String, CaseIterable
+{
+    /// Text formatting.
+    case TextFormatting = "TextFormatting"
+    /// Viewport size.
+    case ViewportSize = "ViewportSize"
+    /// Animation settings.
+    case AnimationSettings = "AnimationSettings"
+    /// Guideline settings.
+    case GuidelineSettings = "GuidelineSettings"
+    /// No settings for shapes without settings.
+    case NoShapeOptions = "NoShapeOptions"
+    /// Circle settings.
+    case CircleSettings = "CircleSettings"
 }
