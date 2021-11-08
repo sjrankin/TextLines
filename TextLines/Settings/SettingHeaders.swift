@@ -26,6 +26,7 @@ public static let SettingKeyHeaders: [SettingKeys: String] =
     .TextColor: "Font/text color",
     .BackgroundColor: "Background color",
     .GuidelineColor: "Guideline color",
+    .GridColor: "Grid color",
     .ShowGuidelines: "Show guidelines",
     .ImageWidth: "Image width",
     .ImageHeight: "Image height",
@@ -37,6 +38,9 @@ public static let SettingKeyHeaders: [SettingKeys: String] =
     .ShapeAlignment: "Text alignment",
     .ActionIconName: "Action icon",
     .CommandButtonList: "Command buttons",
+    .ViewportHeight: "Viewport height",
+    .ViewportWidth: "Viewport width",
+    .CircleRadiusPercent: "Radial%",
     
     // MARK: - Debug attributes.
     .ShowGuideMarks: "Show guidemarks",
