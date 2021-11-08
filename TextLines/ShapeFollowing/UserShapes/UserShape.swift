@@ -165,7 +165,7 @@ class UserShape: UIView
         let OldGridGap = GridGap
         GridGap = 0
         let OldLineWidth = MainLineWidth
-        MainLineWidth = 10.0
+        MainLineWidth = 16.0
         let OldLineColor = MainLineColor
         MainLineColor = LineColor ?? UIColor.black
         let OldShowPoints = ShowPoints
