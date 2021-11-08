@@ -18,10 +18,7 @@ class TextFormattingSlice: UIViewController
         self.view.layer.cornerRadius = 5.0
         self.view.layer.borderColor = UIColor.black.cgColor
         self.view.layer.borderWidth = 1.5
-        
-        //FontColorWell.layer.borderWidth = 0.5
-        //FontColorWell.layer.borderColor = UIColor.black.cgColor
-        //FontColorWell.layer.cornerRadius = 4.0
+
         FontColorWell.clipsToBounds = true
         FontColorWell.selectedColor = Settings.GetColor(.TextColor, .black)
         FontColorWell.supportsAlpha = true
