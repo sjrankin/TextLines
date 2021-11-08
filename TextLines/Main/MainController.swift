@@ -62,6 +62,13 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         SettingOptionTable.layer.borderWidth = 0.5
         SettingOptionTable.layer.cornerRadius = 5.0
         
+        SettingSlicePanel.alpha = 0.0
+        SettingSlicePanel.layer.zPosition = -2000
+        SettingSlicePanel.resignFirstResponder()
+        SettingSlicePanel.layer.maskedCorners = [CACornerMask.layerMaxXMaxYCorner,
+                                            CACornerMask.layerMinXMaxYCorner]
+        SettingSlicePanel.layer.cornerRadius = 5.0
+        
         let OptionDrag = UIPanGestureRecognizer(target: self,
                                                 action: #selector(HandleSettingDragging))
         SettingsPanelDragBar.addGestureRecognizer(OptionDrag)
@@ -337,24 +344,6 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     var CurrentlyAnimating: Bool = false
     var TextAnimationTimer: Timer!
     
-    /// Initialize the animation button depending on the state of animation.
-    /// - Parameter IsAnimating: The current animation state.
-    func SetupAnimationButton(_ IsAnimating: Bool)
-    {
-        /*
-         if IsAnimating
-         {
-         AnimateButton2.setImage(UIImage(systemName: "stop.circle"), for: .normal)
-         PlayText.text = "Stop"
-         }
-         else
-         {
-         AnimateButton2.setImage(UIImage(systemName: "play"), for: .normal)
-         PlayText.text = "Play"
-         }
-         */
-    }
-    
     /// Sets the current animation state.
     func SetAnimationState()
     {
@@ -368,7 +357,6 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         {
             UpdateTextOffset = nil
         }
-        SetupAnimationButton(CurrentlyAnimating)
         if CurrentlyAnimating
         {
             TextAnimationTimer = Timer.scheduledTimer(timeInterval: 0.005,
@@ -585,15 +573,19 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
             case .ShareButton:
                 break
                 
+            case .TextFormatButton:
+                ShowSliceHandler(.TextFormatting)
+                
             case .FontButton:
                 RunSlicedSettings(StoryboardName: "SettingsUI",
                                   ControllerName: "FontPickerController")
                 
             case .DimensionsButton:
-                break
+                ShowSliceHandler(.ViewportSize)
                 
             case .PlayButton:
-                break
+                SetAnimationState()
+             SetAnimationState2()
                 
             case .UserButton:
                 let Storyboard = UIStoryboard(name: "UserShapes", bundle: nil)
@@ -605,12 +597,33 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                                   ControllerName: "BackgroundSetting")
                 
             case .ShapeOptionsButton:
-                break
+                switch Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self, Default: .Circle)
+                {
+                    case .Circle:
+                        ShowSliceHandler(.CircleSettings)
+                        
+                    default:
+                        break
+                }
                 
             case .AnimationButton:
+                #if true
+                ShowSliceHandler(.AnimationSettings)
+                #else
                 RunSlicedSettings(StoryboardName: "SettingsUI",
                                   ControllerName: "AnimationUICode")
+                #endif
+                
+            case .GuidelinesButton:
+                ShowSliceHandler(.GuidelineSettings)
         }
+    }
+    
+    func SetAnimationState2()
+    {
+        let OldAnimation = Settings.GetBool(.Animating)
+        CurrentlyAnimating = OldAnimation
+        Settings.SetBool(.Animating, !OldAnimation)
     }
     
     /// Name of the storyboard where the sliced setting exists.
@@ -729,4 +742,9 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     @IBOutlet weak var SettingPanel: UIView!
     @IBOutlet weak var SettingsPanelDragBar: UIView!
     @IBOutlet weak var SettingsHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var SettingSlicePanel: UIView!
+    @IBOutlet weak var SliceContainer: UIView!
+    
+    var PreviousController: UIViewController? = nil
 }
