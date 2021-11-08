@@ -37,6 +37,15 @@ extension ViewController: SettingChangedProtocol
                     }
                 }
                 PreviousShape = Current
+                
+            case .UserShapes:
+                break
+                
+            case .Animating:
+                CommandButtonList = Settings.GetStrings(.CommandButtonList,
+                                                        Delimiter: ",",
+                                                        Default: [CommandButtons.ActionButton.rawValue])
+                CmdController?.UpdateButtons(NewButtons: CommandButtonList)
 
             case .CommandButtonList:
                 CommandButtonList = Settings.GetStrings(.CommandButtonList,
