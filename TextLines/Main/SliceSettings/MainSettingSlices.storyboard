@@ -169,10 +169,6 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <action selector="EditingEnded:" destination="dHT-ra-FGP" eventType="editingDidEnd" id="RVB-Kr-MeR"/>
-                                                    <outlet property="delegate" destination="dHT-ra-FGP" id="cD5-Ab-F0d"/>
-                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -195,9 +191,6 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <action selector="EditingEnded:" destination="dHT-ra-FGP" eventType="editingDidEnd" id="tOA-Dn-xqz"/>
-                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -535,19 +528,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3m7-it-IuV">
-                                <rect key="frame" x="250" y="57" width="97" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3m7-it-IuV">
+                                <rect key="frame" x="227" y="57" width="97" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="97" id="O93-Mq-BYA"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="Quw-Yr-z4x"/>
                                     <constraint firstAttribute="height" constant="34" id="oUO-kV-4hy"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
-                                <connections>
-                                    <action selector="RadialTextEntryEnded:" destination="g9w-TG-mpl" eventType="editingDidEnd" id="2ab-Ez-vg7"/>
-                                    <outlet property="delegate" destination="g9w-TG-mpl" id="hm1-Xq-Lsq"/>
-                                </connections>
                             </textField>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="900" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="fAM-Wu-ZeD">
                                 <rect key="frame" x="8" y="103" width="341" height="31"/>
@@ -555,22 +544,31 @@
                                     <action selector="RadialSliderChanged:" destination="g9w-TG-mpl" eventType="primaryActionTriggered" id="ibt-SA-dNy"/>
                                 </connections>
                             </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMe-PA-6so">
+                                <rect key="frame" x="327" y="64" width="20" height="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XRK-RI-kTp"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="3m7-it-IuV" secondAttribute="trailing" constant="10" id="0ZF-5i-obp"/>
+                            <constraint firstAttribute="trailing" secondItem="3m7-it-IuV" secondAttribute="trailing" constant="33" id="0ZF-5i-obp"/>
                             <constraint firstAttribute="trailing" secondItem="X0k-Xa-eUX" secondAttribute="trailing" constant="10" id="739-Hw-P9m"/>
                             <constraint firstItem="aST-CL-Gov" firstAttribute="leading" secondItem="O6k-RJ-dW2" secondAttribute="leading" constant="10" id="7g3-Ej-jfC"/>
                             <constraint firstItem="3m7-it-IuV" firstAttribute="top" secondItem="O6k-RJ-dW2" secondAttribute="top" constant="57" id="86q-Xa-2KZ"/>
                             <constraint firstItem="X0k-Xa-eUX" firstAttribute="leading" secondItem="Ftm-P8-Z3G" secondAttribute="trailing" constant="8" id="8X5-yF-7V4"/>
                             <constraint firstItem="fAM-Wu-ZeD" firstAttribute="leading" secondItem="lsp-hH-mHb" secondAttribute="leading" id="Ggp-FF-g7r"/>
+                            <constraint firstAttribute="trailing" secondItem="wMe-PA-6so" secondAttribute="trailing" constant="10" id="N0N-1p-D3M"/>
+                            <constraint firstItem="wMe-PA-6so" firstAttribute="top" secondItem="XRK-RI-kTp" secondAttribute="top" constant="20" id="OB5-xm-R8W"/>
                             <constraint firstItem="fAM-Wu-ZeD" firstAttribute="top" secondItem="3m7-it-IuV" secondAttribute="bottom" constant="12" id="Rt9-KF-cLs"/>
                             <constraint firstItem="3m7-it-IuV" firstAttribute="centerY" secondItem="lsp-hH-mHb" secondAttribute="centerY" id="VX3-gG-w0J"/>
                             <constraint firstItem="fAM-Wu-ZeD" firstAttribute="leading" secondItem="O6k-RJ-dW2" secondAttribute="leading" constant="10" id="ZPn-Vy-Pma"/>
                             <constraint firstItem="Ftm-P8-Z3G" firstAttribute="leading" secondItem="O6k-RJ-dW2" secondAttribute="leading" constant="10" id="f4y-5V-fNT"/>
                             <constraint firstItem="Ftm-P8-Z3G" firstAttribute="top" secondItem="O6k-RJ-dW2" secondAttribute="top" constant="200" id="fYM-2q-E4e"/>
                             <constraint firstItem="aST-CL-Gov" firstAttribute="top" secondItem="O6k-RJ-dW2" secondAttribute="top" constant="10" id="gfx-kI-wDx"/>
+                            <constraint firstItem="wMe-PA-6so" firstAttribute="centerY" secondItem="3m7-it-IuV" secondAttribute="centerY" id="hRh-n1-MHq"/>
                             <constraint firstItem="Ftm-P8-Z3G" firstAttribute="bottom" secondItem="X0k-Xa-eUX" secondAttribute="bottom" constant="5" id="jxF-Qw-G8l"/>
                             <constraint firstItem="aST-CL-Gov" firstAttribute="top" secondItem="O6k-RJ-dW2" secondAttribute="top" constant="10" id="lBI-pu-gg5"/>
                             <constraint firstAttribute="trailing" secondItem="fAM-Wu-ZeD" secondAttribute="trailing" constant="10" id="qZX-Uq-wPL"/>
