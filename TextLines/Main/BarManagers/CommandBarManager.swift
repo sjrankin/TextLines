@@ -164,8 +164,18 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
             case .FontButton:
                 Image = LoadImage(Name: "textformat.abc", Type: .System)
                 
+            case .TextFormatButton:
+                Image = LoadImage(Name: "character.textbox", Type: .System)
+                
             case .PlayButton:
-                Image = LoadImage(Name: "play", Type: .System)
+                if Settings.GetBool(.Animating)
+                {
+                    Image = LoadImage(Name: "stop", Type: .System)
+                }
+                else
+                {
+                    Image = LoadImage(Name: "play", Type: .System)
+                }
                 
             case .SaveButton:
                 Image = LoadImage(Name: "square.and.arrow.down", Type: .System)
@@ -174,7 +184,7 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
                 Image = LoadImage(Name: "square.and.arrow.up", Type: .System)
                 
             case .UserButton:
-                Image = LoadImage(Name: "scribble", Type: .System)
+                Image = LoadImage(Name: "person.crop.circle", Type: .System)
                 
             case .VideoButton:
                 Image = LoadImage(Name: "VideoCamera", Type: .SVG)
@@ -191,6 +201,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
                 
             case .DimensionsButton:
                 Image = LoadImage(Name: "square.dashed.inset.filled", Type: .System)
+        
+            case .GuidelinesButton:
+                Image = LoadImage(Name: "squareshape.split.3x3", Type: .System)
         }
         guard let FinalImage = Image else
         {
@@ -256,7 +269,17 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
                 return "Save"
                 
             case .PlayButton:
-                return "Play"
+                if Settings.GetBool(.Animating)
+                {
+                    return "Stop"
+                }
+                else
+                {
+                    return "Play"
+                }
+                
+            case .TextFormatButton:
+                return "Text"
                 
             case .FontButton:
                 return "Fonts"
@@ -281,6 +304,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
                 
             case .DimensionsButton:
                 return "Size"
+                
+            case .GuidelinesButton:
+                return "Guidelines"
         }
     }
     
