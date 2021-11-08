@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		170F07A727236089008F3A82 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170F07A627236089008F3A82 /* CGRect.swift */; };
+		170F69822736FC6A005212AA /* AnimationSettingsSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170F69812736FC6A005212AA /* AnimationSettingsSlice.swift */; };
 		1724DAA72724EDD1000E6067 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 1724DAA62724EDD1000E6067 /* Collections */; };
 		1724DAA92724EDD1000E6067 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 1724DAA82724EDD1000E6067 /* DequeModule */; };
 		1724DAAB2724EDD1000E6067 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 1724DAAA2724EDD1000E6067 /* OrderedCollections */; };
@@ -18,9 +19,16 @@
 		172B75A9271C9AA50038DB8F /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B75A8271C9AA50038DB8F /* CGPoint.swift */; };
 		172DD6BA272890EC001DD12C /* UILongPressGestureRecognizer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172DD6B9272890EC001DD12C /* UILongPressGestureRecognizer2.swift */; };
 		172DD6BD2728B739001DD12C /* CommandBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172DD6BC2728B739001DD12C /* CommandBarProtocol.swift */; };
+		17317F752737439A00598776 /* +SliceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17317F742737439A00598776 /* +SliceHandler.swift */; };
+		17317F77273743CF00598776 /* SlideHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17317F76273743CF00598776 /* SlideHandlerProtocol.swift */; };
+		173AF6F027387DB6001AE0F2 /* NoOptionsSettingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173AF6EF27387DB6001AE0F2 /* NoOptionsSettingSlice.swift */; };
+		174979C12736F16B00811EA1 /* ViewportSizeSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174979C02736F16B00811EA1 /* ViewportSizeSlice.swift */; };
+		174979C32736F1B000811EA1 /* TextFormattingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174979C22736F1B000811EA1 /* TextFormattingSlice.swift */; };
 		175A620C272F22D600C4337C /* Main90°.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 175A620B272F22D600C4337C /* Main90°.storyboard */; };
 		1763FB7B273354EA00C20060 /* SettingsWrapperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763FB7A273354EA00C20060 /* SettingsWrapperController.swift */; };
 		1763FB7D2733552100C20060 /* SettingsWrapperDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763FB7C2733552100C20060 /* SettingsWrapperDelegate.swift */; };
+		1765092F2737021900735CB4 /* GuidelinesSettingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1765092E2737021900735CB4 /* GuidelinesSettingSlice.swift */; };
+		176677B22735F29F00757251 /* MainSettingSlices.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176677B12735F29F00757251 /* MainSettingSlices.storyboard */; };
 		17672F6A271641FB00D408BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17672F68271641FB00D408BC /* LaunchScreen.storyboard */; };
 		17672FF22716423200D408BC /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F722716423000D408BC /* Geometry.swift */; };
 		17672FF32716423200D408BC /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F732716423000D408BC /* Math.swift */; };
@@ -126,6 +134,8 @@
 		176730662716439600D408BC /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176730652716439600D408BC /* Enums.swift */; };
 		17673068271643AA00D408BC /* Versioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17673067271643AA00D408BC /* Versioning.swift */; };
 		1767306B271648F700D408BC /* SegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767306A271648F700D408BC /* SegmentCell.swift */; };
+		17755044273705BC00E8DE79 /* NoOptionsSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17755043273705BC00E8DE79 /* NoOptionsSlice.swift */; };
+		1775504627370A8600E8DE79 /* CircleSettingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1775504527370A8600E8DE79 /* CircleSettingSlice.swift */; };
 		17C76CC6273490540078971D /* UserShapeImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C76CC5273490540078971D /* UserShapeImageCache.swift */; };
 		17C76CC82734C4860078971D /* CellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C76CC72734C4860078971D /* CellProtocol.swift */; };
 		17ED392327165F0E00A04EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17ED392227165F0E00A04EAD /* Assets.xcassets */; };
@@ -134,6 +144,7 @@
 
 /* Begin PBXFileReference section */
 		170F07A627236089008F3A82 /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
+		170F69812736FC6A005212AA /* AnimationSettingsSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationSettingsSlice.swift; sourceTree = "<group>"; };
 		1724DAAC2724F0FC000E6067 /* +StringArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+StringArray.swift"; sourceTree = "<group>"; };
 		1724DAAE2725F0D8000E6067 /* CommandBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarManager.swift; sourceTree = "<group>"; };
 		1724DAB02725F203000E6067 /* UIImageView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView2.swift; sourceTree = "<group>"; };
@@ -141,9 +152,16 @@
 		172B75A8271C9AA50038DB8F /* CGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		172DD6B9272890EC001DD12C /* UILongPressGestureRecognizer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILongPressGestureRecognizer2.swift; sourceTree = "<group>"; };
 		172DD6BC2728B739001DD12C /* CommandBarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarProtocol.swift; sourceTree = "<group>"; };
+		17317F742737439A00598776 /* +SliceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+SliceHandler.swift"; sourceTree = "<group>"; };
+		17317F76273743CF00598776 /* SlideHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideHandlerProtocol.swift; sourceTree = "<group>"; };
+		173AF6EF27387DB6001AE0F2 /* NoOptionsSettingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOptionsSettingSlice.swift; sourceTree = "<group>"; };
+		174979C02736F16B00811EA1 /* ViewportSizeSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewportSizeSlice.swift; sourceTree = "<group>"; };
+		174979C22736F1B000811EA1 /* TextFormattingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormattingSlice.swift; sourceTree = "<group>"; };
 		175A620B272F22D600C4337C /* Main90°.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main90°.storyboard"; sourceTree = "<group>"; };
 		1763FB7A273354EA00C20060 /* SettingsWrapperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWrapperController.swift; sourceTree = "<group>"; };
 		1763FB7C2733552100C20060 /* SettingsWrapperDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWrapperDelegate.swift; sourceTree = "<group>"; };
+		1765092E2737021900735CB4 /* GuidelinesSettingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidelinesSettingSlice.swift; sourceTree = "<group>"; };
+		176677B12735F29F00757251 /* MainSettingSlices.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainSettingSlices.storyboard; sourceTree = "<group>"; };
 		17672F5A271641F900D408BC /* TextLines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextLines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17672F5D271641F900D408BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17672F5F271641F900D408BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -255,6 +273,8 @@
 		176730652716439600D408BC /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		17673067271643AA00D408BC /* Versioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Versioning.swift; sourceTree = "<group>"; };
 		1767306A271648F700D408BC /* SegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentCell.swift; sourceTree = "<group>"; };
+		17755043273705BC00E8DE79 /* NoOptionsSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOptionsSlice.swift; sourceTree = "<group>"; };
+		1775504527370A8600E8DE79 /* CircleSettingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleSettingSlice.swift; sourceTree = "<group>"; };
 		17C76CC5273490540078971D /* UserShapeImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShapeImageCache.swift; sourceTree = "<group>"; };
 		17C76CC72734C4860078971D /* CellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProtocol.swift; sourceTree = "<group>"; };
 		17ED392227165F0E00A04EAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -284,6 +304,20 @@
 				17672F8E2716423100D408BC /* ShapeBarProtocol.swift */,
 			);
 			path = BarManagers;
+			sourceTree = "<group>";
+		};
+		174979BF2736F14800811EA1 /* SliceSettings */ = {
+			isa = PBXGroup;
+			children = (
+				17755042273705A700E8DE79 /* ShapeSlices */,
+				176677B12735F29F00757251 /* MainSettingSlices.storyboard */,
+				170F69812736FC6A005212AA /* AnimationSettingsSlice.swift */,
+				1765092E2737021900735CB4 /* GuidelinesSettingSlice.swift */,
+				173AF6EF27387DB6001AE0F2 /* NoOptionsSettingSlice.swift */,
+				174979C22736F1B000811EA1 /* TextFormattingSlice.swift */,
+				174979C02736F16B00811EA1 /* ViewportSizeSlice.swift */,
+			);
+			path = SliceSettings;
 			sourceTree = "<group>";
 		};
 		17672F51271641F900D408BC = {
@@ -370,6 +404,7 @@
 		17672F822716423100D408BC /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				174979BF2736F14800811EA1 /* SliceSettings */,
 				17672F902716423100D408BC /* Debug */,
 				17672F882716423100D408BC /* Extensions */,
 				172DD6BB27289181001DD12C /* BarManagers */,
@@ -391,6 +426,8 @@
 				17672F8B2716423100D408BC /* +SettingsChangedHandler.swift */,
 				17672F8C2716423100D408BC /* +SettingPanel.swift */,
 				17672F8A2716423100D408BC /* +ShapeGenerator.swift */,
+				17317F742737439A00598776 /* +SliceHandler.swift */,
+				17317F76273743CF00598776 /* SlideHandlerProtocol.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -607,6 +644,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		17755042273705A700E8DE79 /* ShapeSlices */ = {
+			isa = PBXGroup;
+			children = (
+				17755043273705BC00E8DE79 /* NoOptionsSlice.swift */,
+				1775504527370A8600E8DE79 /* CircleSettingSlice.swift */,
+			);
+			path = ShapeSlices;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -678,6 +724,7 @@
 				1767300E2716423300D408BC /* voynich-1.23-webfont.ttf in Resources */,
 				17672F6A271641FB00D408BC /* LaunchScreen.storyboard in Resources */,
 				1767303D2716423300D408BC /* SettingsUI.storyboard in Resources */,
+				176677B22735F29F00757251 /* MainSettingSlices.storyboard in Resources */,
 				17ED392327165F0E00A04EAD /* Assets.xcassets in Resources */,
 				1767303B2716423300D408BC /* UserShapes.storyboard in Resources */,
 				176730022716423200D408BC /* Main.storyboard in Resources */,
@@ -720,6 +767,7 @@
 				1767301E2716423300D408BC /* +Boolean.swift in Sources */,
 				176730042716423300D408BC /* +ShapeGenerator.swift in Sources */,
 				17672FFF2716423200D408BC /* UITapGestureRecognizer2.swift in Sources */,
+				1775504627370A8600E8DE79 /* CircleSettingSlice.swift in Sources */,
 				176730382716423300D408BC /* UserShapeCell.swift in Sources */,
 				1763FB7B273354EA00C20060 /* SettingsWrapperController.swift in Sources */,
 				176730372716423300D408BC /* ShapeEditor.swift in Sources */,
@@ -731,6 +779,7 @@
 				176730402716423300D408BC /* AttributesProtocol.swift in Sources */,
 				1767306B271648F700D408BC /* SegmentCell.swift in Sources */,
 				176730192716423300D408BC /* +Date.swift in Sources */,
+				1765092F2737021900735CB4 /* GuidelinesSettingSlice.swift in Sources */,
 				1724DAB12725F203000E6067 /* UIImageView2.swift in Sources */,
 				1767303C2716423300D408BC /* AnimationUICode.swift in Sources */,
 				17672FFA2716423200D408BC /* ShapeServerProtocol.swift in Sources */,
@@ -739,6 +788,7 @@
 				176730492716423300D408BC /* OptionItem.swift in Sources */,
 				176730542716423300D408BC /* UIFont.swift in Sources */,
 				1767304E2716423300D408BC /* UIColor.swift in Sources */,
+				174979C32736F1B000811EA1 /* TextFormattingSlice.swift in Sources */,
 				176730302716423300D408BC /* NavigationCell.swift in Sources */,
 				172DD6BD2728B739001DD12C /* CommandBarProtocol.swift in Sources */,
 				176730122716423300D408BC /* Settings.swift in Sources */,
@@ -751,11 +801,13 @@
 				176730012716423200D408BC /* MainController.swift in Sources */,
 				176730232716423300D408BC /* SettingsUICode.swift in Sources */,
 				176730412716423300D408BC /* AttributionsController.swift in Sources */,
+				17317F752737439A00598776 /* +SliceHandler.swift in Sources */,
 				1767302C2716423300D408BC /* CGFloatCell.swift in Sources */,
 				17672FFE2716423200D408BC /* +BezierPath.swift in Sources */,
 				176730532716423300D408BC /* Double.swift in Sources */,
 				176730052716423300D408BC /* +SettingsChangedHandler.swift in Sources */,
 				176730502716423300D408BC /* Int.swift in Sources */,
+				173AF6F027387DB6001AE0F2 /* NoOptionsSettingSlice.swift in Sources */,
 				176730082716423300D408BC /* ShapeBarProtocol.swift in Sources */,
 				176730202716423300D408BC /* +CGFloat.swift in Sources */,
 				176730172716423300D408BC /* +Double.swift in Sources */,
@@ -764,12 +816,14 @@
 				1767302B2716423300D408BC /* StringCell.swift in Sources */,
 				176730392716423300D408BC /* ShapeManager.swift in Sources */,
 				17672FFD2716423200D408BC /* Bezier.swift in Sources */,
+				174979C12736F16B00811EA1 /* ViewportSizeSlice.swift in Sources */,
 				1767302E2716423300D408BC /* BooleanCell.swift in Sources */,
 				1767301B2716423300D408BC /* +UUID.swift in Sources */,
 				176730422716423300D408BC /* FontPickerController.swift in Sources */,
 				170F07A727236089008F3A82 /* CGRect.swift in Sources */,
 				17672FFC2716423200D408BC /* ShapeServer.swift in Sources */,
 				176730582716423300D408BC /* Utility.swift in Sources */,
+				17317F77273743CF00598776 /* SlideHandlerProtocol.swift in Sources */,
 				176730332716423300D408BC /* MoreSettings.swift in Sources */,
 				17672FF72716423200D408BC /* ChaikinLineSmoothing.swift in Sources */,
 				176730112716423300D408BC /* SettingsStructure.swift in Sources */,
@@ -815,6 +869,7 @@
 				1767302D2716423300D408BC /* ColorCell.swift in Sources */,
 				176730102716423300D408BC /* SettingKeysMap.swift in Sources */,
 				17672FFB2716423200D408BC /* Shape_Circle.swift in Sources */,
+				17755044273705BC00E8DE79 /* NoOptionsSlice.swift in Sources */,
 				1767301A2716423300D408BC /* +UIColor.swift in Sources */,
 				176730472716423300D408BC /* OptionItems.swift in Sources */,
 				176730522716423300D408BC /* CGFloat.swift in Sources */,
@@ -823,6 +878,7 @@
 				176730162716423300D408BC /* +CGRect.swift in Sources */,
 				1724DAB327274C1A000E6067 /* UIView2.swift in Sources */,
 				176730312716423300D408BC /* EnumCell.swift in Sources */,
+				170F69822736FC6A005212AA /* AnimationSettingsSlice.swift in Sources */,
 				17C76CC6273490540078971D /* UserShapeImageCache.swift in Sources */,
 				176730222716423300D408BC /* +Enum.swift in Sources */,
 			);
