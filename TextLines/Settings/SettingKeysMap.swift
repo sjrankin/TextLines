@@ -26,6 +26,7 @@ extension Settings
         .TextColor: UIColor.self,
         .BackgroundColor: UIColor.self,
         .GuidelineColor: UIColor.self,
+        .GridColor: UIColor.self,
         .ShowGuidelines: Bool.self,
         .ImageWidth: Int.self,
         .ImageHeight: Int.self,
@@ -37,6 +38,9 @@ extension Settings
         .ShapeAlignment: ShapeAlignments.self,
         .ActionIconName: String.self,
         .CommandButtonList: [String].self,
+        .ViewportWidth: Int.self,
+        .ViewportHeight: Int.self,
+        .CircleRadiusPercent: Double.self,
         
         // MARK: - Debug attributes.
         .ShowGuideMarks: Bool.self,
