@@ -31,6 +31,8 @@ enum SettingKeys: String, CaseIterable
     case BackgroundColor = "BackgroundColor"
     /// UIColor: Color of the guidelines.
     case GuidelineColor = "GuidelineColor"
+    /// UIColor: Color of grid lines.
+    case GridColor = "GridColor"
     /// Bool: Show guidelines on the screen (but don't save them).
     case ShowGuidelines = "ShowGuidelines"
     /// Int: Width of the image.
@@ -54,6 +56,10 @@ enum SettingKeys: String, CaseIterable
     case ActionIconName = "ActionIconName"
     /// [String]: List of command buttons being displayed.
     case CommandButtonList = "CommandButtonList"
+    /// Int: Viewport width.
+    case ViewportWidth = "ViewportWidth"
+    /// Int: Viewport height.
+    case ViewportHeight = "ViewportHeight"
     
     // MARK: - Debug attributes.
     /// Bool: Show debug guidemarks.
@@ -74,6 +80,8 @@ enum SettingKeys: String, CaseIterable
     case CircleAngle = "CircleAngle"
     /// Int: Diameter of circle used to plot text.
     case CircleDiameter = "CircleDiameter"
+    /// Double: Radius of the circle in terms of percent of the viewport.
+    case CircleRadiusPercent = "CircleRadiusPercent"
     
     // MARK: - Ellipse attributes.
     /// Double: Starting angle for the ellipse text
