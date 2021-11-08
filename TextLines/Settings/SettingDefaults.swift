@@ -26,6 +26,7 @@ extension Settings
         .TextColor: UIColor.white,
         .BackgroundColor: UIColor.clear,
         .GuidelineColor: UIColor.red,
+        .GridColor: UIColor.yellow,
         .ShowGuidelines: true,
         .ImageWidth: 1024,
         .ImageHeight: 1024,
@@ -36,6 +37,9 @@ extension Settings
         .TextOffset: 0,
         .ShapeAlignment: ShapeAlignments.None,
         .ActionIconName: "ThreeDotsInCircleIcon",
+        .ViewportWidth: 1024,
+        .ViewportHeight: 1024,
+        .CircleRadiusPercent: 0.95,
         
         // MARK: - Debug attributes.
         .ShowGuideMarks: false,
