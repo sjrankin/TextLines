@@ -57,8 +57,8 @@ public static let SettingKeyHeaders: [SettingKeys: String] =
     
     // MARK: - Elliptical attributes.
     .EllipseAngle: "Ellipse angle",
-    .EllipseLength: "Width",
-    .EllipseHeight: "Height",
+    .EllipseMajor: "Width",
+    .EllipseMinor: "Height",
     
     // MARK: - Square/rectangle attributes.
     .RectangleWidth: "Width",
