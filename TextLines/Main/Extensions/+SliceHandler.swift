@@ -10,6 +10,9 @@ import UIKit
 
 extension ViewController
 {
+    /// Show a settings slice.
+    /// - Note: Any changes to settings need to be detected by subscribing to the `Settings` class.
+    /// - Parameter Slice: Determines which slice to show.
     func ShowSliceHandler(_ Slice: SliceTypes)
     {
         LoadSlice(Slice)
@@ -62,7 +65,9 @@ extension ViewController
             
             case .CircleSettings:
                 VC = Story.instantiateViewController(withIdentifier: "CircleSettingSlice") as? CircleSettingSlice
-                break
+                
+            case .EllipseSettings:
+                VC = Story.instantiateViewController(withIdentifier: "OvalSettingSlice") as? OvalSettingSlice
             
             case .GuidelineSettings:
                 VC = Story.instantiateViewController(withIdentifier: "GuidelinesSlice") as? GuidelineSettingSlice
