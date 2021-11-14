@@ -51,6 +51,71 @@ extension Settings
         return UserDefaults.standard.double(forKey: Setting.rawValue)
     }
     
+    /// Returns a double value from the specified setting. This function assumes the
+    /// value is a normal (`[0.0 ... 1.0]`) value.
+    /// - Notes:
+    ///   - If the setting key type is not `.Double`, a fatal error is thrown.
+    ///   - If the value retrieved is not a normal (`[0.0 ... 1.0]`), it is truncated
+    ///     to a normal range, saved, then returned.
+    /// - Parameter Setting: The setting whose double value will be returned.
+    /// - Returns: Double found at the specified setting.
+    public static func GetDoubleNormal(_ Setting: SettingKeys) -> Double
+    {
+        guard TypeIsValid(Setting, Type: Double.self) else
+        {
+            Debug.FatalError("\(Setting) is not a Double")
+        }
+        let RawValue = UserDefaults.standard.double(forKey: Setting.rawValue)
+        if RawValue < 0.0
+        {
+            UserDefaults.standard.set(0.0, forKey: Setting.rawValue)
+        }
+        if RawValue > 1.0
+        {
+            UserDefaults.standard.set(1.0, forKey: Setting.rawValue)
+        }
+        return RawValue
+    }
+    
+    /// Save a double value at the specified setting.
+    /// - Warning: If the setting type passed is not `Double`, a fatal error is thrown.
+    /// - Note: Regardless if `Maximum` is used or not, all passed values are tested
+    ///         to ensure they are in the range of [0.0 ... 1.0] and if not, truncated to
+    ///         the range.
+    /// - Parameter Setting: The setting where the double value will be stored.
+    /// - Parameter Maximum: If a value is supplied, this function assumes it is the maximum
+    ///                      possible value for the passed `Value` and divides `Value` by
+    ///                      `Working`.
+    /// - Parameter Value: The value to save.
+    public static func SetDoubleNormal(_ Setting: SettingKeys, _ Value: Double,
+                                       Maximum: Double? = nil)
+    {
+        guard TypeIsValid(Setting, Type: Double.self) else
+        {
+            Debug.FatalError("\(Setting) is not a Double")
+        }
+        var Working = Value
+        if let MaxValue = Maximum
+        {
+            if MaxValue > 0.0
+            {
+                Working = Working / MaxValue
+            }
+        }
+        if Working < 0.0
+        {
+            Working = 0.0
+        }
+        if Working > 1.0
+        {
+            Working = 1.0
+        }
+        let OldValue = UserDefaults.standard.double(forKey: Setting.rawValue)
+        let NewValue = Working
+        UserDefaults.standard.set(NewValue, forKey: Setting.rawValue)
+        NotifySubscribers(Setting: Setting, OldValue: OldValue, NewValue: NewValue)
+    }
+    
     /// Queries a double setting value.
     /// - Parameter Setting: The setting whose double value will be passed to the completion handler.
     /// - Parameter Completion: Code to execute after the value is retrieved. The value is passed
@@ -141,7 +206,7 @@ extension Settings
     {
         guard TypeIsValid(Setting, Type: Double.self) else
         {
-            Debug.FatalError("\(Setting) is not a Double?")
+            Debug.FatalError("\(Setting) is not a Double")
         }
         let OldValue = UserDefaults.standard.double(forKey: Setting.rawValue)
         let NewValue = Value
