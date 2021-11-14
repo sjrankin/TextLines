@@ -24,7 +24,7 @@ class SettingsStructure
         StructureNode(Name: "Animation", Keys: .AnimationSpeed, .AnimateClockwise,
                       .Animating),
         StructureNode(Name: "Circle Parameters", Keys: .CircleAngle, .CircleDiameter),
-        StructureNode(Name: "Ellipse Parameters", Keys: .EllipseAngle, .EllipseLength, .EllipseHeight),
+        StructureNode(Name: "Ellipse Parameters", Keys: .EllipseAngle, .EllipseMajor, .EllipseMinor),
         StructureNode(Name: "Rectangle Parameters", Keys: .RectangleWidth, .RectangleHeight,
                       .RectangleRoundedCorners),
         StructureNode(Name: "Triangle Parameters", Keys: .TriangleBase, .TriangleHeight, .TriangleRounded),
