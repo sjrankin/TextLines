@@ -70,7 +70,7 @@ extension ViewController: SettingChangedProtocol
                     UpdateOutput()
                 }
                 
-            case .EllipseHeight, .EllipseLength:
+            case .EllipseMinor, .EllipseMajor:
                 if Current == .Ellipse
                 {
                     UpdateOutput()
