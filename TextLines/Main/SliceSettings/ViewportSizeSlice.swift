@@ -17,9 +17,32 @@ class ViewportSizeSlice: UIViewController, UITextFieldDelegate
         self.view.clipsToBounds = true
         self.view.layer.cornerRadius = 5.0
         self.view.layer.borderColor = UIColor.black.cgColor
-        self.view.layer.borderWidth = 1.5
+        
+        self.WidthTextBox.addTarget(self, action: #selector(OnWidthReturn),
+                                     for: UIControl.Event.editingDidEndOnExit)
+        self.HeightTextBox.addTarget(self, action: #selector(OnHeightReturn),
+                                       for: UIControl.Event.editingDidEndOnExit)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tap)
         
         InitializeKeyboard()
+    }
+    
+    @objc func handleTap()
+    {
+        WidthTextBox.resignFirstResponder() // dismiss keyoard
+        HeightTextBox.resignFirstResponder() // dismiss keyoard
+    }
+    
+    @IBAction func OnWidthReturn()
+    {
+        self.WidthTextBox.resignFirstResponder()
+    }
+    
+    @IBAction func OnHeightReturn()
+    {
+        self.HeightTextBox.resignFirstResponder()
     }
     
     /// Initialize the keyboard with a `Done` button in a toolbar. This provides an alternative
