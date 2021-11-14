@@ -189,4 +189,6 @@ enum SliceTypes: String, CaseIterable
     case NoShapeOptions = "NoShapeOptions"
     /// Circle settings.
     case CircleSettings = "CircleSettings"
+    /// Ellipse settings.
+    case EllipseSettings = "EllipseSettings"
 }
