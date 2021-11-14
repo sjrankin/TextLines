@@ -34,6 +34,22 @@ class CircleSettingSlice: UIViewController, UITextFieldDelegate,
         RadialText.delegate = self
         
         InitializeKeyboard()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tap)
+        
+        //https://stackoverflow.com/questions/11553396/how-to-add-an-action-on-uitextfield-return-key
+        self.RadialText.addTarget(self, action: #selector(onReturn), for: UIControl.Event.editingDidEndOnExit)
+    }
+    
+    @IBAction func onReturn()
+    {
+        self.RadialText.resignFirstResponder()
+    }
+    
+    @objc func handleTap()
+    {
+        RadialText.resignFirstResponder() // dismiss keyoard
     }
     
     /// Initialize the keyboard with a `Dismiss` button in a toolbar. This provides an alternative
@@ -117,9 +133,7 @@ class CircleSettingSlice: UIViewController, UITextFieldDelegate,
                 textField.text = "100"
             }
             var DValue = Double(IValue) * 0.01
-            print("DValue=\(DValue)")
             Settings.SetDouble(.CircleRadiusPercent, DValue)
-            print("Stored DValue=\(Settings.GetDouble(.CircleRadiusPercent, -1.0))")
             DValue = DValue * 1000.0
             RadialSlider.value = Float(DValue)
         }
