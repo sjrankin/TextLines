@@ -24,8 +24,8 @@ extension ViewController
             switch Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self, Default: .Circle)
             {
                 case .Ellipse:
-                    let OvalWidth = Double(Settings.GetInt(.EllipseLength))
-                    let OvalHeight = Double(Settings.GetInt(.EllipseHeight))
+                    let OvalWidth = Double(Settings.GetInt(.EllipseMajor))
+                    let OvalHeight = Double(Settings.GetInt(.EllipseMinor))
                     perm = Math.EllipseCircumference(Width: OvalWidth,
                                                      Height: OvalHeight)
                     if Clockwise
