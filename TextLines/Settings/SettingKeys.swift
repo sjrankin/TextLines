@@ -86,10 +86,10 @@ enum SettingKeys: String, CaseIterable
     // MARK: - Ellipse attributes.
     /// Double: Starting angle for the ellipse text
     case EllipseAngle = "EllipseAngle"
-    /// Int: Long axis of the ellipse.
-    case EllipseLength = "EllipseLength"
-    /// Int: Short axis of the ellipse.
-    case EllipseHeight = "EllipseHeight"
+    /// Int: Long axis of the ellipse in percent of the viewport, normalized.
+    case EllipseMajor = "EllipseMajor"
+    /// Int: Short axis of the ellipse in percent of the viewport, normalized.
+    case EllipseMinor = "EllipseMinor"
     
     // MARK: - Square/rectangle attributes
     /// Int: Width of the rectangle.
