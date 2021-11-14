@@ -602,6 +602,9 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                     case .Circle:
                         ShowSliceHandler(.CircleSettings)
                         
+                    case .Ellipse:
+                        ShowSliceHandler(.EllipseSettings)
+                        
                     default:
                         break
                 }
