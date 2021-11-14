@@ -43,10 +43,10 @@ extension IndividualShapes: UITableViewDelegate, UITableViewDataSource
                 
             case .Ellipse:
                 CurrentShapeOptions = OptionItem(.Ellipse)
-                let Item1 = SettingItem(For: .EllipseLength)
+                let Item1 = SettingItem(For: .EllipseMajor)
                 Item1.Header = "Width of ellipse"
                 
-                let Item2 = SettingItem(For: .EllipseHeight)
+                let Item2 = SettingItem(For: .EllipseMinor)
                 Item2.Header = "Height of  ellipse"
                 
                 let Item3 = SettingItem(For: .EllipseAngle)
