@@ -140,6 +140,7 @@
 		17C76CC82734C4860078971D /* CellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C76CC72734C4860078971D /* CellProtocol.swift */; };
 		17ED392327165F0E00A04EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17ED392227165F0E00A04EAD /* Assets.xcassets */; };
 		17ED39252718C9D900A04EAD /* +ShapeEditorOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED39242718C9D900A04EAD /* +ShapeEditorOptions.swift */; };
+		17FED86D273A0B7C00FC977E /* OvalSettingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FED86C273A0B7C00FC977E /* OvalSettingSlice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -279,6 +280,7 @@
 		17C76CC72734C4860078971D /* CellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProtocol.swift; sourceTree = "<group>"; };
 		17ED392227165F0E00A04EAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17ED39242718C9D900A04EAD /* +ShapeEditorOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ShapeEditorOptions.swift"; sourceTree = "<group>"; };
+		17FED86C273A0B7C00FC977E /* OvalSettingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvalSettingSlice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -649,6 +651,7 @@
 			children = (
 				17755043273705BC00E8DE79 /* NoOptionsSlice.swift */,
 				1775504527370A8600E8DE79 /* CircleSettingSlice.swift */,
+				17FED86C273A0B7C00FC977E /* OvalSettingSlice.swift */,
 			);
 			path = ShapeSlices;
 			sourceTree = "<group>";
@@ -865,6 +868,7 @@
 				1724DAAF2725F0D8000E6067 /* CommandBarManager.swift in Sources */,
 				176730142716423300D408BC /* SettingDefaults.swift in Sources */,
 				176730002716423200D408BC /* ButtonBars.swift in Sources */,
+				17FED86D273A0B7C00FC977E /* OvalSettingSlice.swift in Sources */,
 				1767302A2716423300D408BC /* UUIDCell.swift in Sources */,
 				1767302D2716423300D408BC /* ColorCell.swift in Sources */,
 				176730102716423300D408BC /* SettingKeysMap.swift in Sources */,
