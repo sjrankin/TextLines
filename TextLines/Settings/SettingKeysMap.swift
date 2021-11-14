@@ -57,8 +57,8 @@ extension Settings
         
         // MARK: - Elliptical attributes.
         .EllipseAngle: Double.self,
-        .EllipseLength: Int.self,
-        .EllipseHeight: Int.self,
+        .EllipseMajor: Double.self,
+        .EllipseMinor: Double.self,
         
         // MARK: - Square/rectangle attributes.
         .RectangleWidth: Int.self,
