@@ -284,18 +284,18 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
                 switch Index
                 {
                     case 0:
-                        return SettingItem.GenerateCell(Header: Settings.SettingKeyHeaders[.EllipseLength]!,
+                        return SettingItem.GenerateCell(Header: Settings.SettingKeyHeaders[.EllipseMajor]!,
                                                         With: Width,
-                                                        SettingKey: .EllipseLength,
+                                                        SettingKey: .EllipseMajor,
                                                         DoubleVisible: nil,
                                                         DoubleSave: nil,
                                                         CGFloatVisible: nil,
                                                         CGFloatSave: nil)!
                         
                     case 1:
-                        return SettingItem.GenerateCell(Header: Settings.SettingKeyHeaders[.EllipseHeight]!,
+                        return SettingItem.GenerateCell(Header: Settings.SettingKeyHeaders[.EllipseMinor]!,
                                                         With: Width,
-                                                        SettingKey: .EllipseHeight,
+                                                        SettingKey: .EllipseMinor,
                                                         DoubleVisible: nil,
                                                         DoubleSave: nil,
                                                         CGFloatVisible: nil,
