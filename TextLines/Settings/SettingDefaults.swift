@@ -56,8 +56,8 @@ extension Settings
         
         // MARK: - Elliptical attributes.
         .EllipseAngle: 1.57079632679,       //pi / 2
-        .EllipseLength: 1000,
-        .EllipseHeight: 700,
+        .EllipseMajor: 0.95,
+        .EllipseMinor: 0.65,
         
         // MARK: - Square/rectangle attributes.
         .RectangleWidth: 1024,
