@@ -44,8 +44,8 @@ extension ViewController
                                                                       height: Diameter - 40)))
                 
             case .Ellipse:
-                let Width = Settings.GetInt(.EllipseLength, IfZero: 500)
-                let Height = Settings.GetInt(.EllipseHeight, IfZero: 300)
+                let Width = Settings.GetInt(.EllipseMajor, IfZero: 500)
+                let Height = Settings.GetInt(.EllipseMinor, IfZero: 300)
                 let Top = (ImageHeight / 2) - (Height / 2)
                 let Left = (ImageWidth / 2) - (Width / 2)
                 BezierPath = UIBezierPath(ovalIn: CGRect(origin: CGPoint(x: 20 + Left, y: 20 + Top),
