@@ -35,14 +35,11 @@ class OvalSettingSlice: UIViewController, UITextFieldDelegate,
         let MinorRadius = Settings.GetDouble(.EllipseMinor, 0.95)
         let TMnRadius = MinorRadius * 100.0
         let MnRadiusString = "\(Int(TMnRadius))"
-        MajorRadialText.text = MnRadiusString
-        MajorRadialSlider.value = Float(MinorRadius * 1000.0)
+        MinorRadialText.text = MnRadiusString
+        MinorRadialSlider.value = Float(MinorRadius * 1000.0)
         
         MajorRadialText.delegate = self
-        
-        MajorRadialText.addTarget(self,
-                             action: #selector(RadialTextChanged),
-                             for: .editingChanged)
+        MinorRadialText.delegate = self
         
         InitializeKeyboard()
         
@@ -181,11 +178,6 @@ class OvalSettingSlice: UIViewController, UITextFieldDelegate,
     {
         textField.resignFirstResponder()
         return true
-    }
-    
-    @objc func RadialTextChanged(_ sender: UITextField)
-    {
-        print("TextField changed")
     }
     
     @IBAction func RadialSliderChanged(_ sender: Any)
