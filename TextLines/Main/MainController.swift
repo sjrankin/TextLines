@@ -596,6 +596,12 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                 SaveCurrentImage()
                 
             case .ShareButton:
+                guard let ImageToShare = TextOutput.image else
+                {
+                    Debug.Print("No image to share")
+                    return
+                }
+                SharedImage = ImageToShare
                 ShareCurrentImage() 
                 
             case .TextFormatButton:
@@ -640,6 +646,8 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                 ShowSliceHandler(.GuidelineSettings)
         }
     }
+    
+    var SharedImage: UIImage? = nil
     
     func SetAnimationState2()
     {
