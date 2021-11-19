@@ -209,6 +209,32 @@ extension UIImage
 #endif
     }
     
+    /// Blit the instance image onto the passed background. Assumes (but does not require) that
+    /// the instance image has areas of alpha pixels less than 1.0.
+    /// - Warning: Fatal errors thrown if 1) the size of the source and background are different, or
+    ///            2) the filter returns a nil image.
+    /// - Parameter Background: The background image on which the instance is blitted. Must be
+    ///                         the same size as the instance image.
+    /// - Returns: New image with the instance image blitted on top of the background image.
+    public func BlitOnBackground(_ Background: UIImage) -> UIImage
+    {
+        let Source = CIImage(cgImage: self.cgImage!)
+        let BG = CIImage(cgImage: Background.cgImage!)
+        if Source.extent.size != BG.extent.size
+        {
+            Debug.FatalError("Source and background have different sizes in \(#function)")
+        }
+        let Blitter = CIFilter.sourceAtopCompositing()
+        Blitter.inputImage = Source
+        Blitter.backgroundImage = BG
+        guard let Blitted = Blitter.outputImage else
+        {
+            Debug.FatalError("Error blitting image.")
+        }
+        let Final = UIImage(ciImage: Blitted)
+        return Final
+    }
+    
     /// Returns an image based on the instance with a new brightness level.
     /// - Parameter To: The new brightness level.
     /// - Returns: New image with the adjusted brightness. Same image is returned on error.
