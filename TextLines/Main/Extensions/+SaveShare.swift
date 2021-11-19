@@ -8,8 +8,10 @@
 import Foundation
 import UIKit
 
-extension ViewController
+extension ViewController: UIActivityItemSource
 {
+    // MARK: - Save image locally.
+    
     /// Saves the current image being displayed in the user's photo album. If permissions have not
     /// been granted, the user will be asked automatically by iOS.
     func SaveCurrentImage()
@@ -18,7 +20,7 @@ extension ViewController
         {
             ShowQuickMessage(Message: "Cannot Save",
                              For: 3.5,
-                             FadeAfter: 1.0,
+                             FadeAfter: 1.5,
                              Foreground: UIColor.systemYellow,
                              Background: UIColor.systemRed)
             Debug.Print("No image to save in \(#function).")
@@ -54,12 +56,14 @@ extension ViewController
         ShortMessageLabel.backgroundColor = Color
         ShortMessageLabel.becomeFirstResponder()
         ShortMessageLabel.isUserInteractionEnabled = true
- 
+        
         UIView.animate(withDuration: Duration,
                        delay: FadeAfter,
                        options: [.allowUserInteraction],
                        animations:
                         {
+            //The final animated alpha level must be greater than 0.0. A value of
+            //0.05 works well.
             self.ShortMessageLabel.alpha = 0.05
         },
                        completion:
@@ -76,7 +80,76 @@ extension ViewController
         
     }
     
+    // MARK: - Share image.
+    
+    /// Share the image using built-in controllers.
     func ShareCurrentImage()
     {
+        let Items: [Any] = [self]
+        let ACV = UIActivityViewController(activityItems: Items, applicationActivities: nil)
+        ACV.popoverPresentationController?.sourceView = self.view
+        ACV.popoverPresentationController?.sourceRect = self.view.frame
+        ACV.popoverPresentationController?.canOverlapSourceViewRect = true
+        ACV.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+        self.present(ACV, animated: true, completion: nil)
+    }
+    
+    /// Returns the subject line for possible use when exporting the image.
+    /// - Parameter activityViewController: Not used.
+    /// - Parameter subjectForActivityType: Not used.
+    /// - Returns: Subject line.
+    public func activityViewController(_ activityViewController: UIActivityViewController,
+                                       subjectForActivityType activityType: UIActivity.Type?) -> String
+    {
+        return "TextLines Image"
+    }
+    
+    /// Determines the type of object to export.
+    /// - Parameter activityViewController: Not used.
+    /// - Returns: Instance of the type to export. In our case, a `UIImage`.
+    public func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any
+    {
+        return UIImage()
+    }
+    
+    /// Returns the object to export (the type of which is determined in `activityViewControllerPlaceholderItem`.
+    /// - Parameter activityViewController: Not used.
+    /// - Parameter itemForActivityType: Determines how the user wants to export the image. In our case, we support
+    ///                                  anything that accepts an image.
+    /// - Returns: The image of the gradient.
+    public func activityViewController(_ activityViewController: UIActivityViewController,
+                                       itemForActivityType activityType: UIActivity.ActivityType?) -> Any?
+    {
+        guard let Target = activityType else
+        {
+            return nil
+        }
+        guard let FinalImage = SharedImage else
+        {
+            Debug.Print("No image to share.")
+            return nil
+        }
+        
+        switch Target
+        {
+            case .postToTwitter,
+                    .airDrop,
+                    .assignToContact,
+                    .copyToPasteboard,
+                    .mail,
+                    .message,
+                    .postToFlickr,
+                    .postToWeibo,
+                    .postToTwitter,
+                    .postToFacebook,
+                    .postToTencentWeibo,
+                    .print,
+                    .markupAsPDF,
+                    .saveToCameraRoll:
+                return FinalImage
+                
+            default:
+                return FinalImage
+        }
     }
 }
