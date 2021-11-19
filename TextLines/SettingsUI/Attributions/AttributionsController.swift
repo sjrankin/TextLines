@@ -295,7 +295,10 @@ THE SOFTWARE.
         Attribution(Link: "https://stackoverflow.com/questions/6064630/get-angle-from-2-positions",
                     Text: "Angle between two points",
                     Title: "Calculating Angles"),
-        // Above to 15 October 2021
+        Attribution(Link: "https://stackoverflow.com/questions/25477093/difficulty-allowing-user-interaction-during-uiview-animation",
+                    Text: "Interactions during animation",
+                    Title: "Animation Interaction")
+        // Above to 19 November 2021
     ]
     
     @IBOutlet weak var LinkText: UITextView!
