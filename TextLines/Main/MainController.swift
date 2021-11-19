@@ -85,12 +85,35 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         TextInput.text = StartText
         UserShapeManager.LoadUserShapes()
         
+        ShortMessageLabel.layer.borderColor = UIColor.black.cgColor
+        ShortMessageLabel.layer.borderWidth = 0.5
+        ShortMessageLabel.layer.cornerRadius = 5.0
+        ShortMessageLabel.isHidden = true
+        ShortMessageLabel.alpha = 0.0
+        ShortMessageLabel.layer.zPosition = -1000
+        ShortMessageLabel.isUserInteractionEnabled = true
+        HideTap = UITapGestureRecognizer(target: self,
+                                         action: #selector(CloseMessage))
+        ShortMessageLabel.addGestureRecognizer(HideTap!)
+        
         GenerateUserThumbnails()
         
         //let SurfacePanGesture = UIPanGestureRecognizer(target: self, action: #selector(PanGestureHandler))
         //TextOutput.addGestureRecognizer(SurfacePanGesture)
         
         print("Screen.size=(\(UIScreen.main.bounds.width),\(UIScreen.main.bounds.height))")
+    }
+    
+    var HideTap: UITapGestureRecognizer? = nil
+    
+    @objc func CloseMessage(_ Recognizer: UITapGestureRecognizer)
+    {
+        print("Short message tapped")
+        ShortMessageLabel.layer.removeAllAnimations()
+        ShortMessageLabel.layer.zPosition = -1000
+        ShortMessageLabel.alpha = 0.0
+        ShortMessageLabel.isHidden = true
+        ShortMessageLabel.resignFirstResponder()
     }
     
     var CommandButtonList = [String]()
@@ -568,10 +591,12 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                 break
             case .VideoButton:
                 break
+                
             case .SaveButton:
-                break
+                SaveCurrentImage()
+                
             case .ShareButton:
-                break
+                ShareCurrentImage() 
                 
             case .TextFormatButton:
                 ShowSliceHandler(.TextFormatting)
@@ -593,8 +618,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                 self.present(VC, animated: true)
                 
             case .BackgroundButton:
-                RunSlicedSettings(StoryboardName: "SettingsUI",
-                                  ControllerName: "BackgroundSetting")
+                ShowSliceHandler(.BackgroundSettings)
                 
             case .ShapeOptionsButton:
                 switch Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self, Default: .Circle)
@@ -610,12 +634,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                 }
                 
             case .AnimationButton:
-                #if true
                 ShowSliceHandler(.AnimationSettings)
-                #else
-                RunSlicedSettings(StoryboardName: "SettingsUI",
-                                  ControllerName: "AnimationUICode")
-                #endif
                 
             case .GuidelinesButton:
                 ShowSliceHandler(.GuidelineSettings)
@@ -749,5 +768,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     @IBOutlet weak var SettingSlicePanel: UIView!
     @IBOutlet weak var SliceContainer: UIView!
     
+    @IBOutlet weak var ShortMessageLabel: UILabel!
+ 
     var PreviousController: UIViewController? = nil
 }
