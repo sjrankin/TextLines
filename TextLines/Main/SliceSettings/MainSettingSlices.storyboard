@@ -726,6 +726,117 @@
             </objects>
             <point key="canvasLocation" x="-41" y="1284"/>
         </scene>
+        <!--Background Slice-->
+        <scene sceneID="cSm-ZG-EDp">
+            <objects>
+                <viewController storyboardIdentifier="BackgroundSlice" id="Eli-XH-uss" customClass="BackgroundSlice" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ufO-ie-PP4">
+                        <rect key="frame" x="0.0" y="0.0" width="357" height="240"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Background" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcj-L1-k6X">
+                                <rect key="frame" x="8" y="10" width="114" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8d6-tf-e9t">
+                                <rect key="frame" x="9" y="44" width="113" height="32"/>
+                                <segments>
+                                    <segment title="Color"/>
+                                    <segment title="Image"/>
+                                </segments>
+                                <connections>
+                                    <action selector="BackgroundTypeChangedHandler:" destination="Eli-XH-uss" eventType="primaryActionTriggered" id="ogp-cn-34P"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="BzW-R9-pfW" customClass="UIImageView">
+                                <rect key="frame" x="219" y="15" width="128" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="NDo-Ea-d4U"/>
+                                    <constraint firstAttribute="width" constant="128" id="hcm-VY-1OE"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l0l-HS-WCA" customClass="UIImageView">
+                                <rect key="frame" x="219" y="15" width="128" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="1OB-g3-RKv"/>
+                                    <constraint firstAttribute="width" constant="128" id="lMF-aR-2Yy"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F9j-sq-0ew">
+                                <rect key="frame" x="297" y="180" width="50" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="FFJ-WV-8X4" customClass="UIColorWell">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Lv0-dM-Baq"/>
+                                            <constraint firstAttribute="width" constant="50" id="tRx-Z6-wPP"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="2uH-qN-Ars"/>
+                                    <constraint firstAttribute="height" constant="50" id="6mm-sB-GX8"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9G-BN-o1M">
+                                <rect key="frame" x="10" y="132" width="150" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="WUn-d6-OEh"/>
+                                    <constraint firstAttribute="width" constant="150" id="uek-Gk-Tjn"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Select Image"/>
+                                <connections>
+                                    <action selector="BackgroundImageSelectionHandler:" destination="Eli-XH-uss" eventType="primaryActionTriggered" id="gWO-lT-cr8"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Background color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlF-ZA-SsZ">
+                                <rect key="frame" x="9" y="194" width="134.5" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XRm-tE-kKa"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="BzW-R9-pfW" secondAttribute="trailing" constant="10" id="4Nn-if-pee"/>
+                            <constraint firstItem="XRm-tE-kKa" firstAttribute="bottom" secondItem="xlF-ZA-SsZ" secondAttribute="bottom" constant="24" id="6x7-gp-5qS"/>
+                            <constraint firstItem="xlF-ZA-SsZ" firstAttribute="leading" secondItem="XRm-tE-kKa" secondAttribute="leading" constant="9" id="Awr-cy-wzQ"/>
+                            <constraint firstItem="8d6-tf-e9t" firstAttribute="top" secondItem="XRm-tE-kKa" secondAttribute="top" id="Bhr-Fu-Cjz"/>
+                            <constraint firstAttribute="bottom" secondItem="F9j-sq-0ew" secondAttribute="bottom" constant="10" id="E62-tx-gZ3"/>
+                            <constraint firstItem="fcj-L1-k6X" firstAttribute="leading" secondItem="ufO-ie-PP4" secondAttribute="leadingMargin" constant="-8" id="G6O-lE-paU"/>
+                            <constraint firstItem="8d6-tf-e9t" firstAttribute="top" secondItem="ufO-ie-PP4" secondAttribute="top" constant="44" id="T2j-3t-esg"/>
+                            <constraint firstAttribute="trailing" secondItem="F9j-sq-0ew" secondAttribute="trailing" constant="10" id="USO-HW-P8y"/>
+                            <constraint firstItem="xlF-ZA-SsZ" firstAttribute="top" secondItem="m9G-BN-o1M" secondAttribute="bottom" constant="31" id="cQs-Tc-ofl"/>
+                            <constraint firstItem="xlF-ZA-SsZ" firstAttribute="leading" secondItem="8d6-tf-e9t" secondAttribute="leading" id="cRp-h9-yCQ"/>
+                            <constraint firstItem="l0l-HS-WCA" firstAttribute="top" secondItem="ufO-ie-PP4" secondAttribute="top" constant="15" id="e9V-Mn-Zcv"/>
+                            <constraint firstAttribute="trailing" secondItem="l0l-HS-WCA" secondAttribute="trailing" constant="10" id="gd2-Cg-yUX"/>
+                            <constraint firstItem="BzW-R9-pfW" firstAttribute="top" secondItem="ufO-ie-PP4" secondAttribute="top" constant="15" id="i5a-yH-18f"/>
+                            <constraint firstItem="fcj-L1-k6X" firstAttribute="top" secondItem="ufO-ie-PP4" secondAttribute="top" constant="10" id="m1g-vQ-4aA"/>
+                            <constraint firstItem="m9G-BN-o1M" firstAttribute="leading" secondItem="ufO-ie-PP4" secondAttribute="leading" constant="10" id="mqW-QM-aV1"/>
+                            <constraint firstItem="xlF-ZA-SsZ" firstAttribute="centerY" secondItem="F9j-sq-0ew" secondAttribute="centerY" id="nUy-If-YJV"/>
+                        </constraints>
+                    </view>
+                    <size key="freeformSize" width="357" height="240"/>
+                    <connections>
+                        <outlet property="BackgroundColorLabel" destination="xlF-ZA-SsZ" id="NoU-z1-Fvy"/>
+                        <outlet property="BackgroundColorWell" destination="FFJ-WV-8X4" id="WbT-5J-6XH"/>
+                        <outlet property="BackgroundImageButton" destination="m9G-BN-o1M" id="az4-am-4iE"/>
+                        <outlet property="BackgroundTypeSegment" destination="8d6-tf-e9t" id="cRP-Eg-w5M"/>
+                        <outlet property="ColorSample" destination="BzW-R9-pfW" id="KPm-IG-zQl"/>
+                        <outlet property="ImageSample" destination="l0l-HS-WCA" id="LxO-lc-dBY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j90-ay-25M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-41.304347826086961" y="1512.0535714285713"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow.down.circle" catalog="system" width="128" height="121"/>
@@ -740,8 +851,14 @@
         <image name="square.and.line.vertical.and.square.filled" catalog="system" width="128" height="83"/>
         <image name="tortoise" catalog="system" width="128" height="68"/>
         <image name="tortoise.fill" catalog="system" width="128" height="66"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
