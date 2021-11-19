@@ -199,7 +199,9 @@ extension Bezier
             align = alignment
         }
         
-        Settings.GetColor(.BackgroundColor, UIColor.white).setFill()
+        let BGColor = Settings.GetColor(.BackgroundColor, UIColor.white)
+        BGColor.setFill()
+//        Settings.GetColor(.BackgroundColor, UIColor.white).setFill()
         context.fill(CGRect(origin: CGPoint.zero, size: Size))
         if Settings.GetBool(.ShowGuidelines)
         {
