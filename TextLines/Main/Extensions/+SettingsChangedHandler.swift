@@ -24,7 +24,6 @@ extension ViewController: SettingChangedProtocol
     /// - Parameter NewValue: The new value of the setting. May be nil.
     func SettingChanged(Setting: SettingKeys, OldValue: Any?, NewValue: Any?)
     {
-        #if true
         let Current = Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self, Default: .Circle)
         switch Setting
         {
@@ -57,35 +56,5 @@ extension ViewController: SettingChangedProtocol
                 break
         }
         UpdateOutput()
-        #else
-        let Current = Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self, Default: .Circle)
-        switch Setting
-        {
-            case .CurrentShape:
-                UpdateOutput()
-                
-            case .CircleAngle, .CircleDiameter:
-                if Current == .Circle
-                {
-                    UpdateOutput()
-                }
-                
-            case .EllipseMinor, .EllipseMajor:
-                if Current == .Ellipse
-                {
-                    UpdateOutput()
-                }
-                
-            case .ClockwiseText:
-                print("ClockwiseText change detected.")
-                
-            case .TextColor, .GuidelineColor, .ImageTextFontSize, .ImageTextFont,
-                    .BackgroundColor, .ImageWidth, .ImageHeight:
-                UpdateOutput()
-                
-            default:
-                Debug.Print("Unhandled settings change: \(Setting)")
-        }
-        #endif
     }
 }
