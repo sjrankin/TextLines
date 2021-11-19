@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -200,6 +200,16 @@
                                     <constraint firstItem="01T-uM-Xq0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BfQ-lO-mK2" secondAttribute="trailing" constant="8" symbolic="YES" id="xoE-0D-lgg"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image Saved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJe-s3-GDm">
+                                <rect key="frame" x="30" y="125" width="315" height="35"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="IdZ-vb-axi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -210,12 +220,14 @@
                             <constraint firstItem="FbJ-mc-4M1" firstAttribute="leading" secondItem="3ly-R4-QpG" secondAttribute="leading" id="6e9-Am-oN9"/>
                             <constraint firstItem="wuS-SF-y64" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="7Cr-6F-4BS"/>
                             <constraint firstItem="FAG-0n-9uY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="9Pb-tW-qwg"/>
+                            <constraint firstItem="FJe-s3-GDm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="Afj-sy-EM9"/>
                             <constraint firstItem="Laq-CI-FFf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EaP-Rq-TRr"/>
                             <constraint firstItem="3ly-R4-QpG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Fab-AB-2EJ"/>
                             <constraint firstItem="oIj-eB-l1s" firstAttribute="trailing" secondItem="wuS-SF-y64" secondAttribute="trailing" id="H6D-5C-vxD"/>
                             <constraint firstItem="Laq-CI-FFf" firstAttribute="top" secondItem="wuS-SF-y64" secondAttribute="bottom" id="Re8-n1-dfN"/>
                             <constraint firstItem="D0N-Et-mTd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="SMg-up-nxC"/>
                             <constraint firstItem="oIj-eB-l1s" firstAttribute="leading" secondItem="wuS-SF-y64" secondAttribute="leading" id="Sdw-A5-1fq"/>
+                            <constraint firstItem="FJe-s3-GDm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="125" id="THf-BN-rOJ"/>
                             <constraint firstItem="wuS-SF-y64" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="V3q-LU-Tec"/>
                             <constraint firstItem="FAG-0n-9uY" firstAttribute="trailing" secondItem="D0N-Et-mTd" secondAttribute="trailing" id="ZgX-jF-QIO"/>
                             <constraint firstItem="FbJ-mc-4M1" firstAttribute="top" secondItem="Laq-CI-FFf" secondAttribute="bottom" id="fMX-oN-ddh"/>
@@ -227,6 +239,7 @@
                             <constraint firstItem="oIj-eB-l1s" firstAttribute="top" secondItem="D0N-Et-mTd" secondAttribute="top" id="mE4-41-Mxy"/>
                             <constraint firstItem="3ly-R4-QpG" firstAttribute="top" secondItem="FbJ-mc-4M1" secondAttribute="bottom" id="n9d-Ap-PjI"/>
                             <constraint firstItem="D0N-Et-mTd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nu5-SA-vdl"/>
+                            <constraint firstAttribute="trailing" secondItem="FJe-s3-GDm" secondAttribute="trailing" constant="30" id="oDj-6f-uLs"/>
                             <constraint firstItem="D0N-Et-mTd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xcW-Eo-Ot8"/>
                         </constraints>
                     </view>
@@ -241,6 +254,7 @@
                         <outlet property="SettingsPanelDragBar" destination="BU4-8n-gRx" id="FcK-vS-U94"/>
                         <outlet property="ShapeCategoryScroller" destination="FbJ-mc-4M1" id="qsM-Rj-zL3"/>
                         <outlet property="ShapeScroller" destination="3ly-R4-QpG" id="Kcm-OL-gSJ"/>
+                        <outlet property="ShortMessageLabel" destination="FJe-s3-GDm" id="UmD-er-dcD"/>
                         <outlet property="SliceContainer" destination="1I1-2l-2Qu" id="2A8-M2-bUu"/>
                         <outlet property="TextInput" destination="FAG-0n-9uY" id="12H-Kc-ElF"/>
                         <outlet property="TextOutput" destination="Laq-CI-FFf" id="2Hw-QG-Ddx"/>
@@ -286,6 +300,9 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
