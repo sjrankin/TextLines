@@ -140,7 +140,9 @@
 		17C76CC82734C4860078971D /* CellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C76CC72734C4860078971D /* CellProtocol.swift */; };
 		17ED392327165F0E00A04EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17ED392227165F0E00A04EAD /* Assets.xcassets */; };
 		17ED39252718C9D900A04EAD /* +ShapeEditorOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED39242718C9D900A04EAD /* +ShapeEditorOptions.swift */; };
+		17FB2B182745787E00232AFB /* +SaveShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB2B172745787E00232AFB /* +SaveShare.swift */; };
 		17FED86D273A0B7C00FC977E /* OvalSettingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FED86C273A0B7C00FC977E /* OvalSettingSlice.swift */; };
+		17FED86F2743248700FC977E /* BackgroundSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FED86E2743248700FC977E /* BackgroundSlice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -280,7 +282,9 @@
 		17C76CC72734C4860078971D /* CellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProtocol.swift; sourceTree = "<group>"; };
 		17ED392227165F0E00A04EAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17ED39242718C9D900A04EAD /* +ShapeEditorOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ShapeEditorOptions.swift"; sourceTree = "<group>"; };
+		17FB2B172745787E00232AFB /* +SaveShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+SaveShare.swift"; sourceTree = "<group>"; };
 		17FED86C273A0B7C00FC977E /* OvalSettingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvalSettingSlice.swift; sourceTree = "<group>"; };
+		17FED86E2743248700FC977E /* BackgroundSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSlice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +320,7 @@
 				170F69812736FC6A005212AA /* AnimationSettingsSlice.swift */,
 				1765092E2737021900735CB4 /* GuidelinesSettingSlice.swift */,
 				173AF6EF27387DB6001AE0F2 /* NoOptionsSettingSlice.swift */,
+				17FED86E2743248700FC977E /* BackgroundSlice.swift */,
 				174979C22736F1B000811EA1 /* TextFormattingSlice.swift */,
 				174979C02736F16B00811EA1 /* ViewportSizeSlice.swift */,
 			);
@@ -425,6 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				17672F892716423100D408BC /* +Animation.swift */,
+				17FB2B172745787E00232AFB /* +SaveShare.swift */,
 				17672F8B2716423100D408BC /* +SettingsChangedHandler.swift */,
 				17672F8C2716423100D408BC /* +SettingPanel.swift */,
 				17672F8A2716423100D408BC /* +ShapeGenerator.swift */,
@@ -767,6 +773,7 @@
 				176730072716423300D408BC /* AppDelegate.swift in Sources */,
 				1767300D2716423300D408BC /* DebugUI2Root.swift in Sources */,
 				1767304D2716423300D408BC /* UIGestureRecognizer.swift in Sources */,
+				17FB2B182745787E00232AFB /* +SaveShare.swift in Sources */,
 				1767301E2716423300D408BC /* +Boolean.swift in Sources */,
 				176730042716423300D408BC /* +ShapeGenerator.swift in Sources */,
 				17672FFF2716423200D408BC /* UITapGestureRecognizer2.swift in Sources */,
@@ -871,6 +878,7 @@
 				17FED86D273A0B7C00FC977E /* OvalSettingSlice.swift in Sources */,
 				1767302A2716423300D408BC /* UUIDCell.swift in Sources */,
 				1767302D2716423300D408BC /* ColorCell.swift in Sources */,
+				17FED86F2743248700FC977E /* BackgroundSlice.swift in Sources */,
 				176730102716423300D408BC /* SettingKeysMap.swift in Sources */,
 				17672FFB2716423200D408BC /* Shape_Circle.swift in Sources */,
 				17755044273705BC00E8DE79 /* NoOptionsSlice.swift in Sources */,
