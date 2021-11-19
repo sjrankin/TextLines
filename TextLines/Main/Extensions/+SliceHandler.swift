@@ -60,6 +60,9 @@ extension ViewController
             case .ViewportSize:
                 VC = Story.instantiateViewController(withIdentifier: "ViewportSizeSlice") as? ViewportSizeSlice
             
+            case .BackgroundSettings:
+                VC = Story.instantiateViewController(withIdentifier: "BackgroundSlice") as? BackgroundSlice
+                
             case .AnimationSettings:
                 VC = Story.instantiateViewController(withIdentifier: "AnimationSettingsSlice") as? AnimationSettingsSlice
             
