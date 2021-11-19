@@ -46,7 +46,6 @@ class AttibutionsController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        print("IndexPath.row=\(indexPath.row)")
         let Title = LocalAttributions![indexPath.row].Title
         let Text = LocalAttributions![indexPath.row].Text
         let Cell = AttributionCell(style: .default, reuseIdentifier: "AttributionCell")
