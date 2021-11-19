@@ -162,10 +162,10 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
                 Image = LoadImage(Name: "camera", Type: .System)
                 
             case .FontButton:
-                Image = LoadImage(Name: "textformat.abc", Type: .System)
+                Image = LoadImage(Name: "f.circle", Type: .System)
                 
             case .TextFormatButton:
-                Image = LoadImage(Name: "character.textbox", Type: .System)
+                Image = LoadImage(Name: "bold.italic.underline", Type: .System)
                 
             case .PlayButton:
                 if Settings.GetBool(.Animating)
@@ -279,7 +279,7 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
                 }
                 
             case .TextFormatButton:
-                return "Text"
+                return "Format"
                 
             case .FontButton:
                 return "Fonts"
@@ -294,19 +294,19 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
                 return "Video"
                 
             case .BackgroundButton:
-                return "Backdrop"
+                return "Back"
                 
             case .ShapeOptionsButton:
                 return "Shape"
                 
             case .AnimationButton:
-                return "Animation"
+                return "Motion"
                 
             case .DimensionsButton:
                 return "Size"
                 
             case .GuidelinesButton:
-                return "Guidelines"
+                return "Lines"
         }
     }
     
