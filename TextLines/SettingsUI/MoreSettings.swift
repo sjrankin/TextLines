@@ -45,7 +45,8 @@ class MoreSettings: UITableViewController
         if indexPath.row == 3 && indexPath.section == 0
         {
             let Storyboard = UIStoryboard(name: "SettingsUI", bundle: nil)
-            let nextViewController = Storyboard.instantiateViewController(withIdentifier: "StyleSettings") as! StyleSettings
+//            let nextViewController = Storyboard.instantiateViewController(withIdentifier: "StyleSettings") as! StyleSettings
+            let nextViewController = Storyboard.instantiateViewController(withIdentifier: "CommandBarCustomization") as! CommandBarCustomization
             nextViewController.modalPresentationStyle = .fullScreen
             self.present(nextViewController, animated: true, completion: nil)
         }
