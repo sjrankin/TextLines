@@ -104,6 +104,11 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         print("Screen.size=(\(UIScreen.main.bounds.width),\(UIScreen.main.bounds.height))")
     }
     
+    @objc func HandleTextInputReturn()
+    {
+        self.TextInput.resignFirstResponder()
+    }
+    
     var HideTap: UITapGestureRecognizer? = nil
     
     @objc func CloseMessage(_ Recognizer: UITapGestureRecognizer)
