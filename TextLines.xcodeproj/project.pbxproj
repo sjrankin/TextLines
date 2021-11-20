@@ -116,7 +116,6 @@
 		176730472716423300D408BC /* OptionItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672FDB2716423200D408BC /* OptionItems.swift */; };
 		176730482716423300D408BC /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672FDC2716423200D408BC /* SettingItem.swift */; };
 		176730492716423300D408BC /* OptionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672FDD2716423200D408BC /* OptionItem.swift */; };
-		1767304A2716423300D408BC /* StyleSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672FDE2716423200D408BC /* StyleSettings.swift */; };
 		1767304B2716423300D408BC /* BackgroundSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672FDF2716423200D408BC /* BackgroundSettings.swift */; };
 		1767304C2716423300D408BC /* FileIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672FE32716423200D408BC /* FileIO.swift */; };
 		1767304D2716423300D408BC /* UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672FE52716423200D408BC /* UIGestureRecognizer.swift */; };
@@ -136,6 +135,9 @@
 		1767306B271648F700D408BC /* SegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767306A271648F700D408BC /* SegmentCell.swift */; };
 		17755044273705BC00E8DE79 /* NoOptionsSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17755043273705BC00E8DE79 /* NoOptionsSlice.swift */; };
 		1775504627370A8600E8DE79 /* CircleSettingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1775504527370A8600E8DE79 /* CircleSettingSlice.swift */; };
+		179B26D927483D3700C19FC6 /* CommandBarCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B26D827483D3700C19FC6 /* CommandBarCustomization.swift */; };
+		17AABC2E274852D600A395C3 /* CommandTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AABC2D274852D600A395C3 /* CommandTableCell.swift */; };
+		17AABC3027485D7400A395C3 /* CommandBarControlProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AABC2F27485D7400A395C3 /* CommandBarControlProtocol.swift */; };
 		17C76CC6273490540078971D /* UserShapeImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C76CC5273490540078971D /* UserShapeImageCache.swift */; };
 		17C76CC82734C4860078971D /* CellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C76CC72734C4860078971D /* CellProtocol.swift */; };
 		17ED392327165F0E00A04EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17ED392227165F0E00A04EAD /* Assets.xcassets */; };
@@ -257,7 +259,6 @@
 		17672FDB2716423200D408BC /* OptionItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionItems.swift; sourceTree = "<group>"; };
 		17672FDC2716423200D408BC /* SettingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
 		17672FDD2716423200D408BC /* OptionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionItem.swift; sourceTree = "<group>"; };
-		17672FDE2716423200D408BC /* StyleSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleSettings.swift; sourceTree = "<group>"; };
 		17672FDF2716423200D408BC /* BackgroundSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundSettings.swift; sourceTree = "<group>"; };
 		17672FE12716423200D408BC /* InfinityPath.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = InfinityPath.playground; sourceTree = "<group>"; };
 		17672FE32716423200D408BC /* FileIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileIO.swift; sourceTree = "<group>"; };
@@ -278,6 +279,9 @@
 		1767306A271648F700D408BC /* SegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentCell.swift; sourceTree = "<group>"; };
 		17755043273705BC00E8DE79 /* NoOptionsSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOptionsSlice.swift; sourceTree = "<group>"; };
 		1775504527370A8600E8DE79 /* CircleSettingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleSettingSlice.swift; sourceTree = "<group>"; };
+		179B26D827483D3700C19FC6 /* CommandBarCustomization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarCustomization.swift; sourceTree = "<group>"; };
+		17AABC2D274852D600A395C3 /* CommandTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandTableCell.swift; sourceTree = "<group>"; };
+		17AABC2F27485D7400A395C3 /* CommandBarControlProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarControlProtocol.swift; sourceTree = "<group>"; };
 		17C76CC5273490540078971D /* UserShapeImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShapeImageCache.swift; sourceTree = "<group>"; };
 		17C76CC72734C4860078971D /* CellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProtocol.swift; sourceTree = "<group>"; };
 		17ED392227165F0E00A04EAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -307,6 +311,7 @@
 				17672F842716423100D408BC /* ButtonBars.swift */,
 				1724DAAE2725F0D8000E6067 /* CommandBarManager.swift */,
 				172DD6BC2728B739001DD12C /* CommandBarProtocol.swift */,
+				17AABC2F27485D7400A395C3 /* CommandBarControlProtocol.swift */,
 				17672F8E2716423100D408BC /* ShapeBarProtocol.swift */,
 			);
 			path = BarManagers;
@@ -508,19 +513,19 @@
 			children = (
 				17672FCE2716423200D408BC /* Attributions */,
 				17672FB52716423200D408BC /* Cells */,
+				17AABC2C274852B900A395C3 /* CommandBar */,
 				17672FD32716423200D408BC /* Fonts */,
 				17672FD72716423200D408BC /* IndividualSettingsHandlers */,
 				17672FB12716423200D408BC /* TitledImages */,
 				17672FC32716423200D408BC /* UserShapes */,
 				17672FCD2716423200D408BC /* SettingsUI.storyboard */,
-				17672FB02716423200D408BC /* SettingsUICode.swift */,
 				17672FCC2716423200D408BC /* AnimationUICode.swift */,
 				17672FDF2716423200D408BC /* BackgroundSettings.swift */,
 				17672FD62716423200D408BC /* MainSettingUIController.swift */,
 				17672FC22716423200D408BC /* MoreSettings.swift */,
+				17672FB02716423200D408BC /* SettingsUICode.swift */,
 				1763FB7A273354EA00C20060 /* SettingsWrapperController.swift */,
 				1763FB7C2733552100C20060 /* SettingsWrapperDelegate.swift */,
-				17672FDE2716423200D408BC /* StyleSettings.swift */,
 			);
 			path = SettingsUI;
 			sourceTree = "<group>";
@@ -660,6 +665,15 @@
 				17FED86C273A0B7C00FC977E /* OvalSettingSlice.swift */,
 			);
 			path = ShapeSlices;
+			sourceTree = "<group>";
+		};
+		17AABC2C274852B900A395C3 /* CommandBar */ = {
+			isa = PBXGroup;
+			children = (
+				179B26D827483D3700C19FC6 /* CommandBarCustomization.swift */,
+				17AABC2D274852D600A395C3 /* CommandTableCell.swift */,
+			);
+			path = CommandBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -809,6 +823,7 @@
 				176730272716423300D408BC /* ArrayCell.swift in Sources */,
 				1767304F2716423300D408BC /* UUID.swift in Sources */,
 				176730012716423200D408BC /* MainController.swift in Sources */,
+				17AABC3027485D7400A395C3 /* CommandBarControlProtocol.swift in Sources */,
 				176730232716423300D408BC /* SettingsUICode.swift in Sources */,
 				176730412716423300D408BC /* AttributionsController.swift in Sources */,
 				17317F752737439A00598776 /* +SliceHandler.swift in Sources */,
@@ -823,6 +838,7 @@
 				176730172716423300D408BC /* +Double.swift in Sources */,
 				176730262716423300D408BC /* TitledImageStructure.swift in Sources */,
 				1767300F2716423300D408BC /* SettingHeaders.swift in Sources */,
+				17AABC2E274852D600A395C3 /* CommandTableCell.swift in Sources */,
 				1767302B2716423300D408BC /* StringCell.swift in Sources */,
 				176730392716423300D408BC /* ShapeManager.swift in Sources */,
 				17672FFD2716423200D408BC /* Bezier.swift in Sources */,
@@ -845,7 +861,6 @@
 				176730062716423300D408BC /* +SettingPanel.swift in Sources */,
 				1767301D2716423300D408BC /* UserShapeManager.swift in Sources */,
 				176730662716439600D408BC /* Enums.swift in Sources */,
-				1767304A2716423300D408BC /* StyleSettings.swift in Sources */,
 				176730032716423300D408BC /* +Animation.swift in Sources */,
 				1767304C2716423300D408BC /* FileIO.swift in Sources */,
 				176730452716423300D408BC /* +IndividualShapeSettings.swift in Sources */,
@@ -868,6 +883,7 @@
 				176730562716423300D408BC /* UIImage.swift in Sources */,
 				176730282716423300D408BC /* IntCell.swift in Sources */,
 				176730342716423300D408BC /* ShapeManagerDelegate.swift in Sources */,
+				179B26D927483D3700C19FC6 /* CommandBarCustomization.swift in Sources */,
 				176730132716423300D408BC /* SettingChangedProtocol.swift in Sources */,
 				176730152716423300D408BC /* SettingKeys.swift in Sources */,
 				176730212716423300D408BC /* +CGPoint.swift in Sources */,
