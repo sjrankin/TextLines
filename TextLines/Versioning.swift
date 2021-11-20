@@ -39,7 +39,7 @@ public class Versioning: CustomStringConvertible
     public static let VersionSuffix: String = ""
     
     /// Name of the application.
-    public static let ApplicationName = "TextLine"
+    public static let ApplicationName = "TextLines"
     
     /// Tag for the application.
     public static let Tag: String = "Alpha"
@@ -125,19 +125,19 @@ public class Versioning: CustomStringConvertible
     }
     
     /// Build number. Incremented every build (provided the proper script is executed at each build).
-    public static let Build: Int = 1840
+    public static let Build: Int = 1854
     
     /// Build increment. Value to use to increment the build number.
     private static let BuildIncrement = 1
     
     /// Build ID.
-    public static let BuildID: String = "827D92BC-13B4-4115-8B17-8B7A19828B1B"
+    public static let BuildID: String = "0C7749B2-CAFC-4C2E-9493-E6045C09566E"
     
     /// Build date.
-    public static let BuildDate: String = "19 November 2021"
+    public static let BuildDate: String = "20 November 2021"
     
     /// Build Time.
-    public static let BuildTime: String = "18:53"
+    public static let BuildTime: String = "12:56"
     
     /// Holds the release build flag.
 #if DEBUG
