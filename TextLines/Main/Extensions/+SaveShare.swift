@@ -19,8 +19,8 @@ extension ViewController: UIActivityItemSource
         guard let ImageToSave = TextOutput.image else
         {
             ShowQuickMessage(Message: "Cannot Save",
-                             For: 3.5,
-                             FadeAfter: 1.5,
+                             For: UIConstants.ErrorFadeDuration,
+                             FadeAfter: UIConstants.BeforeFadeDuration,
                              Foreground: UIColor.systemYellow,
                              Background: UIColor.systemRed)
             Debug.Print("No image to save in \(#function).")
@@ -28,8 +28,8 @@ extension ViewController: UIActivityItemSource
         }
         ImageToSave.SaveInPhotoAlbum()
         ShowQuickMessage(Message: "Image Saved",
-                         For: 2.0,
-                         FadeAfter: 1.5,
+                         For: UIConstants.StandardFadeDuration,
+                         FadeAfter: UIConstants.BeforeFadeDuration,
                          Background: UIColor.systemGreen)
     }
     
@@ -50,7 +50,7 @@ extension ViewController: UIActivityItemSource
     {
         ShortMessageLabel.isHidden = false
         ShortMessageLabel.alpha = 1.0
-        ShortMessageLabel.layer.zPosition = 2000
+        ShortMessageLabel.layer.zPosition = UIConstants.ShowMessageZ
         ShortMessageLabel.text = Message
         ShortMessageLabel.textColor = Foreground
         ShortMessageLabel.backgroundColor = Color
@@ -64,7 +64,7 @@ extension ViewController: UIActivityItemSource
                         {
             //The final animated alpha level must be greater than 0.0. A value of
             //0.05 works well.
-            self.ShortMessageLabel.alpha = 0.05
+            self.ShortMessageLabel.alpha = UIConstants.FinalFadeAlpha
         },
                        completion:
                         {
@@ -72,7 +72,7 @@ extension ViewController: UIActivityItemSource
             if IsCompleted
             {
                 self.ShortMessageLabel.isHidden = true
-                self.ShortMessageLabel.layer.zPosition = -1000
+                self.ShortMessageLabel.layer.zPosition = UIConstants.HiddenZ
                 self.ShortMessageLabel.alpha = 0.0
                 self.ShortMessageLabel.resignFirstResponder()
             }
