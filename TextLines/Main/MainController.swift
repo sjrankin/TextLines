@@ -49,48 +49,48 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
 #endif
         SettingPanelGearButton.setTitle("", for: .normal)
         SettingPanel.alpha = 0.0
-        SettingPanel.layer.zPosition = -1000
+        SettingPanel.layer.zPosition = UIConstants.HiddenZ
         SettingPanel.resignFirstResponder()
         SettingPanel.layer.maskedCorners = [CACornerMask.layerMaxXMaxYCorner,
                                             CACornerMask.layerMinXMaxYCorner]
-        SettingPanel.layer.cornerRadius = 5.0
-        SettingPanelCommandTable.layer.borderColor = UIColor.gray.cgColor
-        SettingPanelCommandTable.layer.borderWidth = 0.5
-        SettingPanelCommandTable.layer.cornerRadius = 5.0
+        SettingPanel.layer.cornerRadius = UIConstants.CornerRadius
+        SettingPanelCommandTable.layer.borderColor = UIConstants.BorderColor
+        SettingPanelCommandTable.layer.borderWidth = UIConstants.BorderThickness
+        SettingPanelCommandTable.layer.cornerRadius = UIConstants.CornerRadius
         
-        SettingOptionTable.layer.borderColor = UIColor.gray.cgColor
-        SettingOptionTable.layer.borderWidth = 0.5
-        SettingOptionTable.layer.cornerRadius = 5.0
+        SettingOptionTable.layer.borderColor = UIConstants.BorderColor
+        SettingOptionTable.layer.borderWidth = UIConstants.BorderThickness
+        SettingOptionTable.layer.cornerRadius = UIConstants.CornerRadius
         
         SettingSlicePanel.alpha = 0.0
-        SettingSlicePanel.layer.zPosition = -2000
+        SettingSlicePanel.layer.zPosition = UIConstants.HiddenSliceZ
         SettingSlicePanel.resignFirstResponder()
         SettingSlicePanel.layer.maskedCorners = [CACornerMask.layerMaxXMaxYCorner,
                                             CACornerMask.layerMinXMaxYCorner]
-        SettingSlicePanel.layer.cornerRadius = 5.0
+        SettingSlicePanel.layer.cornerRadius = UIConstants.CornerRadius
         
         let OptionDrag = UIPanGestureRecognizer(target: self,
                                                 action: #selector(HandleSettingDragging))
         SettingsPanelDragBar.addGestureRecognizer(OptionDrag)
-        SettingsPanelDragBar.layer.cornerRadius = 4.0
+        SettingsPanelDragBar.layer.cornerRadius = UIConstants.DragCornerRadius
         let ResetDragBar = UITapGestureRecognizer(target: self,
                                                   action: #selector(HandleResetSettingsPanel))
         ResetDragBar.numberOfTapsRequired = 2
         SettingsPanelDragBar.addGestureRecognizer(ResetDragBar)
         
-        InitializeKeyboard()
-        StartText = "TextLine Version \(Versioning.VerySimpleVersionString()), Build \(Versioning.Build)"
+//        InitializeKeyboard()
+        StartText = "\(Versioning.ApplicationName) Version \(Versioning.VerySimpleVersionString()), Build \(Versioning.Build)"
         CurrentText = StartText
         UpdateOutput()
         TextInput.text = StartText
         UserShapeManager.LoadUserShapes()
         
-        ShortMessageLabel.layer.borderColor = UIColor.black.cgColor
-        ShortMessageLabel.layer.borderWidth = 0.5
-        ShortMessageLabel.layer.cornerRadius = 5.0
+        ShortMessageLabel.layer.borderColor = UIConstants.BorderColor
+        ShortMessageLabel.layer.borderWidth = UIConstants.BorderThickness
+        ShortMessageLabel.layer.cornerRadius = UIConstants.CornerRadius
         ShortMessageLabel.isHidden = true
         ShortMessageLabel.alpha = 0.0
-        ShortMessageLabel.layer.zPosition = -1000
+        ShortMessageLabel.layer.zPosition = UIConstants.HiddenZ
         ShortMessageLabel.isUserInteractionEnabled = true
         HideTap = UITapGestureRecognizer(target: self,
                                          action: #selector(CloseMessage))
@@ -101,11 +101,25 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         //let SurfacePanGesture = UIPanGestureRecognizer(target: self, action: #selector(PanGestureHandler))
         //TextOutput.addGestureRecognizer(SurfacePanGesture)
         
+        TextDoneButton.isEnabled = false
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(TextInputNotifications(_:)),
+                                               name: UITextView.textDidBeginEditingNotification,
+                                               object: TextInput)
+        
         print("Screen.size=(\(UIScreen.main.bounds.width),\(UIScreen.main.bounds.height))")
     }
     
-    @objc func HandleTextInputReturn()
+    @objc func TextInputNotifications(_ Notice: Notification)
     {
+        print("Started editing text")
+        TextDoneButton.isEnabled = true
+    }
+    
+    @IBAction func TextDoneButtonHandler(_ sender: Any)
+    {
+        print("At text done button handler")
+        TextDoneButton.isEnabled = false
         self.TextInput.resignFirstResponder()
     }
     
@@ -115,7 +129,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     {
         print("Short message tapped")
         ShortMessageLabel.layer.removeAllAnimations()
-        ShortMessageLabel.layer.zPosition = -1000
+        ShortMessageLabel.layer.zPosition = UIConstants.HiddenZ
         ShortMessageLabel.alpha = 0.0
         ShortMessageLabel.isHidden = true
         ShortMessageLabel.resignFirstResponder()
@@ -560,10 +574,12 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         switch sender
         {                
             case CommandScroller:
-                return CGSize(width: 60, height: 60)
+                return CGSize(width: UIConstants.MainIconWidth,
+                              height: UIConstants.MainIconHeight)
                 
             default:
-                return CGSize(width: 50, height: 50)
+                return CGSize(width: UIConstants.DefaultIconWidth,
+                              height: UIConstants.DefaultIconHeight)
         }
     }
     
@@ -781,7 +797,9 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     @IBOutlet weak var SettingSlicePanel: UIView!
     @IBOutlet weak var SliceContainer: UIView!
     
+    @IBOutlet weak var TextStack: UIStackView!
     @IBOutlet weak var ShortMessageLabel: UILabel!
- 
+
+    @IBOutlet weak var TextDoneButton: UIButton!
     var PreviousController: UIViewController? = nil
 }
