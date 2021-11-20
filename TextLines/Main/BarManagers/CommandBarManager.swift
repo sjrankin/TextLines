@@ -77,7 +77,7 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
     func MakeCommandButtons(With Raw: [String])
     {
         CurrentCommandButtons.removeAll()
-        let HGap = delegate?.ButtonHorizontalGap(self) ?? 10.0
+        let HGap = delegate?.ButtonHorizontalGap(self) ?? UIConstants.HorizontalGap
         var Index = 0
         var CumulativeWidth: CGFloat = 0.0
         for SomeCommand in Raw
@@ -95,7 +95,7 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
                     {
                         let LongPress = UILongPressGestureRecognizer2(target: self,
                                                                       action: #selector(HandleLongTap))
-                        LongPress.minimumPressDuration = 0.75
+                        LongPress.minimumPressDuration = UIConstants.CommandLongPressDuration
                         LongPress.ForCommand = ActualCommand
                         CommandImage.addGestureRecognizer(LongPress)
                     }
@@ -149,67 +149,68 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
         var Image: UIImage? = nil
         var SVGImage: Bool = false
         let ButtonColor = delegate?.ButtonColor(self, Command: For) ?? UIColor.systemBlue
+        let ImageName = ReturnButtonImageName(For: For)
         switch For
         {
             case .ActionButton:
-                Image = LoadImage(Name: "ThreeDotsInCircleIcon", Type: .SVG)
+                Image = LoadImage(Name: ImageName, Type: .SVG)
                 SVGImage = true
                 
             case .ProjectButton:
-                Image = LoadImage(Name: "square.3.stack.3d", Type: .System)
+                Image = LoadImage(Name: ImageName, Type: .System)
                 
             case .CameraButton:
-                Image = LoadImage(Name: "camera", Type: .System)
+                Image = LoadImage(Name: ImageName, Type: .System)
                 
             case .FontButton:
-                Image = LoadImage(Name: "f.circle", Type: .System)
+                Image = LoadImage(Name: ImageName, Type: .System)
                 
             case .TextFormatButton:
-                Image = LoadImage(Name: "bold.italic.underline", Type: .System)
+                Image = LoadImage(Name: ImageName, Type: .System)
                 
             case .PlayButton:
                 if Settings.GetBool(.Animating)
                 {
-                    Image = LoadImage(Name: "stop", Type: .System)
+                    Image = LoadImage(Name: ImageName, Type: .System)
                 }
                 else
                 {
-                    Image = LoadImage(Name: "play", Type: .System)
+                    Image = LoadImage(Name: ImageName, Type: .System)
                 }
                 
             case .SaveButton:
-                Image = LoadImage(Name: "square.and.arrow.down", Type: .System)
+                Image = LoadImage(Name: ImageName, Type: .System)
                 
             case .ShareButton:
-                Image = LoadImage(Name: "square.and.arrow.up", Type: .System)
+                Image = LoadImage(Name: ImageName, Type: .System)
                 
             case .UserButton:
-                Image = LoadImage(Name: "person.crop.circle", Type: .System)
+                Image = LoadImage(Name: ImageName, Type: .System)
                 
             case .VideoButton:
-                Image = LoadImage(Name: "VideoCamera", Type: .SVG)
+                Image = LoadImage(Name: ImageName, Type: .SVG)
                 SVGImage = true
                 
             case .BackgroundButton:
-                Image = LoadImage(Name: "photo.fill.on.rectangle.fill", Type: .System)
+                Image = LoadImage(Name: ImageName, Type: .System)
         
             case .ShapeOptionsButton:
-                Image = LoadImage(Name: "gearshape.2", Type: .System)
+                Image = LoadImage(Name: ImageName, Type: .System)
                 
             case .AnimationButton:
-                Image = LoadImage(Name: "film.circle", Type: .System)
+                Image = LoadImage(Name: ImageName, Type: .System)
                 
             case .DimensionsButton:
-                Image = LoadImage(Name: "square.dashed.inset.filled", Type: .System)
+                Image = LoadImage(Name: ImageName, Type: .System)
         
             case .GuidelinesButton:
-                Image = LoadImage(Name: "squareshape.split.3x3", Type: .System)
+                Image = LoadImage(Name: ImageName, Type: .System)
         }
         guard let FinalImage = Image else
         {
             Debug.FatalError("Error creating button image")
         }
-        let ImageSize = delegate?.CommandButtonSize(self, Command: For) ?? CGSize(width: 64, height: 64)
+        let ImageSize = delegate?.CommandButtonSize(self, Command: For) ?? CGSize(width: UIConstants.MainIconWidth, height: UIConstants.MainIconHeight)
         let IView = UIImageView2(frame: CGRect(origin: .zero, size: ImageSize))
         IView.image = FinalImage
         if SVGImage
@@ -223,29 +224,30 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
         }
         IView.contentMode = .scaleAspectFit
         IView.isUserInteractionEnabled = true
-        let Name = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: 70, height: 40)))
+        let Name = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: UIConstants.ButtonLabelWidth,
+                                                                     height: UIConstants.ButtonLabelHeight)))
         Name.text = NameForCommand(For)
         Name.textAlignment = .center
         let TextColor = delegate?.TitleColor(self, Command: For) ?? UIColor(named: "GeneralTextColor")
         Name.textColor = TextColor
-        let FontSize = delegate?.TitleFontSize(self, Command: For) ?? 14.0
+        let FontSize = delegate?.TitleFontSize(self, Command: For) ?? UIConstants.ButtonLabelDefaultFontSize
         Name.font = UIFont.boldSystemFont(ofSize: FontSize)
         let VStack = UIStackView(arrangedSubviews: [IView, Name])
         VStack.frame = CGRect(x: 0,
                               y: 0,
-                              width: max(ImageSize.width, 70),
-                              height: ImageSize.height + 20)
+                              width: max(ImageSize.width, UIConstants.ButtonLabelWidth),
+                              height: ImageSize.height + UIConstants.ButtonLabelHeight)
         VStack.axis = .vertical
-        let HGap = delegate?.ButtonHorizontalGap(self) ?? 10.0
-        let InitialGap = delegate?.InitialGap(self) ?? 16.0
+        let HGap = delegate?.ButtonHorizontalGap(self) ?? UIConstants.HorizontalGap
+        let InitialGap = delegate?.InitialGap(self) ?? UIConstants.InitialGap
         let FinalView = UIView2(frame: CGRect(x: InitialGap + (CGFloat(Index) * (ImageSize.width + HGap)),
-                                              y: 5,
-                                              width: max(ImageSize.width, 70),
-                                              height: 90))
+                                              y: UIConstants.ButtonYLocation,
+                                              width: max(ImageSize.width, UIConstants.ButtonLabelWidth),
+                                              height: UIConstants.FinalButtonHeight))
         FinalView.addSubview(VStack)
         FinalView.isUserInteractionEnabled = true
         FinalView.Tag = For
-        FinalView.layer.zPosition = 1000
+        FinalView.layer.zPosition = UIConstants.VisibleZ
         return FinalView
     }
     
@@ -333,6 +335,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
     /// Holds current command buttons.
     var CurrentCommandButtons = [(ButtonAction: CommandButtons, ButtonImage: UIView2)]()
     
+    /// Returns the current index of the passed button.
+    /// - Parameter Button: The button whose index (into the button array) is returned.
+    /// - Returns: Index of `Button` if found, nil if not found.
     func IndexOfButton(_ Button: CommandButtons) -> Int?
     {
         for Index in 0 ..< CurrentCommandButtons.count
@@ -345,6 +350,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
         return nil
     }
     
+    /// Determines if the passed button exists in the current set of buttons.
+    /// - Parameter Button: The button to determine existence.
+    /// - Returns: True if the button exists, false if not.
     func ActionButtonExists(_ Button: CommandButtons) -> Bool
     {
         for (TheAction, _) in CurrentCommandButtons
@@ -357,9 +365,12 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
         return false
     }
     
+    /// Add a new button to the command bar.
+    /// - Note: `.ActionButton` and `.ShapeOptionsButton` cannot be added.
+    /// - Parameter Add: The new button to add.
     func AddCommandButton(_ Add: CommandButtons)
     {
-        if Add == .ActionButton
+        if Add == .ActionButton || Add == .ShapeOptionsButton
         {
             return
         }
@@ -369,9 +380,12 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
         }
     }
     
+    /// Remove the passed button from the command bar.
+    /// - Note: `.ActionButton` and `.ShapeOptionsButton` cannot be removed.
+    /// - Parameter Remove: The new button to remove.
     func RemoveCommandButton(_ Remove: CommandButtons)
     {
-        if Remove == .ActionButton
+        if Remove == .ActionButton || Remove == .ShapeOptionsButton
         {
             return
         }
@@ -386,11 +400,17 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
     
     // MARK: - Command bar controlling protocol functions.
     
+    /// Return the title for the passed button.
+    /// - Parameter For: The button whose title will be returned.
+    /// - Returns: Title for the passed button.
     func ReturnButtonTitle(For: CommandButtons) -> String
     {
         return NameForCommand(For)
     }
     
+    /// Return a long title for the passed button.
+    /// - Parameter For: The button whose long title will be returned.
+    /// - Returns: The long title for the passed button.
     func ReturnButtonLongTitle(For: CommandButtons) -> String
     {
         switch For
@@ -449,6 +469,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
         }
     }
     
+    /// Return the name of the image for the passed button command.
+    /// - Parameter For: The command whose image name is returned.
+    /// - Returns: Name of the image to use for the passed command.
     func ReturnButtonImageName(For: CommandButtons) -> String
     {
         switch For
@@ -507,6 +530,12 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
         }
     }
     
+    /// Return a `UIImageView2` that represents an image (with appropriate tinting) of the passed
+    /// command.
+    /// - Parameter For: The command whose image will be returned.
+    /// - Parameter Size: The size of the image to return.
+    /// - Parameter ButtonColor: The color to use to tint the button.
+    /// - Returns: `UIImageView2` instance holding the image of the button.
     func ReturnButtonImage(For: CommandButtons, Size: CGSize,
                            ButtonColor: UIColor) -> UIImageView2
     {
