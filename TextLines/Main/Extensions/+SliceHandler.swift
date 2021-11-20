@@ -47,7 +47,7 @@ extension ViewController
                         {
             _ in
             self.SettingSlicePanel.resignFirstResponder()
-            self.SettingSlicePanel.layer.zPosition = -1000
+            self.SettingSlicePanel.layer.zPosition = UIConstants.HiddenZ
         })
     }
     
@@ -118,7 +118,7 @@ extension ViewController
                         {
             _ in
             self.SettingSlicePanel.resignFirstResponder()
-            self.SettingSlicePanel.layer.zPosition = -1000
+            self.SettingSlicePanel.layer.zPosition = UIConstants.HiddenZ
         })
     }
 }
