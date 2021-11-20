@@ -24,7 +24,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
                         {
             _ in
             self.SettingPanel.resignFirstResponder()
-            self.SettingPanel.layer.zPosition = -1000
+            self.SettingPanel.layer.zPosition = UIConstants.HiddenZ
         })
     }
     
