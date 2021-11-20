@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CommandBarManager: NSObject, UIScrollViewDelegate
+class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtocol
 {
     /// Delegate to the main view. When set, late initialization is executed.
     public weak var delegate: CommandBarProtocol? = nil
@@ -383,4 +383,205 @@ class CommandBarManager: NSObject, UIScrollViewDelegate
     
     var CommandBar: UIScrollView? = nil
     var CommandView: UIView? = nil
+    
+    // MARK: - Command bar controlling protocol functions.
+    
+    func ReturnButtonTitle(For: CommandButtons) -> String
+    {
+        return NameForCommand(For)
+    }
+    
+    func ReturnButtonLongTitle(For: CommandButtons) -> String
+    {
+        switch For
+        {
+            case .UserButton:
+                return "User shape manager"
+                
+            case .ActionButton:
+                return "Actions and settings"
+                
+            case .ShareButton:
+                return "Share image"
+                
+            case .SaveButton:
+                return "Save image"
+                
+            case .PlayButton:
+                if Settings.GetBool(.Animating)
+                {
+                    return "Stop animation"
+                }
+                else
+                {
+                    return "Play animation"
+                }
+                
+            case .TextFormatButton:
+                return "Format text"
+                
+            case .FontButton:
+                return "Text font"
+                
+            case .ProjectButton:
+                return "Project settings"
+                
+            case .CameraButton:
+                return "Take a picture"
+                
+            case .VideoButton:
+                return "Make a video"
+                
+            case .BackgroundButton:
+                return "Background settings"
+                
+            case .ShapeOptionsButton:
+                return "Current shape options"
+                
+            case .AnimationButton:
+                return "Animation settings"
+                
+            case .DimensionsButton:
+                return "Image size setting"
+                
+            case .GuidelinesButton:
+                return "Gridlines and shape lines"
+        }
+    }
+    
+    func ReturnButtonImageName(For: CommandButtons) -> String
+    {
+        switch For
+        {
+            case .ActionButton:
+                return "ThreeDotsInCircleIcon"
+                
+            case .ProjectButton:
+                return "square.3.stack.3d"
+                
+            case .CameraButton:
+                return "camera"
+                
+            case .FontButton:
+                return "f.circle"
+                
+            case .TextFormatButton:
+                return "bold.italic.underline"
+                
+            case .PlayButton:
+                if Settings.GetBool(.Animating)
+                {
+                    return "stop"
+                }
+                else
+                {
+                   return "play"
+                }
+                
+            case .SaveButton:
+                return "square.and.arrow.down"
+                
+            case .ShareButton:
+                return "square.and.arrow.up"
+                
+            case .UserButton:
+                return "person.crop.circle"
+                
+            case .VideoButton:
+                return "VideoCamera"
+                
+            case .BackgroundButton:
+                return "photo.fill.on.rectangle.fill"
+                
+            case .ShapeOptionsButton:
+                return "gearshape.2"
+                
+            case .AnimationButton:
+                return "film.circle"
+                
+            case .DimensionsButton:
+                return "square.dashed.inset.filled"
+                
+            case .GuidelinesButton:
+                return "squareshape.split.3x3"
+        }
+    }
+    
+    func ReturnButtonImage(For: CommandButtons, Size: CGSize,
+                           ButtonColor: UIColor) -> UIImageView2
+    {
+        var Image: UIImage? = nil
+        var SVGImage = false
+        let ImageName = ReturnButtonImageName(For: For)
+        switch For
+        {
+            case .ActionButton:
+                Image = LoadImage(Name: ImageName, Type: .SVG)
+                SVGImage = true
+                
+            case .ProjectButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                
+            case .CameraButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                
+            case .FontButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                
+            case .TextFormatButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                
+            case .PlayButton:
+                    Image = LoadImage(Name: ImageName, Type: .System)
+                
+            case .SaveButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                
+            case .ShareButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                
+            case .UserButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                
+            case .VideoButton:
+                Image = LoadImage(Name: ImageName, Type: .SVG)
+                SVGImage = true
+                
+            case .BackgroundButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                
+            case .ShapeOptionsButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                
+            case .AnimationButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                
+            case .DimensionsButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                
+            case .GuidelinesButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+        }
+        
+        guard let FinalImage = Image else
+        {
+            Debug.FatalError("Error creating button image")
+        }
+        
+        let IView = UIImageView2(frame: CGRect(origin: .zero, size: Size))
+        IView.image = FinalImage
+        if SVGImage
+        {
+            IView.image = IView.image?.withRenderingMode(.alwaysTemplate)
+            IView.tintColor = ButtonColor
+        }
+        else
+        {
+            IView.tintColor = ButtonColor
+        }
+        IView.contentMode = .scaleAspectFit
+        IView.isUserInteractionEnabled = true
+        
+        return IView
+    }
 }
