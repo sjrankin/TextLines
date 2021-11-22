@@ -110,24 +110,28 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         print("Screen.size=(\(UIScreen.main.bounds.width),\(UIScreen.main.bounds.height))")
     }
     
+    /// User started to enter/edit text. Enable the text done button.
+    /// - Parameter Notice: Not used.
     @objc func TextInputNotifications(_ Notice: Notification)
     {
-        print("Started editing text")
         TextDoneButton.isEnabled = true
     }
     
+    /// Used finished editing text. disable the text done button and resign first responder for the
+    /// text field to force the keyboard to disappear and the get the final text.
+    /// - Parameter sender: Not used.
     @IBAction func TextDoneButtonHandler(_ sender: Any)
     {
-        print("At text done button handler")
         TextDoneButton.isEnabled = false
         self.TextInput.resignFirstResponder()
     }
     
     var HideTap: UITapGestureRecognizer? = nil
     
+    /// Respond to the user tapping the short message by closing the message immediately.
+    /// - Parameter Recognizer: Not used.
     @objc func CloseMessage(_ Recognizer: UITapGestureRecognizer)
     {
-        print("Short message tapped")
         ShortMessageLabel.layer.removeAllAnimations()
         ShortMessageLabel.layer.zPosition = UIConstants.HiddenZ
         ShortMessageLabel.alpha = 0.0
@@ -656,6 +660,12 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                     case .Ellipse:
                         ShowSliceHandler(.EllipseSettings)
                         
+                    case .Rectangle:
+                        ShowSliceHandler(.RectangleSettings)
+                        
+                    case .Triangle:
+                        ShowSliceHandler(.TriangleSettings)
+                        
                     default:
                         break
                 }
@@ -779,6 +789,8 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     /// ID used for settings subscriptions.
     var ClassID = UUID()
     
+    var PreviousController: UIViewController? = nil
+    
     // MARK: - Interface Builder outlets.
     
     @IBOutlet weak var TextOutput: UIImageView!
@@ -800,6 +812,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     @IBOutlet weak var TextStack: UIStackView!
     @IBOutlet weak var ShortMessageLabel: UILabel!
 
+    @IBOutlet weak var SliceControllerHeight: NSLayoutConstraint!
+
     @IBOutlet weak var TextDoneButton: UIButton!
-    var PreviousController: UIViewController? = nil
 }
