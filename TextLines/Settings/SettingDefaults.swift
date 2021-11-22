@@ -51,26 +51,26 @@ extension Settings
         .Animating: false,
         
         // MARK: - Circle attriubtes.
-        .CircleAngle: 1.57079632679,        //pi / 2
+        .CircleAngle: 1.57079632679,        //pi ÷ 2
         .CircleDiameter: 1000,
         
         // MARK: - Elliptical attributes.
-        .EllipseAngle: 1.57079632679,       //pi / 2
+        .EllipseAngle: 1.57079632679,       //pi ÷ 2
         .EllipseMajor: 0.95,
         .EllipseMinor: 0.65,
         
         // MARK: - Square/rectangle attributes.
-        .RectangleWidth: 1024,
-        .RectangleHeight: 1024,
+        .RectangleWidth: 0.9,
+        .RectangleHeight: 0.9,
         .RectangleRoundedCorners: true,
         
         // MARK: - Triangle attributes.
-        .TriangleBase: 500,
-        .TriangleHeight: 250,
+        .TriangleBase: 0.9,
+        .TriangleHeight: 0.9,
         .TriangleRounded: false,
         
         // MARK: - Line attributes
-        .LineLength: 500,
+        .LineLength: 0.9,
         .LineType: LineOptions.Horizontal,
         .LineStyle: LineStyles.Straight,
         
