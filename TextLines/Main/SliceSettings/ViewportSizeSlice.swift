@@ -15,8 +15,9 @@ class ViewportSizeSlice: UIViewController, UITextFieldDelegate
         super.viewDidLoad()
         
         self.view.clipsToBounds = true
-        self.view.layer.cornerRadius = 5.0
-        self.view.layer.borderColor = UIColor.black.cgColor
+        self.view.layer.cornerRadius = UIConstants.CornerRadius
+        self.view.layer.borderColor = UIConstants.DarkBorder
+        self.view.layer.borderWidth = UIConstants.ThickBorder
         
         self.WidthTextBox.addTarget(self, action: #selector(OnWidthReturn),
                                      for: UIControl.Event.editingDidEndOnExit)
