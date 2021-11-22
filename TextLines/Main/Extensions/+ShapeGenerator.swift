@@ -26,13 +26,16 @@ extension ViewController
         switch Shape
         {
             case .Rectangle:
-                let RWidth = Settings.GetInt(.RectangleWidth, IfZero: 400)
-                let RHeight = Settings.GetInt(.RectangleHeight, IfZero: 400)
-                print("RWidth=\(RWidth), RHeight=\(RHeight)")
+                var Width = Double(Settings.GetInt(.ViewportWidth))
+                Width = Width * Double(Settings.GetDoubleNormal(.RectangleWidth))
+                var Height = Double(Settings.GetInt(.ViewportHeight))
+                Height = Height * Double(Settings.GetDoubleNormal(.RectangleHeight))
+                let Top = (ImageHeight / 2) - (Int(Height) / 2)
+                let Left = (ImageWidth / 2) - (Int(Width) / 2)
                 let Radius = Settings.GetBool(.RectangleRoundedCorners) ? 20 : 0
-                BezierPath = UIBezierPath(roundedRect: CGRect(origin: CGPoint(x: 20, y: 20),
-                                                              size: CGSize(width: RWidth - 40,
-                                                                           height: RHeight - 40)),
+                BezierPath = UIBezierPath(roundedRect: CGRect(origin: CGPoint(x: 20 + Left, y: 20 + Top),
+                                                              size: CGSize(width: Width - 40,
+                                                                           height: Height - 40)),
                                           cornerRadius: CGFloat(Radius))
                 
             case .Circle:
@@ -44,8 +47,6 @@ extension ViewController
                                                                       height: Diameter - 40)))
                 
             case .Ellipse:
-//                let Width = Settings.GetInt(.EllipseMajor, IfZero: 500)
-//                let Height = Settings.GetInt(.EllipseMinor, IfZero: 300)
                 var Width = Double(Settings.GetInt(.ViewportWidth))
                 Width = Width * Double(Settings.GetDoubleNormal(.EllipseMajor))
                 var Height = Double(Settings.GetInt(.ViewportHeight))
@@ -59,8 +60,10 @@ extension ViewController
             case .Triangle:
                 VAdder = 50
                 HAdder = 50
-                let Base = CGFloat(Settings.GetInt(.TriangleBase, IfZero: 500))
-                let Height = CGFloat(Settings.GetInt(.TriangleHeight, IfZero: 500))
+                var Base = CGFloat(Settings.GetDoubleNormal(.TriangleBase))
+                Base = Base * Double(Settings.GetInt(.ViewportWidth))
+                var Height = CGFloat(Settings.GetDoubleNormal(.TriangleHeight))
+                Height = Height * Double(Settings.GetInt(.ViewportHeight))
                 print("Base=\(Base), Height=\(Height)")
                 if Settings.GetBool(.TriangleRounded)
                 {
@@ -84,28 +87,46 @@ extension ViewController
                 else
                 {
                     BezierPath = UIBezierPath()
+                    #if true
+                    let CenterX = CGFloat(Settings.GetInt(.ViewportWidth) / 2)
+                    var HalfWidth = Base / 2.0
+                    let HorizontalOffset = (Double(Settings.GetInt(.ViewportWidth) / 2) - HalfWidth) / 2.0
+                    HalfWidth = HalfWidth + HorizontalOffset
+                    let CenterY = CGFloat(Settings.GetInt(.ViewportHeight) / 2)
+                    let Top = CenterY - (Height / 2.0)
+                    let Bottom = CenterY + Height / 2.0
+                    BezierPath?.move(to: CGPoint(x: HalfWidth, y: Bottom))
+                    BezierPath?.addLine(to: CGPoint(x: CenterX - HalfWidth, y: Bottom))
+                    BezierPath?.addLine(to: CGPoint(x: HalfWidth, y: Top))
+                    BezierPath?.addLine(to: CGPoint(x: CenterX + HalfWidth, y: Bottom))
+                    BezierPath?.addLine(to: CGPoint(x: HalfWidth + 10, y: Bottom))
+                    #else
                     let HOffset: CGFloat = 20
                     let VOffset: CGFloat = 20
                     BezierPath?.move(to: CGPoint(x: (Base / 2), y: 0 + VOffset))
                     BezierPath?.addLine(to: CGPoint(x: Base - HOffset, y: Height - VOffset))
                     BezierPath?.addLine(to: CGPoint(x: 0 + HOffset, y: Height - VOffset))
                     BezierPath?.addLine(to: CGPoint(x: (Base / 2), y: 0 + VOffset))
+                    #endif
                 }
                 
             case .Line:
                 BezierPath = UIBezierPath()
-                let Length = Settings.GetInt(.LineLength, IfZero: 500)
+                var Length = Settings.GetDoubleNormal(.LineLength)
                 switch Settings.GetEnum(ForKey: .LineType, EnumType: LineOptions.self, Default: .Horizontal)
                 {
                     case .Horizontal:
+                        Length = Length * Double(Settings.GetInt(.ViewportWidth))
                         BezierPath?.move(to: CGPoint(x: 20, y: 20))
                         BezierPath?.addLine(to: CGPoint(x: Length, y: 20))
                         
                     case .Vertical:
+                        Length = Length * Double(Settings.GetInt(.ViewportHeight))
                         BezierPath?.move(to: CGPoint(x: 20, y: 20))
                         BezierPath?.addLine(to: CGPoint(x: 20, y: Length))
                         
                     case .DiagonalDescending:
+                        Length = Length * Double(Settings.GetInt(.ViewportWidth))
                         BezierPath?.move(to: CGPoint(x: 20, y: 20))
                         let Theta = 45.0.Radians
                         let X = Double(Length) * cos(Theta)
@@ -113,6 +134,7 @@ extension ViewController
                         BezierPath?.move(to: CGPoint(x: X, y: Y))
                         
                     case .DiagonalAscending:
+                        Length = Length * Double(Settings.GetInt(.ViewportWidth))
                         BezierPath?.move(to: CGPoint(x: 20, y: Length))
                         let Theta = -45.0.Radians
                         let X = Double(Length) * cos(Theta)
