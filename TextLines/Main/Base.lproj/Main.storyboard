@@ -273,6 +273,7 @@
                         <outlet property="ShapeScroller" destination="3ly-R4-QpG" id="Kcm-OL-gSJ"/>
                         <outlet property="ShortMessageLabel" destination="FJe-s3-GDm" id="UmD-er-dcD"/>
                         <outlet property="SliceContainer" destination="1I1-2l-2Qu" id="2A8-M2-bUu"/>
+                        <outlet property="SliceControllerHeight" destination="ZCx-wt-YqW" id="DaG-mR-hLY"/>
                         <outlet property="TextDoneButton" destination="mgr-UI-gTK" id="zPc-tS-gsW"/>
                         <outlet property="TextInput" destination="FAG-0n-9uY" id="12H-Kc-ElF"/>
                         <outlet property="TextOutput" destination="Laq-CI-FFf" id="2Hw-QG-Ddx"/>
