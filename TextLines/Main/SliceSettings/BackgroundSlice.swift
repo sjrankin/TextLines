@@ -21,19 +21,25 @@ class BackgroundSlice: UIViewController, UINavigationControllerDelegate,
     {
         super.viewDidLoad()
         
-        ColorSample.layer.borderWidth = 1.0
-        ColorSample.layer.borderColor = UIColor.gray.cgColor
-        ColorSample.layer.cornerRadius = 5.0
-        ColorSample.clipsToBounds = true
+        self.view.clipsToBounds = true
+        self.view.layer.cornerRadius = UIConstants.CornerRadius
+        self.view.layer.borderColor = UIConstants.DarkBorder
+        self.view.layer.borderWidth = UIConstants.ThickBorder
         
-        ImageSample.layer.borderWidth = 1.0
-        ImageSample.layer.borderColor = UIColor.gray.cgColor
-        ImageSample.layer.cornerRadius = 5.0
+        ImageSample.layer.borderWidth = UIConstants.MediumBorder
+        ImageSample.layer.borderColor = UIConstants.BorderColor
+        ImageSample.layer.cornerRadius = UIConstants.CornerRadius
         ImageSample.clipsToBounds = true
+        
+        ColorSample.layer.borderWidth = UIConstants.MediumBorder
+        ColorSample.layer.borderColor = UIConstants.BorderColor
+        ColorSample.layer.cornerRadius = UIConstants.CornerRadius
+        ColorSample.clipsToBounds = true
         
         BackgroundColorWell.clipsToBounds = true
         BackgroundColorWell.backgroundColor = UIColor.clear
-        BackgroundColorWell.selectedColor = Settings.GetColor(.BackgroundColor, UIColor.red)
+        let BGColor = Settings.GetColor(.BackgroundColor, UIColor.red)
+        BackgroundColorWell.selectedColor = BGColor
         BackgroundColorWell.supportsAlpha = true
         BackgroundColorWell.addTarget(self, action: #selector(BackgroundColorChangedHandler(_:)), for: .valueChanged)
 
@@ -41,9 +47,13 @@ class BackgroundSlice: UIViewController, UINavigationControllerDelegate,
         {
             case .Color:
                 BackgroundTypeSegment.selectedSegmentIndex = 0
+                AlphaLabel.isHidden = false
+                let Alpha = BGColor.a.RoundedTo(3)
+                AlphaLabel.text = "Alpha = \(Alpha)"
                 
             case .Image:
                 BackgroundTypeSegment.selectedSegmentIndex = 1
+                AlphaLabel.isHidden = true
         }
         
         InitializeBackgroundSample()
@@ -92,14 +102,16 @@ class BackgroundSlice: UIViewController, UINavigationControllerDelegate,
                 let BGColor = Settings.GetColor(.BackgroundColor, UIColor.white)
                 ColorLayer?.frame = CGRect(x: 0,
                                            y: 0,
-                                           width: ImageSample.bounds.size.width + 20,
-                                           height: ImageSample.bounds.size.height)
+                                           width: ColorSample.bounds.size.width,
+                                           height: ColorSample.bounds.size.height)
                 ColorLayer?.backgroundColor = BGColor.cgColor
                 ColorLayer?.opacity = Float(BGColor.a)
                 ColorLayer?.zPosition = 100
                 ColorSample.layer.addSublayer(ColorLayer!)
                 ColorSample.isHidden = false
                 ImageSample.isHidden = true
+                let Alpha = BGColor.a.RoundedTo(2)
+                AlphaLabel.text = "Alpha = \(Alpha)"
                 
             case 1:
                 //Image background
@@ -191,11 +203,13 @@ class BackgroundSlice: UIViewController, UINavigationControllerDelegate,
                     BackgroundImageButton.isEnabled = false
                     BackgroundColorLabel.isEnabled = true
                     BackgroundColorWell.isEnabled = true
+                    AlphaLabel.isHidden = false
                     
                 case 1:
                     BackgroundImageButton.isEnabled = true
                     BackgroundColorLabel.isEnabled = false
                     BackgroundColorWell.isEnabled = false
+                    AlphaLabel.isHidden = true
                     
                 default:
                     break
@@ -206,6 +220,7 @@ class BackgroundSlice: UIViewController, UINavigationControllerDelegate,
     var ColorLayer: CALayer? = nil
     var Checks: UIImage? = nil
     
+    @IBOutlet weak var AlphaLabel: UILabel!
     @IBOutlet weak var ColorSample: UIImageView!
     @IBOutlet weak var ImageSample: UIImageView!
     @IBOutlet weak var BackgroundColorWell: UIColorWell!
