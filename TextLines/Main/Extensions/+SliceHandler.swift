@@ -33,6 +33,7 @@ extension ViewController
         })
     }
     
+    /// Hide the slice handler.
     func HideSliceHandler()
     {
         TextInput.isUserInteractionEnabled = true
@@ -51,10 +52,14 @@ extension ViewController
         })
     }
     
+    /// Load a settings slice.
+    /// - Parameter Slice: The slice to load.
     func LoadSlice(_ Slice: SliceTypes)
     {
         let Story = UIStoryboard(name: "MainSettingSlices", bundle: nil)
         var VC: UIViewController!
+         let NewHeight = HeightFor(Slice: Slice)
+            SliceControllerHeight.constant = NewHeight
         switch Slice
         {
             case .ViewportSize:
@@ -72,6 +77,12 @@ extension ViewController
             case .EllipseSettings:
                 VC = Story.instantiateViewController(withIdentifier: "OvalSettingSlice") as? OvalSettingSlice
             
+            case .RectangleSettings:
+                VC = Story.instantiateViewController(withIdentifier: "RectangleSettingSlice") as? RectangleSettingSlice
+               
+            case .TriangleSettings:
+                VC = Story.instantiateViewController(withIdentifier: "TriangleSettingSlice") as? TriangleSettingSlice
+                
             case .GuidelineSettings:
                 VC = Story.instantiateViewController(withIdentifier: "GuidelinesSlice") as? GuidelineSettingSlice
             
@@ -104,6 +115,21 @@ extension ViewController
         ActualVC.didMove(toParent: self)
     }
     
+    /// Return the height to use for the slice view. Some slices need more room.
+    /// - Returns: The height of the slice view.
+    func HeightFor(Slice: SliceTypes) -> CGFloat
+    {
+        switch Slice
+        {
+            case .RectangleSettings,
+                    .TriangleSettings:
+                return 310.0 + 70.0
+                
+            default:
+                return 310.0
+        }
+    }
+    
     @IBAction func CloseSliceButtonHandler(_ sender: Any)
     {
         TextInput.isUserInteractionEnabled = true
@@ -121,4 +147,6 @@ extension ViewController
             self.SettingSlicePanel.layer.zPosition = UIConstants.HiddenZ
         })
     }
+    
+    
 }
