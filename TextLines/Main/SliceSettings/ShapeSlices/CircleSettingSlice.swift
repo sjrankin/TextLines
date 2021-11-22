@@ -16,9 +16,9 @@ class CircleSettingSlice: UIViewController, UITextFieldDelegate,
         super.viewDidLoad()
         
         self.view.clipsToBounds = true
-        self.view.layer.cornerRadius = 5.0
-        self.view.layer.borderColor = UIColor.black.cgColor
-        self.view.layer.borderWidth = 1.5
+        self.view.layer.cornerRadius = UIConstants.CornerRadius
+        self.view.layer.borderColor = UIConstants.DarkBorder
+        self.view.layer.borderWidth = UIConstants.ThickBorder
         
         Settings.AddSubscriber(self)
         let VWidth = Settings.GetInt(.ViewportWidth, IfZero: 1024)
