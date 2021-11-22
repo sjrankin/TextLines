@@ -191,6 +191,10 @@ enum SliceTypes: String, CaseIterable
     case CircleSettings = "CircleSettings"
     /// Ellipse settings.
     case EllipseSettings = "EllipseSettings"
+    /// Rectangle settings.
+    case RectangleSettings = "RectangleSettings"
+    /// Triangle settings.
+    case TriangleSettings = "TriangleSettings"
     /// Background settings.
     case BackgroundSettings = "BackgroundSettings"
 }
