@@ -27,8 +27,14 @@ class UIConstants
     public static let DragCornerRadius: CGFloat = 4.0
     /// Standard view border thickness.
     public static let BorderThickness: CGFloat = 0.5
+    /// Medium thickness border.
+    public static let MediumBorder: CGFloat = 1.0
+    /// Thick border width.
+    public static let ThickBorder: CGFloat = 1.5
     /// Standard view border color.
     public static let BorderColor: CGColor = UIColor.gray.cgColor
+    /// Dark border color.
+    public static let DarkBorder: CGColor = UIColor.black.cgColor
     /// Z-level value for moving views out of the way.
     public static let HiddenZ: CGFloat = -1000.0
     /// Z-level value for moving views into view.
