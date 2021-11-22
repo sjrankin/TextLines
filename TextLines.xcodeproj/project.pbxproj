@@ -25,6 +25,7 @@
 		174979C12736F16B00811EA1 /* ViewportSizeSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174979C02736F16B00811EA1 /* ViewportSizeSlice.swift */; };
 		174979C32736F1B000811EA1 /* TextFormattingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174979C22736F1B000811EA1 /* TextFormattingSlice.swift */; };
 		174EF3E22749720F00BE0002 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174EF3E12749720F00BE0002 /* UIConstants.swift */; };
+		174EF3E42749AC7200BE0002 /* RectangleSettingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174EF3E32749AC7200BE0002 /* RectangleSettingSlice.swift */; };
 		175A620C272F22D600C4337C /* Main90°.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 175A620B272F22D600C4337C /* Main90°.storyboard */; };
 		1763FB7B273354EA00C20060 /* SettingsWrapperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763FB7A273354EA00C20060 /* SettingsWrapperController.swift */; };
 		1763FB7D2733552100C20060 /* SettingsWrapperDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763FB7C2733552100C20060 /* SettingsWrapperDelegate.swift */; };
@@ -143,6 +144,7 @@
 		17C76CC82734C4860078971D /* CellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C76CC72734C4860078971D /* CellProtocol.swift */; };
 		17ED392327165F0E00A04EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17ED392227165F0E00A04EAD /* Assets.xcassets */; };
 		17ED39252718C9D900A04EAD /* +ShapeEditorOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED39242718C9D900A04EAD /* +ShapeEditorOptions.swift */; };
+		17ED4299274B001500E6EF13 /* TriangleSettingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED4298274B001500E6EF13 /* TriangleSettingSlice.swift */; };
 		17FB2B182745787E00232AFB /* +SaveShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FB2B172745787E00232AFB /* +SaveShare.swift */; };
 		17FED86D273A0B7C00FC977E /* OvalSettingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FED86C273A0B7C00FC977E /* OvalSettingSlice.swift */; };
 		17FED86F2743248700FC977E /* BackgroundSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FED86E2743248700FC977E /* BackgroundSlice.swift */; };
@@ -164,6 +166,7 @@
 		174979C02736F16B00811EA1 /* ViewportSizeSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewportSizeSlice.swift; sourceTree = "<group>"; };
 		174979C22736F1B000811EA1 /* TextFormattingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormattingSlice.swift; sourceTree = "<group>"; };
 		174EF3E12749720F00BE0002 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
+		174EF3E32749AC7200BE0002 /* RectangleSettingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleSettingSlice.swift; sourceTree = "<group>"; };
 		175A620B272F22D600C4337C /* Main90°.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main90°.storyboard"; sourceTree = "<group>"; };
 		1763FB7A273354EA00C20060 /* SettingsWrapperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWrapperController.swift; sourceTree = "<group>"; };
 		1763FB7C2733552100C20060 /* SettingsWrapperDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWrapperDelegate.swift; sourceTree = "<group>"; };
@@ -288,6 +291,7 @@
 		17C76CC72734C4860078971D /* CellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProtocol.swift; sourceTree = "<group>"; };
 		17ED392227165F0E00A04EAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17ED39242718C9D900A04EAD /* +ShapeEditorOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ShapeEditorOptions.swift"; sourceTree = "<group>"; };
+		17ED4298274B001500E6EF13 /* TriangleSettingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleSettingSlice.swift; sourceTree = "<group>"; };
 		17FB2B172745787E00232AFB /* +SaveShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+SaveShare.swift"; sourceTree = "<group>"; };
 		17FED86C273A0B7C00FC977E /* OvalSettingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvalSettingSlice.swift; sourceTree = "<group>"; };
 		17FED86E2743248700FC977E /* BackgroundSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSlice.swift; sourceTree = "<group>"; };
@@ -666,6 +670,8 @@
 				17755043273705BC00E8DE79 /* NoOptionsSlice.swift */,
 				1775504527370A8600E8DE79 /* CircleSettingSlice.swift */,
 				17FED86C273A0B7C00FC977E /* OvalSettingSlice.swift */,
+				174EF3E32749AC7200BE0002 /* RectangleSettingSlice.swift */,
+				17ED4298274B001500E6EF13 /* TriangleSettingSlice.swift */,
 			);
 			path = ShapeSlices;
 			sourceTree = "<group>";
@@ -874,6 +880,8 @@
 				17ED39252718C9D900A04EAD /* +ShapeEditorOptions.swift in Sources */,
 				176730182716423300D408BC /* +Int.swift in Sources */,
 				176730482716423300D408BC /* SettingItem.swift in Sources */,
+				174EF3E42749AC7200BE0002 /* RectangleSettingSlice.swift in Sources */,
+				17ED4299274B001500E6EF13 /* TriangleSettingSlice.swift in Sources */,
 				176730292716423300D408BC /* BooleanCell2.swift in Sources */,
 				176730252716423300D408BC /* TitledImageUI.swift in Sources */,
 				1724DAAD2724F0FC000E6067 /* +StringArray.swift in Sources */,
