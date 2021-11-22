@@ -61,17 +61,17 @@ extension Settings
         .EllipseMinor: Double.self,
         
         // MARK: - Square/rectangle attributes.
-        .RectangleWidth: Int.self,
-        .RectangleHeight: Int.self,
+        .RectangleWidth: Double.self,
+        .RectangleHeight: Double.self,
         .RectangleRoundedCorners: Bool.self,
         
         // MARK: - Triangle attributes.
-        .TriangleBase: Int.self,
-        .TriangleHeight: Int.self,
+        .TriangleBase: Double.self,
+        .TriangleHeight: Double.self,
         .TriangleRounded: Bool.self,
         
         // MARK: - Line attributes
-        .LineLength: Int.self,
+        .LineLength: Double.self,
         .LineType: LineOptions.self,
         .LineStyle: LineStyles.self,
         
