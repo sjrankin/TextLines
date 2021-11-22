@@ -92,23 +92,23 @@ enum SettingKeys: String, CaseIterable
     case EllipseMinor = "EllipseMinor"
     
     // MARK: - Square/rectangle attributes
-    /// Int: Width of the rectangle.
+    /// Double: Width of the rectangle.
     case RectangleWidth = "RectangleWidth"
-    /// Int: Height of the rectangle.
+    /// Double: Height of the rectangle.
     case RectangleHeight = "RectangleHeight"
     /// Bool: If true, rectangles are drawn with rounded corners.
     case RectangleRoundedCorners = "RectangleRoundedCorners"
     
     // MARK: - Triangle attributes.
-    /// Int: Base length of the triangle.
+    /// Double: Base length of the triangle.
     case TriangleBase = "TriangleBase"
-    /// Int: Base height of the triangle.
+    /// Double: Base height of the triangle.
     case TriangleHeight = "TriangleHeight"
     /// Bool: Determines if the vertices of the triangle are rounded.
     case TriangleRounded = "TriangleRounded"
     
     // MARK: - Line attributes
-    /// Int: Length of the line.
+    /// Double: Length of the line.
     case LineLength = "LineLength"
     /// LineOptions: Orientation of the line.
     case LineType = "LineType"
