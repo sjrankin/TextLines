@@ -164,7 +164,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                 
             case .changed:
                 let HAcc = PreviousPanningX > Location.x ? -1.0 : 1.0
-                let VAcc = PreviousPanningY > Location.y ? -1.0 : 1.0
+                //let VAcc = PreviousPanningY > Location.y ? -1.0 : 1.0
                 PreviousPanningX = Location.x
                 PreviousPanningY = Location.y
                 let PercentX = Location.x / SurfaceWidth
@@ -632,6 +632,11 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
             case .TextFormatButton:
                 ShowSliceHandler(.TextFormatting)
                 
+                #if DEBUG
+            case .DebugButton:
+                ShowSliceHandler(.DebugSlice)
+                #endif
+                
             case .FontButton:
                 RunSlicedSettings(StoryboardName: "SettingsUI",
                                   ControllerName: "FontPickerController")
@@ -665,6 +670,12 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                         
                     case .Triangle:
                         ShowSliceHandler(.TriangleSettings)
+                        
+                    case .Octagon:
+                        ShowSliceHandler(.OctagonSettings)
+                        
+                    case .Hexagon:
+                        ShowSliceHandler(.HexagonSettings)
                         
                     default:
                         break
