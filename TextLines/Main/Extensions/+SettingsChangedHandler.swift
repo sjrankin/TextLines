@@ -40,6 +40,10 @@ extension ViewController: SettingChangedProtocol
             case .UserShapes:
                 break
                 
+            case .ViewportWidth,
+                    .ViewportHeight:
+                break
+                
             case .Animating:
                 CommandButtonList = Settings.GetStrings(.CommandButtonList,
                                                         Delimiter: ",",
