@@ -16,6 +16,9 @@ class CommandBarCustomization: UIViewController, UITableViewDelegate,
         super.viewDidLoad()
         
         RawSource = Settings.GetStrings(.CommandButtonList, Delimiter: ",", Default: ["ActionButton", "ShapeOptionsButton"])
+        #if !DEBUG
+        RawSource.removeAll(where: {$0 == "Debug"})
+        #endif
         for Other in CommandButtons.allCases
         {
             let SomeCommand = Other.rawValue
