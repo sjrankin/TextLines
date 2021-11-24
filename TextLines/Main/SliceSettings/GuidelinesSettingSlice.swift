@@ -19,6 +19,9 @@ class GuidelineSettingSlice: UIViewController
         self.view.layer.borderColor = UIConstants.DarkBorder
         self.view.layer.borderWidth = UIConstants.ThickBorder
         
+        ShowGridSwitch.isOn = Settings.GetBool(.ShowGridLines)
+        ShowShapeSwitch.isOn = Settings.GetBool(.ShowGuidelines)
+        
         ShapeColorControl.clipsToBounds = true
         ShapeColorControl.selectedColor = Settings.GetColor(.GuidelineColor, .yellow)
         ShapeColorControl.supportsAlpha = true
@@ -53,10 +56,20 @@ class GuidelineSettingSlice: UIViewController
     
     @IBAction func ShowShapeChanged(_ sender: Any)
     {
+        guard let Switch = sender as? UISwitch else
+        {
+            return
+        }
+        Settings.SetBool(.ShowGuidelines, Switch.isOn)
     }
     
     @IBAction func ShowGridChanged(_ sender: Any)
     {
+        guard let Switch = sender as? UISwitch else
+        {
+            return
+        }
+        Settings.SetBool(.ShowGridLines, Switch.isOn)
     }
     
     @IBOutlet weak var GridColorControl: UIColorWell!
