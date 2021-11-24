@@ -205,6 +205,11 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
         
             case .GuidelinesButton:
                 Image = LoadImage(Name: ImageName, Type: .System)
+                
+                #if DEBUG
+            case .DebugButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                #endif
         }
         guard let FinalImage = Image else
         {
@@ -309,6 +314,11 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
                 
             case .GuidelinesButton:
                 return "Lines"
+                
+                #if DEBUG
+            case .DebugButton:
+                return "Debug"
+                #endif
         }
     }
     
@@ -466,6 +476,11 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
                 
             case .GuidelinesButton:
                 return "Gridlines and shape lines"
+                
+#if DEBUG
+            case .DebugButton:
+                return "Debug"
+#endif
         }
     }
     
@@ -527,6 +542,11 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
                 
             case .GuidelinesButton:
                 return "squareshape.split.3x3"
+                
+                #if DEBUG
+            case .DebugButton:
+                return "ant.fill"
+                #endif
         }
     }
     
@@ -590,6 +610,11 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
                 
             case .GuidelinesButton:
                 Image = LoadImage(Name: ImageName, Type: .System)
+                
+                #if DEBUG
+            case .DebugButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                #endif
         }
         
         guard let FinalImage = Image else
