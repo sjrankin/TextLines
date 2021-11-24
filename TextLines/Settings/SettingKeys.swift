@@ -35,6 +35,8 @@ enum SettingKeys: String, CaseIterable
     case GridColor = "GridColor"
     /// Bool: Show guidelines on the screen (but don't save them).
     case ShowGuidelines = "ShowGuidelines"
+    /// Bool: Show grid lines on the screen.
+    case ShowGridLines = "ShowGridLines"
     /// Int: Width of the image.
     case ImageWidth = "ImageWidth"
     /// Int: Height of the image.
@@ -134,6 +136,18 @@ enum SettingKeys: String, CaseIterable
     case SpiralEndTheta = "EndTheta"
     /// CGFloat: Theta step value.
     case SpiralThetaStep = "ThetaStep"
+    
+    // MARK: - Octagon attributes
+    /// Double: Width of the octagon relative to the viewport.
+    case OctagonWidth = "OctagonWidth"
+    /// Double: Height of the octagon relative to the viewport.
+    case OctagonHeight = "OctagonHeight"
+    
+    // MARK: - Hexagon attributes
+    /// Double: Width of the hexagon relative to the viewport.
+    case HexagonWidth = "HexagonWidth"
+    /// Double: Height of the hexagon relative to the viewport.
+    case HexagonHeight = "HexagonHeight"
     
     // MARK: - User shapes.
     /// String: All user-defined shapes.
