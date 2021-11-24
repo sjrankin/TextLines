@@ -60,6 +60,20 @@ extension Settings
         return Value
     }
     
+    /// Returns an integer from the specified setting but as a `Double` type.
+    /// - Warning: A fatal error will be thrown if the type of `Setting` is not Int.
+    /// - Parameter Setting: The setting whose integer value will be returned.
+    /// - Returns: The integer value found at the specified setting cast to a `Double`.
+    public static func GetIntAsDouble(_ Setting: SettingKeys) -> Double
+    {
+        guard TypeIsValid(Setting, Type: Int.self) else
+        {
+            Debug.FatalError("\(Setting) is not an Int")
+        }
+        let Value = UserDefaults.standard.integer(forKey: Setting.rawValue)
+        return Double(Value)
+    }
+    
     /// Queries an integer setting value.
     /// - Warning: A fatal error will be thrown if the type of `Setting` is not Int.
     /// - Parameter Setting: The setting whose integer value will be passed to the completion handler.
