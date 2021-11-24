@@ -28,6 +28,7 @@ extension Settings
         .GuidelineColor: UIColor.self,
         .GridColor: UIColor.self,
         .ShowGuidelines: Bool.self,
+        .ShowGridLines: Bool.self,
         .ImageWidth: Int.self,
         .ImageHeight: Int.self,
         .ClockwiseText: Bool.self,
@@ -81,6 +82,14 @@ extension Settings
         .SpiralStartTheta: CGFloat.self,
         .SpiralEndTheta: CGFloat.self,
         .SpiralThetaStep: CGFloat.self,
+        
+        //MARK: - Octagon attributes
+        .OctagonWidth: Double.self,
+        .OctagonHeight: Double.self,
+        
+        // MARK: - Hexagon attributes
+        .HexagonWidth: Double.self,
+        .HexagonHeight: Double.self,
         
         // MARK: - User shapes attributes
         .UserShapes: String.self,
