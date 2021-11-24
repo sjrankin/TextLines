@@ -104,6 +104,11 @@ enum CommandButtons: String, CaseIterable
     
     /// Visual guidelines button.
     case GuidelinesButton = "GuidelinesButton"
+    
+    #if DEBUG
+    /// Debug button.
+    case DebugButton = "DebugButton"
+    #endif
 }
 
 /// Automatic text on shape alignments.
@@ -197,4 +202,12 @@ enum SliceTypes: String, CaseIterable
     case TriangleSettings = "TriangleSettings"
     /// Background settings.
     case BackgroundSettings = "BackgroundSettings"
+    /// Octagon settings.
+    case OctagonSettings = "OctagonSettings"
+    /// Hexagon settings.
+    case HexagonSettings = "HexagonSettings"
+    #if DEBUG
+    /// Debug slice settings.
+    case DebugSlice = "DebugSlice"
+    #endif
 }
