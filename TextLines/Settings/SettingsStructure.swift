@@ -19,7 +19,7 @@ class SettingsStructure
                       .ImageWidth, .ImageHeight, .ClockwiseText, .ShowCheckerboard,
                       .BackgroundType, .RotateCharacters, .TextOffset, .ShapeAlignment,
                       .ActionIconName, .CommandButtonList, .ViewportWidth, .ViewportHeight,
-                      .CircleRadiusPercent, .GridColor),
+                      .CircleRadiusPercent, .GridColor, .ShowGridLines),
         StructureNode(Name: "Debug", Keys: .ShowGuideMarks, .GuidelineWidth),
         StructureNode(Name: "Animation", Keys: .AnimationSpeed, .AnimateClockwise,
                       .Animating),
@@ -31,6 +31,8 @@ class SettingsStructure
         StructureNode(Name: "Line Parameters", Keys: .LineLength, .LineType, .LineStyle),
         StructureNode(Name: "Spiral Line Parameters", Keys: .SpiralStartRadius, .SpiralSpacePerLoop,
                       .SpiralStartTheta, .SpiralEndTheta, .SpiralThetaStep),
+        StructureNode(Name: "Octagon Parameters", Keys: .OctagonWidth, .OctagonHeight),
+        StructureNode(Name: "Hexagon Parameters", Keys: .HexagonWidth, .HexagonHeight),
         StructureNode(Name: "User Shape Parameters", Keys: .UserShapes, .CurrentUserShape,
                       .ShowViewport, .ScaleToView, .UserShapeOptionsOrder, .PointsWhenSmooth)
     ]
