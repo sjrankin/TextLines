@@ -51,6 +51,20 @@ extension Settings
         return CGFloat(UserDefaults.standard.double(forKey: Setting.rawValue))
     }
     
+    /// Returns a `CGFloat` from the specified setting but as an `Int` type.
+    /// - Warning: A fatal error will be thrown if the type of `Setting` is not `CGFloat`.
+    /// - Parameter Setting: The setting whose value will be returned.
+    /// - Returns: The `CGFloat` value found at the specified setting cast to an `Int`.
+    public static func GetCGFloatAsInt(_ Setting: SettingKeys) -> Int
+    {
+        guard TypeIsValid(Setting, Type: Double.self) else
+        {
+            Debug.FatalError("\(Setting) is not an Double")
+        }
+        let Value = UserDefaults.standard.double(forKey: Setting.rawValue)
+        return Int(Value)
+    }
+    
     /// Queries a CGFloat setting value.
     /// - Parameter Setting: The setting whose CGFloat value will be passed to the completion handler.
     /// - Parameter Completion: Code to execute after the value is retrieved. The value is passed
