@@ -28,6 +28,7 @@ extension Settings
         .GuidelineColor: UIColor.red,
         .GridColor: UIColor.yellow,
         .ShowGuidelines: true,
+        .ShowGridLines: false,
         .ImageWidth: 1024,
         .ImageHeight: 1024,
         .ClockwiseText: true,
@@ -80,6 +81,14 @@ extension Settings
         .SpiralStartTheta: 0.0,
         .SpiralEndTheta: 40.0,
         .SpiralThetaStep: 1,
+        
+        //MARK: - Octagon attributes
+        .OctagonWidth: 0.9,
+        .OctagonHeight: 0.9,
+        
+        // MARK: - Hexagon attributes
+        .HexagonWidth: 0.9,
+        .HexagonHeight: 0.9,
         
         // MARK: - User shapes attributes
         .UserShapes: "",
