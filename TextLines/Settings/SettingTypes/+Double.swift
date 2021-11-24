@@ -51,6 +51,20 @@ extension Settings
         return UserDefaults.standard.double(forKey: Setting.rawValue)
     }
     
+    /// Returns a double from the specified setting but as an `Int` type.
+    /// - Warning: A fatal error will be thrown if the type of `Setting` is not `Double`.
+    /// - Parameter Setting: The setting whose value will be returned.
+    /// - Returns: The double value found at the specified setting cast to an `Int`.
+    public static func GetDoubleAsInt(_ Setting: SettingKeys) -> Int
+    {
+        guard TypeIsValid(Setting, Type: Double.self) else
+        {
+            Debug.FatalError("\(Setting) is not an Double")
+        }
+        let Value = UserDefaults.standard.double(forKey: Setting.rawValue)
+        return Int(Value)
+    }
+    
     /// Returns a double value from the specified setting. This function assumes the
     /// value is a normal (`[0.0 ... 1.0]`) value.
     /// - Notes:
