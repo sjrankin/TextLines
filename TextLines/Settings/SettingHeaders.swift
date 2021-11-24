@@ -28,6 +28,7 @@ public static let SettingKeyHeaders: [SettingKeys: String] =
     .GuidelineColor: "Guideline color",
     .GridColor: "Grid color",
     .ShowGuidelines: "Show guidelines",
+    .ShowGridLines: "Show gridlines",
     .ImageWidth: "Image width",
     .ImageHeight: "Image height",
     .ClockwiseText: "Clockwise text",
@@ -81,6 +82,14 @@ public static let SettingKeyHeaders: [SettingKeys: String] =
     .SpiralStartTheta: "Start theta",
     .SpiralEndTheta: "End theta",
     .SpiralThetaStep: "Theta step",
+    
+    //MARK: - Octagon attributes
+    .OctagonWidth: "Width",
+    .OctagonHeight: "Height",
+    
+    // MARK: - Hexagon attributes
+    .HexagonWidth: "Width",
+    .HexagonHeight: "Height",
     
     // MARK: - User shapes attributes
     .UserShapes: "User shapes",
