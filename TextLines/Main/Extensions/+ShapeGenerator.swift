@@ -20,8 +20,13 @@ extension ViewController
         HAdder = 0
         VAdder = 0
         var BezierPath: UIBezierPath? = nil
+        #if true
+        let ImageWidth = Settings.GetInt(.ViewportWidth)
+        let ImageHeight = Settings.GetInt(.ViewportHeight)
+        #else
         let ImageWidth = Settings.GetInt(.ImageWidth)
         let ImageHeight = Settings.GetInt(.ImageHeight)
+        #endif
         
         switch Shape
         {
@@ -58,13 +63,25 @@ extension ViewController
                                                                       height: Height - 40)))
                 
             case .Triangle:
-                VAdder = 50
-                HAdder = 50
                 var Base = CGFloat(Settings.GetDoubleNormal(.TriangleBase))
                 Base = Base * Double(Settings.GetInt(.ViewportWidth))
                 var Height = CGFloat(Settings.GetDoubleNormal(.TriangleHeight))
                 Height = Height * Double(Settings.GetInt(.ViewportHeight))
-                print("Base=\(Base), Height=\(Height)")
+                #if true
+                BezierPath = UIBezierPath()
+                let CenterX = CGFloat(Settings.GetInt(.ViewportWidth) / 2)
+                var HalfWidth = Base / 2.0
+                let HorizontalOffset = (Double(Settings.GetInt(.ViewportWidth) / 2) - HalfWidth) / 2.0
+                HalfWidth = HalfWidth + HorizontalOffset
+                let CenterY = CGFloat(Settings.GetInt(.ViewportHeight) / 2)
+                let Top = CenterY - (Height / 2.0)
+                let Bottom = CenterY + Height / 2.0
+                BezierPath?.move(to: CGPoint(x: CenterX, y: Bottom))
+                BezierPath?.addLine(to: CGPoint(x: CenterX - HalfWidth, y: Bottom))
+                BezierPath?.addLine(to: CGPoint(x: CenterX, y: Top))
+                BezierPath?.addLine(to: CGPoint(x: CenterX + HalfWidth, y: Bottom))
+                BezierPath?.addLine(to: CGPoint(x: HalfWidth, y: Bottom))
+                #else
                 if Settings.GetBool(.TriangleRounded)
                 {
                     //https://stackoverflow.com/questions/20442203/uibezierpath-triangle-with-rounded-edges
@@ -87,28 +104,22 @@ extension ViewController
                 else
                 {
                     BezierPath = UIBezierPath()
-                    #if true
                     let CenterX = CGFloat(Settings.GetInt(.ViewportWidth) / 2)
                     var HalfWidth = Base / 2.0
                     let HorizontalOffset = (Double(Settings.GetInt(.ViewportWidth) / 2) - HalfWidth) / 2.0
                     HalfWidth = HalfWidth + HorizontalOffset
                     let CenterY = CGFloat(Settings.GetInt(.ViewportHeight) / 2)
+                    print("CenterX,CenterY=\(CenterX),\(CenterY)")
                     let Top = CenterY - (Height / 2.0)
                     let Bottom = CenterY + Height / 2.0
+                    print("Top,Bottom=\(Top),\(Bottom)")
                     BezierPath?.move(to: CGPoint(x: HalfWidth, y: Bottom))
                     BezierPath?.addLine(to: CGPoint(x: CenterX - HalfWidth, y: Bottom))
                     BezierPath?.addLine(to: CGPoint(x: HalfWidth, y: Top))
                     BezierPath?.addLine(to: CGPoint(x: CenterX + HalfWidth, y: Bottom))
-                    BezierPath?.addLine(to: CGPoint(x: HalfWidth + 10, y: Bottom))
-                    #else
-                    let HOffset: CGFloat = 20
-                    let VOffset: CGFloat = 20
-                    BezierPath?.move(to: CGPoint(x: (Base / 2), y: 0 + VOffset))
-                    BezierPath?.addLine(to: CGPoint(x: Base - HOffset, y: Height - VOffset))
-                    BezierPath?.addLine(to: CGPoint(x: 0 + HOffset, y: Height - VOffset))
-                    BezierPath?.addLine(to: CGPoint(x: (Base / 2), y: 0 + VOffset))
-                    #endif
+                    BezierPath?.addLine(to: CGPoint(x: HalfWidth, y: Bottom))
                 }
+                #endif
                 
             case .Line:
                 BezierPath = UIBezierPath()
@@ -167,66 +178,48 @@ extension ViewController
                 
             case .Hexagon:
                 BezierPath = UIBezierPath()
-                let a = 240.0
-                let RawX = a / 2.0
-                let RawY = (sqrt(3.0) * a) / 2.0
-                var A = CGPoint(x: a, y: 0)
-                var B = CGPoint(x: RawX, y: RawY)
-                var C = CGPoint(x: -RawX, y: RawY)
-                var D = CGPoint(x: -a, y: 0)
-                var E = CGPoint(x: -RawX, y: -RawY)
-                var F = CGPoint(x: RawX, y: -RawY)
-                A = CGPoint.Add(A, X: 250, Y: 250)
-                B = CGPoint.Add(B, X: 250, Y: 250)
-                C = CGPoint.Add(C, X: 250, Y: 250)
-                D = CGPoint.Add(D, X: 250, Y: 250)
-                E = CGPoint.Add(E, X: 250, Y: 250)
-                F = CGPoint.Add(F, X: 250, Y: 250)
-                BezierPath?.move(to: A)
-                BezierPath?.addLine(to: B)
-                BezierPath?.addLine(to: C)
-                BezierPath?.addLine(to: D)
-                BezierPath?.addLine(to: E)
-                BezierPath?.addLine(to: F)
-                BezierPath?.addLine(to: A)
+                let CenterX = Settings.GetIntAsDouble(.ViewportWidth) / 2.0
+                let CenterY = Settings.GetIntAsDouble(.ViewportHeight) / 2.0
+                var Radius = min(CenterX, CenterY)
+                let HexWidth = Settings.GetDoubleNormal(.HexagonWidth)
+                let HexHeight = Settings.GetDoubleNormal(.HexagonHeight)
+                let MinDistance = min(HexWidth, HexHeight)
+                Radius = Radius * MinDistance
+                let RadialOffset = 90.0
+
+                let StartX = Radius * cos((-30.0 + RadialOffset).Radians) + CenterX
+                let StartY = Radius * sin((-30.0 + RadialOffset).Radians) + CenterY
+                BezierPath?.move(to: CGPoint(x: StartX, y: StartY))
+                for Angle in stride(from: (30.0 + RadialOffset), through: (330.0 + RadialOffset), by: 60.0)
+                {
+                    let Radians = Angle.Radians
+                    let X = Radius * cos(Radians) + CenterX
+                    let Y = Radius * sin(Radians) + CenterY
+                    BezierPath?.addLine(to: CGPoint(x: X, y: Y))
+                }
                 
             case .Octagon:
-                //https://math.stackexchange.com/questions/925677/can-anyone-give-me-x-y-coordinates-for-an-octagon
                 BezierPath = UIBezierPath()
-                let Sq22: CGFloat = sqrt(2.0) / 2.0
-                var A = CGPoint(x: 1, y: 0)
-                var B = CGPoint(x: Sq22, y: Sq22)
-                var C = CGPoint(x: 0, y: 1)
-                var D = CGPoint(x: -Sq22, y: Sq22)
-                var E = CGPoint(x: -1, y: 0)
-                var F = CGPoint(x: -Sq22, y: -Sq22)
-                var G = CGPoint(x: 0, y: -1)
-                var H = CGPoint(x: Sq22, y: -Sq22)
-                A = CGPoint.Multiply(A, X: 240, Y: 240)
-                B = CGPoint.Multiply(B, X: 240, Y: 240)
-                C = CGPoint.Multiply(C, X: 240, Y: 240)
-                D = CGPoint.Multiply(D, X: 240, Y: 240)
-                E = CGPoint.Multiply(E, X: 240, Y: 240)
-                F = CGPoint.Multiply(F, X: 240, Y: 240)
-                G = CGPoint.Multiply(G, X: 240, Y: 240)
-                H = CGPoint.Multiply(H, X: 240, Y: 240)
-                A = CGPoint.Add(A, X: 250, Y: 250)
-                B = CGPoint.Add(B, X: 250, Y: 250)
-                C = CGPoint.Add(C, X: 250, Y: 250)
-                D = CGPoint.Add(D, X: 250, Y: 250)
-                E = CGPoint.Add(E, X: 250, Y: 250)
-                F = CGPoint.Add(F, X: 250, Y: 250)
-                G = CGPoint.Add(G, X: 250, Y: 250)
-                H = CGPoint.Add(H, X: 250, Y: 250)
-                BezierPath?.move(to: A)
-                BezierPath?.addLine(to: B)
-                BezierPath?.addLine(to: C)
-                BezierPath?.addLine(to: D)
-                BezierPath?.addLine(to: E)
-                BezierPath?.addLine(to: F)
-                BezierPath?.addLine(to: G)
-                BezierPath?.addLine(to: H)
-                BezierPath?.addLine(to: A)
+                let CenterX = Settings.GetIntAsDouble(.ViewportWidth) / 2.0
+                let CenterY = Settings.GetIntAsDouble(.ViewportHeight) / 2.0
+                var Radius = min(CenterX, CenterY)
+                let HexWidth = Settings.GetDoubleNormal(.HexagonWidth)
+                let HexHeight = Settings.GetDoubleNormal(.HexagonHeight)
+                let MinDistance = min(HexWidth, HexHeight)
+                Radius = Radius * MinDistance
+                let RadialOffset = 90.0
+                
+                let RadialIncrement = 360.0 / 8.0
+                let StartX = Radius * cos((RadialOffset).Radians) + CenterX
+                let StartY = Radius * sin((RadialOffset).Radians) + CenterY
+                BezierPath?.move(to: CGPoint(x: StartX, y: StartY))
+                for Angle in stride(from: (RadialOffset), through: (360.0 + RadialOffset), by: RadialIncrement)
+                {
+                    let Radians = Angle.Radians
+                    let X = Radius * cos(Radians) + CenterX
+                    let Y = Radius * sin(Radians) + CenterY
+                    BezierPath?.addLine(to: CGPoint(x: X, y: Y))
+                }
                 
             case .Heart:
                 //https://stackoverflow.com/questions/29227858/how-to-draw-heart-shape-in-uiview-ios
@@ -329,9 +322,15 @@ extension ViewController
         var bezier = Bezier(path: Path.cgPath)
         bezier.Original = Path
         bezier.ShowPath = true
+#if true
+        let ImageWidth = Settings.GetInt(.ViewportWidth)
+        let ImageHeight = Settings.GetInt(.ViewportHeight)
+        #else
         let ImageWidth = Settings.GetInt(.ImageWidth)
         let ImageHeight = Settings.GetInt(.ImageHeight)
+        #endif
         let ImageSize = CGSize(width: ImageWidth, height: ImageHeight)
+        print("*** ImageSize=\(ImageSize)")
         
         // generate an image
         let image = bezier.TextOnPath(withAttributed: attributedString,
