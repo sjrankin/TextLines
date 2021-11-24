@@ -90,8 +90,17 @@ extension ViewController
                 VC = Story.instantiateViewController(withIdentifier: "NoOptionsSlice") as? NoOptionsSlice
                 (VC as? NoOptionsSlice)?.ShapeName = "unknown"
                 
+            case .DebugSlice:
+                VC = Story.instantiateViewController(withIdentifier: "DebugSlice") as? DebugSlice
+                
             case .TextFormatting:
                 VC = Story.instantiateViewController(withIdentifier: "TextFormattingSlice") as? TextFormattingSlice
+        
+            case .OctagonSettings:
+                VC = Story.instantiateViewController(withIdentifier: "OctagonSettingSlice") as? OctagonSlice
+                
+            case .HexagonSettings:
+                VC = Story.instantiateViewController(withIdentifier: "HexagonSettingSlice") as? HexagonSlice
         }
         
         guard let ActualVC = VC else
@@ -124,6 +133,9 @@ extension ViewController
             case .RectangleSettings,
                     .TriangleSettings:
                 return 310.0 + 70.0
+                
+            case .DebugSlice:
+                return 310.0 + 60.0
                 
             default:
                 return 310.0
