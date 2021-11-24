@@ -77,6 +77,27 @@ extension Bezier
         }
     }
     
+    func PlotGridlines(Context: CGContext, ImageSize: CGSize)
+    {
+        let LineColor = Settings.GetColor(.GridColor, UIColor.systemYellow).cgColor
+        Context.beginPath()
+        Context.setStrokeColor(LineColor)
+        Context.setLineWidth(1.0)
+        
+        for Y in stride(from: 0.0, through: ImageSize.height, by: 32.0)
+        {
+            Context.move(to: CGPoint(x: 0.0, y: Y))
+            Context.addLine(to: CGPoint(x: ImageSize.width, y: Y))
+        }
+        for X in stride(from: 0.0, through: ImageSize.width, by: 32.0)
+        {
+            Context.move(to: CGPoint(x: X, y: 0.0))
+            Context.addLine(to: CGPoint(x: X, y: ImageSize.height))
+        }
+        
+        Context.drawPath(using: .stroke)
+    }
+    
     /// Plot testing/guidemarks on the passed context for debug purposes.
     /// - Parameter Context: The context on which drawing will be done.
     /// - Parameter ImageSize: The size of the context.
@@ -210,14 +231,15 @@ extension Bezier
             MainPath.stroke()
         }
         
+        //The index in the shape where to center the text initially.
         let CenteringIndices: [Shapes: Int] =
         [
             .Circle: 6,
             .Ellipse: 6,
             .Rectangle: 1,
-            .Triangle: 0,
-            .Hexagon: 6,
-            .Octagon: 6,
+            .Triangle: 4,
+            .Hexagon: 4,
+            .Octagon: 4,
             .Line: 3,
             .Spiral: 7,
             .Scribble: 0,
@@ -357,6 +379,10 @@ extension Bezier
             PlotDebugPoints(Context: context,
                             StringWidth: Int(stringWidth),
                             PathLength: Int(pathLength))
+        }
+        if Settings.GetBool(.ShowGridLines)
+        {
+            PlotGridlines(Context: context, ImageSize: Size)
         }
         
         context.restoreGState()
