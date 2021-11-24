@@ -24,13 +24,19 @@ class ViewportSizeSlice: UIViewController, UITextFieldDelegate
         self.HeightTextBox.addTarget(self, action: #selector(OnHeightReturn),
                                        for: UIControl.Event.editingDidEndOnExit)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        let VWidth = Settings.GetInt(.ViewportWidth, IfZero: 1024)
+        let VHeight = Settings.GetInt(.ViewportHeight, IfZero: 1024)
+        
+        WidthTextBox.text = "\(VWidth)"
+        HeightTextBox.text = "\(VHeight)"
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(HandleTapToDismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        InitializeKeyboard()
+        //InitializeKeyboard()
     }
     
-    @objc func handleTap()
+    @objc func HandleTapToDismissKeyboard()
     {
         WidthTextBox.resignFirstResponder() // dismiss keyoard
         HeightTextBox.resignFirstResponder() // dismiss keyoard
@@ -46,6 +52,7 @@ class ViewportSizeSlice: UIViewController, UITextFieldDelegate
         self.HeightTextBox.resignFirstResponder()
     }
     
+    /*
     /// Initialize the keyboard with a `Done` button in a toolbar. This provides an alternative
     /// way for the user to indicate no more editing.
     func InitializeKeyboard()
@@ -61,23 +68,40 @@ class ViewportSizeSlice: UIViewController, UITextFieldDelegate
         WidthTextBox.inputAccessoryView = KBToolbar
         HeightTextBox.inputAccessoryView = KBToolbar
     }
+     */
     
+    /*
     /// Called by the `Dismiss` button the program inserted into the keyboard's toolbar when the
     /// user has completed text entry.
     @objc func KeyboardDoneButtonTapped()
     {
         self.view.endEditing(true)
     }
+     */
     
     func textFieldDidEndEditing(_ textField: UITextField)
     {
         switch textField
         {
             case WidthTextBox:
-                print("WidthTextBox=\(textField.text)")
+                if let RawWidth = textField.text
+                {
+                    if let Width = Int(RawWidth)
+                    {
+                        Settings.SetInt(.ViewportWidth, Width)
+                        print("New viewport width: \(Width)")
+                    }
+                }
                 
             case HeightTextBox:
-                print("HeightTextBox=\(textField.text)")
+                if let RawHeight = textField.text
+                {
+                    if let Height = Int(RawHeight)
+                    {
+                        Settings.SetInt(.ViewportHeight, Height)
+                        print("New viewport height: \(Height)")
+                    }
+                }
                 
             default:
                 Debug.Print("Unexpected textField encountered.")
