@@ -101,6 +101,9 @@ extension ViewController
                 
             case .HexagonSettings:
                 VC = Story.instantiateViewController(withIdentifier: "HexagonSettingSlice") as? HexagonSlice
+                
+            case .LineSettings:
+                VC = Story.instantiateViewController(withIdentifier: "LineSlice") as? LineSlice
         }
         
         guard let ActualVC = VC else
@@ -131,7 +134,8 @@ extension ViewController
         switch Slice
         {
             case .RectangleSettings,
-                    .TriangleSettings:
+                    .TriangleSettings,
+                    .LineSettings:
                 return 310.0 + 70.0
                 
             case .DebugSlice:
