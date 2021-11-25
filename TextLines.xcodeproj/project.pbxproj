@@ -139,6 +139,10 @@
 		17673068271643AA00D408BC /* Versioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17673067271643AA00D408BC /* Versioning.swift */; };
 		1767306B271648F700D408BC /* SegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767306A271648F700D408BC /* SegmentCell.swift */; };
 		177097FA274DB00A00EFEA8A /* +Anything.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177097F9274DB00A00EFEA8A /* +Anything.swift */; };
+		177097FC274EC84F00EFEA8A /* CGPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177097FB274EC84F00EFEA8A /* CGPath.swift */; };
+		177097FE274EFE9900EFEA8A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177097FD274EFE9900EFEA8A /* String.swift */; };
+		17709800274EFEC400EFEA8A /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177097FF274EFEC400EFEA8A /* NSAttributedString.swift */; };
+		17709802274F167A00EFEA8A /* LineSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17709801274F167A00EFEA8A /* LineSlice.swift */; };
 		17755044273705BC00E8DE79 /* NoOptionsSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17755043273705BC00E8DE79 /* NoOptionsSlice.swift */; };
 		1775504627370A8600E8DE79 /* CircleSettingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1775504527370A8600E8DE79 /* CircleSettingSlice.swift */; };
 		179B26D927483D3700C19FC6 /* CommandBarCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B26D827483D3700C19FC6 /* CommandBarCustomization.swift */; };
@@ -290,6 +294,10 @@
 		17673067271643AA00D408BC /* Versioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Versioning.swift; sourceTree = "<group>"; };
 		1767306A271648F700D408BC /* SegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentCell.swift; sourceTree = "<group>"; };
 		177097F9274DB00A00EFEA8A /* +Anything.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Anything.swift"; sourceTree = "<group>"; };
+		177097FB274EC84F00EFEA8A /* CGPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPath.swift; sourceTree = "<group>"; };
+		177097FD274EFE9900EFEA8A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		177097FF274EFEC400EFEA8A /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
+		17709801274F167A00EFEA8A /* LineSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineSlice.swift; sourceTree = "<group>"; };
 		17755043273705BC00E8DE79 /* NoOptionsSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOptionsSlice.swift; sourceTree = "<group>"; };
 		1775504527370A8600E8DE79 /* CircleSettingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleSettingSlice.swift; sourceTree = "<group>"; };
 		179B26D827483D3700C19FC6 /* CommandBarCustomization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarCustomization.swift; sourceTree = "<group>"; };
@@ -656,6 +664,7 @@
 		17672FE42716423200D408BC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				177097FB274EC84F00EFEA8A /* CGPath.swift */,
 				17672FEA2716423200D408BC /* CGFloat.swift */,
 				172B75A8271C9AA50038DB8F /* CGPoint.swift */,
 				170F07A627236089008F3A82 /* CGRect.swift */,
@@ -663,6 +672,8 @@
 				17672FEB2716423200D408BC /* Double.swift */,
 				17672FED2716423200D408BC /* Float.swift */,
 				17672FE82716423200D408BC /* Int.swift */,
+				177097FF274EFEC400EFEA8A /* NSAttributedString.swift */,
+				177097FD274EFE9900EFEA8A /* String.swift */,
 				17672FE62716423200D408BC /* UIColor.swift */,
 				17672FEC2716423200D408BC /* UIFont.swift */,
 				17672FE52716423200D408BC /* UIGestureRecognizer.swift */,
@@ -682,6 +693,7 @@
 				17FED86C273A0B7C00FC977E /* OvalSettingSlice.swift */,
 				1715380E274D66E6005039AA /* HexagonSlice.swift */,
 				17153810274D673A005039AA /* OctagonSlice.swift */,
+				17709801274F167A00EFEA8A /* LineSlice.swift */,
 				174EF3E32749AC7200BE0002 /* RectangleSettingSlice.swift */,
 				17ED4298274B001500E6EF13 /* TriangleSettingSlice.swift */,
 			);
@@ -860,7 +872,9 @@
 				174EF3E22749720F00BE0002 /* UIConstants.swift in Sources */,
 				176730202716423300D408BC /* +CGFloat.swift in Sources */,
 				176730172716423300D408BC /* +Double.swift in Sources */,
+				17709802274F167A00EFEA8A /* LineSlice.swift in Sources */,
 				176730262716423300D408BC /* TitledImageStructure.swift in Sources */,
+				177097FE274EFE9900EFEA8A /* String.swift in Sources */,
 				17153811274D673A005039AA /* OctagonSlice.swift in Sources */,
 				1767300F2716423300D408BC /* SettingHeaders.swift in Sources */,
 				17AABC2E274852D600A395C3 /* CommandTableCell.swift in Sources */,
@@ -872,6 +886,7 @@
 				1767301B2716423300D408BC /* +UUID.swift in Sources */,
 				176730422716423300D408BC /* FontPickerController.swift in Sources */,
 				170F07A727236089008F3A82 /* CGRect.swift in Sources */,
+				177097FC274EC84F00EFEA8A /* CGPath.swift in Sources */,
 				17672FFC2716423200D408BC /* ShapeServer.swift in Sources */,
 				1715380F274D66E6005039AA /* HexagonSlice.swift in Sources */,
 				176730582716423300D408BC /* Utility.swift in Sources */,
@@ -909,6 +924,7 @@
 				17672FF82716423200D408BC /* +Infinity.swift in Sources */,
 				17673068271643AA00D408BC /* Versioning.swift in Sources */,
 				176730562716423300D408BC /* UIImage.swift in Sources */,
+				17709800274EFEC400EFEA8A /* NSAttributedString.swift in Sources */,
 				176730282716423300D408BC /* IntCell.swift in Sources */,
 				176730342716423300D408BC /* ShapeManagerDelegate.swift in Sources */,
 				179B26D927483D3700C19FC6 /* CommandBarCustomization.swift in Sources */,
