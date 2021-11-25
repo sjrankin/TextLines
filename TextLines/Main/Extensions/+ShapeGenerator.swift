@@ -124,20 +124,29 @@ extension ViewController
             case .Line:
                 BezierPath = UIBezierPath()
                 var Length = Settings.GetDoubleNormal(.LineLength)
+                let Width = Settings.GetIntAsDouble(.ViewportWidth)
+                let Height = Settings.GetIntAsDouble(.ViewportHeight)
+                let HalfWidth = Width / 2.0
+                let HalfHeight = Height / 2.0
                 switch Settings.GetEnum(ForKey: .LineType, EnumType: LineOptions.self, Default: .Horizontal)
                 {
                     case .Horizontal:
                         Length = Length * Double(Settings.GetInt(.ViewportWidth))
-                        BezierPath?.move(to: CGPoint(x: 20, y: 20))
-                        BezierPath?.addLine(to: CGPoint(x: Length, y: 20))
+                        let HalfLength = Length / 2.0
+                        let XStart = HalfWidth - HalfLength
+                        BezierPath?.move(to: CGPoint(x: XStart, y: HalfHeight))
+                        BezierPath?.addLine(to: CGPoint(x: Width - XStart, y: HalfHeight))
                         
                     case .Vertical:
-                        Length = Length * Double(Settings.GetInt(.ViewportHeight))
-                        BezierPath?.move(to: CGPoint(x: 20, y: 20))
-                        BezierPath?.addLine(to: CGPoint(x: 20, y: Length))
+                        Length = Length * Double(Settings.GetInt(.ViewportWidth))
+                        let HalfLength = Length / 2.0
+                        let YStart = HalfHeight - HalfLength
+                        BezierPath?.move(to: CGPoint(x: HalfWidth, y: YStart))
+                        BezierPath?.addLine(to: CGPoint(x: HalfWidth, y: Height - YStart))
                         
                     case .DiagonalDescending:
-                        Length = Length * Double(Settings.GetInt(.ViewportWidth))
+                        let MinDimension = min(Width, Height)
+                        Length = Length * MinDimension
                         BezierPath?.move(to: CGPoint(x: 20, y: 20))
                         let Theta = 45.0.Radians
                         let X = Double(Length) * cos(Theta)
@@ -185,12 +194,14 @@ extension ViewController
                 let HexHeight = Settings.GetDoubleNormal(.HexagonHeight)
                 let MinDistance = min(HexWidth, HexHeight)
                 Radius = Radius * MinDistance
-                let RadialOffset = 90.0
+                let RadialOffset = -90.0
 
-                let StartX = Radius * cos((-30.0 + RadialOffset).Radians) + CenterX
-                let StartY = Radius * sin((-30.0 + RadialOffset).Radians) + CenterY
+                let StartX = Radius * cos(RadialOffset.Radians) + CenterX
+                let StartY = Radius * sin(RadialOffset.Radians) + CenterY
                 BezierPath?.move(to: CGPoint(x: StartX, y: StartY))
-                for Angle in stride(from: (30.0 + RadialOffset), through: (330.0 + RadialOffset), by: 60.0)
+                for Angle in stride(from: RadialOffset,
+                                    through: 360.0 + RadialOffset,
+                                    by: 60.0)
                 {
                     let Radians = Angle.Radians
                     let X = Radius * cos(Radians) + CenterX
@@ -287,6 +298,26 @@ extension ViewController
                     }
                 }
         }
+        
+        #if false
+        if let PointSet = BezierPath?.cgPath.Points()
+        {
+            let TextFont = UIFont.systemFont(ofSize: 48.0)
+            var Index = 1
+            for SomePoint in PointSet
+            {
+                let Number = "\(Index)".Path(withFont: TextFont)
+                let NumberPath = UIBezierPath(cgPath: Number)
+                NumberPath.apply(CGAffineTransform(scaleX: 1.0, y: -1.0))
+                let Move = CGAffineTransform(translationX: SomePoint.x + 32.0,
+                                             y: SomePoint.y + 16.0)
+                NumberPath.apply(Move)
+                BezierPath?.append(NumberPath)
+                
+                Index = Index + 1
+            }
+        }
+        #endif
         
         return BezierPath
     }
