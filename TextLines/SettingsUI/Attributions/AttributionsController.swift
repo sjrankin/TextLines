@@ -296,8 +296,17 @@ THE SOFTWARE.
                     Title: "Calculating Angles"),
         Attribution(Link: "https://stackoverflow.com/questions/25477093/difficulty-allowing-user-interaction-during-uiview-animation",
                     Text: "Interactions during animation",
-                    Title: "Animation Interaction")
-        // Above to 19 November 2021
+                    Title: "Animation Interaction"),
+        Attribution(Link: "https://stackoverflow.com/questions/3051760/how-to-get-a-list-of-points-from-a-uibezierpath",
+                    Text: "Retrieve points from CGPath",
+                    Title: "Get CGPath Points"),
+        Attribution(Link: "https://forum.omz-software.com/topic/3933/get-bezier-path-from-text",
+                    Text: "Create Bezier path from text",
+                    Title: "Bezier Path from Text"),
+        Attribution(Link: "https://stackoverflow.com/questions/9976454/cgpathref-from-string",
+                    Text: "Paths from String and NSAttributedString",
+                    Title: "Paths from Strings"),
+        // Above to 24 November 2021
     ]
     
     @IBOutlet weak var LinkText: UITextView!
