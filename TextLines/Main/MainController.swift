@@ -677,6 +677,9 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                     case .Hexagon:
                         ShowSliceHandler(.HexagonSettings)
                         
+                    case .Line:
+                        ShowSliceHandler(.LineSettings)
+                        
                     default:
                         break
                 }
