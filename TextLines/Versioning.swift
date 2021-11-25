@@ -125,19 +125,19 @@ public class Versioning: CustomStringConvertible
     }
     
     /// Build number. Incremented every build (provided the proper script is executed at each build).
-    public static let Build: Int = 1958
+    public static let Build: Int = 1991
     
     /// Build increment. Value to use to increment the build number.
     private static let BuildIncrement = 1
     
     /// Build ID.
-    public static let BuildID: String = "FECB9BBE-14A7-43E6-B422-CC655A80CC08"
+    public static let BuildID: String = "CF7947F6-EC8A-47FB-89D6-8C43A4B5F2F3"
     
     /// Build date.
     public static let BuildDate: String = "24 November 2021"
     
     /// Build Time.
-    public static let BuildTime: String = "10:45"
+    public static let BuildTime: String = "18:01"
     
     /// Holds the release build flag.
 #if DEBUG
