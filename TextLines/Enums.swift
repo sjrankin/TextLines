@@ -206,6 +206,8 @@ enum SliceTypes: String, CaseIterable
     case OctagonSettings = "OctagonSettings"
     /// Hexagon settings.
     case HexagonSettings = "HexagonSettings"
+    /// Line settings.
+    case LineSettings = "LineSettings"
     #if DEBUG
     /// Debug slice settings.
     case DebugSlice = "DebugSlice"
