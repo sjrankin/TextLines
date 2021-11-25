@@ -238,7 +238,7 @@ extension Bezier
             .Ellipse: 6,
             .Rectangle: 1,
             .Triangle: 4,
-            .Hexagon: 4,
+            .Hexagon: 0,
             .Octagon: 4,
             .Line: 3,
             .Spiral: 7,
