@@ -680,6 +680,9 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                     case .Line:
                         ShowSliceHandler(.LineSettings)
                         
+                    case .Spiral:
+                        ShowSliceHandler(.SpiralLineSettings)
+                        
                     default:
                         break
                 }
