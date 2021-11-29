@@ -131,35 +131,49 @@ extension ViewController
                 switch Settings.GetEnum(ForKey: .LineType, EnumType: LineOptions.self, Default: .Horizontal)
                 {
                     case .Horizontal:
-                        Length = Length * Double(Settings.GetInt(.ViewportWidth))
+                        print("Length=\(Length), Width=\(Width)")
+                        Length = Length * Width
+                        print("  Length=\(Length)")
                         let HalfLength = Length / 2.0
+                        print("  HalfLength=\(HalfLength)")
                         let XStart = HalfWidth - HalfLength
+                        print("Horizontal: XStart=\(XStart)")
                         BezierPath?.move(to: CGPoint(x: XStart, y: HalfHeight))
                         BezierPath?.addLine(to: CGPoint(x: Width - XStart, y: HalfHeight))
                         
                     case .Vertical:
-                        Length = Length * Double(Settings.GetInt(.ViewportWidth))
+                        Length = Length * Width
                         let HalfLength = Length / 2.0
                         let YStart = HalfHeight - HalfLength
+                        print("Vertical: Length=\(Length), YStart=\(YStart)")
                         BezierPath?.move(to: CGPoint(x: HalfWidth, y: YStart))
                         BezierPath?.addLine(to: CGPoint(x: HalfWidth, y: Height - YStart))
                         
                     case .DiagonalDescending:
                         let MinDimension = min(Width, Height)
                         Length = Length * MinDimension
-                        BezierPath?.move(to: CGPoint(x: 20, y: 20))
-                        let Theta = 45.0.Radians
-                        let X = Double(Length) * cos(Theta)
-                        let Y = Double(Length) * sin(Theta)
-                        BezierPath?.move(to: CGPoint(x: X, y: Y))
+                        let HalfLength = Length / 2.0
+                        let ULAngle = (315.0 - 90.0).Radians
+                        let LRAngle = (135.0 - 90.0).Radians
+                        let ULX = HalfLength * cos(ULAngle) + HalfWidth
+                        let ULY = HalfLength * sin(ULAngle) + HalfHeight
+                        let LRX = HalfLength * cos(LRAngle) + HalfWidth
+                        let LRY = HalfLength * sin(LRAngle) + HalfHeight
+                        BezierPath?.move(to: CGPoint(x: ULX, y: ULY))
+                        BezierPath?.addLine(to: CGPoint(x: LRX, y: LRY))
                         
                     case .DiagonalAscending:
-                        Length = Length * Double(Settings.GetInt(.ViewportWidth))
-                        BezierPath?.move(to: CGPoint(x: 20, y: Length))
-                        let Theta = -45.0.Radians
-                        let X = Double(Length) * cos(Theta)
-                        let Y = Double(Length) * sin(Theta)
-                        BezierPath?.move(to: CGPoint(x: X, y: Y))
+                        let MinDimension = min(Width, Height)
+                        Length = Length * MinDimension
+                        let HalfLength = Length / 2.0
+                        let URAngle = (45.0 - 90.0).Radians
+                        let LLAngle = (225.0 - 90.0).Radians
+                        let ULX = HalfLength * cos(URAngle) + HalfWidth
+                        let ULY = HalfLength * sin(URAngle) + HalfHeight
+                        let LRX = HalfLength * cos(LLAngle) + HalfWidth
+                        let LRY = HalfLength * sin(LLAngle) + HalfHeight
+                        BezierPath?.move(to: CGPoint(x: ULX, y: ULY))
+                        BezierPath?.addLine(to: CGPoint(x: LRX, y: LRY))
                 }
 
             case .Scribble:
@@ -172,18 +186,18 @@ extension ViewController
                                                              Width: 1.0)
                 
             case .Spiral:
-                let center = CGPoint(x: ImageWidth / 2, y: ImageHeight / 2)
-                let startRad: CGFloat = Settings.GetCGFloat(.SpiralStartRadius)
-                let space: CGFloat = Settings.GetCGFloat(.SpiralSpacePerLoop)
-                let starttheta: CGFloat = Settings.GetCGFloat(.SpiralStartTheta)
-                let endtheta: CGFloat = Settings.GetCGFloat(.SpiralEndTheta)
-                let thetastep: CGFloat = Settings.GetCGFloat(.SpiralThetaStep, 1.0)
-                BezierPath = UIBezierPath.CreateSpiralPath(Center: center,
-                                                           StartRadius: startRad,
-                                                           LoopGap: space,
-                                                           StartTheta: starttheta,
-                                                           EndTheta: endtheta,
-                                                           ThetaStep: thetastep)
+                let SpiralCenter = CGPoint(x: ImageWidth / 2, y: ImageHeight / 2)
+                let StartRadius: CGFloat = Settings.GetCGFloat(.SpiralStartRadius)
+                let LineGap: CGFloat = Settings.GetCGFloat(.SpiralSpacePerLoop)
+                let StartAngle: CGFloat = Settings.GetCGFloat(.SpiralStartTheta)
+                let EndAngle: CGFloat = Settings.GetCGFloat(.SpiralEndTheta)
+                let CurveEccentricity: CGFloat = Settings.GetCGFloat(.SpiralThetaStep, 1.0)
+                BezierPath = UIBezierPath.CreateSpiralPath(Center: SpiralCenter,
+                                                           StartRadius: StartRadius,
+                                                           LoopGap: LineGap,
+                                                           StartTheta: StartAngle,
+                                                           EndTheta: EndAngle,
+                                                           ThetaStep: CurveEccentricity)
                 
             case .Hexagon:
                 BezierPath = UIBezierPath()
@@ -361,7 +375,6 @@ extension ViewController
         let ImageHeight = Settings.GetInt(.ImageHeight)
         #endif
         let ImageSize = CGSize(width: ImageWidth, height: ImageHeight)
-        print("*** ImageSize=\(ImageSize)")
         
         // generate an image
         let image = bezier.TextOnPath(withAttributed: attributedString,
