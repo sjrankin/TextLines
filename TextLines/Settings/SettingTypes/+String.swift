@@ -87,4 +87,19 @@ extension Settings
         UserDefaults.standard.set(NewValue, forKey: Setting.rawValue)
         NotifySubscribers(Setting: Setting, OldValue: OldValue, NewValue: NewValue)
     }
+    
+    /// Set the default value for the passed setting key.
+    /// - Warning: Throws a fatal error if the key does not point to a `String`.
+    /// - Parameter For: The setting key whose default value will be set.
+    public static func SetStringDefault(For Key: SettingKeys)
+    {
+        guard TypeIsValid(Key, Type: String.self) else
+        {
+            Debug.FatalError("\(Key) is not a String")
+        }
+        if let DefaultValue = Settings.SettingDefaults[Key] as? String
+        {
+            SetString(Key, DefaultValue)
+        }
+    }
 }
