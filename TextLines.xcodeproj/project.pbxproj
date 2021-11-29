@@ -143,6 +143,7 @@
 		177097FE274EFE9900EFEA8A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177097FD274EFE9900EFEA8A /* String.swift */; };
 		17709800274EFEC400EFEA8A /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177097FF274EFEC400EFEA8A /* NSAttributedString.swift */; };
 		17709802274F167A00EFEA8A /* LineSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17709801274F167A00EFEA8A /* LineSlice.swift */; };
+		17709804275014B900EFEA8A /* SpiralSliceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17709803275014B900EFEA8A /* SpiralSliceSettings.swift */; };
 		17755044273705BC00E8DE79 /* NoOptionsSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17755043273705BC00E8DE79 /* NoOptionsSlice.swift */; };
 		1775504627370A8600E8DE79 /* CircleSettingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1775504527370A8600E8DE79 /* CircleSettingSlice.swift */; };
 		179B26D927483D3700C19FC6 /* CommandBarCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B26D827483D3700C19FC6 /* CommandBarCustomization.swift */; };
@@ -298,6 +299,7 @@
 		177097FD274EFE9900EFEA8A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		177097FF274EFEC400EFEA8A /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		17709801274F167A00EFEA8A /* LineSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineSlice.swift; sourceTree = "<group>"; };
+		17709803275014B900EFEA8A /* SpiralSliceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiralSliceSettings.swift; sourceTree = "<group>"; };
 		17755043273705BC00E8DE79 /* NoOptionsSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOptionsSlice.swift; sourceTree = "<group>"; };
 		1775504527370A8600E8DE79 /* CircleSettingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleSettingSlice.swift; sourceTree = "<group>"; };
 		179B26D827483D3700C19FC6 /* CommandBarCustomization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarCustomization.swift; sourceTree = "<group>"; };
@@ -696,6 +698,7 @@
 				17709801274F167A00EFEA8A /* LineSlice.swift */,
 				174EF3E32749AC7200BE0002 /* RectangleSettingSlice.swift */,
 				17ED4298274B001500E6EF13 /* TriangleSettingSlice.swift */,
+				17709803275014B900EFEA8A /* SpiralSliceSettings.swift */,
 			);
 			path = ShapeSlices;
 			sourceTree = "<group>";
@@ -848,6 +851,7 @@
 				1767304E2716423300D408BC /* UIColor.swift in Sources */,
 				174979C32736F1B000811EA1 /* TextFormattingSlice.swift in Sources */,
 				176730302716423300D408BC /* NavigationCell.swift in Sources */,
+				17709804275014B900EFEA8A /* SpiralSliceSettings.swift in Sources */,
 				172DD6BD2728B739001DD12C /* CommandBarProtocol.swift in Sources */,
 				176730122716423300D408BC /* Settings.swift in Sources */,
 				176730592716423300D408BC /* Filters.swift in Sources */,
