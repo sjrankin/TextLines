@@ -80,7 +80,7 @@ extension Settings
         .SpiralSpacePerLoop: 5.0,
         .SpiralStartTheta: 0.0,
         .SpiralEndTheta: 40.0,
-        .SpiralThetaStep: 1,
+        .SpiralThetaStep: 0.0,
         
         //MARK: - Octagon attributes
         .OctagonWidth: 0.9,
