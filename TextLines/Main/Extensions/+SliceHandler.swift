@@ -102,6 +102,9 @@ extension ViewController
             case .HexagonSettings:
                 VC = Story.instantiateViewController(withIdentifier: "HexagonSettingSlice") as? HexagonSlice
                 
+            case .SpiralLineSettings:
+                VC = Story.instantiateViewController(withIdentifier: "SpiralSettingSlice") as? SpiralSliceSettings
+                
             case .LineSettings:
                 VC = Story.instantiateViewController(withIdentifier: "LineSlice") as? LineSlice
         }
@@ -140,6 +143,9 @@ extension ViewController
                 
             case .DebugSlice:
                 return 310.0 + 60.0
+                
+            case .SpiralLineSettings:
+                return 310.0 + 160.0
                 
             default:
                 return 310.0
