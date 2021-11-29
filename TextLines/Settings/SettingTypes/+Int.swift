@@ -120,4 +120,19 @@ extension Settings
         UserDefaults.standard.set(OldValue, forKey: Setting.rawValue)
         return OldValue
     }
+    
+    /// Set the default value for the passed setting key.
+    /// - Warning: Throws a fatal error if the key does not point to a `Int`.
+    /// - Parameter For: The setting key whose default value will be set.
+    public static func SetIntDefault(For Key: SettingKeys)
+    {
+        guard TypeIsValid(Key, Type: Int.self) else
+        {
+            Debug.FatalError("\(Key) is not a Int")
+        }
+        if let DefaultValue = Settings.SettingDefaults[Key] as? Int
+        {
+            SetInt(Key, DefaultValue)
+        }
+    }
 }
