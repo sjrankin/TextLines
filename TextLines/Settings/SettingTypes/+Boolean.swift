@@ -174,4 +174,19 @@ extension Settings
     {
         return AllBools(InList, Are: false)
     }
+    
+    /// Set the default value for the passed setting key.
+    /// - Warning: Throws a fatal error if the key does not point to a `Bool`.
+    /// - Parameter For: The setting key whose default value will be set.
+    public static func SetBoolDefault(For Key: SettingKeys)
+    {
+        guard TypeIsValid(Key, Type: Bool.self) else
+        {
+            Debug.FatalError("\(Key) is not a boolean")
+        }
+        if let DefaultValue = Settings.SettingDefaults[Key] as? Bool
+        {
+            SetBool(Key, DefaultValue)
+        }
+    }
 }
