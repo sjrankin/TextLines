@@ -23,6 +23,29 @@ class TextFormattingSlice: UIViewController
         FontColorWell.selectedColor = Settings.GetColor(.TextColor, .black)
         FontColorWell.supportsAlpha = true
         FontColorWell.addTarget(self, action: #selector(TextColorChangedHandler(_:)), for: .valueChanged)
+    
+        RotateTextSwitch.isOn = Settings.GetBool(.RotateCharacters)
+        let Orientation = Settings.GetEnum(ForKey: .ShapeAlignment, EnumType: ShapeAlignments.self, Default: .Top)
+        switch Orientation
+        {
+            case .Top:
+                AlignmentControl.selectedSegmentIndex = 1
+                
+            case .Bottom:
+                AlignmentControl.selectedSegmentIndex = 2
+                
+            case .Left:
+                AlignmentControl.selectedSegmentIndex = 3
+                
+            case .Right:
+                AlignmentControl.selectedSegmentIndex = 4
+                
+            case .None:
+                AlignmentControl.selectedSegmentIndex = 0
+        }
+        
+        let FontName = Settings.GetString(.ImageTextFont, "Avenir")
+        FontNameLabel.text = FontName
     }
     
     @objc func TextColorChangedHandler(_ sender: Any)
@@ -42,10 +65,42 @@ class TextFormattingSlice: UIViewController
 
     @IBAction func RotateSwitchChangeHandler(_ sender: Any)
     {
+        guard let Switch = sender as? UISwitch else
+        {
+            return
+        }
+        Settings.SetBool(.RotateCharacters, Switch.isOn)
     }
     
     @IBAction func AlignmentControlChanged(_ sender: Any)
     {
+        guard let Segment = sender as? UISegmentedControl else
+        {
+            return
+        }
+        let Index = Segment.selectedSegmentIndex
+        var Align: ShapeAlignments = .None
+        switch Index
+        {
+            case 0:
+                Align = .None
+                
+            case 1:
+                Align = .Top
+                
+            case 2:
+                Align = .Bottom
+                
+            case 3:
+                Align = .Left
+                
+            case 4:
+                Align = .Right
+                
+            default:
+                return
+        }
+        Settings.SetEnum(Align, EnumType: ShapeAlignments.self, ForKey: .ShapeAlignment)
     }
     
     @IBOutlet weak var AlignmentControl: UISegmentedControl!
