@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
-                          UIPickerViewDataSource, SettingChangedProtocol
+                 UIPickerViewDataSource, SettingChangedProtocol
 {
-
+    
     
     override func viewDidLoad()
     {
@@ -31,11 +31,11 @@ class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
         let VHeight = Settings.GetInt(.ViewportHeight, IfZero: 1024)
         let VSizeString = "\(VWidth) x \(VHeight)"
         CurrentViewportSize.text = VSizeString
-        let Radius = Settings.GetDouble(.CircleRadiusPercent, 0.95)
-        let TRadius = Radius * 100.0
-        let RadiusString = "\(Int(TRadius))"
-       ExtentText.text = RadiusString
-        ExtentSlider.value = Float(Radius * 1000.0)
+        let Length = Settings.GetDouble(.LineLength, 0.95)
+        let TLength = Length * 100.0
+        let LengthString = "\(Int(TLength))"
+        ExtentText.text = LengthString
+        ExtentSlider.value = Float(Length * 1000.0)
         
         ExtentText.delegate = self
         
@@ -44,7 +44,7 @@ class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
         
         //https://stackoverflow.com/questions/11553396/how-to-add-an-action-on-uitextfield-return-key
         self.ExtentText.addTarget(self, action: #selector(OnReturn), for: UIControl.Event.editingDidEndOnExit)
-   
+        
         let Orientation = Settings.GetEnum(ForKey: .LineType, EnumType: LineOptions.self, Default: .Horizontal)
         if let OrientationIndex = Lines.firstIndex(of: Orientation)
         {
@@ -115,6 +115,8 @@ class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
         }
     }
     
+    // MARK: - Interface functions.
+    
     @IBAction func ViewportSizeButtonPressed(_ sender: Any)
     {
     }
@@ -140,7 +142,7 @@ class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
                 textField.text = "100"
             }
             var DValue = Double(IValue) * 0.01
-            Settings.SetDouble(.CircleRadiusPercent, DValue)
+            Settings.SetDoubleNormal(.LineLength, DValue)
             DValue = DValue * 1000.0
             ExtentSlider.value = Float(DValue)
         }
@@ -167,10 +169,10 @@ class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
         {
             Debug.FatalError("Slider change handler received non-slider control.")
         }
-        var NewRadialValue = Double(Slider.value)
-        NewRadialValue = NewRadialValue / 1000.0
-        Settings.SetDouble(.CircleRadiusPercent, NewRadialValue)
-        let IRadial = Int(NewRadialValue * 100.0)
+        var NewExtentValue = Double(Slider.value)
+        NewExtentValue = NewExtentValue / 1000.0
+        Settings.SetDouble(.LineLength, NewExtentValue)
+        let IRadial = Int(NewExtentValue * 100.0)
         let RadiusString = "\(Int(IRadial))"
         ExtentText.text = RadiusString
     }
@@ -196,7 +198,8 @@ class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
         Settings.SetEnum(SelectedType, EnumType: LineOptions.self, ForKey: .LineType)
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
+                    forComponent component: Int) -> String?
     {
         switch row
         {
@@ -207,10 +210,10 @@ class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
                 return "Vertical Line"
                 
             case 2:
-                return "Diagonal Line Up"
+                return "Diagonal Line Ascending"
                 
             case 3:
-                return "Diagonal Line Down"
+                return "Diagonal Line Descending"
                 
             default:
                 Debug.FatalError("Only four line types known - encountered \(row)")
