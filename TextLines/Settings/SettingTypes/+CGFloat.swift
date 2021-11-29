@@ -170,4 +170,19 @@ extension Settings
         UserDefaults.standard.set(Value, forKey: Setting.rawValue)
         NotifySubscribers(Setting: Setting, OldValue: OldValue, NewValue: NewValue)
     }
+    
+    /// Set the default value for the passed setting key.
+    /// - Warning: Throws a fatal error if the key does not point to a `CGFloat`.
+    /// - Parameter For: The setting key whose default value will be set.
+    public static func SetCGFloatDefault(For Key: SettingKeys)
+    {
+        guard TypeIsValid(Key, Type: CGFloat.self) else
+        {
+            Debug.FatalError("\(Key) is not a CGFloat")
+        }
+        if let DefaultValue = Settings.SettingDefaults[Key] as? Double
+        {
+            SetCGFloat(Key, DefaultValue)
+        }
+    }
 }
