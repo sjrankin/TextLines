@@ -829,6 +829,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     
     @IBOutlet weak var SettingSlicePanel: UIView!
     @IBOutlet weak var SliceContainer: UIView!
+    @IBOutlet weak var SliceStretchBar: UIImageView!
     
     @IBOutlet weak var TextStack: UIStackView!
     @IBOutlet weak var ShortMessageLabel: UILabel!
