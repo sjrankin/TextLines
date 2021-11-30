@@ -22,7 +22,7 @@ extension UIBezierPath {
     
     /// Line intersection determination (done via slope - if the slopes are equal, the intersect -
     /// this is sufficient for our purposes).
-    static private func LineIntersection(m1: CGFloat, m2: CGFloat) -> Bool
+    static private func DoesIntersect(m1: CGFloat, m2: CGFloat) -> Bool
     {
         return m1 != m2
     }
@@ -88,12 +88,12 @@ extension UIBezierPath {
             
             // Slope calculation with the formula:
             // (b * sinΘ + (a + bΘ) * cosΘ) / (b * cosΘ - (a + bΘ) * sinΘ)
-            let APlusBTheta = a + b * NewTheta
+            let APlusBTheta = a + (b * NewTheta)
             
             if FirstSlope
             {
-                OldSlope = ((b * sin(OldTheta) + APlusBTheta * cos(OldTheta)) /
-                            (b * cos(OldTheta) - APlusBTheta * sin(OldTheta)))
+                OldSlope = ((b * sin(OldTheta) + (APlusBTheta * cos(OldTheta))) /
+                            (b * cos(OldTheta) - (APlusBTheta * sin(OldTheta))))
                 FirstSlope = false
             }
             else
@@ -101,16 +101,19 @@ extension UIBezierPath {
                 OldSlope = NewSlope
             }
             
-            NewSlope = (b * sin(NewTheta) + APlusBTheta * cos(NewTheta)) / (b * cos(NewTheta) - APlusBTheta * sin(NewTheta))
+            NewSlope = (b * sin(NewTheta) + (APlusBTheta * cos(NewTheta))) /
+            (b * cos(NewTheta) - APlusBTheta * sin(NewTheta))
             
             var ControlPoint = CGPoint.zero
             
-            let OldIntercept = -(OldSlope * OldR * cos(OldTheta) - OldR * sin(OldTheta))
-            let NewIntercept = -(NewSlope * NewR * cos(NewTheta) - NewR * sin(NewTheta))
+            let OldIntercept = -(OldSlope * OldR * cos(OldTheta) -
+                                 (OldR * sin(OldTheta)))
+            let NewIntercept = -(NewSlope * NewR * cos(NewTheta) -
+                                 (NewR * sin(NewTheta)))
             
-            let result = LineIntersection(m1: OldSlope, m2: NewSlope)
+            let Intersects = DoesIntersect(m1: OldSlope, m2: NewSlope)
             
-            if result
+            if Intersects
             {
                 let OutX = (NewIntercept - OldIntercept) / (OldSlope - NewSlope)
                 let OutY = OldSlope * OutX + OldIntercept
@@ -121,8 +124,7 @@ extension UIBezierPath {
             }
             else
             {
-                //Settings.SetEnum(.Circle, EnumType: Shapes.self, ForKey: .CurrentShape)
-                print("These lines should never be parallel")
+                Debug.Print("These lines should never be parallel")
                 //return nil
             }
             
