@@ -172,14 +172,15 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="WeO-Kc-eMz"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oIj-eB-l1s">
-                                <rect key="frame" x="0.0" y="44" width="375" height="310"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="330"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01T-uM-Xq0">
-                                        <rect key="frame" x="309.66666666666669" y="5" width="63.333333333333314" height="42.666666666666664"/>
+                                        <rect key="frame" x="308" y="5" width="65" height="42.666666666666664"/>
+                                        <color key="tintColor" systemColor="systemIndigoColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <imageReference key="image" image="gear" catalog="system" symbolScale="large"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24" weight="heavy"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="SettingPanelAllSettingsView:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="bTu-t6-Ynu"/>
@@ -201,18 +202,28 @@
                                             <segue destination="ssc-6f-zXe" kind="embed" id="5RH-mc-FLM"/>
                                         </connections>
                                     </containerView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarGrid" translatesAutoresizingMaskIntoConstraints="NO" id="hM5-gz-tBI">
+                                        <rect key="frame" x="87.666666666666686" y="310" width="200" height="10"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" name="OptionsColor1"/>
                                 <constraints>
+                                    <constraint firstItem="hM5-gz-tBI" firstAttribute="centerX" secondItem="oIj-eB-l1s" secondAttribute="centerX" id="3ww-Dd-wjB"/>
                                     <constraint firstItem="BfQ-lO-mK2" firstAttribute="top" secondItem="oIj-eB-l1s" secondAttribute="top" constant="5" id="6Qh-C7-cYy"/>
+                                    <constraint firstItem="1I1-2l-2Qu" firstAttribute="top" secondItem="BfQ-lO-mK2" secondAttribute="bottom" constant="10.666666666666664" id="Phf-1Z-dbs"/>
                                     <constraint firstAttribute="trailing" secondItem="01T-uM-Xq0" secondAttribute="trailing" constant="2" id="R7i-1E-eNF"/>
-                                    <constraint firstItem="1I1-2l-2Qu" firstAttribute="bottom" secondItem="oIj-eB-l1s" secondAttribute="bottomMargin" id="ULr-us-o6a"/>
-                                    <constraint firstAttribute="trailing" secondItem="1I1-2l-2Qu" secondAttribute="trailing" constant="8" id="WRr-eu-Zp0"/>
-                                    <constraint firstAttribute="height" constant="310" id="ZCx-wt-YqW"/>
+                                    <constraint firstAttribute="bottom" secondItem="1I1-2l-2Qu" secondAttribute="bottom" constant="28" id="SOj-su-Jje"/>
+                                    <constraint firstAttribute="height" constant="330" id="ZCx-wt-YqW"/>
+                                    <constraint firstItem="1I1-2l-2Qu" firstAttribute="leading" secondItem="oIj-eB-l1s" secondAttribute="leading" constant="10" id="egB-ej-rQD"/>
                                     <constraint firstItem="01T-uM-Xq0" firstAttribute="top" secondItem="oIj-eB-l1s" secondAttribute="top" constant="5" id="jBP-XC-aRw"/>
-                                    <constraint firstItem="1I1-2l-2Qu" firstAttribute="leading" secondItem="oIj-eB-l1s" secondAttribute="leading" constant="10" id="mfB-0d-8r0"/>
-                                    <constraint firstItem="1I1-2l-2Qu" firstAttribute="top" secondItem="oIj-eB-l1s" secondAttribute="top" constant="62" id="rJF-kZ-fsZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="hM5-gz-tBI" secondAttribute="bottom" constant="10" id="owg-ro-ZLf"/>
                                     <constraint firstItem="BfQ-lO-mK2" firstAttribute="baseline" secondItem="01T-uM-Xq0" secondAttribute="baseline" id="sLo-ve-32t"/>
+                                    <constraint firstItem="1I1-2l-2Qu" firstAttribute="trailing" secondItem="oIj-eB-l1s" secondAttribute="trailingMargin" id="tdH-we-4Y9"/>
                                     <constraint firstItem="BfQ-lO-mK2" firstAttribute="leading" secondItem="oIj-eB-l1s" secondAttribute="leading" constant="5" id="uyr-fv-dxE"/>
                                     <constraint firstItem="01T-uM-Xq0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BfQ-lO-mK2" secondAttribute="trailing" constant="8" symbolic="YES" id="xoE-0D-lgg"/>
                                 </constraints>
@@ -274,6 +285,7 @@
                         <outlet property="ShortMessageLabel" destination="FJe-s3-GDm" id="UmD-er-dcD"/>
                         <outlet property="SliceContainer" destination="1I1-2l-2Qu" id="2A8-M2-bUu"/>
                         <outlet property="SliceControllerHeight" destination="ZCx-wt-YqW" id="DaG-mR-hLY"/>
+                        <outlet property="SliceStretchBar" destination="hM5-gz-tBI" id="XTG-JR-9uV"/>
                         <outlet property="TextDoneButton" destination="mgr-UI-gTK" id="zPc-tS-gsW"/>
                         <outlet property="TextInput" destination="FAG-0n-9uY" id="12H-Kc-ElF"/>
                         <outlet property="TextOutput" destination="Laq-CI-FFf" id="2Hw-QG-Ddx"/>
@@ -301,6 +313,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="BarGrid" width="200" height="10"/>
         <image name="Test Image" width="2048" height="3072"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="gear" catalog="system" width="128" height="119"/>
@@ -324,6 +337,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
