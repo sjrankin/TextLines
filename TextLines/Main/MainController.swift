@@ -324,6 +324,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         }
     }
     
+    /*
     /// Initialize the keyboard with a `Done` button in a toolbar. This provides an alternative
     /// way for the user to indicate no more editing.
     func InitializeKeyboard()
@@ -338,13 +339,16 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         KBToolbar.sizeToFit()
         TextInput.inputAccessoryView = KBToolbar
     }
+     */
     
+    /*
     /// Called by the `Done` button the program inserted into the keyboard's toolbar when the
     /// user has completed text entry.
     @objc func KeyboardDoneButtonTapped()
     {
         self.view.endEditing(true)
     }
+     */
     
     /// Initialize any SVG images used in places of `UIImage(systemImage)`s. Essentially this
     /// is nothing more than setting the render mode and initial tint color.
