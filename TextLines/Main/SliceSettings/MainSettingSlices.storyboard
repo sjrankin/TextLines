@@ -1599,7 +1599,7 @@
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="yz4-ZJ-RYg"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="Mw5-I1-lXT" id="ZME-TO-5jX"/>
                                                         </connections>
@@ -1628,7 +1628,7 @@
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="sAm-6w-K0r"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="Mw5-I1-lXT" id="g1H-w0-Ryx"/>
                                                         </connections>
@@ -1657,7 +1657,7 @@
                                                             <constraint firstAttribute="width" constant="97" id="y0C-bL-hzQ"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="Mw5-I1-lXT" id="SJ8-cs-DmS"/>
                                                         </connections>
@@ -1686,7 +1686,7 @@
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="esI-vS-KKu"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="Mw5-I1-lXT" id="av7-wc-t5g"/>
                                                         </connections>
@@ -1715,7 +1715,7 @@
                                                             <constraint firstAttribute="width" constant="97" id="dDn-3e-UVm"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="Mw5-I1-lXT" id="5bM-SS-PT1"/>
                                                         </connections>
