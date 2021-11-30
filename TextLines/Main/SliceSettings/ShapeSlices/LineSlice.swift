@@ -11,8 +11,6 @@ import UIKit
 class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
                  UIPickerViewDataSource, SettingChangedProtocol
 {
-    
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -72,13 +70,6 @@ class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
     @objc func HandleDismissTap()
     {
         ExtentText.resignFirstResponder() // dismiss keyoard
-    }
-    
-    /// Called by the `Dismiss` button the program inserted into the keyboard's toolbar when the
-    /// user has completed text entry.
-    @objc func KeyboardDoneButtonTapped()
-    {
-        self.view.endEditing(true)
     }
     
     override func viewWillDisappear(_ animated: Bool)
