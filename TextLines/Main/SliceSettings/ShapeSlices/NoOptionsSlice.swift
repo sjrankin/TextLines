@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class NoOptionsSlice: UIViewController
+class NoOptionsSlice: UIViewController, ShapeSliceProtocol
 {
     var ShapeName: String? = nil
     
@@ -30,6 +30,11 @@ class NoOptionsSlice: UIViewController
         }
         //MainTitle.text = "No Options for \(ShapeName)"
         Explanation.text = "No options available for \(ShapeName)"
+    }
+    
+    func ResetSettings()
+    {
+        //Nothing to do.
     }
     
     @IBOutlet weak var MainTitle: UILabel!
