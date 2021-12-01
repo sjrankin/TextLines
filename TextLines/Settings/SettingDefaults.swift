@@ -77,9 +77,9 @@ extension Settings
         
         // MARK: - Spiral line attributes
         .SpiralStartRadius: 0.0,
-        .SpiralSpacePerLoop: 5.0,
+        .SpiralSpacePerLoop: 9.0,
         .SpiralStartTheta: 0.0,
-        .SpiralEndTheta: 40.0,
+        .SpiralEndTheta: 45.0,
         .SpiralThetaStep: 0.0,
         
         //MARK: - Octagon attributes
