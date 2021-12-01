@@ -15,7 +15,9 @@ extension ViewController
     /// - Parameter Slice: Determines which slice to show.
     func ShowSliceHandler(_ Slice: SliceTypes)
     {
-        LoadSlice(Slice)
+        var HeightOfSlice: CGFloat = 0.0
+        LoadSlice(Slice, &HeightOfSlice)
+        CurrentSliceHeight = HeightOfSlice
         
         SettingSlicePanel.layer.zPosition = 1000
         TextInput.isUserInteractionEnabled = false
@@ -54,21 +56,27 @@ extension ViewController
     
     /// Load a settings slice.
     /// - Parameter Slice: The slice to load.
-    func LoadSlice(_ Slice: SliceTypes)
+    func LoadSlice(_ Slice: SliceTypes, _ Height: inout CGFloat)
     {
         let Story = UIStoryboard(name: "MainSettingSlices", bundle: nil)
         var VC: UIViewController!
-         let NewHeight = HeightFor(Slice: Slice)
-            SliceControllerHeight.constant = NewHeight
+        let NewHeight = HeightFor(Slice: Slice) + 80.0
+        Height = NewHeight
+        SliceControllerHeight.constant = NewHeight
+        var ShowSizeButton = true
+        SliceViewController = nil
         switch Slice
         {
             case .ViewportSize:
+                ShowSizeButton = false
                 VC = Story.instantiateViewController(withIdentifier: "ViewportSizeSlice") as? ViewportSizeSlice
-            
+                
             case .BackgroundSettings:
+                ShowSizeButton = false
                 VC = Story.instantiateViewController(withIdentifier: "BackgroundSlice") as? BackgroundSlice
                 
             case .AnimationSettings:
+                ShowSizeButton = false
                 VC = Story.instantiateViewController(withIdentifier: "AnimationSettingsSlice") as? AnimationSettingsSlice
             
             case .CircleSettings:
@@ -87,13 +95,16 @@ extension ViewController
                 VC = Story.instantiateViewController(withIdentifier: "GuidelinesSlice") as? GuidelineSettingSlice
             
             case .NoShapeOptions:
+                ShowSizeButton = false
                 VC = Story.instantiateViewController(withIdentifier: "NoOptionsSlice") as? NoOptionsSlice
                 (VC as? NoOptionsSlice)?.ShapeName = "unknown"
                 
             case .DebugSlice:
+                ShowSizeButton = false
                 VC = Story.instantiateViewController(withIdentifier: "DebugSlice") as? DebugSlice
                 
             case .TextFormatting:
+                ShowSizeButton = false
                 VC = Story.instantiateViewController(withIdentifier: "TextFormattingSlice") as? TextFormattingSlice
         
             case .OctagonSettings:
@@ -106,8 +117,13 @@ extension ViewController
                 VC = Story.instantiateViewController(withIdentifier: "SpiralSettingSlice") as? SpiralSliceSettings
                 
             case .LineSettings:
+                ShowSizeButton = false
                 VC = Story.instantiateViewController(withIdentifier: "LineSlice") as? LineSlice
         }
+        
+        SliceViewController = VC
+        RunViewportSizeButton.isHidden = !ShowSizeButton
+        RunViewportSizeButton.isEnabled = ShowSizeButton
         
         guard let ActualVC = VC else
         {
@@ -130,6 +146,12 @@ extension ViewController
         ActualVC.didMove(toParent: self)
     }
     
+    #if true
+    func HeightFor(Slice: SliceTypes) -> CGFloat
+    {
+        return SliceHeights[Slice] ?? 240.0
+    }
+    #else
     /// Return the height to use for the slice view. Some slices need more room.
     /// - Returns: The height of the slice view.
     func HeightFor(Slice: SliceTypes) -> CGFloat
@@ -151,6 +173,7 @@ extension ViewController
                 return 310.0
         }
     }
+    #endif
     
     @IBAction func CloseSliceButtonHandler(_ sender: Any)
     {
