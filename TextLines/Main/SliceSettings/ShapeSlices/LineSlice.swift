@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
-                 UIPickerViewDataSource, SettingChangedProtocol
+                 UIPickerViewDataSource, SettingChangedProtocol, ShapeSliceProtocol
 {
     override func viewDidLoad()
     {
@@ -25,10 +25,7 @@ class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
         LineTypePicker.layer.borderWidth = UIConstants.MediumBorder
         
         Settings.AddSubscriber(self)
-        let VWidth = Settings.GetInt(.ViewportWidth, IfZero: 1024)
-        let VHeight = Settings.GetInt(.ViewportHeight, IfZero: 1024)
-        let VSizeString = "\(VWidth) x \(VHeight)"
-        CurrentViewportSize.text = VSizeString
+
         let Length = Settings.GetDouble(.LineLength, 0.95)
         let TLength = Length * 100.0
         let LengthString = "\(Int(TLength))"
@@ -89,28 +86,12 @@ class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
     {
         switch Setting
         {
-            case .ViewportWidth:
-                let VWidth = Settings.GetInt(.ViewportWidth, IfZero: 1024)
-                let VHeight = Settings.GetInt(.ViewportHeight, IfZero: 1024)
-                let VSizeString = "\(VWidth) x \(VHeight)"
-                CurrentViewportSize.text = VSizeString
-                
-            case .ViewportHeight:
-                let VWidth = Settings.GetInt(.ViewportWidth, IfZero: 1024)
-                let VHeight = Settings.GetInt(.ViewportHeight, IfZero: 1024)
-                let VSizeString = "\(VWidth) x \(VHeight)"
-                CurrentViewportSize.text = VSizeString
-                
             default:
                 break
         }
     }
     
     // MARK: - Interface functions.
-    
-    @IBAction func ViewportSizeButtonPressed(_ sender: Any)
-    {
-    }
     
     func textFieldDidEndEditing(_ textField: UITextField)
     {
@@ -211,8 +192,11 @@ class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
         }
     }
     
+    func ResetSettings()
+    {
+    }
+    
     @IBOutlet weak var LineTypePicker: UIPickerView!
     @IBOutlet weak var ExtentText: UITextField!
     @IBOutlet weak var ExtentSlider: UISlider!
-    @IBOutlet weak var CurrentViewportSize: UILabel!
 }
