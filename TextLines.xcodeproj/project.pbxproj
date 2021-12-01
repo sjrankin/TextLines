@@ -29,6 +29,8 @@
 		174979C32736F1B000811EA1 /* TextFormattingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174979C22736F1B000811EA1 /* TextFormattingSlice.swift */; };
 		174EF3E22749720F00BE0002 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174EF3E12749720F00BE0002 /* UIConstants.swift */; };
 		174EF3E42749AC7200BE0002 /* RectangleSettingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174EF3E32749AC7200BE0002 /* RectangleSettingSlice.swift */; };
+		174FC06D2756C009003F1F73 /* UITaggedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174FC06C2756C009003F1F73 /* UITaggedButton.swift */; };
+		174FC06F2756C264003F1F73 /* ShapeSliceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174FC06E2756C264003F1F73 /* ShapeSliceProtocol.swift */; };
 		175A620C272F22D600C4337C /* Main90°.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 175A620B272F22D600C4337C /* Main90°.storyboard */; };
 		1763FB7B273354EA00C20060 /* SettingsWrapperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763FB7A273354EA00C20060 /* SettingsWrapperController.swift */; };
 		1763FB7D2733552100C20060 /* SettingsWrapperDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763FB7C2733552100C20060 /* SettingsWrapperDelegate.swift */; };
@@ -179,6 +181,8 @@
 		174979C22736F1B000811EA1 /* TextFormattingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormattingSlice.swift; sourceTree = "<group>"; };
 		174EF3E12749720F00BE0002 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		174EF3E32749AC7200BE0002 /* RectangleSettingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleSettingSlice.swift; sourceTree = "<group>"; };
+		174FC06C2756C009003F1F73 /* UITaggedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITaggedButton.swift; sourceTree = "<group>"; };
+		174FC06E2756C264003F1F73 /* ShapeSliceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeSliceProtocol.swift; sourceTree = "<group>"; };
 		175A620B272F22D600C4337C /* Main90°.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main90°.storyboard"; sourceTree = "<group>"; };
 		1763FB7A273354EA00C20060 /* SettingsWrapperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWrapperController.swift; sourceTree = "<group>"; };
 		1763FB7C2733552100C20060 /* SettingsWrapperDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWrapperDelegate.swift; sourceTree = "<group>"; };
@@ -682,6 +686,7 @@
 				17672FEE2716423200D408BC /* UIImage.swift */,
 				1724DAB02725F203000E6067 /* UIImageView2.swift */,
 				17672FE72716423200D408BC /* UUID.swift */,
+				174FC06C2756C009003F1F73 /* UITaggedButton.swift */,
 				1724DAB227274C1A000E6067 /* UIView2.swift */,
 			);
 			path = Extensions;
@@ -699,6 +704,7 @@
 				174EF3E32749AC7200BE0002 /* RectangleSettingSlice.swift */,
 				17ED4298274B001500E6EF13 /* TriangleSettingSlice.swift */,
 				17709803275014B900EFEA8A /* SpiralSliceSettings.swift */,
+				174FC06E2756C264003F1F73 /* ShapeSliceProtocol.swift */,
 			);
 			path = ShapeSlices;
 			sourceTree = "<group>";
@@ -877,6 +883,7 @@
 				176730202716423300D408BC /* +CGFloat.swift in Sources */,
 				176730172716423300D408BC /* +Double.swift in Sources */,
 				17709802274F167A00EFEA8A /* LineSlice.swift in Sources */,
+				174FC06D2756C009003F1F73 /* UITaggedButton.swift in Sources */,
 				176730262716423300D408BC /* TitledImageStructure.swift in Sources */,
 				177097FE274EFE9900EFEA8A /* String.swift in Sources */,
 				17153811274D673A005039AA /* OctagonSlice.swift in Sources */,
@@ -904,6 +911,7 @@
 				176730352716423300D408BC /* UserShapeController.swift in Sources */,
 				1767303F2716423300D408BC /* BigAttributes.swift in Sources */,
 				176730062716423300D408BC /* +SettingPanel.swift in Sources */,
+				174FC06F2756C264003F1F73 /* ShapeSliceProtocol.swift in Sources */,
 				1767301D2716423300D408BC /* UserShapeManager.swift in Sources */,
 				176730662716439600D408BC /* Enums.swift in Sources */,
 				176730032716423300D408BC /* +Animation.swift in Sources */,
