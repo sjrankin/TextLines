@@ -174,20 +174,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oIj-eB-l1s">
                                 <rect key="frame" x="0.0" y="44" width="375" height="330"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01T-uM-Xq0">
-                                        <rect key="frame" x="308" y="5" width="65" height="42.666666666666664"/>
-                                        <color key="tintColor" systemColor="systemIndigoColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain">
-                                            <imageReference key="image" image="gear" catalog="system" symbolScale="large"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24" weight="heavy"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="SettingPanelAllSettingsView:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="bTu-t6-Ynu"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BfQ-lO-mK2">
-                                        <rect key="frame" x="5" y="5" width="77.333333333333329" height="46.333333333333336"/>
+                                        <rect key="frame" x="287.66666666666669" y="0.0" width="77.333333333333314" height="38"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Close">
                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
@@ -196,13 +184,26 @@
                                             <action selector="CloseSliceButtonHandler:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="Ibr-uD-71o"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5e3-Me-Vse">
+                                        <rect key="frame" x="10" y="0.0" width="70" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="UWY-Cy-BZk"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Size">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="RunViewportSizeSliceHandler:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="bm1-tK-Swb"/>
+                                        </connections>
+                                    </button>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1I1-2l-2Qu">
-                                        <rect key="frame" x="10" y="62" width="357" height="240"/>
+                                        <rect key="frame" x="10" y="52.333333333333329" width="357" height="249.66666666666669"/>
                                         <connections>
                                             <segue destination="ssc-6f-zXe" kind="embed" id="5RH-mc-FLM"/>
                                         </connections>
                                     </containerView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarGrid" translatesAutoresizingMaskIntoConstraints="NO" id="hM5-gz-tBI">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarGrid" translatesAutoresizingMaskIntoConstraints="NO" id="hM5-gz-tBI">
                                         <rect key="frame" x="87.666666666666686" y="310" width="200" height="10"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -210,22 +211,34 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzW-8t-bvL">
+                                        <rect key="frame" x="148.66666666666666" y="0.0" width="78" height="38"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Reset">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="ResetSettingSliceValuesHandler:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="GeT-gc-dw0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="OptionsColor1"/>
                                 <constraints>
                                     <constraint firstItem="hM5-gz-tBI" firstAttribute="centerX" secondItem="oIj-eB-l1s" secondAttribute="centerX" id="3ww-Dd-wjB"/>
-                                    <constraint firstItem="BfQ-lO-mK2" firstAttribute="top" secondItem="oIj-eB-l1s" secondAttribute="top" constant="5" id="6Qh-C7-cYy"/>
-                                    <constraint firstItem="1I1-2l-2Qu" firstAttribute="top" secondItem="BfQ-lO-mK2" secondAttribute="bottom" constant="10.666666666666664" id="Phf-1Z-dbs"/>
-                                    <constraint firstAttribute="trailing" secondItem="01T-uM-Xq0" secondAttribute="trailing" constant="2" id="R7i-1E-eNF"/>
+                                    <constraint firstItem="5e3-Me-Vse" firstAttribute="leading" secondItem="oIj-eB-l1s" secondAttribute="leading" constant="10" id="7ed-2H-dRl"/>
+                                    <constraint firstItem="uzW-8t-bvL" firstAttribute="centerY" secondItem="BfQ-lO-mK2" secondAttribute="centerY" id="Ipt-we-F2V"/>
+                                    <constraint firstItem="5e3-Me-Vse" firstAttribute="baseline" secondItem="BfQ-lO-mK2" secondAttribute="firstBaseline" id="Lwc-Ma-i6x"/>
                                     <constraint firstAttribute="bottom" secondItem="1I1-2l-2Qu" secondAttribute="bottom" constant="28" id="SOj-su-Jje"/>
+                                    <constraint firstAttribute="trailing" secondItem="BfQ-lO-mK2" secondAttribute="trailing" constant="10" id="T77-DF-TfD"/>
                                     <constraint firstAttribute="height" constant="330" id="ZCx-wt-YqW"/>
+                                    <constraint firstItem="5e3-Me-Vse" firstAttribute="baseline" secondItem="BfQ-lO-mK2" secondAttribute="baseline" id="d3p-rD-cuZ"/>
                                     <constraint firstItem="1I1-2l-2Qu" firstAttribute="leading" secondItem="oIj-eB-l1s" secondAttribute="leading" constant="10" id="egB-ej-rQD"/>
-                                    <constraint firstItem="01T-uM-Xq0" firstAttribute="top" secondItem="oIj-eB-l1s" secondAttribute="top" constant="5" id="jBP-XC-aRw"/>
+                                    <constraint firstItem="5e3-Me-Vse" firstAttribute="top" secondItem="oIj-eB-l1s" secondAttribute="top" id="egW-c6-1D4"/>
+                                    <constraint firstItem="1I1-2l-2Qu" firstAttribute="top" secondItem="uzW-8t-bvL" secondAttribute="bottom" constant="14.333333333333293" id="kin-5I-4M1"/>
                                     <constraint firstAttribute="bottom" secondItem="hM5-gz-tBI" secondAttribute="bottom" constant="10" id="owg-ro-ZLf"/>
-                                    <constraint firstItem="BfQ-lO-mK2" firstAttribute="baseline" secondItem="01T-uM-Xq0" secondAttribute="baseline" id="sLo-ve-32t"/>
+                                    <constraint firstItem="uzW-8t-bvL" firstAttribute="top" secondItem="BfQ-lO-mK2" secondAttribute="top" id="tMR-gd-d5H"/>
+                                    <constraint firstItem="uzW-8t-bvL" firstAttribute="centerX" secondItem="oIj-eB-l1s" secondAttribute="centerX" id="tao-3X-Vn6"/>
                                     <constraint firstItem="1I1-2l-2Qu" firstAttribute="trailing" secondItem="oIj-eB-l1s" secondAttribute="trailingMargin" id="tdH-we-4Y9"/>
-                                    <constraint firstItem="BfQ-lO-mK2" firstAttribute="leading" secondItem="oIj-eB-l1s" secondAttribute="leading" constant="5" id="uyr-fv-dxE"/>
-                                    <constraint firstItem="01T-uM-Xq0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BfQ-lO-mK2" secondAttribute="trailing" constant="8" symbolic="YES" id="xoE-0D-lgg"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image Saved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJe-s3-GDm">
@@ -273,6 +286,7 @@
                     </view>
                     <connections>
                         <outlet property="CommandScroller" destination="wuS-SF-y64" id="ncE-LX-GhR"/>
+                        <outlet property="RunViewportSizeButton" destination="5e3-Me-Vse" id="eN7-GO-o44"/>
                         <outlet property="SettingOptionTable" destination="znC-qh-tlq" id="sdR-HE-zS8"/>
                         <outlet property="SettingPanel" destination="D0N-Et-mTd" id="N0l-cG-vRX"/>
                         <outlet property="SettingPanelCommandTable" destination="yOK-aW-un6" id="jli-K2-w9w"/>
@@ -301,7 +315,7 @@
             <objects>
                 <viewController id="ssc-6f-zXe" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U2t-A3-2u9">
-                        <rect key="frame" x="0.0" y="0.0" width="357" height="240"/>
+                        <rect key="frame" x="0.0" y="0.0" width="357" height="249.66666666666666"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="d9q-Gc-l3b"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -337,9 +351,6 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
