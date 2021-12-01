@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class SpiralSliceSettings: UIViewController, UITextFieldDelegate,
-                           SettingChangedProtocol
+                           SettingChangedProtocol, ShapeSliceProtocol
 {
     override func viewDidLoad()
     {
@@ -21,10 +21,6 @@ class SpiralSliceSettings: UIViewController, UITextFieldDelegate,
         self.view.layer.borderWidth = UIConstants.ThickBorder
         
         Settings.AddSubscriber(self)
-        let VWidth = Settings.GetInt(.ViewportWidth, IfZero: 1024)
-        let VHeight = Settings.GetInt(.ViewportHeight, IfZero: 1024)
-        let VSizeString = "\(VWidth) x \(VHeight)"
-        ViewportSizeLabel.text = VSizeString
         
         InitializeTextField(StartRadiusField, Key: .SpiralStartRadius)
         StartRadiusField.addTarget(self, action: #selector(OnEditingDone),
@@ -125,19 +121,13 @@ class SpiralSliceSettings: UIViewController, UITextFieldDelegate,
     {
         switch Setting
         {
-            case .ViewportWidth,
-                    .ViewportHeight:
-                let VWidth = Settings.GetInt(.ViewportWidth, IfZero: 1024)
-                let VHeight = Settings.GetInt(.ViewportHeight, IfZero: 1024)
-                let VSizeString = "\(VWidth) x \(VHeight)"
-                ViewportSizeLabel.text = VSizeString
-                
             default:
                 break
         }
     }
     
-    @IBAction func ResetButtonHandler(_ sender: Any)
+    /// Reset the settings to default values.
+    func ResetSettings()
     {
         Settings.SetCGFloatDefault(For: .SpiralEndTheta)
         Settings.SetCGFloatDefault(For: .SpiralSpacePerLoop)
@@ -156,5 +146,4 @@ class SpiralSliceSettings: UIViewController, UITextFieldDelegate,
     @IBOutlet weak var EndAngleField: UITextField!
     @IBOutlet weak var AngleStepField: UITextField!
     @IBOutlet weak var LineGapField: UITextField!
-    @IBOutlet weak var ViewportSizeLabel: UILabel!
 }
