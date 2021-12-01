@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class RectangleSettingSlice: UIViewController, UITextFieldDelegate,
-                         SettingChangedProtocol
+                         SettingChangedProtocol, ShapeSliceProtocol
 {
     override func viewDidLoad()
     {
@@ -21,10 +21,6 @@ class RectangleSettingSlice: UIViewController, UITextFieldDelegate,
         self.view.layer.borderWidth = UIConstants.ThickBorder
         
         Settings.AddSubscriber(self)
-        let VWidth = Settings.GetInt(.ViewportWidth, IfZero: 1024)
-        let VHeight = Settings.GetInt(.ViewportHeight, IfZero: 1024)
-        let VSizeString = "\(VWidth) x \(VHeight)"
-        ViewportSizeLabel.text = VSizeString
         
         let RectWidth = Settings.GetDouble(.RectangleWidth, 0.95)
         let TMRectWidth = RectWidth * 100.0
@@ -172,6 +168,10 @@ class RectangleSettingSlice: UIViewController, UITextFieldDelegate,
         HeightTextField.text = HeightString
     }
     
+    func ResetSettings()
+    {
+    }
+    
     // MARK: - Interface builder outlets
     
     @IBOutlet weak var WidthSlider: UISlider!
@@ -179,5 +179,4 @@ class RectangleSettingSlice: UIViewController, UITextFieldDelegate,
     @IBOutlet weak var HeightTextField: UITextField!
     @IBOutlet weak var WidthTextField: UITextField!
     @IBOutlet weak var RoundedCornersSwitch: UISwitch!
-    @IBOutlet weak var ViewportSizeLabel: UILabel!
 }
