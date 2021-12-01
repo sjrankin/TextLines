@@ -68,17 +68,15 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         SettingSlicePanel.layer.maskedCorners = [CACornerMask.layerMaxXMaxYCorner,
                                             CACornerMask.layerMinXMaxYCorner]
         SettingSlicePanel.layer.cornerRadius = UIConstants.CornerRadius
-        
+       
         let OptionDrag = UIPanGestureRecognizer(target: self,
-                                                action: #selector(HandleSettingDragging))
-        SettingsPanelDragBar.addGestureRecognizer(OptionDrag)
-        SettingsPanelDragBar.layer.cornerRadius = UIConstants.DragCornerRadius
+                                                action: #selector(HandleSliceDragging))
+        SliceStretchBar.addGestureRecognizer(OptionDrag)
         let ResetDragBar = UITapGestureRecognizer(target: self,
-                                                  action: #selector(HandleResetSettingsPanel))
+                                                  action: #selector(HandleResetSlicePanel))
         ResetDragBar.numberOfTapsRequired = 2
-        SettingsPanelDragBar.addGestureRecognizer(ResetDragBar)
+        SliceStretchBar.addGestureRecognizer(ResetDragBar)
         
-//        InitializeKeyboard()
         StartText = "\(Versioning.ApplicationName) Version \(Versioning.VerySimpleVersionString()), Build \(Versioning.Build)"
         CurrentText = StartText
         UpdateOutput()
@@ -199,9 +197,13 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     var PanningOffset: CGFloat? = nil
     
     //https://stackoverflow.com/questions/25649926/trying-to-animate-a-constraint-in-swift
-    @objc func HandleResetSettingsPanel(_ Recognizer: UITapGestureRecognizer)
+    @objc func HandleResetSlicePanel(_ Recognizer: UITapGestureRecognizer)
     {
-        self.SettingsHeightConstraint.constant = 240
+        guard let BaseHeight = CurrentSliceHeight else
+        {
+            return
+        }
+        self.SliceControllerHeight.constant = BaseHeight
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
                        options: [.curveEaseInOut])
@@ -210,22 +212,22 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         }
     }
     
-    var StartingSettingsHeight: CGFloat? = nil
+    var SettingSliceHeight: CGFloat? = nil
     
-    @objc func HandleSettingDragging(_ Recognizer: UIPanGestureRecognizer)
+    @objc func HandleSliceDragging(_ Recognizer: UIPanGestureRecognizer)
     {
         let DraggedTo = Recognizer.translation(in: self.view)
         switch Recognizer.state
         {
             case .began:
-                if StartingSettingsHeight == nil
+                if SettingSliceHeight == nil
                 {
-                    StartingSettingsHeight = SettingPanel.frame.size.height
+                    SettingSliceHeight = SettingSlicePanel.frame.size.height
                 }
                 
             case .changed:
-                let Delta = StartingSettingsHeight! + DraggedTo.y
-                if Delta < 120
+                let Delta = SettingSliceHeight! + DraggedTo.y
+                if Delta < 180
                 {
                     return
                 }
@@ -233,10 +235,10 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                 {
                     return
                 }
-                SettingsHeightConstraint.constant = Delta
+                SliceControllerHeight.constant = Delta
                 
             case .ended:
-                StartingSettingsHeight = nil
+                SettingSliceHeight = nil
                 
             default:
                 break
@@ -281,6 +283,10 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         print("UserShapeImageCache.count=\(UserShapeImageCache.LocalCache.count)")
     }
     
+    /// Create a thumbnail image of the specified user-defined shape.
+    /// - Parameter Shape: The user-defined shape to use to create the image.
+    /// - Parameter Color: The background color of the shape.
+    /// - Returns: A `UIImage` thumnail of the user-defined shape.
     func CreateShapeThumbnail(Shape: UserDefinedShape, Color: UIColor) -> UIImage
     {
         var Thumbnail: UIImage = UIImage()
@@ -323,32 +329,6 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
             return UIApplication.shared.windows.first?.windowScene?.interfaceOrientation
         }
     }
-    
-    /*
-    /// Initialize the keyboard with a `Done` button in a toolbar. This provides an alternative
-    /// way for the user to indicate no more editing.
-    func InitializeKeyboard()
-    {
-        let KBToolbar = UIToolbar()
-        let FlexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                        target: nil, action: nil)
-        let DoneButton = UIBarButtonItem(title: "Dismiss", style: .done,
-                                         target: self, action: #selector(KeyboardDoneButtonTapped))
-        
-        KBToolbar.setItems([FlexSpace, DoneButton], animated: true)
-        KBToolbar.sizeToFit()
-        TextInput.inputAccessoryView = KBToolbar
-    }
-     */
-    
-    /*
-    /// Called by the `Done` button the program inserted into the keyboard's toolbar when the
-    /// user has completed text entry.
-    @objc func KeyboardDoneButtonTapped()
-    {
-        self.view.endEditing(true)
-    }
-     */
     
     /// Initialize any SVG images used in places of `UIImage(systemImage)`s. Essentially this
     /// is nothing more than setting the render mode and initial tint color.
@@ -779,6 +759,50 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         }
     }
     
+    @IBAction func RunViewportSizeSliceHandler(_ sender: Any)
+    {
+    }
+    
+    @IBAction func ResetSettingSliceValuesHandler(_ sender: Any)
+    {
+        if let CurrentSlice = SliceViewController
+        {
+            if CurrentSlice.conforms(to: ShapeSliceProtocol.self)
+            {
+                (CurrentSlice as? ShapeSliceProtocol)!.ResetSettings()
+            }
+        }
+        switch Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self, Default: .Circle)
+        {
+            case .Circle:
+                break
+                
+            case .Ellipse:
+                break
+                
+            case .Rectangle:
+                break
+                
+            case .Triangle:
+                break
+                
+            case .Octagon:
+                break
+                
+            case .Hexagon:
+                break
+                
+            case .Line:
+                break
+                
+            case .Spiral:
+                break
+                
+            default:
+                break
+        }
+    }
+    
     // MARK: - Setting panel variables.
     
     var SettingCommands =
@@ -792,6 +816,41 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         "Reset",
         "About",
         "Debug"
+    ]
+    
+    var SliceViewController: UIViewController? = nil
+    
+    var CurrentSliceHeight: CGFloat? = nil
+    
+    /// Heights of different slice views. If not here, a default value is used in `HeightFor`.
+    let SliceHeights: [SliceTypes: CGFloat] =
+    [
+        .RectangleSettings: 265.0,
+        .TriangleSettings: 265.0,
+        .DebugSlice: 300.0,
+        .SpiralLineSettings: 285.0,
+        .CircleSettings: 170.0,
+        .EllipseSettings: 218.0,
+        .LineSettings: 275.0,
+        .HexagonSettings: 220.0,
+        .OctagonSettings: 220.0,
+        .NoShapeOptions: 240.0,
+        .ViewportSize: 300.0,
+        .AnimationSettings: 240.0,
+        .GuidelineSettings: 240.0,
+        .BackgroundSettings: 240.0
+    ]
+    
+    let ShapeToSlice: [Shapes: SliceTypes] =
+    [
+        .Circle: .CircleSettings,
+        .Ellipse: .EllipseSettings,
+        .Rectangle: .RectangleSettings,
+        .Triangle: .TriangleSettings,
+        .Octagon: .OctagonSettings,
+        .Hexagon: .HexagonSettings,
+        .Line: .LineSettings,
+        .Spiral: .SpiralLineSettings
     ]
     
     var SettingCellHeight: CGFloat = 40
@@ -830,11 +889,11 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     @IBOutlet weak var SettingSlicePanel: UIView!
     @IBOutlet weak var SliceContainer: UIView!
     @IBOutlet weak var SliceStretchBar: UIImageView!
+    @IBOutlet weak var SliceControllerHeight: NSLayoutConstraint!
+    @IBOutlet weak var RunViewportSizeButton: UIButton!
     
     @IBOutlet weak var TextStack: UIStackView!
     @IBOutlet weak var ShortMessageLabel: UILabel!
-
-    @IBOutlet weak var SliceControllerHeight: NSLayoutConstraint!
 
     @IBOutlet weak var TextDoneButton: UIButton!
 }
