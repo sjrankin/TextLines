@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class CircleSettingSlice: UIViewController, UITextFieldDelegate,
-                          SettingChangedProtocol
+                          SettingChangedProtocol, ShapeSliceProtocol
 {
     override func viewDidLoad()
     {
@@ -21,10 +21,7 @@ class CircleSettingSlice: UIViewController, UITextFieldDelegate,
         self.view.layer.borderWidth = UIConstants.ThickBorder
         
         Settings.AddSubscriber(self)
-        let VWidth = Settings.GetInt(.ViewportWidth, IfZero: 1024)
-        let VHeight = Settings.GetInt(.ViewportHeight, IfZero: 1024)
-        let VSizeString = "\(VWidth) x \(VHeight)"
-        CurrentViewportSize.text = VSizeString
+
         let Radius = Settings.GetDouble(.CircleRadiusPercent, 0.95)
         let TRadius = Radius * 100.0
         let RadiusString = "\(Int(TRadius))"
@@ -91,25 +88,9 @@ class CircleSettingSlice: UIViewController, UITextFieldDelegate,
     {
         switch Setting
         {
-            case .ViewportWidth:
-                let VWidth = Settings.GetInt(.ViewportWidth, IfZero: 1024)
-                let VHeight = Settings.GetInt(.ViewportHeight, IfZero: 1024)
-                let VSizeString = "\(VWidth) x \(VHeight)"
-                CurrentViewportSize.text = VSizeString
-                
-            case .ViewportHeight:
-                let VWidth = Settings.GetInt(.ViewportWidth, IfZero: 1024)
-                let VHeight = Settings.GetInt(.ViewportHeight, IfZero: 1024)
-                let VSizeString = "\(VWidth) x \(VHeight)"
-                CurrentViewportSize.text = VSizeString
-                
             default:
                 break
         }
-    }
-    
-    @IBAction func ViewportSizeButtonPressed(_ sender: Any)
-    {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField)
@@ -169,7 +150,10 @@ class CircleSettingSlice: UIViewController, UITextFieldDelegate,
         RadialText.text = RadiusString
     }
     
+    func ResetSettings()
+    {
+    }
+    
     @IBOutlet weak var RadialText: UITextField!
     @IBOutlet weak var RadialSlider: UISlider!
-    @IBOutlet weak var CurrentViewportSize: UILabel!
 }
