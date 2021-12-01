@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class HexagonSlice: UIViewController, UITextFieldDelegate,
-                    SettingChangedProtocol
+                    SettingChangedProtocol, ShapeSliceProtocol
 {
     override func viewDidLoad()
     {
@@ -21,10 +21,6 @@ class HexagonSlice: UIViewController, UITextFieldDelegate,
         self.view.layer.borderWidth = UIConstants.ThickBorder
         
         Settings.AddSubscriber(self)
-        let VWidth = Settings.GetInt(.ViewportWidth, IfZero: 1024)
-        let VHeight = Settings.GetInt(.ViewportHeight, IfZero: 1024)
-        let VSizeString = "\(VWidth) x \(VHeight)"
-        ViewportSizeLabel.text = VSizeString
         
         let TriangleBase = Settings.GetDoubleNormal(.HexagonWidth)
         let TMRectWidth = TriangleBase * 100.0
@@ -153,9 +149,12 @@ class HexagonSlice: UIViewController, UITextFieldDelegate,
         HeightTextField.text = HeightString
     }
     
+    func ResetSettings()
+    {
+    }
+    
     @IBOutlet weak var WidthSlider: UISlider!
     @IBOutlet weak var HeightSlider: UISlider!
     @IBOutlet weak var HeightTextField: UITextField!
     @IBOutlet weak var WidthTextField: UITextField!
-    @IBOutlet weak var ViewportSizeLabel: UILabel!
 }
