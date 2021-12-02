@@ -622,8 +622,12 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                 #endif
                 
             case .FontButton:
+                #if true
+                ShowSliceHandler(.FontSlice)
+                #else
                 RunSlicedSettings(StoryboardName: "SettingsUI",
                                   ControllerName: "FontPickerController")
+                #endif
                 
             case .DimensionsButton:
                 ShowSliceHandler(.ViewportSize)
@@ -666,6 +670,12 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                         
                     case .Spiral:
                         ShowSliceHandler(.SpiralLineSettings)
+                        
+                    case .Star:
+                        break
+                        
+                    case .NGon:
+                        ShowSliceHandler(.NGonSlice)
                         
                     default:
                         break
@@ -798,6 +808,12 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
             case .Spiral:
                 break
                 
+            case .Star:
+                break
+                
+            case .NGon:
+                break
+                
             default:
                 break
         }
@@ -838,7 +854,9 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         .ViewportSize: 300.0,
         .AnimationSettings: 240.0,
         .GuidelineSettings: 240.0,
-        .BackgroundSettings: 240.0
+        .BackgroundSettings: 240.0,
+        .FontSlice: 358.0,
+        .NGonSlice: 423.0,
     ]
     
     let ShapeToSlice: [Shapes: SliceTypes] =
