@@ -31,6 +31,8 @@
 		174EF3E42749AC7200BE0002 /* RectangleSettingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174EF3E32749AC7200BE0002 /* RectangleSettingSlice.swift */; };
 		174FC06D2756C009003F1F73 /* UITaggedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174FC06C2756C009003F1F73 /* UITaggedButton.swift */; };
 		174FC06F2756C264003F1F73 /* ShapeSliceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174FC06E2756C264003F1F73 /* ShapeSliceProtocol.swift */; };
+		174FC0712757D0D2003F1F73 /* FontSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174FC0702757D0D1003F1F73 /* FontSlice.swift */; };
+		174FC07327584037003F1F73 /* NGonSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174FC07227584037003F1F73 /* NGonSlice.swift */; };
 		175A620C272F22D600C4337C /* Main90°.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 175A620B272F22D600C4337C /* Main90°.storyboard */; };
 		1763FB7B273354EA00C20060 /* SettingsWrapperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763FB7A273354EA00C20060 /* SettingsWrapperController.swift */; };
 		1763FB7D2733552100C20060 /* SettingsWrapperDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763FB7C2733552100C20060 /* SettingsWrapperDelegate.swift */; };
@@ -183,6 +185,8 @@
 		174EF3E32749AC7200BE0002 /* RectangleSettingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleSettingSlice.swift; sourceTree = "<group>"; };
 		174FC06C2756C009003F1F73 /* UITaggedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITaggedButton.swift; sourceTree = "<group>"; };
 		174FC06E2756C264003F1F73 /* ShapeSliceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeSliceProtocol.swift; sourceTree = "<group>"; };
+		174FC0702757D0D1003F1F73 /* FontSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSlice.swift; sourceTree = "<group>"; };
+		174FC07227584037003F1F73 /* NGonSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NGonSlice.swift; sourceTree = "<group>"; };
 		175A620B272F22D600C4337C /* Main90°.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main90°.storyboard"; sourceTree = "<group>"; };
 		1763FB7A273354EA00C20060 /* SettingsWrapperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWrapperController.swift; sourceTree = "<group>"; };
 		1763FB7C2733552100C20060 /* SettingsWrapperDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWrapperDelegate.swift; sourceTree = "<group>"; };
@@ -354,6 +358,7 @@
 				1765092E2737021900735CB4 /* GuidelinesSettingSlice.swift */,
 				173AF6EF27387DB6001AE0F2 /* NoOptionsSettingSlice.swift */,
 				1722650F274D3F17000EDFD8 /* DebugSlice.swift */,
+				174FC0702757D0D1003F1F73 /* FontSlice.swift */,
 				17FED86E2743248700FC977E /* BackgroundSlice.swift */,
 				174979C22736F1B000811EA1 /* TextFormattingSlice.swift */,
 				174979C02736F16B00811EA1 /* ViewportSizeSlice.swift */,
@@ -700,6 +705,7 @@
 				17FED86C273A0B7C00FC977E /* OvalSettingSlice.swift */,
 				1715380E274D66E6005039AA /* HexagonSlice.swift */,
 				17153810274D673A005039AA /* OctagonSlice.swift */,
+				174FC07227584037003F1F73 /* NGonSlice.swift */,
 				17709801274F167A00EFEA8A /* LineSlice.swift */,
 				174EF3E32749AC7200BE0002 /* RectangleSettingSlice.swift */,
 				17ED4298274B001500E6EF13 /* TriangleSettingSlice.swift */,
@@ -837,6 +843,7 @@
 				176730382716423300D408BC /* UserShapeCell.swift in Sources */,
 				1763FB7B273354EA00C20060 /* SettingsWrapperController.swift in Sources */,
 				176730372716423300D408BC /* ShapeEditor.swift in Sources */,
+				174FC07327584037003F1F73 /* NGonSlice.swift in Sources */,
 				1767301F2716423300D408BC /* +CGSize.swift in Sources */,
 				1763FB7D2733552100C20060 /* SettingsWrapperDelegate.swift in Sources */,
 				176730242716423300D408BC /* TitledImage.swift in Sources */,
@@ -927,6 +934,7 @@
 				17ED4299274B001500E6EF13 /* TriangleSettingSlice.swift in Sources */,
 				176730292716423300D408BC /* BooleanCell2.swift in Sources */,
 				176730252716423300D408BC /* TitledImageUI.swift in Sources */,
+				174FC0712757D0D2003F1F73 /* FontSlice.swift in Sources */,
 				1724DAAD2724F0FC000E6067 /* +StringArray.swift in Sources */,
 				1767303E2716423300D408BC /* AttributionCell.swift in Sources */,
 				176730092716423300D408BC /* SceneDelegate.swift in Sources */,
