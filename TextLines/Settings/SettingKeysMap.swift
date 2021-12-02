@@ -98,5 +98,11 @@ extension Settings
         .ScaleToView: Bool.self,
         .UserShapeOptionsOrder: String.self,
         .PointsWhenSmooth: Bool.self,
+        
+        // MARK: - N-gon attributes
+        .NGonVertexCount: Int.self,
+        .NGonRotation: Double.self,
+        .NGonWidth: Double.self,
+        .NGonHeight: Double.self,
     ]
 }
