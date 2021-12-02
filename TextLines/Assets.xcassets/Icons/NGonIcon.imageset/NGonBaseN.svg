@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Vectornator for iOS (http://vectornator.io/) -->
+
+<svg
+   height="100%"
+   style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;"
+   xml:space="preserve"
+   width="100%"
+   version="1.1"
+   viewBox="0 0 400 400"
+   id="svg59"
+   sodipodi:docname="NGonBaseN.svg"
+   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:vectornator="http://vectornator.io"><sodipodi:namedview
+   id="namedview61"
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1.0"
+   inkscape:pageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   showgrid="false"
+   inkscape:zoom="1.9075"
+   inkscape:cx="200"
+   inkscape:cy="199.73788"
+   inkscape:window-width="1920"
+   inkscape:window-height="976"
+   inkscape:window-x="0"
+   inkscape:window-y="25"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg59" />
+<metadata
+   id="metadata52">
+<vectornator:setting
+   key="GuidesVisible"
+   value="1" />
+<vectornator:setting
+   key="OutlineMode"
+   value="0" />
+<vectornator:setting
+   key="SnapToEdges"
+   value="0" />
+<vectornator:setting
+   key="doHistoryDisabled"
+   value="0" />
+<vectornator:setting
+   key="SnapToGuides"
+   value="1" />
+<vectornator:setting
+   key="TimeLapseWatermarkDisabled"
+   value="0" />
+<vectornator:setting
+   key="IsolateActiveLayer"
+   value="0" />
+<vectornator:setting
+   key="DisplayWhiteBackground"
+   value="0" />
+<vectornator:setting
+   key="DynamicGuides"
+   value="0" />
+<vectornator:setting
+   key="Units"
+   value="Pixels" />
+<vectornator:setting
+   key="SnapToPoints"
+   value="0" />
+<vectornator:setting
+   key="CMYKEnabledKey"
+   value="0" />
+<vectornator:setting
+   key="PencilOnly"
+   value="0" />
+<vectornator:setting
+   key="SnapToGrid"
+   value="0" />
+<vectornator:setting
+   key="DimensionsVisible"
+   value="1" />
+<vectornator:setting
+   key="RulersVisible"
+   value="1" />
+</metadata>
+<defs
+   id="defs54" />
+<g
+   id="Layer 1"
+   vectornator:layerName="Layer 1">
+<path
+   stroke="#000000"
+   stroke-width="28.306"
+   d="M134.499+378.297C127.857+378.297+122.282+377.686+117.775+376.464C113.267+375.242+109.286+373.311+105.832+370.671C102.378+368.031+98.8411+364.685+95.2215+360.632L26.4885+282.58C21.8939+277.309+18.8305+272.233+17.2984+267.352C15.7661+262.471+15+255.618+15+246.793L15+153.207C15+144.411+15.7661+137.572+17.2984+132.691C18.8305+127.81+21.8939+122.734+26.4885+117.463L95.2215+39.368C98.8411+35.3135+102.378+31.9738+105.832+29.3488C109.286+26.724+113.267+24.7935+117.775+23.5574C122.282+22.3211+127.857+21.7029+134.499+21.7029L265.506+21.7029C272.176+21.7029+277.765+22.3211+282.274+23.5574C286.782+24.7935+290.762+26.724+294.214+29.3488C297.668+31.9738+301.192+35.3135+304.784+39.368L373.56+117.463C378.152+122.734+381.207+127.81+382.726+132.691C384.242+137.572+385+144.411+385+153.207L385+246.793C385+255.618+384.242+262.471+382.726+267.352C381.207+272.233+378.152+277.309+373.56+282.58L304.784+360.632C301.192+364.685+297.668+368.031+294.214+370.671C290.762+373.311+286.782+375.242+282.274+376.464C277.765+377.686+272.176+378.297+265.506+378.297L134.499+378.297Z"
+   fill="none"
+   stroke-linecap="butt"
+   opacity="1"
+   stroke-linejoin="round"
+   id="path56" />
+</g>
+<text
+   xml:space="preserve"
+   style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:293.333px;line-height:1.25;font-family:Avenir;-inkscape-font-specification:'Avenir Heavy';fill:#000000;fill-opacity:1;stroke:none"
+   x="88.073387"
+   y="310.35388"
+   id="text827"><tspan
+     sodipodi:role="line"
+     id="tspan825"
+     x="88.073387"
+     y="310.35388"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:293.333px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Bold'">N</tspan></text></svg>
