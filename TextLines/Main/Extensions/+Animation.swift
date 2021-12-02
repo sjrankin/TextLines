@@ -173,6 +173,38 @@ extension ViewController
                         }
                     }
                     
+                case .Star:
+                    perm = self.PathLength
+                    if Clockwise
+                    {
+                        Final = CGFloat(Int(self.AnimationOffset) % Int(perm)) +
+                        CGFloat((Velocity * Direction))
+                    }
+                    else
+                    {
+                        Final = CGFloat(self.AnimationOffset) + CGFloat(Velocity * Direction)
+                        if Final < 0.0
+                        {
+                            Final = self.PathLength - Final
+                        }
+                    }
+                    
+                case .NGon:
+                    perm = self.PathLength
+                    if Clockwise
+                    {
+                        Final = CGFloat(Int(self.AnimationOffset) % Int(perm)) +
+                        CGFloat((Velocity * Direction))
+                    }
+                    else
+                    {
+                        Final = CGFloat(self.AnimationOffset) + CGFloat(Velocity * Direction)
+                        if Final < 0.0
+                        {
+                            Final = self.PathLength - Final
+                        }
+                    }
+                    
                 case .User:
                     perm = self.PathLength
                     if Clockwise
