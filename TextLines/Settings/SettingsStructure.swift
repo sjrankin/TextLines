@@ -34,7 +34,9 @@ class SettingsStructure
         StructureNode(Name: "Octagon Parameters", Keys: .OctagonWidth, .OctagonHeight),
         StructureNode(Name: "Hexagon Parameters", Keys: .HexagonWidth, .HexagonHeight),
         StructureNode(Name: "User Shape Parameters", Keys: .UserShapes, .CurrentUserShape,
-                      .ShowViewport, .ScaleToView, .UserShapeOptionsOrder, .PointsWhenSmooth)
+                      .ShowViewport, .ScaleToView, .UserShapeOptionsOrder, .PointsWhenSmooth),
+        StructureNode(Name: "N-Gon Parameters", Keys: .NGonVertexCount, .NGonRotation,
+                      .NGonWidth, .NGonHeight),
     ]
 }
 
