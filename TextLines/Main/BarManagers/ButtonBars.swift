@@ -423,7 +423,6 @@ class ButtonBars: NSObject, UIScrollViewDelegate
         Settings.SetEnum(Recognizer.ForShape, EnumType: Shapes.self, ForKey: .CurrentShape)
     }
     
-    
     var ShapeScroller: UIScrollView? = nil
     var CurrentCategory: ShapeCategories = .Shapes
     var CurrentShape: Shapes = .Circle
@@ -433,7 +432,7 @@ class ButtonBars: NSObject, UIScrollViewDelegate
     /// Dictionary of shape categories and associated shapes in each.
     let ShapeStructure: [ShapeCategories: [Shapes]] =
     [
-        .Shapes: [.Circle, .Ellipse, .Triangle, .Rectangle, .Hexagon, .Octagon, .Infinity, .Heart],
+        .Shapes: [.Circle, .Ellipse, .Triangle, .Rectangle, .Hexagon, .Octagon, .Infinity, .Heart, .Star, .NGon],
         .Lines: [.Line, .Spiral, .Scribble],
         .Freeform: [.User]
     ]
@@ -452,7 +451,9 @@ class ButtonBars: NSObject, UIScrollViewDelegate
         .Spiral: "SpiralIcon",
         .Scribble: "scribble",
         .Heart: "heart",
-        .User: "person.crop.circle"
+        .Star: "star",
+        .User: "person.crop.circle",
+        .NGon: "NGonIcon",
     ]
     
     /// Dictionary of shape categories to shape category image names.
@@ -464,5 +465,5 @@ class ButtonBars: NSObject, UIScrollViewDelegate
     ]
     
     /// SVG Shapes that are implemented as .SVG images.
-    let SVGShapes: [Shapes] = [.Spiral]
+    let SVGShapes: [Shapes] = [.Spiral, .NGon]
 }
