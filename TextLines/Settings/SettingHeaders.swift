@@ -98,5 +98,11 @@ public static let SettingKeyHeaders: [SettingKeys: String] =
     .ScaleToView: "Scale drawing",
     .UserShapeOptionsOrder: "Option order",
     .PointsWhenSmooth: "Point when smooth",
+    
+    // MARK: - N-gon attributes
+    .NGonVertexCount: "Vertex count",
+    .NGonRotation: "Shape rotation",
+    .NGonWidth: "Width of n-gon",
+    .NGonHeight: "Height of n-gon",
     ]
 }
