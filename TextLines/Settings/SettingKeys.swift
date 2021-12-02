@@ -163,4 +163,14 @@ enum SettingKeys: String, CaseIterable
     case UserShapeOptionsOrder = "UserShapeOptionsOrder"
     /// Bool: Show original points when in smooth mode.
     case PointsWhenSmooth = "PointsWhenSmooth"
+    
+    // MARK: - N-gon attributes
+    /// Int: Number of vertices in the n-gon.
+    case NGonVertexCount = "VertexCount"
+    /// Double: Rotation (in degrees) of the n-gon.
+    case NGonRotation = "NGonRotation"
+    /// Double: Width of the hexagon relative to the viewport.
+    case NGonWidth = "NGonWidth"
+    /// Double: Height of the hexagon relative to the viewport.
+    case NGonHeight = "NGonHeight"
 }
