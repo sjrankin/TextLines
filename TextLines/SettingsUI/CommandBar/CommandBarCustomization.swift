@@ -17,6 +17,7 @@ class CommandBarCustomization: UIViewController, UITableViewDelegate,
         
         RawSource = Settings.GetStrings(.CommandButtonList, Delimiter: ",", Default: ["ActionButton", "ShapeOptionsButton"])
         #if !DEBUG
+        //Make sure the Debug button is not available in release mode.
         RawSource.removeAll(where: {$0 == "Debug"})
         #endif
         for Other in CommandButtons.allCases
