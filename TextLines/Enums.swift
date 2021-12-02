@@ -33,6 +33,10 @@ enum Shapes: String, CaseIterable
     case Line = "Line"
     /// Heart shape.
     case Heart = "Heart"
+    /// Five-pointed star shape.
+    case Star = "Star"
+    /// N-gon shape.
+    case NGon = "N-Gon"
     /// User-defined shape.
     case User = "User"
 }
@@ -190,6 +194,8 @@ enum SliceTypes: String, CaseIterable
     case AnimationSettings = "AnimationSettings"
     /// Guideline settings.
     case GuidelineSettings = "GuidelineSettings"
+    /// Font settings.
+    case FontSlice = "FontSlice"
     /// No settings for shapes without settings.
     case NoShapeOptions = "NoShapeOptions"
     /// Circle settings.
@@ -210,6 +216,8 @@ enum SliceTypes: String, CaseIterable
     case LineSettings = "LineSettings"
     /// Spiral settings.
     case SpiralLineSettings = "SpiralLineSettings"
+    /// N-gon slice settings.
+    case NGonSlice = "NGonSlice"
     #if DEBUG
     /// Debug slice settings.
     case DebugSlice = "DebugSlice"
