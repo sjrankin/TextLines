@@ -71,6 +71,10 @@ extension ViewController
                 ShowSizeButton = false
                 VC = Story.instantiateViewController(withIdentifier: "ViewportSizeSlice") as? ViewportSizeSlice
                 
+            case .FontSlice:
+                ShowSizeButton = false
+                VC = Story.instantiateViewController(withIdentifier: "FontSlice") as? FontSlice
+                
             case .BackgroundSettings:
                 ShowSizeButton = false
                 VC = Story.instantiateViewController(withIdentifier: "BackgroundSlice") as? BackgroundSlice
@@ -115,6 +119,9 @@ extension ViewController
                 
             case .SpiralLineSettings:
                 VC = Story.instantiateViewController(withIdentifier: "SpiralSettingSlice") as? SpiralSliceSettings
+                
+            case .NGonSlice:
+                VC = Story.instantiateViewController(withIdentifier: "NGonSlice") as? NGonSliceSettings
                 
             case .LineSettings:
                 ShowSizeButton = false
