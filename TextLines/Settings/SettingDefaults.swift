@@ -97,5 +97,11 @@ extension Settings
         .ScaleToView: true,
         .UserShapeOptionsOrder: "",
         .PointsWhenSmooth: false,
+        
+        // MARK: - N-gon attributes
+        .NGonVertexCount: 7,
+        .NGonRotation: 90.0,
+        .NGonWidth: 0.95,
+        .NGonHeight: 0.95,
     ]
 }
