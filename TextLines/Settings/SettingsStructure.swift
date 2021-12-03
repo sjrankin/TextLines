@@ -23,6 +23,7 @@ class SettingsStructure
         StructureNode(Name: "Debug", Keys: .ShowGuideMarks, .GuidelineWidth),
         StructureNode(Name: "Animation", Keys: .AnimationSpeed, .AnimateClockwise,
                       .Animating),
+        StructureNode(Name: "Common Parameters", Keys: .CommonSmoothing),
         StructureNode(Name: "Circle Parameters", Keys: .CircleAngle, .CircleDiameter),
         StructureNode(Name: "Ellipse Parameters", Keys: .EllipseAngle, .EllipseMajor, .EllipseMinor),
         StructureNode(Name: "Rectangle Parameters", Keys: .RectangleWidth, .RectangleHeight,
@@ -37,6 +38,8 @@ class SettingsStructure
                       .ShowViewport, .ScaleToView, .UserShapeOptionsOrder, .PointsWhenSmooth),
         StructureNode(Name: "N-Gon Parameters", Keys: .NGonVertexCount, .NGonRotation,
                       .NGonWidth, .NGonHeight),
+        StructureNode(Name: "Star Parameters", Keys: .StarVertexCount, .StarInnerRadius,
+                      .StarOuterRadius, .StarRotation),
     ]
 }
 
