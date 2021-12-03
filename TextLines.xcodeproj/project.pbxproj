@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17085C462759B7EA00C4B9B4 /* StarSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17085C452759B7EA00C4B9B4 /* StarSlice.swift */; };
+		17085C482759D62800C4B9B4 /* CommonShapeSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17085C472759D62800C4B9B4 /* CommonShapeSlice.swift */; };
 		170F07A727236089008F3A82 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170F07A627236089008F3A82 /* CGRect.swift */; };
 		170F69822736FC6A005212AA /* AnimationSettingsSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170F69812736FC6A005212AA /* AnimationSettingsSlice.swift */; };
 		1715380F274D66E6005039AA /* HexagonSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1715380E274D66E6005039AA /* HexagonSlice.swift */; };
@@ -164,6 +166,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		17085C452759B7EA00C4B9B4 /* StarSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarSlice.swift; sourceTree = "<group>"; };
+		17085C472759D62800C4B9B4 /* CommonShapeSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonShapeSlice.swift; sourceTree = "<group>"; };
 		170F07A627236089008F3A82 /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		170F69812736FC6A005212AA /* AnimationSettingsSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationSettingsSlice.swift; sourceTree = "<group>"; };
 		1715380E274D66E6005039AA /* HexagonSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagonSlice.swift; sourceTree = "<group>"; };
@@ -357,6 +361,7 @@
 				170F69812736FC6A005212AA /* AnimationSettingsSlice.swift */,
 				1765092E2737021900735CB4 /* GuidelinesSettingSlice.swift */,
 				173AF6EF27387DB6001AE0F2 /* NoOptionsSettingSlice.swift */,
+				17085C472759D62800C4B9B4 /* CommonShapeSlice.swift */,
 				1722650F274D3F17000EDFD8 /* DebugSlice.swift */,
 				174FC0702757D0D1003F1F73 /* FontSlice.swift */,
 				17FED86E2743248700FC977E /* BackgroundSlice.swift */,
@@ -711,6 +716,7 @@
 				17ED4298274B001500E6EF13 /* TriangleSettingSlice.swift */,
 				17709803275014B900EFEA8A /* SpiralSliceSettings.swift */,
 				174FC06E2756C264003F1F73 /* ShapeSliceProtocol.swift */,
+				17085C452759B7EA00C4B9B4 /* StarSlice.swift */,
 			);
 			path = ShapeSlices;
 			sourceTree = "<group>";
@@ -858,6 +864,7 @@
 				1767303C2716423300D408BC /* AnimationUICode.swift in Sources */,
 				17672FFA2716423200D408BC /* ShapeServerProtocol.swift in Sources */,
 				17672FF62716423200D408BC /* UserShape.swift in Sources */,
+				17085C482759D62800C4B9B4 /* CommonShapeSlice.swift in Sources */,
 				176730572716423300D408BC /* Debug.swift in Sources */,
 				176730492716423300D408BC /* OptionItem.swift in Sources */,
 				176730542716423300D408BC /* UIFont.swift in Sources */,
@@ -889,6 +896,7 @@
 				174EF3E22749720F00BE0002 /* UIConstants.swift in Sources */,
 				176730202716423300D408BC /* +CGFloat.swift in Sources */,
 				176730172716423300D408BC /* +Double.swift in Sources */,
+				17085C462759B7EA00C4B9B4 /* StarSlice.swift in Sources */,
 				17709802274F167A00EFEA8A /* LineSlice.swift in Sources */,
 				174FC06D2756C009003F1F73 /* UITaggedButton.swift in Sources */,
 				176730262716423300D408BC /* TitledImageStructure.swift in Sources */,
