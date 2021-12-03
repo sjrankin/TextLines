@@ -83,6 +83,9 @@ extension ViewController
                 ShowSizeButton = false
                 VC = Story.instantiateViewController(withIdentifier: "AnimationSettingsSlice") as? AnimationSettingsSlice
             
+            case .CommonSettings:
+                VC = Story.instantiateViewController(withIdentifier: "CommonShapeSlice") as? CommonShapeSlice
+                
             case .CircleSettings:
                 VC = Story.instantiateViewController(withIdentifier: "CircleSettingSlice") as? CircleSettingSlice
                 
@@ -122,6 +125,9 @@ extension ViewController
                 
             case .NGonSlice:
                 VC = Story.instantiateViewController(withIdentifier: "NGonSlice") as? NGonSliceSettings
+                
+            case .StarSlice:
+                VC = Story.instantiateViewController(withIdentifier: "StarSlice") as? StarSlice
                 
             case .LineSettings:
                 ShowSizeButton = false
