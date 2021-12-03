@@ -180,37 +180,68 @@ extension ViewController
                 return nil
                 
             case .Star:
-                let MinDist = min(ImageWidth, ImageHeight)
-                let Rad = CGFloat(MinDist / 2)
+                let VertexCount = Settings.GetInt(.StarVertexCount)
+                if VertexCount < 3
+                {
+                    return nil
+                }
+                let Min = CGFloat(min(ImageWidth / 2, ImageHeight / 2))
+                let OuterNormal = Settings.GetDoubleNormal(.StarOuterRadius)
+                let InnerNormal = Settings.GetDoubleNormal(.StarInnerRadius)
+                let OuterRadius = Min * CGFloat(OuterNormal)
+                let InnerRadius = Min * CGFloat(InnerNormal)
+
                 let CenterX = CGFloat(ImageWidth) / 2.0
                 let CenterY = CGFloat(ImageHeight) / 2.0
                 let StarCenter = CGPoint(x: CenterX, y: CenterY)
-                let PointA = PolarToCartesian(Degrees: 72.0 * 0.0 + 90.0,
-                                              Radius: Rad, Center: StarCenter)
-                let PointB = PolarToCartesian(Degrees: 72.0 * 1.0 + 90.0,
-                                              Radius: Rad, Center: StarCenter)
-                let PointC = PolarToCartesian(Degrees: 72.0 * 2.0 + 90.0,
-                                              Radius: Rad, Center: StarCenter)
-                let PointD = PolarToCartesian(Degrees: 72.0 * 3.0 + 90.0,
-                                              Radius: Rad, Center: StarCenter)
-                let PointE = PolarToCartesian(Degrees: 72.0 * 4.0 + 90.0,
-                                              Radius: Rad, Center: StarCenter)
+                let AllVertices = VertexCount * 2
+                var Points = [CGPoint]()
+                let Rotation = Settings.GetDouble(.StarRotation)
+                let AngleIncrement = 360.0 / Double(AllVertices)
+                for Index in 0 ..< AllVertices
+                {
+                    if Index.isMultiple(of: 2)
+                    {
+                        //Outer radius
+                        let VertexPoint = PolarToCartesian(Degrees: CGFloat(Index) * AngleIncrement + CGFloat(Rotation),
+                                                           Radius: OuterRadius,
+                                                           Center: StarCenter)
+                        Points.append(VertexPoint)
+                    }
+                    else
+                    {
+                        //Inner radius
+                        let VertexPoint = PolarToCartesian(Degrees: CGFloat(Index) * AngleIncrement + CGFloat(Rotation),
+                                                           Radius: InnerRadius,
+                                                           Center: StarCenter)
+                        Points.append(VertexPoint)
+                    }
+                }
+                if Settings.GetBool(.CommonSmoothing)
+                {
+                    let Smoothed = Chaikin.SmoothPoints(Points: Points, Iterations: 4, Closed: true)
+                    Points = Smoothed
+                }
                 BezierPath = UIBezierPath()
-                BezierPath?.move(to: PointA)
-                BezierPath?.addLine(to: PointC)
-                BezierPath?.addLine(to: PointE)
-                BezierPath?.addLine(to: PointB)
-                BezierPath?.addLine(to: PointD)
-                BezierPath?.addLine(to: PointA)
+                BezierPath?.move(to: Points[0])
+                for Index in 1 ..< Points.count
+                {
+                    BezierPath?.addLine(to: Points[Index])
+                }
+                BezierPath?.addLine(to: Points[0])
                 
             case .NGon:
+                let Vertices = Settings.GetInt(.NGonVertexCount)
+                if Vertices < 3
+                {
+                    return nil
+                }
                 let CenterY = CGFloat(ImageHeight) / 2.0
                 let CenterX = CGFloat(ImageWidth) / 2.0
                 let Center = CGPoint(x: CenterX, y: CenterY)
                 var Min = CGFloat(min(ImageWidth / 2, ImageHeight / 2))
                 Min = Min - (Min * 0.05)
                 var Points = [CGPoint]()
-                let Vertices = Settings.GetInt(.NGonVertexCount)
                 let AngleIncrement = 360.0 / CGFloat(Vertices)
                 let NGonRotation = Settings.GetDouble(.NGonRotation)
                 for Index in 0 ..< Vertices
@@ -219,6 +250,11 @@ extension ViewController
                                                        Radius: CGFloat(Min),
                                                        Center: Center)
                     Points.append(VertexPoint)
+                }
+                if Settings.GetBool(.CommonSmoothing)
+                {
+                    let Smoothed = Chaikin.SmoothPoints(Points: Points, Iterations: 4, Closed: true)
+                    Points = Smoothed
                 }
                 BezierPath = UIBezierPath()
                 BezierPath?.move(to: Points[0])
@@ -232,10 +268,8 @@ extension ViewController
                 let CenterY = CGFloat(ImageHeight) / 2.0
                 let LeftX = CGFloat(ImageWidth) / 3.0
                 let RightX = CGFloat(ImageWidth) - LeftX
-//                BezierPath = UIBezierPath.CreateInfinityPath(LeftCenter: CGPoint(x: 330, y: 350),
                 BezierPath = UIBezierPath.CreateInfinityPath(LeftCenter: CGPoint(x: LeftX, y: CenterY),
                                                              RightCenter: CGPoint(x: RightX, y: CenterY),
-//                                                             RightCenter: CGPoint(x: 700, y: 350),
                                                              Radius: 260.0,
                                                              Width: 1.0)
                 
