@@ -52,6 +52,9 @@ public static let SettingKeyHeaders: [SettingKeys: String] =
     .AnimateClockwise: "Animate clockwise",
     .Animating: "Currently animating",
     
+    // MARK: - Common attributes.
+    .CommonSmoothing: "Smooth shapes",
+    
     // MARK: - Circular attributes.
     .CircleAngle: "Circle angle",
     .CircleDiameter: "Diameter",
@@ -104,5 +107,11 @@ public static let SettingKeyHeaders: [SettingKeys: String] =
     .NGonRotation: "Shape rotation",
     .NGonWidth: "Width of n-gon",
     .NGonHeight: "Height of n-gon",
+    
+    // MARK: - Star attributes
+    .StarVertexCount: "Vertex count",
+    .StarInnerRadius: "Inner radius",
+    .StarOuterRadius: "Outer radius",
+    .StarRotation: "Star rotation",
     ]
 }
