@@ -197,6 +197,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
             case .ShapeOptionsButton:
                 Image = LoadImage(Name: ImageName, Type: .System)
                 
+            case .ShapeCommonOptionsButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                
             case .AnimationButton:
                 Image = LoadImage(Name: ImageName, Type: .System)
                 
@@ -305,6 +308,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
                 
             case .ShapeOptionsButton:
                 return "Shape"
+                
+            case .ShapeCommonOptionsButton:
+                return "Common"
                 
             case .AnimationButton:
                 return "Motion"
@@ -468,6 +474,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
             case .ShapeOptionsButton:
                 return "Current shape options"
                 
+            case .ShapeCommonOptionsButton:
+                return "Shape common options"
+                
             case .AnimationButton:
                 return "Animation settings"
                 
@@ -532,7 +541,10 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
                 return "photo.fill.on.rectangle.fill"
                 
             case .ShapeOptionsButton:
-                return "gearshape.2"
+                return "square.on.circle"
+                
+            case .ShapeCommonOptionsButton:
+                return "square.fill.on.circle.fill"
                 
             case .AnimationButton:
                 return "film.circle"
@@ -600,6 +612,9 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
                 Image = LoadImage(Name: ImageName, Type: .System)
                 
             case .ShapeOptionsButton:
+                Image = LoadImage(Name: ImageName, Type: .System)
+                
+            case .ShapeCommonOptionsButton:
                 Image = LoadImage(Name: ImageName, Type: .System)
                 
             case .AnimationButton:
