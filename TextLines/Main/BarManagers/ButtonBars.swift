@@ -432,7 +432,7 @@ class ButtonBars: NSObject, UIScrollViewDelegate
     /// Dictionary of shape categories and associated shapes in each.
     let ShapeStructure: [ShapeCategories: [Shapes]] =
     [
-        .Shapes: [.Circle, .Ellipse, .Triangle, .Rectangle, .Hexagon, .Octagon, .Infinity, .Heart, .Star, .NGon],
+        .Shapes: [.Circle, .Ellipse, .Triangle, .Rectangle, .Hexagon, .Octagon, .NGon, .Infinity, .Heart, .Star],
         .Lines: [.Line, .Spiral, .Scribble],
         .Freeform: [.User]
     ]
