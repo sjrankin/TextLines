@@ -52,6 +52,9 @@ extension Settings
         .AnimateClockwise: Bool.self,
         .Animating: Bool.self,
         
+        // MARK: - Common attributes.
+        .CommonSmoothing: Bool.self,
+        
         // MARK: - Circular attributes.
         .CircleAngle: Double.self,
         .CircleDiameter: Int.self,
@@ -104,5 +107,11 @@ extension Settings
         .NGonRotation: Double.self,
         .NGonWidth: Double.self,
         .NGonHeight: Double.self,
+        
+        // MARK: - Star attributes
+        .StarVertexCount: Int.self,
+        .StarInnerRadius: Double.self,
+        .StarOuterRadius: Double.self,
+        .StarRotation: Double.self,
     ]
 }
