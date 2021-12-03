@@ -29,6 +29,12 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         Settings.Initialize()
         Settings.AddSubscriber(self)
         Settings.SetBool(.Animating, false)
+        
+        //Settings.SetDoubleNormal(.StarInnerRadius, 0.4)
+        //Settings.SetDoubleNormal(.StarOuterRadius, 0.9)
+        //Settings.SetDouble(.StarRotation, 90.0)
+        //Settings.SetInt(.StarVertexCount, 5)
+        
         CommandButtonList = Settings.GetStrings(.CommandButtonList,
                                                 Delimiter: ",",
                                                 Default: [CommandButtons.ActionButton.rawValue,
@@ -105,13 +111,14 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                                                name: UITextView.textDidBeginEditingNotification,
                                                object: TextInput)
         
-        print("Screen.size=(\(UIScreen.main.bounds.width),\(UIScreen.main.bounds.height))")
+        //print("Screen.size=(\(UIScreen.main.bounds.width),\(UIScreen.main.bounds.height))")
     }
     
     /// User started to enter/edit text. Enable the text done button.
     /// - Parameter Notice: Not used.
     @objc func TextInputNotifications(_ Notice: Notification)
     {
+        print("AtTextInputNotifications")
         TextDoneButton.isEnabled = true
     }
     
@@ -644,6 +651,9 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
             case .BackgroundButton:
                 ShowSliceHandler(.BackgroundSettings)
                 
+            case .ShapeCommonOptionsButton:
+                ShowSliceHandler(.CommonSettings)
+                
             case .ShapeOptionsButton:
                 switch Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self, Default: .Circle)
                 {
@@ -672,7 +682,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                         ShowSliceHandler(.SpiralLineSettings)
                         
                     case .Star:
-                        break
+                        ShowSliceHandler(.StarSlice)
                         
                     case .NGon:
                         ShowSliceHandler(.NGonSlice)
@@ -857,6 +867,8 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         .BackgroundSettings: 240.0,
         .FontSlice: 358.0,
         .NGonSlice: 423.0,
+        .StarSlice: 423.0,
+        .CommonSettings: 240.0,
     ]
     
     let ShapeToSlice: [Shapes: SliceTypes] =
