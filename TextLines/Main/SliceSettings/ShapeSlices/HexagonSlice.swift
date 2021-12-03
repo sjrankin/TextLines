@@ -151,6 +151,16 @@ class HexagonSlice: UIViewController, UITextFieldDelegate,
     
     func ResetSettings()
     {
+        Settings.SetDoubleDefault(For: .HexagonWidth)
+        Settings.SetDoubleDefault(For: .HexagonHeight)
+        let NewHeight = Settings.GetDoubleNormal(.HexagonHeight)
+        let NewWidth = Settings.GetDoubleNormal(.HexagonWidth)
+        let WidthText = "\(Int(NewWidth * 100.0))"
+        let HeightText = "\(Int(NewHeight * 100.0))"
+        WidthTextField.text = WidthText
+        HeightTextField.text = HeightText
+        WidthSlider.value = Float(NewWidth * 1000.0)
+        HeightSlider.value = Float(NewHeight * 1000.0)
     }
     
     @IBOutlet weak var WidthSlider: UISlider!
