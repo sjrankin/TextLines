@@ -77,7 +77,11 @@ enum SettingKeys: String, CaseIterable
     /// Bool: Currently animating flag.
     case Animating = "Animating"
     
-    // MARK: - Circle attriubtes.
+    // MARK: - Common attributes.
+    /// Bool: Smooth pre-defined shapes.
+    case CommonSmoothing = "CommonSmoothing"
+    
+    // MARK: - Circle attributes.
     /// Double: Starting angle for circular text.
     case CircleAngle = "CircleAngle"
     /// Int: Diameter of circle used to plot text.
@@ -173,4 +177,14 @@ enum SettingKeys: String, CaseIterable
     case NGonWidth = "NGonWidth"
     /// Double: Height of the hexagon relative to the viewport.
     case NGonHeight = "NGonHeight"
+    
+    // MARK: - Star attributes
+    /// Int: Number of vertices in the star.
+    case StarVertexCount = "StarVertexCount"
+    /// Double Normal: Inner radius.
+    case StarInnerRadius = "StarInnerRadius"
+    /// Double Normal: Outer raidus.
+    case StarOuterRadius = "StarOuterRadius"
+    /// Double: Star rotation.
+    case StarRotation = "StarRotation"
 }
