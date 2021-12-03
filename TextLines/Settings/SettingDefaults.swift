@@ -51,7 +51,10 @@ extension Settings
         .AnimateClockwise: true,
         .Animating: false,
         
-        // MARK: - Circle attriubtes.
+        // MARK: - Common attributes.
+        .CommonSmoothing: false,
+        
+        // MARK: - Circle attributes.
         .CircleAngle: 1.57079632679,        //pi ÷ 2
         .CircleDiameter: 1000,
         
@@ -103,5 +106,11 @@ extension Settings
         .NGonRotation: 90.0,
         .NGonWidth: 0.95,
         .NGonHeight: 0.95,
+        
+        // MARK: - Star attributes
+        .StarVertexCount: 5,
+        .StarInnerRadius: 0.5,
+        .StarOuterRadius: 0.9,
+        .StarRotation: 90.0,
     ]
 }
