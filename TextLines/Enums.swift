@@ -100,6 +100,9 @@ enum CommandButtons: String, CaseIterable
     /// Shape options button.
     case ShapeOptionsButton = "ShapeOptionsButton"
     
+    /// Shape common options button.
+    case ShapeCommonOptionsButton = "ShapeCommonOptionsButton"
+    
     /// Animation options button.
     case AnimationButton = "AnimationButton"
     
@@ -198,6 +201,8 @@ enum SliceTypes: String, CaseIterable
     case FontSlice = "FontSlice"
     /// No settings for shapes without settings.
     case NoShapeOptions = "NoShapeOptions"
+    /// Common to most shape settings.
+    case CommonSettings = "CommonSettings"
     /// Circle settings.
     case CircleSettings = "CircleSettings"
     /// Ellipse settings.
@@ -218,6 +223,8 @@ enum SliceTypes: String, CaseIterable
     case SpiralLineSettings = "SpiralLineSettings"
     /// N-gon slice settings.
     case NGonSlice = "NGonSlice"
+    /// Star slice settings.
+    case StarSlice = "StarSlice"
     #if DEBUG
     /// Debug slice settings.
     case DebugSlice = "DebugSlice"
