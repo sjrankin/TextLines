@@ -151,6 +151,16 @@ class OctagonSlice: UIViewController, UITextFieldDelegate,
     
     func ResetSettings()
     {
+        Settings.SetDoubleDefault(For: .OctagonWidth)
+        Settings.SetDoubleDefault(For: .OctagonHeight)
+        let NewHeight = Settings.GetDoubleNormal(.OctagonHeight)
+        let NewWidth = Settings.GetDoubleNormal(.OctagonWidth)
+        let WidthText = "\(Int(NewWidth * 100.0))"
+        let HeightText = "\(Int(NewHeight * 100.0))"
+        WidthTextField.text = WidthText
+        HeightTextField.text = HeightText
+        WidthSlider.value = Float(NewWidth * 1000.0)
+        HeightSlider.value = Float(NewHeight * 1000.0)
     }
     
     @IBOutlet weak var WidthSlider: UISlider!
