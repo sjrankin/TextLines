@@ -194,6 +194,26 @@ class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
     
     func ResetSettings()
     {
+        guard let LineType = Settings.SettingDefaults[.LineType] as? LineOptions else
+        {
+            Debug.FatalError("Error getting default value for .LineType.")
+        }
+        Settings.SetEnum(LineType, EnumType: LineOptions.self, ForKey: .LineType)
+        let Orientation = Settings.GetEnum(ForKey: .LineType, EnumType: LineOptions.self, Default: .Horizontal)
+        if let OrientationIndex = Lines.firstIndex(of: Orientation)
+        {
+            LineTypePicker.selectRow(OrientationIndex, inComponent: 0, animated: true)
+        }
+        else
+        {
+            LineTypePicker.selectRow(0, inComponent: 0, animated: true)
+        }
+        Settings.SetDoubleDefault(For: .LineLength)
+        let NewLength = Settings.GetDoubleNormal(.LineLength)
+        let TLength = NewLength * 100.0
+        let LengthString = "\(Int(TLength))"
+        ExtentText.text = LengthString
+        ExtentSlider.value = Float(NewLength * 1000.0)
     }
     
     @IBOutlet weak var LineTypePicker: UIPickerView!
