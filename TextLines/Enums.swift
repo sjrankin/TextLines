@@ -230,3 +230,18 @@ enum SliceTypes: String, CaseIterable
     case DebugSlice = "DebugSlice"
     #endif
 }
+
+/// Standard animation speeds.
+enum AnimationSpeeds: Int, CaseIterable
+{
+    /// Slowest animation speed.
+    case Slowest = 100
+    /// Slow animation speed.
+    case Slow = 200
+    /// Middle animation speed.
+    case Medium = 300
+    /// Fast animation speed.
+    case Fast = 400
+    /// Fastest animation speed.
+    case Fastest = 500
+}
