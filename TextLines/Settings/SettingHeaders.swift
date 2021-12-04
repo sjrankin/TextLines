@@ -107,11 +107,13 @@ public static let SettingKeyHeaders: [SettingKeys: String] =
     .NGonRotation: "Shape rotation",
     .NGonWidth: "Width of n-gon",
     .NGonHeight: "Height of n-gon",
+    .NGonDrawSmooth: "Draw smoothly",
     
     // MARK: - Star attributes
     .StarVertexCount: "Vertex count",
     .StarInnerRadius: "Inner radius",
     .StarOuterRadius: "Outer radius",
     .StarRotation: "Star rotation",
+    .StarDrawSmooth: "Draw smoothly",
     ]
 }
