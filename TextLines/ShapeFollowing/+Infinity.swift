@@ -43,8 +43,8 @@ extension UIBezierPath
         let RightToLeft = UIBezierPath()
         RightToLeft.move(to: CGPoint(x: RightCenter.x,
                                      y: RightCenter.y - Radius))
-                         RightToLeft.addCurve(to: CGPoint(x: LeftCenter.x,
-                                                          y: RightCenter.y + Radius),
+        RightToLeft.addCurve(to: CGPoint(x: LeftCenter.x,
+                                         y: RightCenter.y + Radius),
                              controlPoint1: CGPoint(x: XDelta,
                                                     y: YDelta - Radius),
                              controlPoint2: CGPoint(x: XDelta,
