@@ -33,14 +33,19 @@ class ViewportSizeSlice: UIViewController, UITextFieldDelegate,
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(HandleTapToDismissKeyboard))
         view.addGestureRecognizer(tap)
-        
-        //InitializeKeyboard()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        WidthTextBox.resignFirstResponder()
+        HeightTextBox.resignFirstResponder()
+        super.viewWillDisappear(animated)
     }
     
     @objc func HandleTapToDismissKeyboard()
     {
-        WidthTextBox.resignFirstResponder() // dismiss keyoard
-        HeightTextBox.resignFirstResponder() // dismiss keyoard
+        WidthTextBox.resignFirstResponder()
+        HeightTextBox.resignFirstResponder() 
     }
     
     @IBAction func OnWidthReturn()
@@ -52,33 +57,6 @@ class ViewportSizeSlice: UIViewController, UITextFieldDelegate,
     {
         self.HeightTextBox.resignFirstResponder()
     }
-    
-    /*
-    /// Initialize the keyboard with a `Done` button in a toolbar. This provides an alternative
-    /// way for the user to indicate no more editing.
-    func InitializeKeyboard()
-    {
-        let KBToolbar = UIToolbar()
-        let FlexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                        target: nil, action: nil)
-        let DoneButton = UIBarButtonItem(title: "Dismiss", style: .done,
-                                         target: self, action: #selector(KeyboardDoneButtonTapped))
-        
-        KBToolbar.setItems([FlexSpace, DoneButton], animated: true)
-        KBToolbar.sizeToFit()
-        WidthTextBox.inputAccessoryView = KBToolbar
-        HeightTextBox.inputAccessoryView = KBToolbar
-    }
-     */
-    
-    /*
-    /// Called by the `Dismiss` button the program inserted into the keyboard's toolbar when the
-    /// user has completed text entry.
-    @objc func KeyboardDoneButtonTapped()
-    {
-        self.view.endEditing(true)
-    }
-     */
     
     func textFieldDidEndEditing(_ textField: UITextField)
     {
