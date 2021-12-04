@@ -118,7 +118,6 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     /// - Parameter Notice: Not used.
     @objc func TextInputNotifications(_ Notice: Notification)
     {
-        print("AtTextInputNotifications")
         TextDoneButton.isEnabled = true
     }
     
@@ -203,7 +202,9 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     var PreviousPanningY: CGFloat = 0
     var PanningOffset: CGFloat? = nil
     
-    //https://stackoverflow.com/questions/25649926/trying-to-animate-a-constraint-in-swift
+    /// Reset the size of the slice panel.
+    /// - Note: See [Constraint animation](https://stackoverflow.com/questions/25649926/trying-to-animate-a-constraint-in-swift)
+    /// - Parameter Recognizer: Not used.
     @objc func HandleResetSlicePanel(_ Recognizer: UITapGestureRecognizer)
     {
         guard let BaseHeight = CurrentSliceHeight else
@@ -221,6 +222,8 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     
     var SettingSliceHeight: CGFloat? = nil
     
+    /// Handle slice container dragging by the user.
+    /// - Parameter Recognizer: Used to determine where the user is dragging the slice.
     @objc func HandleSliceDragging(_ Recognizer: UIPanGestureRecognizer)
     {
         let DraggedTo = Recognizer.translation(in: self.view)
@@ -451,7 +454,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                 Offset = AnimationOffset
             }
 #endif
-            print("Offset=\(Offset)")
+//            print("Offset=\(Offset)")
             /*
              //Create the image on a background thread to keep the UI responsive.
              DispatchQueue.global(qos: .userInitiated).async
@@ -629,19 +632,14 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                 #endif
                 
             case .FontButton:
-                #if true
                 ShowSliceHandler(.FontSlice)
-                #else
-                RunSlicedSettings(StoryboardName: "SettingsUI",
-                                  ControllerName: "FontPickerController")
-                #endif
                 
             case .DimensionsButton:
                 ShowSliceHandler(.ViewportSize)
                 
             case .PlayButton:
                 SetAnimationState()
-             SetAnimationState2()
+             //SetAnimationState2()
                 
             case .UserButton:
                 let Storyboard = UIStoryboard(name: "UserShapes", bundle: nil)
