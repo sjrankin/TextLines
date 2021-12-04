@@ -9,6 +9,19 @@ import Foundation
 
 class Debug
 {
+    /// Dumps simple version information to the program's debug window/log.
+    public static func DumpVersion()
+    {
+        #if DEBUG
+        let Line1 = Versioning.ApplicationName
+        let Line2 = " Version: \(Versioning.VerySimpleVersionString()), Build \(Versioning.Build)"
+        let Line3 = " Built: \(Versioning.BuildDate), \(Versioning.BuildTime)"
+        Debug.Print(Line1)
+        Debug.Print(Line2)
+        Debug.Print(Line3)
+        #endif
+    }
+    
     /// Returns debug function availability. The value returned depends on how the code was compiled.
     public static var DebugAvailable: Bool
     {
