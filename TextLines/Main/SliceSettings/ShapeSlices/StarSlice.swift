@@ -43,6 +43,8 @@ class StarSlice: UIViewController, UITextFieldDelegate,
         VertexCountField.text = "\(NGVertex)"
         VertexCountSlider.value = Float(NGVertex)
         
+        SmoothSwitch.isOn = Settings.GetBool(.StarDrawSmooth)
+        
         InnerTextField.delegate = self
         OuterTextField.delegate = self
         VertexCountField.delegate = self
@@ -214,6 +216,16 @@ class StarSlice: UIViewController, UITextFieldDelegate,
         RotationField.text = RotateString
     }
     
+    @IBAction func SmoothSwitchChangeHandler(_ sender: Any)
+    {
+        guard let Switch = sender as? UISwitch else
+        {
+            Debug.Print("Incorrect class sent to SmoothSwitchChangeHandler")
+            return
+        }
+        Settings.SetBool(.StarDrawSmooth, Switch.isOn)
+    }
+    
     func InitializeTextField(_ Field: UITextField, Key: SettingKeys, Multiplier: Double = 10.0)
     {
         var Value = Settings.GetDouble(Key)
@@ -244,8 +256,12 @@ class StarSlice: UIViewController, UITextFieldDelegate,
         InitializeSlider(RotationSlider, Key: .StarRotation, Multiplier: 1.0)
         InitializeSlider(InnerSlider, Key: .StarInnerRadius)
         InitializeSlider(OuterSlider, Key: .StarOuterRadius)
+        Settings.SetBoolDefault(For: .StarDrawSmooth)
+        SmoothSwitch.isOn = Settings.GetBool(.StarDrawSmooth)
     }
     
+
+    @IBOutlet weak var SmoothSwitch: UISwitch!
     @IBOutlet weak var RotationSlider: UISlider!
     @IBOutlet weak var VertexCountSlider: UISlider!
     @IBOutlet weak var RotationField: UITextField!
