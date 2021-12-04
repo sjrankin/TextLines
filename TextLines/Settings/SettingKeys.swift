@@ -177,6 +177,8 @@ enum SettingKeys: String, CaseIterable
     case NGonWidth = "NGonWidth"
     /// Double: Height of the hexagon relative to the viewport.
     case NGonHeight = "NGonHeight"
+    /// Bool: Draw polygons smoothly flag.
+    case NGonDrawSmooth = "NGonDrawSmooth"
     
     // MARK: - Star attributes
     /// Int: Number of vertices in the star.
@@ -187,4 +189,6 @@ enum SettingKeys: String, CaseIterable
     case StarOuterRadius = "StarOuterRadius"
     /// Double: Star rotation.
     case StarRotation = "StarRotation"
+    /// Bool: Draw stars smoothly flag.
+    case StarDrawSmooth = "StarDrawSmooth"
 }
