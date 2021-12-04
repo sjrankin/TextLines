@@ -20,7 +20,7 @@ extension ViewController
             let Velocity = Double(Settings.GetInt(.AnimationSpeed) * 1)
             let Clockwise = Settings.GetBool(.AnimateClockwise)
             let Direction: Double = Clockwise ? 1 : -1
-            var perm: Double = 0.0
+            var Perimeter: Double = 0.0
             switch Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self, Default: .Circle)
             {
                 case .Ellipse:
@@ -28,11 +28,11 @@ extension ViewController
                     var OvalHeight = Double(Settings.GetDoubleNormal(.EllipseMinor))
                     OvalWidth = OvalWidth * Double(Settings.GetInt(.ViewportWidth))
                     OvalHeight = OvalHeight * Double(Settings.GetInt(.ViewportHeight))
-                    perm = Math.EllipseCircumference(Width: OvalWidth,
+                    Perimeter = Math.EllipseCircumference(Width: OvalWidth,
                                                      Height: OvalHeight)
                     if Clockwise
                     {
-                        Final = CGFloat(Int(self.AnimationOffset) % Int(perm / 2)) +
+                        Final = CGFloat(Int(self.AnimationOffset) % Int(Perimeter / 2)) +
                         CGFloat((Velocity * Direction))
                     }
                     else
@@ -40,17 +40,17 @@ extension ViewController
                         Final = CGFloat(self.AnimationOffset) + CGFloat(Velocity * Direction)
                         if Final < 0.0
                         {
-                            Final = perm / 2 - Final
+                            Final = Perimeter / 2 - Final
                         }
                     }
                     
                 case .Circle:
                     let CircleDiameter = Double(Settings.GetInt(.CircleDiameter))
-                    perm = Math.CircleCircumference(Radius: CircleDiameter)
+                    Perimeter = Math.CircleCircumference(Radius: CircleDiameter)
                     if Clockwise
                     {
-                        Final = CGFloat(Int(self.AnimationOffset) % Int(perm / 2)) +
-                        CGFloat((Velocity * Direction))
+                        Final = CGFloat(Int(self.AnimationOffset) % Int(Perimeter / 2)) +
+                                CGFloat((Velocity * Direction))
                     }
                     else
                     {
@@ -60,12 +60,13 @@ extension ViewController
                             Final = self.PathLength - Final
                         }
                     }
+                    print("Circle: Final=\(Final)")
                     
                 case .Rectangle:
-                    perm = self.PathLength
+                    Perimeter = self.PathLength
                     if Clockwise
                     {
-                        Final = CGFloat(Int(self.AnimationOffset) % Int(perm)) +
+                        Final = CGFloat(Int(self.AnimationOffset) % Int(Perimeter)) +
                         CGFloat((Velocity * Direction))
                     }
                     else
@@ -78,10 +79,10 @@ extension ViewController
                     }
                     
                 case .Triangle:
-                    perm = self.PathLength
+                    Perimeter = self.PathLength
                     if Clockwise
                     {
-                        Final = CGFloat(Int(self.AnimationOffset) % Int(perm)) +
+                        Final = CGFloat(Int(self.AnimationOffset) % Int(Perimeter)) +
                         CGFloat((Velocity * Direction))
                     }
                     else
@@ -94,10 +95,10 @@ extension ViewController
                     }
                     
                 case .Line:
-                    perm = self.PathLength
+                    Perimeter = self.PathLength
                     if Clockwise
                     {
-                        Final = CGFloat(Int(self.AnimationOffset) % Int(perm)) +
+                        Final = CGFloat(Int(self.AnimationOffset) % Int(Perimeter)) +
                         CGFloat((Velocity * Direction))
                     }
                     else
@@ -110,10 +111,10 @@ extension ViewController
                     }
                     
                 case .Hexagon, .Octagon:
-                    perm = self.PathLength
+                    Perimeter = self.PathLength
                     if Clockwise
                     {
-                        Final = CGFloat(Int(self.AnimationOffset) % Int(perm)) +
+                        Final = CGFloat(Int(self.AnimationOffset) % Int(Perimeter)) +
                         CGFloat((Velocity * Direction))
                     }
                     else
@@ -126,10 +127,10 @@ extension ViewController
                     }
                     
                 case .Spiral:
-                    perm = self.PathLength
+                    Perimeter = self.PathLength
                     if Clockwise
                     {
-                        Final = CGFloat(Int(self.AnimationOffset) % Int(perm)) +
+                        Final = CGFloat(Int(self.AnimationOffset) % Int(Perimeter)) +
                         CGFloat((Velocity * Direction))
                     }
                     else
@@ -142,10 +143,10 @@ extension ViewController
                     }
                     
                 case .Infinity:
-                    perm = self.PathLength
+                    Perimeter = self.PathLength
                     if Clockwise
                     {
-                        Final = CGFloat(Int(self.AnimationOffset) % Int(perm)) +
+                        Final = CGFloat(Int(self.AnimationOffset) % Int(Perimeter)) +
                         CGFloat((Velocity * Direction))
                     }
                     else
@@ -158,10 +159,10 @@ extension ViewController
                     }
                     
                 case .Heart:
-                    perm = self.PathLength
+                    Perimeter = self.PathLength
                     if Clockwise
                     {
-                        Final = CGFloat(Int(self.AnimationOffset) % Int(perm)) +
+                        Final = CGFloat(Int(self.AnimationOffset) % Int(Perimeter)) +
                         CGFloat((Velocity * Direction))
                     }
                     else
@@ -174,10 +175,10 @@ extension ViewController
                     }
                     
                 case .Star:
-                    perm = self.PathLength
+                    Perimeter = self.PathLength
                     if Clockwise
                     {
-                        Final = CGFloat(Int(self.AnimationOffset) % Int(perm)) +
+                        Final = CGFloat(Int(self.AnimationOffset) % Int(Perimeter)) +
                         CGFloat((Velocity * Direction))
                     }
                     else
@@ -190,10 +191,10 @@ extension ViewController
                     }
                     
                 case .NGon:
-                    perm = self.PathLength
+                    Perimeter = self.PathLength
                     if Clockwise
                     {
-                        Final = CGFloat(Int(self.AnimationOffset) % Int(perm)) +
+                        Final = CGFloat(Int(self.AnimationOffset) % Int(Perimeter)) +
                         CGFloat((Velocity * Direction))
                     }
                     else
@@ -206,10 +207,10 @@ extension ViewController
                     }
                     
                 case .User:
-                    perm = self.PathLength
+                    Perimeter = self.PathLength
                     if Clockwise
                     {
-                        Final = CGFloat(Int(self.AnimationOffset) % Int(perm)) +
+                        Final = CGFloat(Int(self.AnimationOffset) % Int(Perimeter)) +
                         CGFloat((Velocity * Direction))
                     }
                     else
@@ -225,7 +226,7 @@ extension ViewController
                     return
             }
             self.AnimationOffset = Final
-            //self.NewTextOffset = Final
+            self.NewTextOffset = Final
             self.UpdateOutput()
         }
     }
