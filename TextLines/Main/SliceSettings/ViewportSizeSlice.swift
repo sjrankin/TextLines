@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-class ViewportSizeSlice: UIViewController, UITextFieldDelegate
+class ViewportSizeSlice: UIViewController, UITextFieldDelegate,
+                         ShapeSliceProtocol
 {
     override func viewDidLoad()
     {
@@ -117,6 +118,17 @@ class ViewportSizeSlice: UIViewController, UITextFieldDelegate
     {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func ResetSettings()
+    {
+        Settings.SetDoubleDefault(For: .ViewportWidth)
+        Settings.SetDoubleDefault(For: .ViewportHeight)
+        let VWidth = Settings.GetInt(.ViewportWidth, IfZero: 1024)
+        let VHeight = Settings.GetInt(.ViewportHeight, IfZero: 1024)
+        
+        WidthTextBox.text = "\(VWidth)"
+        HeightTextBox.text = "\(VHeight)"
     }
     
     @IBOutlet weak var HeightTextBox: UITextField!
