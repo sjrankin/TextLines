@@ -48,9 +48,6 @@
 		17672FF72716423200D408BC /* ChaikinLineSmoothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F782716423000D408BC /* ChaikinLineSmoothing.swift */; };
 		17672FF82716423200D408BC /* +Infinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F792716423000D408BC /* +Infinity.swift */; };
 		17672FF92716423200D408BC /* +Spiral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F7A2716423000D408BC /* +Spiral.swift */; };
-		17672FFA2716423200D408BC /* ShapeServerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F7C2716423000D408BC /* ShapeServerProtocol.swift */; };
-		17672FFB2716423200D408BC /* Shape_Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F7E2716423000D408BC /* Shape_Circle.swift */; };
-		17672FFC2716423200D408BC /* ShapeServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F7F2716423000D408BC /* ShapeServer.swift */; };
 		17672FFD2716423200D408BC /* Bezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F802716423000D408BC /* Bezier.swift */; };
 		17672FFE2716423200D408BC /* +BezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F812716423000D408BC /* +BezierPath.swift */; };
 		17672FFF2716423200D408BC /* UITapGestureRecognizer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17672F832716423100D408BC /* UITapGestureRecognizer2.swift */; };
@@ -208,9 +205,6 @@
 		17672F782716423000D408BC /* ChaikinLineSmoothing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChaikinLineSmoothing.swift; sourceTree = "<group>"; };
 		17672F792716423000D408BC /* +Infinity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+Infinity.swift"; sourceTree = "<group>"; };
 		17672F7A2716423000D408BC /* +Spiral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+Spiral.swift"; sourceTree = "<group>"; };
-		17672F7C2716423000D408BC /* ShapeServerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeServerProtocol.swift; sourceTree = "<group>"; };
-		17672F7E2716423000D408BC /* Shape_Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape_Circle.swift; sourceTree = "<group>"; };
-		17672F7F2716423000D408BC /* ShapeServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeServer.swift; sourceTree = "<group>"; };
 		17672F802716423000D408BC /* Bezier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bezier.swift; sourceTree = "<group>"; };
 		17672F812716423000D408BC /* +BezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+BezierPath.swift"; sourceTree = "<group>"; };
 		17672F832716423100D408BC /* UITapGestureRecognizer2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer2.swift; sourceTree = "<group>"; };
@@ -413,7 +407,6 @@
 		17672F712716423000D408BC /* ShapeFollowing */ = {
 			isa = PBXGroup;
 			children = (
-				17672F7B2716423000D408BC /* ShapeServer */,
 				17672F762716423000D408BC /* UserShapes */,
 				17672F802716423000D408BC /* Bezier.swift */,
 				17672F752716423000D408BC /* BezierString.swift */,
@@ -433,24 +426,6 @@
 				17672F782716423000D408BC /* ChaikinLineSmoothing.swift */,
 			);
 			path = UserShapes;
-			sourceTree = "<group>";
-		};
-		17672F7B2716423000D408BC /* ShapeServer */ = {
-			isa = PBXGroup;
-			children = (
-				17672F7C2716423000D408BC /* ShapeServerProtocol.swift */,
-				17672F7D2716423000D408BC /* BuiltInShapes */,
-				17672F7F2716423000D408BC /* ShapeServer.swift */,
-			);
-			path = ShapeServer;
-			sourceTree = "<group>";
-		};
-		17672F7D2716423000D408BC /* BuiltInShapes */ = {
-			isa = PBXGroup;
-			children = (
-				17672F7E2716423000D408BC /* Shape_Circle.swift */,
-			);
-			path = BuiltInShapes;
 			sourceTree = "<group>";
 		};
 		17672F822716423100D408BC /* Main */ = {
@@ -862,7 +837,6 @@
 				1724DAB12725F203000E6067 /* UIImageView2.swift in Sources */,
 				17226510274D3F17000EDFD8 /* DebugSlice.swift in Sources */,
 				1767303C2716423300D408BC /* AnimationUICode.swift in Sources */,
-				17672FFA2716423200D408BC /* ShapeServerProtocol.swift in Sources */,
 				17672FF62716423200D408BC /* UserShape.swift in Sources */,
 				17085C482759D62800C4B9B4 /* CommonShapeSlice.swift in Sources */,
 				176730572716423300D408BC /* Debug.swift in Sources */,
@@ -913,7 +887,6 @@
 				176730422716423300D408BC /* FontPickerController.swift in Sources */,
 				170F07A727236089008F3A82 /* CGRect.swift in Sources */,
 				177097FC274EC84F00EFEA8A /* CGPath.swift in Sources */,
-				17672FFC2716423200D408BC /* ShapeServer.swift in Sources */,
 				1715380F274D66E6005039AA /* HexagonSlice.swift in Sources */,
 				176730582716423300D408BC /* Utility.swift in Sources */,
 				17317F77273743CF00598776 /* SlideHandlerProtocol.swift in Sources */,
@@ -968,7 +941,6 @@
 				1767302D2716423300D408BC /* ColorCell.swift in Sources */,
 				17FED86F2743248700FC977E /* BackgroundSlice.swift in Sources */,
 				176730102716423300D408BC /* SettingKeysMap.swift in Sources */,
-				17672FFB2716423200D408BC /* Shape_Circle.swift in Sources */,
 				17755044273705BC00E8DE79 /* NoOptionsSlice.swift in Sources */,
 				1767301A2716423300D408BC /* +UIColor.swift in Sources */,
 				176730472716423300D408BC /* OptionItems.swift in Sources */,
