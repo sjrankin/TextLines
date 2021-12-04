@@ -21,6 +21,7 @@ extension Settings
     }
     
     /// Returns a color from the specified setting.
+    /// - Warning: A fatal error is thrown if `Setting` does not point to a `UIColor`.
     /// - Parameter Setting: The setting whose color will be returned.
     /// - Returns: The color stored at the specified setting, nil if not found.
     public static func GetColor(_ Setting: SettingKeys) -> UIColor?
@@ -40,6 +41,7 @@ extension Settings
     }
     
     /// Queries a color setting value.
+    /// - Warning: A fatal error is thrown if `Setting` does not point to a `UIColor`.
     /// - Parameter Setting: The setting whose color value will be passed to the completion handler.
     /// - Parameter Completion: Code to execute after the value is retrieved. The value is passed
     ///                         to the completion handler.
@@ -54,6 +56,7 @@ extension Settings
     }
     
     /// Returns a color from the specified setting.
+    /// - Warning: A fatal error is thrown if `Setting` does not point to a `UIColor`.
     /// - Parameter Setting: The setting whose color will be returned.
     /// - Parameter Default: The value returned if the setting does not contain a valid color.
     /// - Returns: The color stored at the specified setting, the contents of `Default` if no valid
@@ -76,6 +79,7 @@ extension Settings
     }
     
     /// Returns a color from the specified setting.
+    /// - Warning: A fatal error is thrown if `Setting` does not point to a `UIColor`.
     /// - Parameter Setting: The setting whose color will be returned.
     /// - Parameter Default: The value returned if the setting does not contain a valid color.
     /// - Returns: The color stored at the specified setting, the contents of `Default` if no valid
@@ -90,6 +94,7 @@ extension Settings
     }
     
     /// Save a color at the specified setting.
+    /// - Warning: A fatal error is thrown if `Setting` does not point to a `UIColor`.
     /// - Parameter Setting: The setting where to save the color.
     /// - Parameter Value: The color to save.
     public static func SetColor(_ Setting: SettingKeys, _ Value: UIColor)
@@ -101,5 +106,21 @@ extension Settings
         let OldValue = GetColor(Setting)
         UserDefaults.standard.set(Value.Hex, forKey: Setting.rawValue)
         NotifySubscribers(Setting: Setting, OldValue: OldValue, NewValue: Value)
+    }
+    
+    /// Set the default color for a color setting.
+    /// - Warning: A fatal error is thrown if `Setting` does not point to a `UIColor`.
+    /// - Parameter Setting: The setting whose default color will be set.
+    public static func SetColorDefault(_ Setting: SettingKeys)
+    {
+        guard TypeIsValid(Setting, Type: UIColor.self) else
+        {
+            Debug.FatalError("\(Setting) is not an UIColor")
+        }
+        guard let DefaultColor = Settings.SettingDefaults[Setting] as? UIColor else
+        {
+            Debug.FatalError("Error converting color default to UIColor.")
+        }
+        SetColor(Setting, DefaultColor)
     }
 }
