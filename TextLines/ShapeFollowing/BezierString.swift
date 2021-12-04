@@ -164,7 +164,6 @@ extension Bezier
                         GlobalCharPositions: inout [CGPoint])
     {
         let pathLength = PathLength
-        print("PathLength=\(pathLength)")
         
         context.saveGState()
         
