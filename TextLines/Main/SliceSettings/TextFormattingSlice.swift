@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class TextFormattingSlice: UIViewController
+class TextFormattingSlice: UIViewController, ShapeSliceProtocol
 {
     override func viewDidLoad()
     {
@@ -18,13 +18,14 @@ class TextFormattingSlice: UIViewController
         self.view.layer.cornerRadius = UIConstants.CornerRadius
         self.view.layer.borderColor = UIConstants.DarkBorder
         self.view.layer.borderWidth = UIConstants.ThickBorder
-
-        FontColorWell.clipsToBounds = true
-        FontColorWell.selectedColor = Settings.GetColor(.TextColor, .black)
-        FontColorWell.supportsAlpha = true
-        FontColorWell.addTarget(self, action: #selector(TextColorChangedHandler(_:)), for: .valueChanged)
-    
+        
         RotateTextSwitch.isOn = Settings.GetBool(.RotateCharacters)
+        guard let DefaultOrientation = Settings.SettingDefaults[.ShapeAlignment] as? ShapeAlignments else
+        {
+            Debug.Print("Error getting default value for .ShapeAlignment.")
+            return
+        }
+        Settings.SetEnum(DefaultOrientation, EnumType: ShapeAlignments.self, ForKey: .ShapeAlignment)
         let Orientation = Settings.GetEnum(ForKey: .ShapeAlignment, EnumType: ShapeAlignments.self, Default: .Top)
         switch Orientation
         {
@@ -43,9 +44,6 @@ class TextFormattingSlice: UIViewController
             case .None:
                 AlignmentControl.selectedSegmentIndex = 0
         }
-        
-        let FontName = Settings.GetString(.ImageTextFont, "Avenir")
-        FontNameLabel.text = FontName
     }
     
     @objc func TextColorChangedHandler(_ sender: Any)
@@ -62,7 +60,7 @@ class TextFormattingSlice: UIViewController
     @IBAction func SelectFontTapped(_ sender: Any)
     {
     }
-
+    
     @IBAction func RotateSwitchChangeHandler(_ sender: Any)
     {
         guard let Switch = sender as? UISwitch else
@@ -103,8 +101,36 @@ class TextFormattingSlice: UIViewController
         Settings.SetEnum(Align, EnumType: ShapeAlignments.self, ForKey: .ShapeAlignment)
     }
     
+    func ResetSettings()
+    {
+        Settings.SetBoolDefault(For: .RotateCharacters)
+        RotateTextSwitch.isOn = Settings.GetBool(.RotateCharacters)
+        guard let DefaultOrientation = Settings.SettingDefaults[.ShapeAlignment] as? ShapeAlignments else
+        {
+            Debug.Print("Error getting default value for .ShapeAlignment.")
+            return
+        }
+        Settings.SetEnum(DefaultOrientation, EnumType: ShapeAlignments.self, ForKey: .ShapeAlignment)
+        let Orientation = Settings.GetEnum(ForKey: .ShapeAlignment, EnumType: ShapeAlignments.self, Default: .Top)
+        switch Orientation
+        {
+            case .Top:
+                AlignmentControl.selectedSegmentIndex = 1
+                
+            case .Bottom:
+                AlignmentControl.selectedSegmentIndex = 2
+                
+            case .Left:
+                AlignmentControl.selectedSegmentIndex = 3
+                
+            case .Right:
+                AlignmentControl.selectedSegmentIndex = 4
+                
+            case .None:
+                AlignmentControl.selectedSegmentIndex = 0
+        }
+    }
+    
     @IBOutlet weak var AlignmentControl: UISegmentedControl!
-    @IBOutlet weak var FontColorWell: UIColorWell!
-    @IBOutlet weak var FontNameLabel: UILabel!
     @IBOutlet weak var RotateTextSwitch: UISwitch!
 }
