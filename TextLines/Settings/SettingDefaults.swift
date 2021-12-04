@@ -47,7 +47,7 @@ extension Settings
         .GuidelineWidth: 2.0,
         
         // MARK: - Animation attributes.
-        .AnimationSpeed: 3,
+        .AnimationSpeed: AnimationSpeeds.Medium.rawValue,
         .AnimateClockwise: true,
         .Animating: false,
         
