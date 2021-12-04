@@ -152,6 +152,12 @@ class CircleSettingSlice: UIViewController, UITextFieldDelegate,
     
     func ResetSettings()
     {
+        Settings.SetDoubleDefault(For: .CircleRadiusPercent)
+        let Radius = Settings.GetDouble(.CircleRadiusPercent, 0.95)
+        let TRadius = Radius * 100.0
+        let RadiusString = "\(Int(TRadius))"
+        RadialText.text = RadiusString
+        RadialSlider.value = Float(Radius * 1000.0)
     }
     
     @IBOutlet weak var RadialText: UITextField!
