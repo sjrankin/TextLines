@@ -37,9 +37,9 @@ class SettingsStructure
         StructureNode(Name: "User Shape Parameters", Keys: .UserShapes, .CurrentUserShape,
                       .ShowViewport, .ScaleToView, .UserShapeOptionsOrder, .PointsWhenSmooth),
         StructureNode(Name: "N-Gon Parameters", Keys: .NGonVertexCount, .NGonRotation,
-                      .NGonWidth, .NGonHeight),
+                      .NGonWidth, .NGonHeight, .NGonDrawSmooth),
         StructureNode(Name: "Star Parameters", Keys: .StarVertexCount, .StarInnerRadius,
-                      .StarOuterRadius, .StarRotation),
+                      .StarOuterRadius, .StarRotation, .StarDrawSmooth),
     ]
 }
 
