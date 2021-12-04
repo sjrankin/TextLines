@@ -170,6 +170,23 @@ class RectangleSettingSlice: UIViewController, UITextFieldDelegate,
     
     func ResetSettings()
     {
+        Settings.SetDoubleDefault(For: .RectangleWidth)
+        Settings.SetDoubleDefault(For: .RectangleHeight)
+        Settings.SetBoolDefault(For: .RectangleRoundedCorners)
+        
+        let RectWidth = Settings.GetDouble(.RectangleWidth, 0.95)
+        let TMRectWidth = RectWidth * 100.0
+        let TMRectWidthString = "\(Int(TMRectWidth))"
+        WidthTextField.text = TMRectWidthString
+        WidthSlider.value = Float(RectWidth * 1000.0)
+        
+        let RectHeight = Settings.GetDouble(.RectangleHeight, 0.95)
+        let TMRectHeight = RectHeight * 100.0
+        let TMRectHeightString = "\(Int(TMRectHeight))"
+        HeightTextField.text = TMRectHeightString
+        HeightSlider.value = Float(RectHeight * 1000.0)
+        
+        RoundedCornersSwitch.isOn = Settings.GetBool(.RectangleRoundedCorners)
     }
     
     // MARK: - Interface builder outlets
