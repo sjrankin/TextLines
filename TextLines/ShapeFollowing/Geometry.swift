@@ -4,7 +4,7 @@
 //  Created by Luka on 27. 08. 14.
 //  Copyright (c) 2014 lvnyk
 //
-//  Modifiedy by Stuart Rankin, 2021.
+//  Modified by Stuart Rankin, 2021.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
