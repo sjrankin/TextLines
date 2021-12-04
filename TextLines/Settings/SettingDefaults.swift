@@ -106,11 +106,13 @@ extension Settings
         .NGonRotation: 90.0,
         .NGonWidth: 0.95,
         .NGonHeight: 0.95,
+        .NGonDrawSmooth: false,
         
         // MARK: - Star attributes
         .StarVertexCount: 5,
         .StarInnerRadius: 0.5,
         .StarOuterRadius: 0.9,
         .StarRotation: 90.0,
+        .StarDrawSmooth: false,
     ]
 }
