@@ -93,8 +93,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="357" height="240"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Viewport size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sW5-ep-KEq">
-                                <rect key="frame" x="8" y="10" width="128" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shape size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sW5-ep-KEq">
+                                <rect key="frame" x="8" y="10" width="101.5" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -117,7 +117,7 @@
                                                     <constraint firstAttribute="width" constant="100" id="XVB-jR-seo"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="dHT-ra-FGP" id="NzY-M9-zdB"/>
                                                 </connections>
@@ -142,7 +142,7 @@
                                                     <constraint firstAttribute="width" constant="100" id="Yi3-wz-csv"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="dHT-ra-FGP" id="Swd-q2-quy"/>
                                                 </connections>
@@ -233,6 +233,13 @@
                                     </segmentedControl>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pD3-YG-PWK">
+                                <rect key="frame" x="283" y="11.5" width="64" height="60.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="SfD-3D-fOQ"/>
+                                    <constraint firstAttribute="height" constant="64" id="W1W-b8-PC6"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GkO-PR-yR9"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
@@ -243,12 +250,15 @@
                             <constraint firstItem="DsN-DL-IVn" firstAttribute="leading" secondItem="eHz-LF-IgG" secondAttribute="leading" constant="10" id="8nL-Sn-ehc"/>
                             <constraint firstItem="t2F-0w-VfB" firstAttribute="top" secondItem="Anc-RY-g0F" secondAttribute="bottom" constant="30.5" id="BSW-DF-rCG"/>
                             <constraint firstItem="DsN-DL-IVn" firstAttribute="top" secondItem="eHz-LF-IgG" secondAttribute="top" constant="10" id="d2P-0R-dHo"/>
+                            <constraint firstItem="pD3-YG-PWK" firstAttribute="top" secondItem="eHz-LF-IgG" secondAttribute="top" constant="10" id="vsk-Ph-R1q"/>
+                            <constraint firstAttribute="trailing" secondItem="pD3-YG-PWK" secondAttribute="trailing" constant="10" id="xO2-f9-Wjn"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="357" height="240"/>
                     <connections>
                         <outlet property="AnimationDirectionControl" destination="fGa-Ni-0oe" id="ADF-z7-yO3"/>
                         <outlet property="AnimationSpeedControl" destination="KmW-8R-wPJ" id="1VD-WQ-qZw"/>
+                        <outlet property="RunStateButton" destination="pD3-YG-PWK" id="mBb-M4-kau"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQh-sc-p54" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2223,6 +2233,7 @@
         <image name="circle.slash" catalog="system" width="128" height="121"/>
         <image name="hare" catalog="system" width="128" height="92"/>
         <image name="hare.fill" catalog="system" width="128" height="91"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
         <image name="square.and.line.vertical.and.square.filled" catalog="system" width="128" height="83"/>
         <image name="tortoise" catalog="system" width="128" height="68"/>
         <image name="tortoise.fill" catalog="system" width="128" height="66"/>
