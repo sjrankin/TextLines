@@ -235,13 +235,13 @@ enum SliceTypes: String, CaseIterable
 enum AnimationSpeeds: Int, CaseIterable
 {
     /// Slowest animation speed.
-    case Slowest = 100
+    case Slowest = 1
     /// Slow animation speed.
-    case Slow = 200
+    case Slow = 3
     /// Middle animation speed.
-    case Medium = 300
+    case Medium = 5
     /// Fast animation speed.
-    case Fast = 400
+    case Fast = 7
     /// Fastest animation speed.
-    case Fastest = 500
+    case Fastest = 9
 }
