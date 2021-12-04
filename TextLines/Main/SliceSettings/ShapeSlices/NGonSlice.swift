@@ -59,6 +59,8 @@ class NGonSliceSettings: UIViewController, UITextFieldDelegate,
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(HandleCloseTap))
         view.addGestureRecognizer(tap)
+        
+        SmoothDrawSwitch.isOn = Settings.GetBool(.NGonDrawSmooth)
     }
     
     @objc func HandleCloseTap()
@@ -214,6 +216,16 @@ class NGonSliceSettings: UIViewController, UITextFieldDelegate,
         RotationField.text = RotateString
     }
     
+    @IBAction func SmoothDrawChangedHandler(_ sender: Any)
+    {
+        guard let Switch = sender as? UISwitch else
+        {
+            Debug.Print("Incorrect class sent to SmoothDrawChangedHandler")
+            return
+        }
+        Settings.SetBool(.NGonDrawSmooth, Switch.isOn)
+    }
+    
     func InitializeTextField(_ Field: UITextField, Key: SettingKeys, Multiplier: Double = 10.0)
     {
         var Value = Settings.GetDouble(Key)
@@ -244,8 +256,11 @@ class NGonSliceSettings: UIViewController, UITextFieldDelegate,
         InitializeSlider(RotationSlider, Key: .NGonRotation, Multiplier: 1.0)
         InitializeSlider(WidthSlider, Key: .NGonWidth)
         InitializeSlider(HeightSlider, Key: .NGonHeight)
+        Settings.SetBoolDefault(For: .NGonDrawSmooth)
+        SmoothDrawSwitch.isOn = Settings.GetBool(.NGonDrawSmooth)
     }
     
+    @IBOutlet weak var SmoothDrawSwitch: UISwitch!
     @IBOutlet weak var RotationSlider: UISlider!
     @IBOutlet weak var VertexCountSlider: UISlider!
     @IBOutlet weak var RotationField: UITextField!
