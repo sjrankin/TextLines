@@ -191,6 +191,20 @@ class OvalSettingSlice: UIViewController, UITextFieldDelegate,
     
     func ResetSettings()
     {
+        Settings.SetDoubleDefault(For: .EllipseMajor)
+        Settings.SetDoubleDefault(For: .EllipseMinor)
+        
+        let MajorRadius = Settings.GetDouble(.EllipseMajor, 0.95)
+        let TMjRadius = MajorRadius * 100.0
+        let MjRadiusString = "\(Int(TMjRadius))"
+        MajorRadialText.text = MjRadiusString
+        MajorRadialSlider.value = Float(MajorRadius * 1000.0)
+        
+        let MinorRadius = Settings.GetDouble(.EllipseMinor, 0.95)
+        let TMnRadius = MinorRadius * 100.0
+        let MnRadiusString = "\(Int(TMnRadius))"
+        MinorRadialText.text = MnRadiusString
+        MinorRadialSlider.value = Float(MinorRadius * 1000.0)
     }
     
     @IBOutlet weak var MajorRadialText: UITextField!
