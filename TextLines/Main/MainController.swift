@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        Debug.DumpVersion()
         /*
          for family: String in UIFont.familyNames
          {
@@ -851,6 +851,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     /// Heights of different slice views. If not here, a default value is used in `HeightFor`.
     let SliceHeights: [SliceTypes: CGFloat] =
     [
+        .TextFormatting: 184.0,
         .RectangleSettings: 265.0,
         .TriangleSettings: 265.0,
         .DebugSlice: 300.0,
@@ -866,8 +867,8 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         .GuidelineSettings: 240.0,
         .BackgroundSettings: 240.0,
         .FontSlice: 358.0,
-        .NGonSlice: 423.0,
-        .StarSlice: 423.0,
+        .NGonSlice: 459.0,
+        .StarSlice: 464.0,
         .CommonSettings: 240.0,
     ]
     
