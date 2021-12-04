@@ -131,13 +131,9 @@ extension ViewController
                 switch Settings.GetEnum(ForKey: .LineType, EnumType: LineOptions.self, Default: .Horizontal)
                 {
                     case .Horizontal:
-                        print("Length=\(Length), Width=\(Width)")
                         Length = Length * Width
-                        print("  Length=\(Length)")
                         let HalfLength = Length / 2.0
-                        print("  HalfLength=\(HalfLength)")
                         let XStart = HalfWidth - HalfLength
-                        print("Horizontal: XStart=\(XStart)")
                         BezierPath?.move(to: CGPoint(x: XStart, y: HalfHeight))
                         BezierPath?.addLine(to: CGPoint(x: Width - XStart, y: HalfHeight))
                         
@@ -145,7 +141,6 @@ extension ViewController
                         Length = Length * Width
                         let HalfLength = Length / 2.0
                         let YStart = HalfHeight - HalfLength
-                        print("Vertical: Length=\(Length), YStart=\(YStart)")
                         BezierPath?.move(to: CGPoint(x: HalfWidth, y: YStart))
                         BezierPath?.addLine(to: CGPoint(x: HalfWidth, y: Height - YStart))
                         
@@ -217,7 +212,7 @@ extension ViewController
                         Points.append(VertexPoint)
                     }
                 }
-                if Settings.GetBool(.CommonSmoothing)
+                if Settings.GetBool(.StarDrawSmooth)
                 {
                     let Smoothed = Chaikin.SmoothPoints(Points: Points, Iterations: 4, Closed: true)
                     Points = Smoothed
@@ -251,9 +246,11 @@ extension ViewController
                                                        Center: Center)
                     Points.append(VertexPoint)
                 }
-                if Settings.GetBool(.CommonSmoothing)
+                if Settings.GetBool(.NGonDrawSmooth)
                 {
-                    let Smoothed = Chaikin.SmoothPoints(Points: Points, Iterations: 4, Closed: true)
+                    let Smoothed = Chaikin.SmoothPoints(Points: Points,
+                                                        Iterations: 4,
+                                                        Closed: true)
                     Points = Smoothed
                 }
                 BezierPath = UIBezierPath()
