@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class GuidelineSettingSlice: UIViewController
+class GuidelineSettingSlice: UIViewController, ShapeSliceProtocol
 {
     override func viewDidLoad()
     {
@@ -70,6 +70,18 @@ class GuidelineSettingSlice: UIViewController
             return
         }
         Settings.SetBool(.ShowGridLines, Switch.isOn)
+    }
+    
+    func ResetSettings()
+    {
+        Settings.SetBoolDefault(For: .ShowGridLines)
+        Settings.SetBoolDefault(For: .ShowGuidelines)
+        ShowGridSwitch.isOn = Settings.GetBool(.ShowGridLines)
+        ShowShapeSwitch.isOn = Settings.GetBool(.ShowGuidelines)
+        Settings.SetColorDefault(.GridColor)
+        Settings.SetColorDefault(.GuidelineColor)
+        ShapeColorControl.selectedColor = Settings.GetColor(.GuidelineColor, .yellow)
+        GridColorControl.selectedColor = Settings.GetColor(.GridColor, .yellow)
     }
     
     @IBOutlet weak var GridColorControl: UIColorWell!
