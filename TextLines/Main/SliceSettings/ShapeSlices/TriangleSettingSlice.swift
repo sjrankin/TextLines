@@ -28,13 +28,13 @@ class TriangleSettingSlice: UIViewController, UITextFieldDelegate,
         WidthTextField.text = TMRectWidthString
         WidthSlider.value = Float(TriangleBase * 1000.0)
         
-        let TriangleHeight = Settings.GetDouble(.RectangleHeight, 0.95)
+        let TriangleHeight = Settings.GetDouble(.TriangleHeight, 0.95)
         let TMRectHeight = TriangleHeight * 100.0
         let TMRectHeightString = "\(Int(TMRectHeight))"
         HeightTextField.text = TMRectHeightString
         HeightSlider.value = Float(TriangleHeight * 1000.0)
         
-        RoundedCornersSwitch.isOn = Settings.GetBool(.RectangleRoundedCorners)
+        RoundedCornersSwitch.isOn = Settings.GetBool(.TriangleRounded)
         
         WidthTextField.delegate = self
         HeightTextField.delegate = self
@@ -170,6 +170,23 @@ class TriangleSettingSlice: UIViewController, UITextFieldDelegate,
     
     func ResetSettings()
     {
+        Settings.SetDoubleDefault(For: .TriangleBase)
+        Settings.SetDoubleDefault(For: .TriangleHeight)
+        Settings.SetBoolDefault(For: .TriangleRounded)
+        
+        let TriangleBase = Settings.GetDoubleNormal(.TriangleBase)
+        let TMRectWidth = TriangleBase * 100.0
+        let TMRectWidthString = "\(Int(TMRectWidth))"
+        WidthTextField.text = TMRectWidthString
+        WidthSlider.value = Float(TriangleBase * 1000.0)
+        
+        let TriangleHeight = Settings.GetDouble(.TriangleHeight, 0.95)
+        let TMRectHeight = TriangleHeight * 100.0
+        let TMRectHeightString = "\(Int(TMRectHeight))"
+        HeightTextField.text = TMRectHeightString
+        HeightSlider.value = Float(TriangleHeight * 1000.0)
+        
+        RoundedCornersSwitch.isOn = Settings.GetBool(.TriangleRounded)
     }
     
     // MARK: - Interface builder outlets
