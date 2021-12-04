@@ -107,11 +107,13 @@ extension Settings
         .NGonRotation: Double.self,
         .NGonWidth: Double.self,
         .NGonHeight: Double.self,
+        .NGonDrawSmooth: Bool.self,
         
         // MARK: - Star attributes
         .StarVertexCount: Int.self,
         .StarInnerRadius: Double.self,
         .StarOuterRadius: Double.self,
         .StarRotation: Double.self,
+        .StarDrawSmooth: Bool.self,
     ]
 }
