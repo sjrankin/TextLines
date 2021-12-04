@@ -86,7 +86,6 @@ class AnimationSettingsSlice: UIViewController, ShapeSliceProtocol
         AnimationSpeedControl.selectedSegmentIndex = Index
         Settings.SetBoolDefault(For: .Animating)
         let IsAnimating = Settings.GetBool(.Animating)
-        print("IsAnimating=\(IsAnimating)")
         RunStateButton.image = UIImage(systemName: IsAnimating ? "stop.fill" : "play.fill")
     }
     
