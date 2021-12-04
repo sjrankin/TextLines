@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AnimationSettingsSlice: UIViewController
+class AnimationSettingsSlice: UIViewController, ShapeSliceProtocol
 {
     override func viewDidLoad()
     {
@@ -25,6 +25,10 @@ class AnimationSettingsSlice: UIViewController
     }
     
     @IBAction func AnimationDirectionControlChanged(_ sender: Any)
+    {
+    }
+    
+    func ResetSettings()
     {
     }
     
