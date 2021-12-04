@@ -15,7 +15,7 @@ import MobileCoreServices
 import UniformTypeIdentifiers
 
 class BackgroundSlice: UIViewController, UINavigationControllerDelegate,
-                       UIImagePickerControllerDelegate
+                       UIImagePickerControllerDelegate, ShapeSliceProtocol
 {
     override func viewDidLoad()
     {
@@ -214,6 +214,31 @@ class BackgroundSlice: UIViewController, UINavigationControllerDelegate,
                 default:
                     break
             }
+        }
+    }
+    
+    func ResetSettings()
+    {
+        Settings.SetColorDefault(.BackgroundColor)
+        let BGColor = Settings.GetColor(.BackgroundColor, UIColor.red)
+        BackgroundColorWell.selectedColor = BGColor
+        guard let BGTypeDefault = Settings.SettingDefaults[.BackgroundType] as? Backgrounds else
+        {
+            Debug.Print("Error getting default .BackgroundType value.")
+            return
+        }
+        Settings.SetEnum(BGTypeDefault, EnumType: Backgrounds.self, ForKey: .BackgroundType)
+        switch Settings.GetEnum(ForKey: .BackgroundType, EnumType: Backgrounds.self, Default: .Color)
+        {
+            case .Color:
+                BackgroundTypeSegment.selectedSegmentIndex = 0
+                AlphaLabel.isHidden = false
+                let Alpha = BGColor.a.RoundedTo(3)
+                AlphaLabel.text = "Alpha = \(Alpha)"
+                
+            case .Image:
+                BackgroundTypeSegment.selectedSegmentIndex = 1
+                AlphaLabel.isHidden = true
         }
     }
     
