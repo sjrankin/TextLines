@@ -452,13 +452,8 @@ extension ViewController
         var bezier = Bezier(path: Path.cgPath)
         bezier.Original = Path
         bezier.ShowPath = true
-#if true
         let ImageWidth = Settings.GetInt(.ViewportWidth)
         let ImageHeight = Settings.GetInt(.ViewportHeight)
-        #else
-        let ImageWidth = Settings.GetInt(.ImageWidth)
-        let ImageHeight = Settings.GetInt(.ImageHeight)
-        #endif
         let ImageSize = CGSize(width: ImageWidth, height: ImageHeight)
         
         // generate an image
@@ -477,6 +472,11 @@ extension ViewController
         return image
     }
     
+    /// Convert passed polar coordinates to cartesian coordinates.
+    /// - Parameter Degrees: Polar angle in degrees.
+    /// - Parameter Radius: Polar coordinate's radial value.
+    /// - Parameter Center: Center of the polar coordinate.
+    /// - Returns: Cartesian equivalent of the passed polar coordinate.
     func PolarToCartesian(Degrees: CGFloat, Radius: CGFloat, Center: CGPoint) -> CGPoint
     {
         let X = Center.x + (Radius * cos(Degrees.Radians))
