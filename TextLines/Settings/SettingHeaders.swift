@@ -85,6 +85,8 @@ public static let SettingKeyHeaders: [SettingKeys: String] =
     .SpiralStartTheta: "Start theta",
     .SpiralEndTheta: "End theta",
     .SpiralThetaStep: "Theta step",
+    .SpiralSquare: "Square spiral",
+    .SpiralSquareSmooth: "Smooth square",
     
     //MARK: - Octagon attributes
     .OctagonWidth: "Width",
