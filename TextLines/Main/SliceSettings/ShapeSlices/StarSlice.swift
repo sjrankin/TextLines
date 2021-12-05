@@ -260,6 +260,14 @@ class StarSlice: UIViewController, UITextFieldDelegate,
         SmoothSwitch.isOn = Settings.GetBool(.StarDrawSmooth)
     }
     
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        RotationField.resignFirstResponder()
+        VertexCountField.resignFirstResponder()
+        InnerTextField.resignFirstResponder()
+        OuterTextField.resignFirstResponder()
+        super.viewWillDisappear(animated)
+    }
 
     @IBOutlet weak var SmoothSwitch: UISwitch!
     @IBOutlet weak var RotationSlider: UISlider!
