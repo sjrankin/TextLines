@@ -63,6 +63,15 @@ class NGonSliceSettings: UIViewController, UITextFieldDelegate,
         SmoothDrawSwitch.isOn = Settings.GetBool(.NGonDrawSmooth)
     }
     
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        VertexCountField.resignFirstResponder()
+        RotationField.resignFirstResponder()
+        WidthTextField.resignFirstResponder()
+        HeightTextField.resignFirstResponder()
+        super.viewWillDisappear(animated)
+    }
+    
     @objc func HandleCloseTap()
     {
         WidthTextField.resignFirstResponder()
