@@ -46,6 +46,13 @@ class HexagonSlice: UIViewController, UITextFieldDelegate,
         view.addGestureRecognizer(tap)
     }
     
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        WidthTextField.resignFirstResponder()
+        HeightTextField.resignFirstResponder()
+        super.viewWillDisappear(animated)
+    }
+    
     @objc func HandleCloseTap()
     {
         WidthTextField.resignFirstResponder() // dismiss keyoard
