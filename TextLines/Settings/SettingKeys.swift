@@ -140,6 +140,10 @@ enum SettingKeys: String, CaseIterable
     case SpiralEndTheta = "EndTheta"
     /// CGFloat: Theta step value.
     case SpiralThetaStep = "ThetaStep"
+    /// Bool: Spiral is rendered squarely.
+    case SpiralSquare = "SpiralSquare"
+    /// Bool: Square spiral rendered smoothly.
+    case SpiralSquareSmooth = "SpiralSquareSmooth"
     
     // MARK: - Octagon attributes
     /// Double: Width of the octagon relative to the viewport.
