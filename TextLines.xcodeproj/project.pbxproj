@@ -36,6 +36,7 @@
 		174FC0712757D0D2003F1F73 /* FontSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174FC0702757D0D1003F1F73 /* FontSlice.swift */; };
 		174FC07327584037003F1F73 /* NGonSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174FC07227584037003F1F73 /* NGonSlice.swift */; };
 		175A620C272F22D600C4337C /* Main90°.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 175A620B272F22D600C4337C /* Main90°.storyboard */; };
+		1760A288275C1611008C6A21 /* +CommandBarDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1760A287275C1611008C6A21 /* +CommandBarDelegateImplementation.swift */; };
 		1763FB7B273354EA00C20060 /* SettingsWrapperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763FB7A273354EA00C20060 /* SettingsWrapperController.swift */; };
 		1763FB7D2733552100C20060 /* SettingsWrapperDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763FB7C2733552100C20060 /* SettingsWrapperDelegate.swift */; };
 		1765092F2737021900735CB4 /* GuidelinesSettingSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1765092E2737021900735CB4 /* GuidelinesSettingSlice.swift */; };
@@ -189,6 +190,7 @@
 		174FC0702757D0D1003F1F73 /* FontSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSlice.swift; sourceTree = "<group>"; };
 		174FC07227584037003F1F73 /* NGonSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NGonSlice.swift; sourceTree = "<group>"; };
 		175A620B272F22D600C4337C /* Main90°.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Main90°.storyboard"; sourceTree = "<group>"; };
+		1760A287275C1611008C6A21 /* +CommandBarDelegateImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+CommandBarDelegateImplementation.swift"; sourceTree = "<group>"; };
 		1763FB7A273354EA00C20060 /* SettingsWrapperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWrapperController.swift; sourceTree = "<group>"; };
 		1763FB7C2733552100C20060 /* SettingsWrapperDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWrapperDelegate.swift; sourceTree = "<group>"; };
 		1765092E2737021900735CB4 /* GuidelinesSettingSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidelinesSettingSlice.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				17672F892716423100D408BC /* +Animation.swift */,
+				1760A287275C1611008C6A21 /* +CommandBarDelegateImplementation.swift */,
 				17FB2B172745787E00232AFB /* +SaveShare.swift */,
 				17672F8B2716423100D408BC /* +SettingsChangedHandler.swift */,
 				17672F8C2716423100D408BC /* +SettingPanel.swift */,
@@ -948,6 +951,7 @@
 				17672FF92716423200D408BC /* +Spiral.swift in Sources */,
 				176730552716423300D408BC /* Float.swift in Sources */,
 				176730162716423300D408BC /* +CGRect.swift in Sources */,
+				1760A288275C1611008C6A21 /* +CommandBarDelegateImplementation.swift in Sources */,
 				1724DAB327274C1A000E6067 /* UIView2.swift in Sources */,
 				176730312716423300D408BC /* EnumCell.swift in Sources */,
 				170F69822736FC6A005212AA /* AnimationSettingsSlice.swift in Sources */,
