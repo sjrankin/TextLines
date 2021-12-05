@@ -60,7 +60,6 @@ extension ViewController
                             Final = self.PathLength - Final
                         }
                     }
-                    print("Circle: Final=\(Final)")
                     
                 case .Rectangle:
                     Perimeter = self.PathLength
