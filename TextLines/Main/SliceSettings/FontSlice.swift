@@ -37,6 +37,12 @@ class FontSlice: UIViewController, UITextFieldDelegate,
         DrawSample()
     }
     
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        FontSizeField.resignFirstResponder()
+        super.viewWillDisappear(animated)
+    }
+    
     @objc func TextColorChangedHandler(_ sender: Any)
     {
         if let Well = sender as? UIColorWell
