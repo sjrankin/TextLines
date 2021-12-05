@@ -84,6 +84,8 @@ extension Settings
         .SpiralStartTheta: 0.0,
         .SpiralEndTheta: 45.0,
         .SpiralThetaStep: 0.0,
+        .SpiralSquare: false,
+        .SpiralSquareSmooth: false,
         
         //MARK: - Octagon attributes
         .OctagonWidth: 0.9,
