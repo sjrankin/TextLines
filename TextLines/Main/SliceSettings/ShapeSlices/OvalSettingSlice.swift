@@ -89,6 +89,8 @@ class OvalSettingSlice: UIViewController, UITextFieldDelegate,
     
     override func viewWillDisappear(_ animated: Bool)
     {
+        MajorRadialText.resignFirstResponder()
+        MinorRadialText.resignFirstResponder()
         Settings.RemoveSubscriber(self)
         super.viewWillDisappear(animated)
     }
