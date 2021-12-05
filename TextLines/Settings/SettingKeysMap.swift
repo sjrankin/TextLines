@@ -85,6 +85,8 @@ extension Settings
         .SpiralStartTheta: CGFloat.self,
         .SpiralEndTheta: CGFloat.self,
         .SpiralThetaStep: CGFloat.self,
+        .SpiralSquare: Bool.self,
+        .SpiralSquareSmooth: Bool.self,
         
         //MARK: - Octagon attributes
         .OctagonWidth: Double.self,
