@@ -37,14 +37,71 @@ extension UIBezierPath {
     ///   - SndTheta: Ending theta value.
     ///   - ThetaStep: Advance step value for each iteration of theta. **Must not** be `0.0`. If the
     ///                value passed is `0.0`, a fatal error is thrown.
+    ///   - Square: If true, a square "spiral" is drawn. If false, a round spiral (as expected by the
+    ///             user) is drawn.
     /// - Returns: `UIBezierPath` of the spiral. nil returned on error.
     static func CreateSpiralPath(Center: CGPoint,
                                  StartRadius: CGFloat,
                                  LoopGap: CGFloat,
                                  StartTheta: CGFloat,
                                  EndTheta: CGFloat,
-                                 ThetaStep: CGFloat) -> UIBezierPath?
+                                 ThetaStep: CGFloat,
+                                 Square: Bool) -> UIBezierPath?
     {
+        if Square
+        {
+            let SBezier = UIBezierPath()
+            let SquareGap = LoopGap * 5.5
+            var Points = [CGPoint]()
+            let CenterX = CGFloat(Settings.GetInt(.ViewportWidth)) / 2.0
+            let CenterY = CGFloat(Settings.GetInt(.ViewportHeight)) / 2.0
+            var GapCount = 1.0
+            let Fit = CGFloat(min(Settings.GetInt(.ViewportWidth), Settings.GetInt(.ViewportHeight)))
+            let Top = CenterY - (Fit / 2.0)
+            let Bottom = CenterY + (Fit / 2.0)
+            let Right = CenterX + (Fit / 2.0)
+            while true
+            {
+                var GapSize = GapCount * SquareGap
+                if GapSize > (Fit / 2.0)
+                {
+                    break
+                }
+                
+                //top
+                Points.append(CGPoint(x: GapSize, y: GapSize))
+                Points.append(CGPoint(x: Right - GapSize, y: GapSize))
+                
+                //right
+                Points.append(CGPoint(x: Right - GapSize, y: Bottom - GapSize))
+                
+                //bottom
+                let OldGapSize = GapSize
+                GapCount = GapCount + 1.0
+                GapSize = GapCount * SquareGap
+                if GapSize > (Fit / 2.0)
+                {
+                    break
+                }
+                Points.append(CGPoint(x: GapSize, y: Bottom - OldGapSize))
+                
+                //left
+                Points.append(CGPoint(x: GapSize, y: Top + GapSize))
+            }
+            if Settings.GetBool(.SpiralSquareSmooth)
+            {
+                Points = Chaikin.SmoothPoints(Points: Points,
+                                              Iterations: 4,
+                                              Closed: false)
+            }
+            SBezier.move(to: Points[0])
+            for OtherPoint in Points
+            {
+                SBezier.addLine(to: OtherPoint)
+            }
+            return SBezier
+        }
+        
         if ThetaStep == 0.0
         {
             Debug.FatalError("ThetaStep is 0.0.")
