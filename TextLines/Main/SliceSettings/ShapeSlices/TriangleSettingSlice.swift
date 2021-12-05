@@ -50,6 +50,8 @@ class TriangleSettingSlice: UIViewController, UITextFieldDelegate,
     
     override func viewWillDisappear(_ animated: Bool)
     {
+        WidthTextField.resignFirstResponder()
+        HeightTextField.resignFirstResponder()
         Settings.RemoveSubscriber(self)
         super.viewWillDisappear(animated)
     }
