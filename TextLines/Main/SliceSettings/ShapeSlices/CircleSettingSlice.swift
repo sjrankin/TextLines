@@ -73,6 +73,7 @@ class CircleSettingSlice: UIViewController, UITextFieldDelegate,
     
     override func viewWillDisappear(_ animated: Bool)
     {
+        RadialText.resignFirstResponder()
         Settings.RemoveSubscriber(self)
         super.viewWillDisappear(animated)
     }
