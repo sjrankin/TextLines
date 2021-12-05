@@ -51,6 +51,13 @@ class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        Settings.RemoveSubscriber(self)
+        ExtentText.resignFirstResponder()
+        super.viewWillDisappear(animated)
+    }
+    
     let Lines: [LineOptions] =
     [
         .Horizontal,
@@ -67,12 +74,6 @@ class LineSlice: UIViewController, UITextFieldDelegate, UIPickerViewDelegate,
     @objc func HandleDismissTap()
     {
         ExtentText.resignFirstResponder() // dismiss keyoard
-    }
-    
-    override func viewWillDisappear(_ animated: Bool)
-    {
-        Settings.RemoveSubscriber(self)
-        super.viewWillDisappear(animated)
     }
     
     let ClassSubscriberID = UUID()
