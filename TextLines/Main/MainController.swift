@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
-                      CommandBarProtocol, SettingsWrapperDelegate
+                      SettingsWrapperDelegate
 {
     /// Initialize the user interface and program.
     override func viewDidLoad()
@@ -29,11 +29,6 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         Settings.Initialize()
         Settings.AddSubscriber(self)
         Settings.SetBool(.Animating, false)
-        
-        //Settings.SetDoubleNormal(.StarInnerRadius, 0.4)
-        //Settings.SetDoubleNormal(.StarOuterRadius, 0.9)
-        //Settings.SetDouble(.StarRotation, 90.0)
-        //Settings.SetInt(.StarVertexCount, 5)
         
         CommandButtonList = Settings.GetStrings(.CommandButtonList,
                                                 Delimiter: ",",
@@ -455,23 +450,6 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
             }
 #endif
 //            print("Offset=\(Offset)")
-            /*
-             //Create the image on a background thread to keep the UI responsive.
-             DispatchQueue.global(qos: .userInitiated).async
-             {
-             if let NewImage = self.PlotText(self.CurrentText, On: Path, With: CGFloat(Offset))
-             {
-             DispatchQueue.main.async
-             {
-             self.TextOutput.image = NewImage
-             }
-             }
-             else
-             {
-             print("No image to display.")
-             }
-             }
-             */
             if let NewImage = PlotText(CurrentText, On: Path,
                                        With: CGFloat(Offset))
             {
@@ -505,196 +483,6 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     func GetShapeScroller() -> UIScrollView
     {
         return ShapeScroller
-    }
-    
-    // MARK: - Command bar delegate functions.
-    
-    func HasTitles(_ sender: CommandBarManager) -> Bool
-    {
-        switch sender
-        {                
-            case CommandScroller:
-                return true
-                
-            default:
-                return false
-        }
-    }
-    
-    func TitleFontSize(_ sender: CommandBarManager, Command: CommandButtons) -> CGFloat
-    {
-        return 14.0
-    }
-    
-    func TitleColor(_ sender: CommandBarManager, Command: CommandButtons) -> UIColor?
-    {
-        return nil
-    }
-    
-    func ButtonHorizontalGap(_ sender: CommandBarManager) -> CGFloat
-    {
-        return 16.0
-    }
-    
-    func InitialGap(_ sender: CommandBarManager) -> CGFloat
-    {
-        return 0.0
-    }
-    
-    func DoubleTap(_ sender: CommandBarManager, Command: CommandButtons)
-    {
-        //Not used here.
-    }
-    
-    /// Handle long taps on command buttons. Nothing done here.
-    func LongTapOn(_ Command: CommandButtons)
-    {
-        //Not used here.
-    }
-    
-    func LongTapOn(_ sender: CommandBarManager, Command: CommandButtons)
-    {
-        
-    }
-    
-    func ButtonColor(_ sender: CommandBarManager, Command: CommandButtons) -> UIColor?
-    {
-        return UIColor.systemBlue
-    }
-    
-    func HighlightTappedButtons(_ sender: CommandBarManager) -> Bool
-    {
-        return false
-    }
-    
-    func CommandButtonSize(_ sender: CommandBarManager, Command: CommandButtons) -> CGSize?
-    {
-        switch sender
-        {                
-            case CommandScroller:
-                return CGSize(width: UIConstants.MainIconWidth,
-                              height: UIConstants.MainIconHeight)
-                
-            default:
-                return CGSize(width: UIConstants.DefaultIconWidth,
-                              height: UIConstants.DefaultIconHeight)
-        }
-    }
-    
-    /// Execute the passed command. Commands are passed from the main command panel.
-    /// - Note: Unknown/unimplemented commands are ignored.
-    /// - Parameter Command: The command to execute.
-    func ExecuteCommand(_ sender: CommandBarManager, Command: CommandButtons)
-    {
-        switch Command
-        {
-            case .ActionButton:
-                SettingPanel.layer.zPosition = 1000
-                TextInput.isUserInteractionEnabled = false
-                UIView.animate(withDuration: 0.3,
-                               delay: 0.0,
-                               options: [.curveEaseIn],
-                               animations:
-                                {
-                    self.SettingPanel.alpha = 1.0
-                },
-                               completion:
-                                {
-                    _ in
-                    self.SettingPanel.becomeFirstResponder()
-                })
-                
-            case .ProjectButton:
-                break
-            case .CameraButton:
-                break
-            case .VideoButton:
-                break
-                
-            case .SaveButton:
-                SaveCurrentImage()
-                
-            case .ShareButton:
-                guard let ImageToShare = TextOutput.image else
-                {
-                    Debug.Print("No image to share")
-                    return
-                }
-                SharedImage = ImageToShare
-                ShareCurrentImage() 
-                
-            case .TextFormatButton:
-                ShowSliceHandler(.TextFormatting)
-                
-                #if DEBUG
-            case .DebugButton:
-                ShowSliceHandler(.DebugSlice)
-                #endif
-                
-            case .FontButton:
-                ShowSliceHandler(.FontSlice)
-                
-            case .DimensionsButton:
-                ShowSliceHandler(.ViewportSize)
-                
-            case .PlayButton:
-                SetAnimationState()
-             //SetAnimationState2()
-                
-            case .UserButton:
-                let Storyboard = UIStoryboard(name: "UserShapes", bundle: nil)
-                let VC = Storyboard.instantiateViewController(withIdentifier: "UserShapeController") as! UserShapeController
-                self.present(VC, animated: true)
-                
-            case .BackgroundButton:
-                ShowSliceHandler(.BackgroundSettings)
-                
-            case .ShapeCommonOptionsButton:
-                ShowSliceHandler(.CommonSettings)
-                
-            case .ShapeOptionsButton:
-                switch Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self, Default: .Circle)
-                {
-                    case .Circle:
-                        ShowSliceHandler(.CircleSettings)
-                        
-                    case .Ellipse:
-                        ShowSliceHandler(.EllipseSettings)
-                        
-                    case .Rectangle:
-                        ShowSliceHandler(.RectangleSettings)
-                        
-                    case .Triangle:
-                        ShowSliceHandler(.TriangleSettings)
-                        
-                    case .Octagon:
-                        ShowSliceHandler(.OctagonSettings)
-                        
-                    case .Hexagon:
-                        ShowSliceHandler(.HexagonSettings)
-                        
-                    case .Line:
-                        ShowSliceHandler(.LineSettings)
-                        
-                    case .Spiral:
-                        ShowSliceHandler(.SpiralLineSettings)
-                        
-                    case .Star:
-                        ShowSliceHandler(.StarSlice)
-                        
-                    case .NGon:
-                        ShowSliceHandler(.NGonSlice)
-                        
-                    default:
-                        break
-                }
-                
-            case .AnimationButton:
-                ShowSliceHandler(.AnimationSettings)
-                
-            case .GuidelinesButton:
-                ShowSliceHandler(.GuidelineSettings)
-        }
     }
     
     var SharedImage: UIImage? = nil
@@ -751,16 +539,6 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         }
     }
     
-    func ShapeGroupSelected(_ sender: CommandBarManager, NewCategory: ShapeCategories)
-    {
-        
-    }
-    
-    func ShapeSelected(_ sender: CommandBarManager, NewShape: Shapes)
-    {
-        
-    }
-    
     /// Update the output - something changed somewhere that requires the output
     /// to change.
     /// - Notes: User changes are all stored in settings or the user interface. Rather
@@ -779,52 +557,6 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     
     @IBAction func RunViewportSizeSliceHandler(_ sender: Any)
     {
-    }
-    
-    @IBAction func ResetSettingSliceValuesHandler(_ sender: Any)
-    {
-        if let CurrentSlice = SliceViewController
-        {
-            if CurrentSlice.conforms(to: ShapeSliceProtocol.self)
-            {
-                (CurrentSlice as? ShapeSliceProtocol)!.ResetSettings()
-            }
-        }
-        switch Settings.GetEnum(ForKey: .CurrentShape, EnumType: Shapes.self, Default: .Circle)
-        {
-            case .Circle:
-                break
-                
-            case .Ellipse:
-                break
-                
-            case .Rectangle:
-                break
-                
-            case .Triangle:
-                break
-                
-            case .Octagon:
-                break
-                
-            case .Hexagon:
-                break
-                
-            case .Line:
-                break
-                
-            case .Spiral:
-                break
-                
-            case .Star:
-                break
-                
-            case .NGon:
-                break
-                
-            default:
-                break
-        }
     }
     
     // MARK: - Setting panel variables.
@@ -853,7 +585,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         .RectangleSettings: 265.0,
         .TriangleSettings: 265.0,
         .DebugSlice: 300.0,
-        .SpiralLineSettings: 285.0,
+        .SpiralLineSettings: 374.0,
         .CircleSettings: 170.0,
         .EllipseSettings: 218.0,
         .LineSettings: 275.0,
