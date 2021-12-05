@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class RectangleSettingSlice: UIViewController, UITextFieldDelegate,
-                         SettingChangedProtocol, ShapeSliceProtocol
+                             SettingChangedProtocol, ShapeSliceProtocol
 {
     override func viewDidLoad()
     {
@@ -40,7 +40,7 @@ class RectangleSettingSlice: UIViewController, UITextFieldDelegate,
         HeightTextField.delegate = self
         
         self.WidthTextField.addTarget(self, action: #selector(onWidthMajor),
-                                       for: UIControl.Event.editingDidEndOnExit)
+                                      for: UIControl.Event.editingDidEndOnExit)
         self.HeightTextField.addTarget(self, action: #selector(onHeightMinor),
                                        for: UIControl.Event.editingDidEndOnExit)
         
@@ -50,6 +50,8 @@ class RectangleSettingSlice: UIViewController, UITextFieldDelegate,
     
     override func viewWillDisappear(_ animated: Bool)
     {
+        WidthTextField.resignFirstResponder()
+        HeightTextField.resignFirstResponder()
         Settings.RemoveSubscriber(self)
         super.viewWillDisappear(animated)
     }
