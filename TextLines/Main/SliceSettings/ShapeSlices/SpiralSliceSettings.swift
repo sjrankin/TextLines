@@ -37,9 +37,21 @@ class SpiralSliceSettings: UIViewController, UITextFieldDelegate,
         InitializeTextField(LineGapField, Key: .SpiralSpacePerLoop)
         LineGapField.addTarget(self, action: #selector(OnEditingDone),
                                for: UIControl.Event.editingDidEndOnExit)
+        SquareSpiralSwitch.isOn = Settings.GetBool(.SpiralSquare)
+        SmoothSpiralSwitch.isOn = Settings.GetBool(.SpiralSquareSmooth)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(HandleCloseTap))
         view.addGestureRecognizer(tap)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        StartRadiusField.resignFirstResponder()
+        StartAngleField.resignFirstResponder()
+        EndAngleField.resignFirstResponder()
+        AngleStepField.resignFirstResponder()
+        LineGapField.resignFirstResponder()
+        super.viewWillDisappear(animated)
     }
     
     func InitializeTextField(_ Field: UITextField, Key: SettingKeys)
@@ -134,13 +146,41 @@ class SpiralSliceSettings: UIViewController, UITextFieldDelegate,
         Settings.SetCGFloatDefault(For: .SpiralThetaStep)
         Settings.SetCGFloatDefault(For: .SpiralStartRadius)
         Settings.SetCGFloatDefault(For: .SpiralStartTheta)
+        Settings.SetBoolDefault(For: .SpiralSquare)
+        Settings.SetBoolDefault(For: .SpiralSquareSmooth)
         InitializeTextField(StartRadiusField, Key: .SpiralStartRadius)
         InitializeTextField(StartAngleField, Key: .SpiralStartTheta)
         InitializeTextField(EndAngleField, Key: .SpiralEndTheta)
         InitializeTextField(AngleStepField, Key: .SpiralThetaStep)
         InitializeTextField(LineGapField, Key: .SpiralSpacePerLoop)
+        SquareSpiralSwitch.isOn = Settings.GetBool(.SpiralSquare)
+        
     }
     
+    @IBAction func SmoothSpiralChangedHandler(_ sender: Any)
+    {
+        guard let Switch = sender as? UISwitch else
+        {
+            Debug.Print("Unknown control sent do SmoothSpiralChangedHandler")
+            return
+        }
+        
+        Settings.SetBool(.SpiralSquareSmooth, Switch.isOn)
+    }
+    
+    @IBAction func SquareSpiralChangedHandler(_ sender: Any)
+    {
+        guard let Switch = sender as? UISwitch else
+        {
+            Debug.Print("Unknown control sent do SquareSpiralChangedHandler")
+            return
+        }
+        
+        Settings.SetBool(.SpiralSquare, Switch.isOn)
+    }
+    
+    @IBOutlet weak var SmoothSpiralSwitch: UISwitch!
+    @IBOutlet weak var SquareSpiralSwitch: UISwitch!
     @IBOutlet weak var StartRadiusField: UITextField!
     @IBOutlet weak var StartAngleField: UITextField!
     @IBOutlet weak var EndAngleField: UITextField!
