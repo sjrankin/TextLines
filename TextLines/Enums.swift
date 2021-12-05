@@ -241,7 +241,8 @@ enum AnimationSpeeds: Int, CaseIterable
     /// Middle animation speed.
     case Medium = 5
     /// Fast animation speed.
-    case Fast = 7
+    case Fast = 9
     /// Fastest animation speed.
-    case Fastest = 9
+    case Fastest = 11
 }
+
