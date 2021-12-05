@@ -1371,7 +1371,7 @@
             <objects>
                 <viewController storyboardIdentifier="SpiralSettingSlice" id="Mw5-I1-lXT" customClass="SpiralSliceSettings" customModule="TextLines" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uVg-gu-5Yh">
-                        <rect key="frame" x="0.0" y="0.0" width="357" height="285"/>
+                        <rect key="frame" x="0.0" y="0.0" width="357" height="374"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spiral Line settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJq-jx-iOQ">
@@ -1530,30 +1530,64 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Square" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oq1-eI-Xn3">
+                                <rect key="frame" x="10" y="284" width="54" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wdq-ya-ypc">
+                                <rect key="frame" x="298" y="279" width="51" height="31"/>
+                                <connections>
+                                    <action selector="SquareSpiralChangedHandler:" destination="Mw5-I1-lXT" eventType="primaryActionTriggered" id="PGo-0t-Vr9"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smooth shape" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7IX-gO-Ubh">
+                                <rect key="frame" x="10" y="328" width="110" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRv-p8-KY8">
+                                <rect key="frame" x="298" y="323" width="51" height="31"/>
+                                <connections>
+                                    <action selector="SmoothSpiralChangedHandler:" destination="Mw5-I1-lXT" eventType="primaryActionTriggered" id="rSd-HN-W6T"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AMD-GD-apc"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="qD1-PG-gAc" secondAttribute="trailing" constant="10" id="7DO-AG-kJx"/>
+                            <constraint firstItem="7IX-gO-Ubh" firstAttribute="top" secondItem="uVg-gu-5Yh" secondAttribute="top" constant="328" id="7RJ-xu-X9b"/>
                             <constraint firstItem="qD1-PG-gAc" firstAttribute="leading" secondItem="uVg-gu-5Yh" secondAttribute="leading" constant="10" id="8U9-Am-WMA"/>
                             <constraint firstItem="SJq-jx-iOQ" firstAttribute="leading" secondItem="uVg-gu-5Yh" secondAttribute="leading" constant="10" id="EtM-Q3-npQ"/>
+                            <constraint firstItem="7IX-gO-Ubh" firstAttribute="leading" secondItem="uVg-gu-5Yh" secondAttribute="leading" constant="10" id="JdW-xu-vxS"/>
                             <constraint firstItem="SJq-jx-iOQ" firstAttribute="top" secondItem="uVg-gu-5Yh" secondAttribute="top" constant="10" id="LRX-ms-pGb"/>
+                            <constraint firstItem="wdq-ya-ypc" firstAttribute="top" secondItem="uVg-gu-5Yh" secondAttribute="top" constant="279" id="RIx-UH-wmi"/>
                             <constraint firstItem="qD1-PG-gAc" firstAttribute="top" secondItem="uVg-gu-5Yh" secondAttribute="top" constant="58" id="Vqw-ST-4eO"/>
+                            <constraint firstItem="Oq1-eI-Xn3" firstAttribute="top" secondItem="uVg-gu-5Yh" secondAttribute="top" constant="284" id="W0h-uo-7O4"/>
+                            <constraint firstAttribute="trailing" secondItem="wdq-ya-ypc" secondAttribute="trailing" constant="10" id="dez-g4-MvR"/>
+                            <constraint firstItem="Oq1-eI-Xn3" firstAttribute="leading" secondItem="uVg-gu-5Yh" secondAttribute="leading" constant="10" id="f4n-MD-mYu"/>
                             <constraint firstItem="SJq-jx-iOQ" firstAttribute="top" secondItem="uVg-gu-5Yh" secondAttribute="top" constant="10" id="jyC-eL-Z22"/>
+                            <constraint firstItem="rRv-p8-KY8" firstAttribute="top" secondItem="uVg-gu-5Yh" secondAttribute="top" constant="323" id="n4M-9N-dhZ"/>
+                            <constraint firstAttribute="trailing" secondItem="rRv-p8-KY8" secondAttribute="trailing" constant="10" id="zdI-an-0eS"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="357" height="285"/>
+                    <size key="freeformSize" width="357" height="374"/>
                     <connections>
                         <outlet property="AngleStepField" destination="Xus-Kt-uHR" id="NnD-bY-2TH"/>
                         <outlet property="EndAngleField" destination="B9m-W1-uBI" id="KF3-hg-jgG"/>
                         <outlet property="LineGapField" destination="k3P-7Y-2oy" id="4iL-3r-zFB"/>
+                        <outlet property="SmoothSpiralSwitch" destination="rRv-p8-KY8" id="L9p-ZN-KeG"/>
+                        <outlet property="SquareSpiralSwitch" destination="wdq-ya-ypc" id="c8l-eD-4a6"/>
                         <outlet property="StartAngleField" destination="IKq-QJ-hdY" id="Ohb-l9-A9h"/>
                         <outlet property="StartRadiusField" destination="Otn-jP-cjF" id="lFa-wy-wov"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7nl-tm-b1Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1268.840579710145" y="461.71875"/>
+            <point key="canvasLocation" x="1268.840579710145" y="491.51785714285711"/>
         </scene>
         <!--Line Slice-->
         <scene sceneID="I7g-hD-47n">
