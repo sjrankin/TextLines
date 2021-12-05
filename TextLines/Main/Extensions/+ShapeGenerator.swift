@@ -277,12 +277,14 @@ extension ViewController
                 let StartAngle: CGFloat = Settings.GetCGFloat(.SpiralStartTheta)
                 let EndAngle: CGFloat = Settings.GetCGFloat(.SpiralEndTheta)
                 let CurveEccentricity: CGFloat = Settings.GetCGFloat(.SpiralThetaStep, 1.0)
+                let IsSquare = Settings.GetBool(.SpiralSquare)
                 BezierPath = UIBezierPath.CreateSpiralPath(Center: SpiralCenter,
                                                            StartRadius: StartRadius,
                                                            LoopGap: LineGap,
                                                            StartTheta: StartAngle,
                                                            EndTheta: EndAngle,
-                                                           ThetaStep: CurveEccentricity)
+                                                           ThetaStep: CurveEccentricity,
+                                                           Square: IsSquare) 
                 
             case .Hexagon:
                 BezierPath = UIBezierPath()
