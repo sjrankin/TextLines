@@ -29,6 +29,7 @@ class AnimationSettingsSlice: UIViewController, ShapeSliceProtocol
         RunStateButton.addGestureRecognizer(Tap)
         let IsPlaying = Settings.GetBool(.Animating)
         RunStateButton.image = UIImage(systemName: IsPlaying ? "stop" : "play")
+        StateText.text = IsPlaying ? "Stop" : "Play"
     }
     
     @objc func TapHandler(_ Recognizer: UITapGestureRecognizer)
@@ -39,11 +40,13 @@ class AnimationSettingsSlice: UIViewController, ShapeSliceProtocol
         {
             //Change visual to non-play
             RunStateButton.image = UIImage(systemName: "stop")
+            StateText.text = "Stop"
         }
         else
         {
             //Change visual to play
             RunStateButton.image = UIImage(systemName: "play")
+            StateText.text = "Play"
         }
         Settings.SetBool(.Animating, NewPlayState)
     }
@@ -87,8 +90,10 @@ class AnimationSettingsSlice: UIViewController, ShapeSliceProtocol
         Settings.SetBoolDefault(For: .Animating)
         let IsAnimating = Settings.GetBool(.Animating)
         RunStateButton.image = UIImage(systemName: IsAnimating ? "stop" : "play")
+        StateText.text = IsAnimating ? "Stop" : "Play"
     }
     
+    @IBOutlet weak var StateText: UILabel!
     @IBOutlet weak var RunStateButton: UIImageView!
     @IBOutlet weak var AnimationSpeedControl: UISegmentedControl!
     @IBOutlet weak var AnimationDirectionControl: UISegmentedControl!
