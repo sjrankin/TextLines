@@ -376,14 +376,21 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
 #endif
     }
     
-    var CurrentlyAnimating: Bool = false
-    var TextAnimationTimer: Timer!
+    var TextAnimationTimer: Timer? = nil
     
     /// Sets the current animation state.
     func SetAnimationState()
     {
-        CurrentlyAnimating = !CurrentlyAnimating
-        Settings.SetBool(.Animating, CurrentlyAnimating)
+        let Current = Settings.GetBool(.Animating)
+        Settings.SetBool(.Animating, !Current)
+    }
+    
+    func SetAnimation()
+    {
+        let CS = Debug.StackFrameContents(5)
+        let PCS = Debug.PrettyStackTrace(CS)
+        print("At SetAnimation: \(PCS)")
+        let CurrentlyAnimating = Settings.GetBool(.Animating)
         if CurrentlyAnimating
         {
             UpdateTextOffset = true
@@ -402,7 +409,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         }
         else
         {
-            TextAnimationTimer.invalidate()
+            TextAnimationTimer?.invalidate()
         }
     }
     
@@ -486,13 +493,6 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     }
     
     var SharedImage: UIImage? = nil
-    
-    func SetAnimationState2()
-    {
-        let OldAnimation = Settings.GetBool(.Animating)
-        CurrentlyAnimating = OldAnimation
-        Settings.SetBool(.Animating, !OldAnimation)
-    }
     
     /// Name of the storyboard where the sliced setting exists.
     var WrappedStoryboard: String? = nil
