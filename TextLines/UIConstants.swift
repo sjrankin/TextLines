@@ -41,6 +41,22 @@ class UIConstants
     public static let VisibleZ: CGFloat = 1000.0
     /// Z-level value for moving the slice panel out of the way.
     public static let HiddenSliceZ: CGFloat = -2000.0
+    /// Duration of the animation for resetting the size of slice panels.
+    public static let SlicePanelResetDuration: Double = 0.5
+    /// Use for no delay intervals for animation.
+    public static let NoDelay: Double = 0.0
+    /// Minimum slice height the user can specify.
+    public static let MinimumSliceHeight: CGFloat = 180.0
+    /// Offset for maximum slice heights the user can specify.
+    public static let MaximumSliceHeightOffset: CGFloat = -30.0
+    /// Width of user-shape thumbnail images.
+    public static let UserShapeThumbnailWidth: CGFloat = 40.0
+    /// Height of user-shape thumbnail images.
+    public static let UserShapeThumbnailHeight: CGFloat = 40.0
+    /// Horizontal offset when display of user shape thumbnail images.
+    public static let UserShapeHorizontalOffset: CGFloat = 20.0
+    /// Vertical offset when display of user shape thumbnail images.
+    public static let UserShapeVerticalOffset: CGFloat = 20.0
     
     // MARK: - Short message view.
     
@@ -55,7 +71,7 @@ class UIConstants
     /// Final fade alpha value. Must be at least 0.05.
     public static let FinalFadeAlpha: CGFloat = 0.05
     
-    // MARK: - Command var.
+    // MARK: - Command view.
     
     /// Default horizontal gap between buttons.
     public static let HorizontalGap: CGFloat = 10.0
@@ -73,4 +89,10 @@ class UIConstants
     public static let FinalButtonHeight: CGFloat = 80.0
     /// Y location of the command button.
     public static let ButtonYLocation: CGFloat = 5.0
+    
+    // MARK: - Animation values.
+    /// Interval between updates of the text location during animation.
+    public static let TextAnimationInterval: Double = 0.005
+    /// Initial animation offset.
+    public static let InitialAnimationOffset: CGFloat = 0.0
 }
