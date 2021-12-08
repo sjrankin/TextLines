@@ -29,10 +29,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alignment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTj-sm-P1y">
-                                <rect key="frame" x="8" y="72" width="77" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alignment on shape" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTj-sm-P1y">
+                                <rect key="frame" x="8" y="72" width="190" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="77" id="Qva-aj-6Rq"/>
+                                    <constraint firstAttribute="width" constant="190" id="Qva-aj-6Rq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -240,16 +240,27 @@
                                     <constraint firstAttribute="height" constant="64" id="W1W-b8-PC6"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7if-Wd-0GT">
+                                <rect key="frame" x="283" y="82" width="64" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="zUK-bh-ih3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GkO-PR-yR9"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstItem="Anc-RY-g0F" firstAttribute="top" secondItem="eHz-LF-IgG" secondAttribute="top" constant="57" id="1Ii-Yv-vLg"/>
                             <constraint firstItem="t2F-0w-VfB" firstAttribute="leading" secondItem="eHz-LF-IgG" secondAttribute="leading" constant="10" id="1Mn-kC-Bm3"/>
+                            <constraint firstItem="7if-Wd-0GT" firstAttribute="leading" secondItem="pD3-YG-PWK" secondAttribute="leading" id="2K6-z3-JjA"/>
                             <constraint firstItem="Anc-RY-g0F" firstAttribute="leading" secondItem="DsN-DL-IVn" secondAttribute="leading" id="2cG-43-HxC"/>
                             <constraint firstItem="DsN-DL-IVn" firstAttribute="leading" secondItem="eHz-LF-IgG" secondAttribute="leading" constant="10" id="8nL-Sn-ehc"/>
                             <constraint firstItem="t2F-0w-VfB" firstAttribute="top" secondItem="Anc-RY-g0F" secondAttribute="bottom" constant="30.5" id="BSW-DF-rCG"/>
                             <constraint firstItem="DsN-DL-IVn" firstAttribute="top" secondItem="eHz-LF-IgG" secondAttribute="top" constant="10" id="d2P-0R-dHo"/>
+                            <constraint firstItem="7if-Wd-0GT" firstAttribute="top" secondItem="eHz-LF-IgG" secondAttribute="top" constant="82" id="mVb-ih-8MJ"/>
                             <constraint firstItem="pD3-YG-PWK" firstAttribute="top" secondItem="eHz-LF-IgG" secondAttribute="top" constant="10" id="vsk-Ph-R1q"/>
                             <constraint firstAttribute="trailing" secondItem="pD3-YG-PWK" secondAttribute="trailing" constant="10" id="xO2-f9-Wjn"/>
                         </constraints>
@@ -259,6 +270,7 @@
                         <outlet property="AnimationDirectionControl" destination="fGa-Ni-0oe" id="ADF-z7-yO3"/>
                         <outlet property="AnimationSpeedControl" destination="KmW-8R-wPJ" id="1VD-WQ-qZw"/>
                         <outlet property="RunStateButton" destination="pD3-YG-PWK" id="mBb-M4-kau"/>
+                        <outlet property="StateText" destination="7if-Wd-0GT" id="tdQ-Kp-AJc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQh-sc-p54" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2282,6 +2294,9 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
