@@ -49,7 +49,8 @@ extension ViewController: SettingChangedProtocol
                                                         Delimiter: ",",
                                                         Default: [CommandButtons.ActionButton.rawValue])
                 CmdController?.UpdateButtons(NewButtons: CommandButtonList)
-
+                SetAnimation()
+                
             case .CommandButtonList:
                 CommandButtonList = Settings.GetStrings(.CommandButtonList,
                                                         Delimiter: ",",
