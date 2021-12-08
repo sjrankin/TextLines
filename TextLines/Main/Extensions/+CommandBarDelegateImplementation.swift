@@ -142,8 +142,6 @@ extension ViewController: CommandBarProtocol
                 
             case .PlayButton:                
                 SetAnimationState()
-                //SetAnimationState2()
-                break
                 
             case .UserButton:
                 let Storyboard = UIStoryboard(name: "UserShapes", bundle: nil)
