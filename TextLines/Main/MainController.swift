@@ -207,8 +207,8 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
             return
         }
         self.SliceControllerHeight.constant = BaseHeight
-        UIView.animate(withDuration: 0.5,
-                       delay: 0.0,
+        UIView.animate(withDuration: UIConstants.SlicePanelResetDuration,
+                       delay: UIConstants.NoDelay,
                        options: [.curveEaseInOut])
         {
             self.view.layoutIfNeeded()
@@ -232,11 +232,11 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                 
             case .changed:
                 let Delta = SettingSliceHeight! + DraggedTo.y
-                if Delta < 180
+                if Delta < UIConstants.MinimumSliceHeight
                 {
                     return
                 }
-                if Delta > UIScreen.main.bounds.height - 30
+                if Delta > UIScreen.main.bounds.height + UIConstants.MaximumSliceHeightOffset
                 {
                     return
                 }
@@ -279,13 +279,11 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         let UserShapeList = UserShapeManager.UserShapeList
         for Shape in UserShapeList
         {
-            print("Shape.Name=\(Shape.Name)")
             let ShapeID = Shape.ID
             let NormalColor = CreateShapeThumbnail(Shape: Shape, Color: .Gray(Percent: 0.85))
             let Highlighted = CreateShapeThumbnail(Shape: Shape, Color: .systemYellow)
             UserShapeImageCache.SaveInCache(ID: ShapeID, Normal: NormalColor, Highlighted: Highlighted)
         }
-        print("UserShapeImageCache.count=\(UserShapeImageCache.LocalCache.count)")
     }
     
     /// Create a thumbnail image of the specified user-defined shape.
@@ -296,10 +294,10 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     {
         var Thumbnail: UIImage = UIImage()
         let (UL, LR) = Utility.GetExtent(Points: Shape.Points)!
-        let ShapeWidth = (LR.x - UL.x) + 40
-        let ShapeHeight = (LR.y - UL.y) + 40
-        let XOffset: CGFloat = 20
-        let YOffset: CGFloat = 20
+        let ShapeWidth = (LR.x - UL.x) + UIConstants.UserShapeThumbnailWidth
+        let ShapeHeight = (LR.y - UL.y) + UIConstants.UserShapeThumbnailHeight
+        let XOffset: CGFloat = UIConstants.UserShapeHorizontalOffset
+        let YOffset: CGFloat = UIConstants.UserShapeVerticalOffset
         var OffsetPoints = [CGPoint]()
         for Point in Shape.Points
         {
@@ -385,11 +383,9 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         Settings.SetBool(.Animating, !Current)
     }
     
+    /// Enables animation of text based on the previously set animation state.
     func SetAnimation()
     {
-        let CS = Debug.StackFrameContents(5)
-        let PCS = Debug.PrettyStackTrace(CS)
-        print("At SetAnimation: \(PCS)")
         let CurrentlyAnimating = Settings.GetBool(.Animating)
         if CurrentlyAnimating
         {
@@ -401,7 +397,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         }
         if CurrentlyAnimating
         {
-            TextAnimationTimer = Timer.scheduledTimer(timeInterval: 0.005,
+            TextAnimationTimer = Timer.scheduledTimer(timeInterval: UIConstants.TextAnimationInterval,
                                                       target: self,
                                                       selector: #selector(HandleAnimation),
                                                       userInfo: nil,
@@ -413,7 +409,7 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
         }
     }
     
-    var AnimationOffset: CGFloat = 0.0
+    var AnimationOffset: CGFloat = UIConstants.InitialAnimationOffset
     
     /// Handle the debug button action.
     /// - Notes: Code not included in non-`#DEBUG` schemes.
