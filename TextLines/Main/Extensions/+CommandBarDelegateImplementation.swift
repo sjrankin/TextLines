@@ -140,9 +140,10 @@ extension ViewController: CommandBarProtocol
             case .DimensionsButton:
                 ShowSliceHandler(.ViewportSize)
                 
-            case .PlayButton:
+            case .PlayButton:                
                 SetAnimationState()
                 //SetAnimationState2()
+                break
                 
             case .UserButton:
                 let Storyboard = UIStoryboard(name: "UserShapes", bundle: nil)
