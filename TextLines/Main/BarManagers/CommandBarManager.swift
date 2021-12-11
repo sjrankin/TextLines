@@ -52,6 +52,29 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
         PopulateCommandBar()
     }
     
+    func ShowOverlay(_ DoShow: Bool)
+    {
+        if DoShow
+        {
+            let OverlayFrame = CGRect(x: 0, y: 0,
+                                      width: CommandBar!.frame.width,
+                                      height: CommandBar!.frame.height)
+            VisualOverlay = UIView(frame: OverlayFrame)
+            VisualOverlay!.layer.backgroundColor = UIColor.black.withAlphaComponent(UIConstants.CommandBarOverlayAlpha).cgColor
+            CommandBar!.addSubview(VisualOverlay!)
+            VisualOverlay?.layer.zPosition = 5000
+        }
+        else
+        {
+            VisualOverlay?.removeFromSuperview()
+            VisualOverlay = nil
+        }
+    }
+    
+    /// Overylay displayed when the keyboard is active. This prevents the user from
+    /// selecting commands as well as indicating they shouldn't do so.
+    var VisualOverlay: UIView? = nil
+    
     var SmallDevice = false
     
     func UpdateButtons(NewButtons: [String])
