@@ -59,6 +59,8 @@ class UIConstants
     public static let UserShapeVerticalOffset: CGFloat = 20.0
     /// Alpha value of the overlay shown on the command bar when the keyboard is active.
     public static let CommandBarOverlayAlpha: Double = 0.65
+    /// Default button color.
+    public static let DefaultButtonColor: UIColor = UIColor.systemBlue
     
     // MARK: - Short message view.
     
@@ -97,4 +99,66 @@ class UIConstants
     public static let TextAnimationInterval: Double = 0.005
     /// Initial animation offset.
     public static let InitialAnimationOffset: CGFloat = 0.0
+    
+    // MARK: - General shape constants.
+    /// Number of iterations for general-purpose shape smoothing.
+    public static let SmoothingIterations: Int = 5
+    
+    // MARK: - Shape constants.
+    /// Gap between spiral lines.
+    public static let DefaultSpiralGap: CGFloat = 5.5
+    
+    // MARK: - Inifinity constants.
+    /// End angle for infinity shapes.
+    public static let InfinityEndAngle: CGFloat = 1.5
+    
+    // MARK: - Rectangle shape constants.
+    /// Default radius for rounded rectangles.
+    public static let DefaultRoundedRadius: Int = 20
+    
+    // MARK: - Circle shape constants.
+    /// Default radius for circles.
+    public static let DefaultCircleRadius: Int = 500
+    
+    // MARK: - Line shape constants.
+    /// 90° for line rotation.
+    public static let Line90: Double = 90.0
+    /// 315° for line rotation.
+    public static let Line315: Double = 315.0
+    /// 135° for line rotation.
+    public static let Line135: Double = 135.0
+    /// 45° for line rotation.
+    public static let Line45: Double = 45.0
+    /// 225° for line rotation.
+    public static let Line225: Double = 225.0
+    /// 360° for line rotation.
+    public static let Line360: Double = 360.0
+    /// 60° for line rotation.
+    public static let Line60: Double = 60.0
+    
+    // MARK: - Polygon shape constants.
+    /// Offset multiplier for viewport usage for polygons.
+    public static let MinimumOffset: CGFloat = 0.05
+    
+    // MARK: - Hexagon shape constants.
+    /// Angle for each vertex in a hexagon.
+    public static let HexagonVertexAngle: Double = 60.0
+    /// Total number of degrees in a polygon.
+    public static let PolygonUnit: Double = 360.0
+    /// Radial offset for hexagon vertices.
+    public static let HexagonRadialOffset: Double = -90.0
+    
+    // MARK: - Octagon shape constants.
+    /// Radial offset for octagon vertices.
+    public static let OctagonRadialOffset: Double = 90.0
+    /// Increment for octagon vertices.
+    public static let OctagonRadialIncrement: Double = 360.0 / 8.0
+    
+    // MARK: - Plotted text constants.
+    /// Default text font size.
+    public static let AttributedTextFontSize: CGFloat = 32.0
+    /// Default text font weight.
+    public static let AttributedTextFontWeight: UIFont.Weight = .black
+    /// Default text color.
+    public static let AttributedTextColor: UIColor = .black
 }
