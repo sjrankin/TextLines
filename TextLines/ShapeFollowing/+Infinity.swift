@@ -21,7 +21,7 @@ extension UIBezierPath
         let LeftArc = UIBezierPath(arcCenter: LeftCenter,
                                    radius: Radius,
                                    startAngle: CGFloat.pi / 2,
-                                   endAngle: CGFloat.pi * 1.5,
+                                   endAngle: CGFloat.pi * UIConstants.InfinityEndAngle,
                                    clockwise: true)
         
         let LeftToRight = UIBezierPath()
@@ -37,7 +37,7 @@ extension UIBezierPath
         let RightArc = UIBezierPath(arcCenter: RightCenter,
                                     radius: Radius,
                                     startAngle: CGFloat.pi / 2,
-                                    endAngle: CGFloat.pi * 1.5,
+                                    endAngle: CGFloat.pi * UIConstants.InfinityEndAngle,
                                     clockwise: false)
         
         let RightToLeft = UIBezierPath()
