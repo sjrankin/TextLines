@@ -107,13 +107,39 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
                                                object: TextInput)
         
         //print("Screen.size=(\(UIScreen.main.bounds.width),\(UIScreen.main.bounds.height))")
+    
+        HideKeyboardTapA = UITapGestureRecognizer(target: self,
+                                                 action: #selector(HideKeyboardTapEvent))
+        HideKeyboardTapB = UITapGestureRecognizer(target: self,
+                                                  action: #selector(HideKeyboardTapEvent))
     }
+    
+    /// Handle the hide keyboard tap event. When the user starts to enter text, a different
+    /// function adds a tap gesture recognizer to the UI and this function is called when
+    /// a tap occurs.
+    /// - Parameter Recognizer: The tap recognizer. Not used.
+    @objc func HideKeyboardTapEvent(_ Recognizer: UITapGestureRecognizer)
+    {
+        TextInput.resignFirstResponder()
+        TextOutput.removeGestureRecognizer(HideKeyboardTapA!)
+        TextDoneButton.isEnabled = false
+        CommandScroller.isScrollEnabled = true
+        CmdController?.VisualOverlay?.removeGestureRecognizer(HideKeyboardTapB!)
+        CmdController?.ShowOverlay(false)
+    }
+    
+    var HideKeyboardTapA: UITapGestureRecognizer? = nil
+    var HideKeyboardTapB: UITapGestureRecognizer? = nil
     
     /// User started to enter/edit text. Enable the text done button.
     /// - Parameter Notice: Not used.
     @objc func TextInputNotifications(_ Notice: Notification)
     {
         TextDoneButton.isEnabled = true
+        TextOutput.addGestureRecognizer(HideKeyboardTapA!)
+        CommandScroller.isScrollEnabled = false
+        CmdController?.ShowOverlay(true)
+        CmdController?.VisualOverlay?.addGestureRecognizer(HideKeyboardTapB!)
     }
     
     /// Used finished editing text. disable the text done button and resign first responder for the
@@ -123,6 +149,10 @@ class ViewController: UIViewController, UITextViewDelegate, ShapeBarProtocol,
     {
         TextDoneButton.isEnabled = false
         self.TextInput.resignFirstResponder()
+        TextOutput.removeGestureRecognizer(HideKeyboardTapA!)
+        CommandScroller.isScrollEnabled = true
+        CmdController?.VisualOverlay?.removeGestureRecognizer(HideKeyboardTapB!)
+        CmdController?.ShowOverlay(false)
     }
     
     var HideTap: UITapGestureRecognizer? = nil
