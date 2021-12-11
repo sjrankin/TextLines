@@ -51,12 +51,13 @@ extension UIBezierPath {
         if Square
         {
             let SBezier = UIBezierPath()
-            let SquareGap = LoopGap * 5.5
+            let SquareGap = LoopGap * UIConstants.DefaultSpiralGap
             var Points = [CGPoint]()
             let CenterX = CGFloat(Settings.GetInt(.ViewportWidth)) / 2.0
             let CenterY = CGFloat(Settings.GetInt(.ViewportHeight)) / 2.0
             var GapCount = 1.0
-            let Fit = CGFloat(min(Settings.GetInt(.ViewportWidth), Settings.GetInt(.ViewportHeight)))
+            let Fit = CGFloat(min(Settings.GetInt(.ViewportWidth),
+                                  Settings.GetInt(.ViewportHeight)))
             let Top = CenterY - (Fit / 2.0)
             let Bottom = CenterY + (Fit / 2.0)
             let Right = CenterX + (Fit / 2.0)
@@ -91,7 +92,7 @@ extension UIBezierPath {
             if Settings.GetBool(.SpiralSquareSmooth)
             {
                 Points = Chaikin.SmoothPoints(Points: Points,
-                                              Iterations: 4,
+                                              Iterations: UIConstants.SmoothingIterations,
                                               Closed: false)
             }
             SBezier.move(to: Points[0])
@@ -159,7 +160,7 @@ extension UIBezierPath {
             }
             
             NewSlope = (b * sin(NewTheta) + (APlusBTheta * cos(NewTheta))) /
-            (b * cos(NewTheta) - APlusBTheta * sin(NewTheta))
+                       (b * cos(NewTheta) - APlusBTheta * sin(NewTheta))
             
             var ControlPoint = CGPoint.zero
             
