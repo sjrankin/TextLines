@@ -229,7 +229,9 @@
                                     <constraint firstAttribute="bottom" secondItem="1I1-2l-2Qu" secondAttribute="bottom" constant="28" id="SOj-su-Jje"/>
                                     <constraint firstAttribute="height" constant="330" id="ZCx-wt-YqW"/>
                                     <constraint firstItem="BfQ-lO-mK2" firstAttribute="top" secondItem="oIj-eB-l1s" secondAttribute="top" constant="6" id="ZWC-34-MWg"/>
+                                    <constraint firstItem="BfQ-lO-mK2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uzW-8t-bvL" secondAttribute="trailing" constant="8" symbolic="YES" id="ZsR-Vu-skL"/>
                                     <constraint firstItem="1I1-2l-2Qu" firstAttribute="leading" secondItem="oIj-eB-l1s" secondAttribute="leading" constant="10" id="a63-mY-7OT"/>
+                                    <constraint firstItem="uzW-8t-bvL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5e3-Me-Vse" secondAttribute="trailing" constant="8" symbolic="YES" id="cBF-zQ-AZe"/>
                                     <constraint firstItem="1I1-2l-2Qu" firstAttribute="leading" secondItem="oIj-eB-l1s" secondAttribute="leading" constant="10" id="egB-ej-rQD"/>
                                     <constraint firstAttribute="bottom" secondItem="hM5-gz-tBI" secondAttribute="bottom" constant="10" id="owg-ro-ZLf"/>
                                     <constraint firstAttribute="trailing" secondItem="1I1-2l-2Qu" secondAttribute="trailing" constant="10" id="pEA-yY-K8d"/>
@@ -238,7 +240,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image Saved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJe-s3-GDm">
-                                <rect key="frame" x="30" y="125" width="315" height="35"/>
+                                <rect key="frame" x="30.000000000000007" y="125" width="120.66666666666669" height="35"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="IdZ-vb-axi"/>
@@ -276,7 +278,7 @@
                             <constraint firstItem="3ly-R4-QpG" firstAttribute="top" secondItem="FbJ-mc-4M1" secondAttribute="bottom" id="n9d-Ap-PjI"/>
                             <constraint firstItem="wuS-SF-y64" firstAttribute="top" secondItem="Rn0-IL-ZWi" secondAttribute="bottom" id="nST-Hr-q2j"/>
                             <constraint firstItem="D0N-Et-mTd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nu5-SA-vdl"/>
-                            <constraint firstAttribute="trailing" secondItem="FJe-s3-GDm" secondAttribute="trailing" constant="30" id="oDj-6f-uLs"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FJe-s3-GDm" secondAttribute="trailing" symbolic="YES" id="oDj-6f-uLs"/>
                             <constraint firstItem="D0N-Et-mTd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xcW-Eo-Ot8"/>
                         </constraints>
                     </view>
