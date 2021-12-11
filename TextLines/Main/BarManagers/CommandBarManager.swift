@@ -171,7 +171,7 @@ class CommandBarManager: NSObject, UIScrollViewDelegate, CommandBarControlProtoc
     {
         var Image: UIImage? = nil
         var SVGImage: Bool = false
-        let ButtonColor = delegate?.ButtonColor(self, Command: For) ?? UIColor.systemBlue
+        let ButtonColor = delegate?.ButtonColor(self, Command: For) ?? UIConstants.DefaultButtonColor
         let ImageName = ReturnButtonImageName(For: For)
         switch For
         {
