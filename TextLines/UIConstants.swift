@@ -57,6 +57,8 @@ class UIConstants
     public static let UserShapeHorizontalOffset: CGFloat = 20.0
     /// Vertical offset when display of user shape thumbnail images.
     public static let UserShapeVerticalOffset: CGFloat = 20.0
+    /// Alpha value of the overlay shown on the command bar when the keyboard is active.
+    public static let CommandBarOverlayAlpha: Double = 0.65
     
     // MARK: - Short message view.
     
