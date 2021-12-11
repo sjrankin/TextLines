@@ -37,14 +37,14 @@ extension ViewController
                 Height = Height * Double(Settings.GetDoubleNormal(.RectangleHeight))
                 let Top = (ImageHeight / 2) - (Int(Height) / 2)
                 let Left = (ImageWidth / 2) - (Int(Width) / 2)
-                let Radius = Settings.GetBool(.RectangleRoundedCorners) ? 20 : 0
+                let Radius = Settings.GetBool(.RectangleRoundedCorners) ? UIConstants.DefaultRoundedRadius : 0
                 BezierPath = UIBezierPath(roundedRect: CGRect(origin: CGPoint(x: 20 + Left, y: 20 + Top),
                                                               size: CGSize(width: Width - 40,
                                                                            height: Height - 40)),
                                           cornerRadius: CGFloat(Radius))
                 
             case .Circle:
-                let Diameter = Settings.GetInt(.CircleDiameter, IfZero: 500)
+                let Diameter = Settings.GetInt(.CircleDiameter, IfZero: UIConstants.DefaultCircleRadius)
                 let Top = (ImageHeight / 2) - (Diameter / 2)
                 let Left = (ImageWidth / 2) - (Diameter / 2)
                 BezierPath = UIBezierPath(ovalIn: CGRect(origin: CGPoint(x: 20 + Left, y: 20 + Top),
@@ -148,8 +148,8 @@ extension ViewController
                         let MinDimension = min(Width, Height)
                         Length = Length * MinDimension
                         let HalfLength = Length / 2.0
-                        let ULAngle = (315.0 - 90.0).Radians
-                        let LRAngle = (135.0 - 90.0).Radians
+                        let ULAngle = (UIConstants.Line315 - UIConstants.Line90).Radians
+                        let LRAngle = (UIConstants.Line135 - UIConstants.Line90).Radians
                         let ULX = HalfLength * cos(ULAngle) + HalfWidth
                         let ULY = HalfLength * sin(ULAngle) + HalfHeight
                         let LRX = HalfLength * cos(LRAngle) + HalfWidth
@@ -161,8 +161,8 @@ extension ViewController
                         let MinDimension = min(Width, Height)
                         Length = Length * MinDimension
                         let HalfLength = Length / 2.0
-                        let URAngle = (45.0 - 90.0).Radians
-                        let LLAngle = (225.0 - 90.0).Radians
+                        let URAngle = (UIConstants.Line45 - UIConstants.Line90).Radians
+                        let LLAngle = (UIConstants.Line225 - UIConstants.Line90).Radians
                         let ULX = HalfLength * cos(URAngle) + HalfWidth
                         let ULY = HalfLength * sin(URAngle) + HalfHeight
                         let LRX = HalfLength * cos(LLAngle) + HalfWidth
@@ -214,7 +214,9 @@ extension ViewController
                 }
                 if Settings.GetBool(.StarDrawSmooth)
                 {
-                    let Smoothed = Chaikin.SmoothPoints(Points: Points, Iterations: 4, Closed: true)
+                    let Smoothed = Chaikin.SmoothPoints(Points: Points,
+                                                        Iterations: UIConstants.SmoothingIterations,
+                                                        Closed: true)
                     Points = Smoothed
                 }
                 BezierPath = UIBezierPath()
@@ -235,9 +237,9 @@ extension ViewController
                 let CenterX = CGFloat(ImageWidth) / 2.0
                 let Center = CGPoint(x: CenterX, y: CenterY)
                 var Min = CGFloat(min(ImageWidth / 2, ImageHeight / 2))
-                Min = Min - (Min * 0.05)
+                Min = Min - (Min * UIConstants.MinimumOffset)
                 var Points = [CGPoint]()
-                let AngleIncrement = 360.0 / CGFloat(Vertices)
+                let AngleIncrement = UIConstants.Line360 / CGFloat(Vertices)
                 let NGonRotation = Settings.GetDouble(.NGonRotation)
                 for Index in 0 ..< Vertices
                 {
@@ -249,7 +251,7 @@ extension ViewController
                 if Settings.GetBool(.NGonDrawSmooth)
                 {
                     let Smoothed = Chaikin.SmoothPoints(Points: Points,
-                                                        Iterations: 4,
+                                                        Iterations: UIConstants.SmoothingIterations,
                                                         Closed: true)
                     Points = Smoothed
                 }
@@ -295,14 +297,14 @@ extension ViewController
                 let HexHeight = Settings.GetDoubleNormal(.HexagonHeight)
                 let MinDistance = min(HexWidth, HexHeight)
                 Radius = Radius * MinDistance
-                let RadialOffset = -90.0
+                let RadialOffset = UIConstants.HexagonRadialOffset
 
                 let StartX = Radius * cos(RadialOffset.Radians) + CenterX
                 let StartY = Radius * sin(RadialOffset.Radians) + CenterY
                 BezierPath?.move(to: CGPoint(x: StartX, y: StartY))
                 for Angle in stride(from: RadialOffset,
-                                    through: 360.0 + RadialOffset,
-                                    by: 60.0)
+                                    through: UIConstants.PolygonUnit + RadialOffset,
+                                    by: UIConstants.HexagonVertexAngle)
                 {
                     let Radians = Angle.Radians
                     let X = Radius * cos(Radians) + CenterX
@@ -319,13 +321,15 @@ extension ViewController
                 let HexHeight = Settings.GetDoubleNormal(.HexagonHeight)
                 let MinDistance = min(HexWidth, HexHeight)
                 Radius = Radius * MinDistance
-                let RadialOffset = 90.0
+                let RadialOffset = UIConstants.OctagonRadialOffset
                 
-                let RadialIncrement = 360.0 / 8.0
+                let RadialIncrement = UIConstants.OctagonRadialIncrement
                 let StartX = Radius * cos((RadialOffset).Radians) + CenterX
                 let StartY = Radius * sin((RadialOffset).Radians) + CenterY
                 BezierPath?.move(to: CGPoint(x: StartX, y: StartY))
-                for Angle in stride(from: (RadialOffset), through: (360.0 + RadialOffset), by: RadialIncrement)
+                for Angle in stride(from: (RadialOffset),
+                                    through: (UIConstants.PolygonUnit + RadialOffset),
+                                    by: RadialIncrement)
                 {
                     let Radians = Angle.Radians
                     let X = Radius * cos(Radians) + CenterX
@@ -351,37 +355,37 @@ extension ViewController
                                         width: scaledWidth,
                                         height: scaledHeight)
                 
-                BezierPath?.move(to: CGPoint(x: originalRect.size.width/2,
+                BezierPath?.move(to: CGPoint(x: originalRect.size.width / 2,
                                              y: scaledRect.origin.y + scaledRect.size.height))
                 
                 
                 BezierPath?.addCurve(to: CGPoint(x: scaledRect.origin.x,
-                                                 y: scaledRect.origin.y + (scaledRect.size.height/4)),
-                                     controlPoint1:CGPoint(x: scaledRect.origin.x + (scaledRect.size.width/2),
-                                                           y: scaledRect.origin.y + (scaledRect.size.height*3/4)) ,
+                                                 y: scaledRect.origin.y + (scaledRect.size.height / 4)),
+                                     controlPoint1:CGPoint(x: scaledRect.origin.x + (scaledRect.size.width / 2),
+                                                           y: scaledRect.origin.y + (scaledRect.size.height * 3 / 4)) ,
                                      controlPoint2: CGPoint(x: scaledRect.origin.x,
-                                                            y: scaledRect.origin.y + (scaledRect.size.height/2)) )
+                                                            y: scaledRect.origin.y + (scaledRect.size.height / 2)) )
                 
-                BezierPath?.addArc(withCenter: CGPoint( x: scaledRect.origin.x + (scaledRect.size.width/4),
-                                                        y: scaledRect.origin.y + (scaledRect.size.height/4)),
-                                   radius: (scaledRect.size.width/4),
+                BezierPath?.addArc(withCenter: CGPoint( x: scaledRect.origin.x + (scaledRect.size.width / 4),
+                                                        y: scaledRect.origin.y + (scaledRect.size.height / 4)),
+                                   radius: (scaledRect.size.width / 4),
                                    startAngle: CGFloat(Double.pi),
                                    endAngle: 0,
                                    clockwise: true)
                 
-                BezierPath?.addArc(withCenter: CGPoint( x: scaledRect.origin.x + (scaledRect.size.width * 3/4),
-                                                        y: scaledRect.origin.y + (scaledRect.size.height/4)),
-                                   radius: (scaledRect.size.width/4),
+                BezierPath?.addArc(withCenter: CGPoint( x: scaledRect.origin.x + (scaledRect.size.width * 3 / 4),
+                                                        y: scaledRect.origin.y + (scaledRect.size.height / 4)),
+                                   radius: (scaledRect.size.width / 4),
                                    startAngle: CGFloat(Double.pi),
                                    endAngle: 0,
                                    clockwise: true)
                 
-                BezierPath?.addCurve(to: CGPoint(x: originalRect.size.width/2,
+                BezierPath?.addCurve(to: CGPoint(x: originalRect.size.width / 2,
                                                  y: scaledRect.origin.y + scaledRect.size.height),
                                      controlPoint1: CGPoint(x: scaledRect.origin.x + scaledRect.size.width,
-                                                            y: scaledRect.origin.y + (scaledRect.size.height/2)),
-                                     controlPoint2: CGPoint(x: scaledRect.origin.x + (scaledRect.size.width/2),
-                                                            y: scaledRect.origin.y + (scaledRect.size.height*3/4)) )
+                                                            y: scaledRect.origin.y + (scaledRect.size.height / 2)),
+                                     controlPoint2: CGPoint(x: scaledRect.origin.x + (scaledRect.size.width / 2),
+                                                            y: scaledRect.origin.y + (scaledRect.size.height * 3 / 4)) )
                 
                 let Translation = CGAffineTransform(translationX: CGFloat(XOffset), y: CGFloat(YOffset))
                 BezierPath?.apply(Translation)
@@ -447,8 +451,9 @@ extension ViewController
         let attributedString = NSAttributedString(
             string: FinalText,
             attributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 32, weight: UIFont.Weight.black),
-                NSAttributedString.Key.foregroundColor: UIColor.black
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: UIConstants.AttributedTextFontSize,
+                                                               weight: UIConstants.AttributedTextFontWeight),
+                NSAttributedString.Key.foregroundColor: UIConstants.AttributedTextColor
             ])
         
         var bezier = Bezier(path: Path.cgPath)
